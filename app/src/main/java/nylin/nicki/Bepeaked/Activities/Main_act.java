@@ -2,9 +2,6 @@ package nylin.nicki.Bepeaked.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,13 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import nylin.nicki.Bepeaked.Activities.Login_akt;
-import nylin.nicki.Bepeaked.Fragments.DietFragment;
-import nylin.nicki.Bepeaked.Fragments.MainFragment;
-import nylin.nicki.Bepeaked.Fragments.TrainingFragment;
+import nylin.nicki.Bepeaked.Fragments.Diet_frag;
+import nylin.nicki.Bepeaked.Fragments.Profile_frag;
+import nylin.nicki.Bepeaked.Fragments.Training_frag;
 import nylin.nicki.Bepeaked.R;
 
-public class Main_activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Main_act extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     NavigationView navigationView = null;
@@ -32,7 +28,7 @@ public class Main_activity extends AppCompatActivity implements NavigationView.O
         setContentView(R.layout.activity_main);
 
         // Set the fragment initially
-        MainFragment fragment = new MainFragment();
+        Profile_frag fragment = new Profile_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
@@ -89,24 +85,25 @@ public class Main_activity extends AppCompatActivity implements NavigationView.O
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            MainFragment fragment = new MainFragment();
+            Profile_frag fragment = new Profile_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.addToBackStack("hej");
             fragmentTransaction.commit();
 
 
         } else if (id == R.id.nav_trainingplan) {
             // Set the fragment initially
-            TrainingFragment fragment = new TrainingFragment();
+            Training_frag fragment = new Training_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_diet) {
 // Set the fragment initially
-            DietFragment fragment = new DietFragment();
+            Diet_frag fragment = new Diet_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
             fragmentTransaction.commit();
 
 
@@ -117,7 +114,7 @@ public class Main_activity extends AppCompatActivity implements NavigationView.O
 
             //TODO Her skal der logges rigtigt ud!!
 
-            Intent i = new Intent(this, Login_akt.class);
+            Intent i = new Intent(this, Login_act.class);
             startActivity(i);
 
         }

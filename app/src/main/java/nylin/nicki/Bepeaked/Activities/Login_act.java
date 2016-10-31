@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import nylin.nicki.Bepeaked.R;
 
-public class Login_akt extends AppCompatActivity {
+public class Login_act extends AppCompatActivity {
 
     Button btnLogin, btnAddUser;
     TextView tvMail;
@@ -29,7 +29,7 @@ public class Login_akt extends AppCompatActivity {
 
            @Override
            public void onClick(View v) {
-               Intent i = new Intent(Login_akt.this , Main_activity.class);
+               Intent i = new Intent(Login_act.this , Main_act.class);
                startActivity(i);
            }
         });
@@ -39,7 +39,7 @@ public class Login_akt extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Login_akt.this , AddUser_akt.class);
+                Intent i = new Intent(Login_act.this , AddUser_act.class);
                 startActivity(i);
             }
         });

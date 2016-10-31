@@ -12,10 +12,10 @@ import nylin.nicki.Bepeaked.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettingsFragment extends Fragment {
+public class Settings_frag extends Fragment {
 
 
-    public SettingsFragment() {
+    public Settings_frag() {
         // Required empty public constructor
     }
 

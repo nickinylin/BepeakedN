@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import nylin.nicki.Bepeaked.R;
 
-public class AddUser_akt extends AppCompatActivity {
+public class AddUser_act extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
