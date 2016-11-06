@@ -30,7 +30,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
         // Set the fragment initially
         Profile_frag fragment = new Profile_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.add(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -108,14 +108,6 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
 
         } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_logout) {
-
-
-            //TODO Her skal der logges rigtigt ud!!
-
-            Intent i = new Intent(this, Login_act.class);
-            startActivity(i);
 
         }
 
