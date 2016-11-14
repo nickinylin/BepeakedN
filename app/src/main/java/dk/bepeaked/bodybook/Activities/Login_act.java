@@ -1,4 +1,4 @@
-package nylin.nicki.Bepeaked.Activities;
+package dk.bepeaked.bodybook.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import nylin.nicki.Bepeaked.R;
+import dk.bepeaked.bodybook.R;
+
 
 public class Login_act extends AppCompatActivity {
 

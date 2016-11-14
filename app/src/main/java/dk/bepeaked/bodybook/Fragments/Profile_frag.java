@@ -1,4 +1,4 @@
-package nylin.nicki.Bepeaked.Fragments;
+package dk.bepeaked.bodybook.Fragments;
 
 
 import android.os.Bundle;
@@ -7,8 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import nylin.nicki.Bepeaked.R;
-
+import dk.bepeaked.bodybook.R;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,9 +1,10 @@
-package nylin.nicki.Bepeaked.Activities;
+package dk.bepeaked.bodybook.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import nylin.nicki.Bepeaked.R;
+import dk.bepeaked.bodybook.R;
+
 
 public class AddUser_act extends AppCompatActivity {
 

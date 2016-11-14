@@ -1,4 +1,4 @@
-package nylin.nicki.Bepeaked.Fragments;
+package dk.bepeaked.bodybook.Fragments;
 
 
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListAdapter;
 
-import nylin.nicki.Bepeaked.R;
+import dk.bepeaked.bodybook.R;
 
 /**
  * A simple {@link Fragment} subclass.
