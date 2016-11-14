@@ -5,4 +5,5 @@ package dk.bepeaked.bodybook.Backend.DTO;
  */
 
 public class DishDTO {
+
 }
