@@ -86,3 +86,4 @@ public class Diet_frag extends Fragment {
             return false;
         }
     }
+}
