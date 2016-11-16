@@ -14,5 +14,6 @@ import dk.bepeaked.bodybook.R;
 public class DietDAO {
     private void createJSON() throws IOException, JSONException {
         JSONObject json = new JSONObject();
+
     }
 }
