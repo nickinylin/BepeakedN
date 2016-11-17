@@ -12,7 +12,7 @@
                     "Kulhydrat": 22,
                     "Kalorier": 139
                 ]
-                Recipe2":[
+                "Recipe2":[
                     "Name": "Proteinpulver",
                     "Weight": 39,
                     "Protein": 30,
@@ -20,7 +20,7 @@
                     "Kulhydrat": 2,
                     "Kalorier": 154 ]
                 ]
-                Recipe3":[
+                "Recipe3":[
                     "Name": "Mælk",
                     "Weight": 101,
                     "Protein": 4,
@@ -28,7 +28,7 @@
                     "Kulhydrat": 5,
                     "Kalorier": 38
                 ]
-                Recipe4":[
+                "Recipe4":[
                     "Name": "Knækbrød",
                     "Weight": 5,
                     "Protein": 0,
@@ -36,7 +36,7 @@
                     "Kulhydrat": 3,
                     "Kalorier": 16
                 ]
-                Recipe5":[
+                "Recipe5":[
                     "Name": "Peanut butter",
                     "Weight": 15,
                     "Protein": 3,
