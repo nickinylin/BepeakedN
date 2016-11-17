@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -32,6 +33,9 @@ public class Diet_frag extends Fragment {
                              Bundle savedInstanceState) {
 
 //        View v = inflater.inflate(R.layout.fragment_diet, null);
+
+        getActivity().setTitle("Kostplan");
+
 //        ExpandableListView elv = (ExpandableListView) v.findViewById(R.id.listViewBepeaked);
 //        elv.setAdapter(elv);
 //        return v;
@@ -43,6 +47,19 @@ public class Diet_frag extends Fragment {
 //        registerForContextMenu(getExpandableListView());
 
         return inflater.inflate(R.layout.fragment_diet, container, false);
+    }
+
+// These two methods removes the Action menu in the appbar! 1/2
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+    // These two methods removes the Action menu in the appbar! 2/2
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.action_settings).setVisible(false);
+        super.onPrepareOptionsMenu(menu);
     }
 
 //    public class ListViewBepeaked extends ExpandableListActivity {
