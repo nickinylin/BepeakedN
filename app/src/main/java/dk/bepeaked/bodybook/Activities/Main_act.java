@@ -93,14 +93,14 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
 
         } else if (id == R.id.nav_trainingplan) {
-            // Set the fragment initially
+
             Training_frag fragment = new Training_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_diet) {
-// Set the fragment initially
+
             Diet_frag fragment = new Diet_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");

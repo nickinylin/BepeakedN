@@ -25,7 +25,7 @@ import dk.bepeaked.bodybook.R;
  */
 public class Training_frag extends Fragment implements AdapterView.OnItemClickListener {
 
-    String[] workouts = {"Bepeaked", "Test", "Træningsplan 2"};
+    String[] workouts = {"Bepeaked", "Træningsplan 1", "Træningsplan 2", "Min egen træningsplan", "Træææning!", "Fuck det bliver godt!", "jeg vil ikke mere", "Træning 3","Træning 4","Træning 5","Træning 6" };
 
 
     public Training_frag() {
