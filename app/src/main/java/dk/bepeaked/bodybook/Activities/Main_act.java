@@ -10,9 +10,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import dk.bepeaked.bodybook.Fragments.Diet_frag;
+import dk.bepeaked.bodybook.Fragments.Diet.Diet_frag;
 import dk.bepeaked.bodybook.Fragments.Profile_frag;
-import dk.bepeaked.bodybook.Fragments.Training_frag;
+import dk.bepeaked.bodybook.Fragments.Training.Training_frag;
 import dk.bepeaked.bodybook.R;
 
 

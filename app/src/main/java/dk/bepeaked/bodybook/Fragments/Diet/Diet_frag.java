@@ -1,4 +1,4 @@
-package dk.bepeaked.bodybook.Fragments;
+package dk.bepeaked.bodybook.Fragments.Diet;
 
 
 import android.app.ExpandableListActivity;

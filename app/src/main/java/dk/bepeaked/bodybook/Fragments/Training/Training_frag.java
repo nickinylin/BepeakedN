@@ -1,24 +1,16 @@
-package dk.bepeaked.bodybook.Fragments;
+package dk.bepeaked.bodybook.Fragments.Training;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.R;
 
@@ -64,6 +56,7 @@ public class Training_frag extends Fragment implements AdapterView.OnItemClickLi
 
         Bundle i = new Bundle();
         i.putString("Trainingplan", workouts[position]);
+
 
         Log.d("Nicki", "BUNDLE NICKI 1: " + i.getString("Trainingplan"));
 

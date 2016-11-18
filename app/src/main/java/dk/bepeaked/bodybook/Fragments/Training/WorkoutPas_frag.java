@@ -1,4 +1,4 @@
-package dk.bepeaked.bodybook.Fragments;
+package dk.bepeaked.bodybook.Fragments.Training;
 
 
 import android.content.Intent;

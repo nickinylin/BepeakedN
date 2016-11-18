@@ -16,10 +16,13 @@ public class DietDAO {
     private void createJSON() throws IOException, JSONException {
         JSONObject json = new JSONObject();
 
-        JSONArray ja = json.getJSONArray(String.valueOf(R.raw.morgenmad));
 
-        for (int i = 0; i < ja.length(); i++){
-            ja.get(i);
+
+        JSONArray jA = json.getJSONArray(String.valueOf(R.raw.dish));
+
+//        Iterator<String> iterator =
+        for (int i = 0; i < jA.length(); i++){
+            jA.get(i);
         }
     }
 }
