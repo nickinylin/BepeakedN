@@ -15,6 +15,11 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import dk.bepeaked.bodybook.Activities.MyAdapter;
 import dk.bepeaked.bodybook.R;
 
 /**
@@ -22,6 +27,7 @@ import dk.bepeaked.bodybook.R;
  */
 public class Diet_frag extends Fragment {
 
+    ExpandableListView expandableListView;
 
     public Diet_frag() {
         // Required empty public constructor
@@ -31,22 +37,34 @@ public class Diet_frag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-//        View v = inflater.inflate(R.layout.fragment_diet, null);
-
         getActivity().setTitle("Kostplan");
 
-//        ExpandableListView elv = (ExpandableListView) v.findViewById(R.id.listViewBepeaked);
-//        elv.setAdapter(elv);
-//        return v;
-//
-//
-//        // Inflate the layout for this fragment
-//        ExpandableListAdapter mAdapter = (ExpandableListAdapter) findViewById(R.id.listViewBepeaked);
-//        setListAdapter(mAdapter);
-//        registerForContextMenu(getExpandableListView());
+        View view = inflater.inflate(R.layout.fragment_diet, container, false);
 
-        return inflater.inflate(R.layout.fragment_diet, container, false);
+        expandableListView = (ExpandableListView) view.findViewById(R.id.exp_listview);
+
+        List<String> Headings = new ArrayList<String>();
+        List<String> L1 = new ArrayList<String>();
+        List<String> L2 = new ArrayList<String>();
+        List<String> L3 = new ArrayList<String>();
+        HashMap<String,List<String>> childList = new HashMap<String, List<String>>();
+
+        Headings.add("Morgenmad"); Headings.add("Frokost"); Headings.add("Aftensmad"); Headings.add("Snacks");
+        L1.add("Gør dig peaked!"); L1.add("Sej morgenmad");
+        L2.add("Niiickii"); L2.add("Cool");
+        L3.add("LUKAS!"); L3.add("SEJEE"); L3.add("Niiickii"); L3.add("Cool");
+
+        childList.put(Headings.get(0), L1);
+        childList.put(Headings.get(1), L2);
+        childList.put(Headings.get(2), L3);
+
+        MyAdapter myAdapter = new MyAdapter(getActivity(), Headings, childList);
+
+        expandableListView.setAdapter(myAdapter);
+
+//
+
+        return expandableListView;
     }
 
 // These two methods removes the Action menu in the appbar! 1/2
@@ -61,87 +79,4 @@ public class Diet_frag extends Fragment {
         menu.findItem(R.id.action_settings).setVisible(false);
         super.onPrepareOptionsMenu(menu);
     }
-
-//    public class ListViewBepeaked extends ExpandableListActivity {
-//
-//        public TextView lavTextView() {
-//            TextView textView = new TextView(getActivity());
-//
-//            // Layout parameters for the ExpandableListView
-//            AbsListView.LayoutParams lp = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 64);
-//
-//            textView.setLayoutParams(lp);
-//            // Center the text vertically
-//            textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-//            // Set the text starting position
-//            textView.setPadding(36, 0, 0, 0);
-//            return textView;
-//        }
-//
-//        private String[] groups = {"Morgenmad", "Frokost", "Aftensmad", "Snack"};
-//        private String[][] children = {
-//                {"Arnold", "Barry", "Chuck", "David"},
-//                {"Ace", "Bandit", "Cha-Cha", "Deuce"},
-//                {"Fluffy", "Snuggles"},
-//                {"Goldy", "Bubbles"}
-//        };
-//
-//        public class MyExpandableListAdapter extends BaseExpandableListAdapter {
-//
-//
-//            @Override
-//            public int getGroupCount() {
-//                return groups.length;
-//            }
-//
-//            @Override
-//            public int getChildrenCount(int groupPosition) {
-//                return children[groupPosition].length;
-//            }
-//
-//            @Override
-//            public Object getGroup(int groupPosition) {
-//                return groups[groupPosition];
-//            }
-//
-//            @Override
-//            public Object getChild(int groupPosition, int childPosition) {
-//                return children[groupPosition][childPosition];
-//            }
-//
-//            @Override
-//            public long getGroupId(int groupPosition) {
-//                return groupPosition;
-//            }
-//
-//            @Override
-//            public long getChildId(int groupPosition, int childPosition) {
-//                return childPosition;
-//            }
-//
-//            @Override
-//            public boolean hasStableIds() {
-//
-//                // return true
-//                return false;
-//            }
-//
-//            @Override
-//            public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-//                return null;
-//            }
-//
-//            @Override
-//            public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-//                TextView textView = lavTextView();
-//                textView.setText(getChild(groupPosition, childPosition).toString());
-//                return textView;
-//            }
-//
-//            @Override
-//            public boolean isChildSelectable(int groupPosition, int childPosition) {
-//                return true;
-//            }
-//        }
-//    }
 }
