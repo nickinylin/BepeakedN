@@ -4,6 +4,7 @@ package dk.bepeaked.bodybook.Fragments.Diet;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,6 +30,7 @@ public class Diet_frag extends Fragment {
     public Diet_frag() {
         // Required empty public constructor
     }
+
 
 
     @Override

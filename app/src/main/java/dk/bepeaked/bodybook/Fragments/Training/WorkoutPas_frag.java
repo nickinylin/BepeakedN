@@ -42,14 +42,14 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
 
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, workoutPases);
 
-        ListView listView = new ListView(getActivity());
+        ListView listView = (ListView) view.findViewById(R.id.expandableListView);
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
 
         Log.d("Nicki", "BUNDLE NICKI 2: " + nameTrainingplan);
 
 
-        return listView;
+        return view;
     }
 
 
