@@ -1,88 +1,91 @@
 {
-  "Dietplan": [
+  "Morgenmad": [
     {
-      "Morgenmad": [
+      "name": "gør dig peaked!",
+      "image": "R.drawable.dgdp.PNG",
+      "Ingredients": [
         {
-          "name": "gør dig peaked!",
-          "image": "R.drawable.dgdp.PNG",
-          "Ingredients": [
-            {
-              "Havregryn": "39, 5, 3, 22, 139"
-            },
-            {
-              "Proteinpulver": "39, 30, 3, 2, 154"
-            },
-            {
-              "Mælk": "101, 4, 1, 5, 38"
-            },
-            {
-              "Knækbrød": "5, 0, 0, 3, 16"
-            },
-            {
-              "Peanut butter": "15, 3, 8, 3, 97"
-            }
-          ]
+          "name": "Havregryn",
+          "stats": "39,5,3,22,139"
         },
         {
-          "name": "Iceland morning",
-          "image": "R.drawable.dgdp.PNG",
-          "Ingredients": [
-            {
-              "Skyr": "178, 17, 0, 9, 112"
-            },
-            {
-              "Müsli": "29, 3, 2, 18, 108"
-            },
-            {
-              "Valnødder": "17, 3, 11, 1, 116"
-            },
-            {
-              "Proteinpulver": "26, 19, 2, 3, 107"
-            }
-          ]
+          "name": "Proteinpulver",
+          "stats": "39,30,3,2,154"
+        },
+        {
+          "name": "Mælk",
+          "stats": "101,4,1,5,38"
+        },
+        {
+          "name": "Knækbrød",
+          "stats": "5,0,0,3,16"
+        },
+        {
+          "name": "Peanut butter",
+          "stats": "15,3,8,3,97"
         }
       ]
     },
     {
-      "Frokost": [
+      "name": "Iceland morning",
+      "image": "R.drawable.dgdp.PNG",
+      "Ingredients": [
         {
-          "name": "gør dig peaked!",
-          "image": "R.drawable.dgdp.PNG",
-          "Ingredients": [
-            {
-              "Havregryn": "39, 5, 3, 22, 139"
-            },
-            {
-              "Proteinpulver": "39, 30, 3, 2, 154"
-            },
-            {
-              "Mælk": "101, 4, 1, 5, 38"
-            },
-            {
-              "Knækbrød": "5, 0, 0, 3, 16"
-            },
-            {
-              "Peanut butter": "15, 3, 8, 3, 97"
-            }
-          ]
+          "name": "Skyr",
+          "stats": "178,17,0,9,112"
         },
         {
-          "name": "Iceland morning",
-          "image": "R.drawable.dgdp.PNG",
-          "Ingredients": [
-            {
-              "Skyr": "178, 17, 0, 9, 112"
-            },
-            {
-              "Müsli": "29, 3, 2, 18, 108"
-            },
-            {
-              "Valnødder": "17, 3, 11, 1, 116"
-            },
-            {
-              "Proteinpulver": "26, 19, 2, 3, 107"
-            }
-          ]
+          "name": "Müsli",
+          "stats": "29,3,2,18,108"
+        },
+        {
+          "name": "Valnødder",
+          "stats": "17,3,11,1,116"
+        },
+        {
+          "name": "Proteingpulver",
+          "stats": "26,19,2,3,107"
+        }
+      ]
+    }
+  ],
+  "Frokost": [
+    {
+      "name": "gør dig peaked!",
+      "image": "R.drawable.dgdp.PNG",
+      "Ingredients": [
+        }
+          "Havregryn": "39,5,3,22,139"
+        },
+        {
+          "Proteinpulver": "39, 30, 3, 2, 154"
+        },
+        {
+          "Mælk": "101, 4, 1, 5, 38"
+        },
+        {
+          "Knækbrød": "5, 0, 0, 3, 16"
+        },
+        {
+          "Peanut butter": "15, 3, 8, 3, 97"
+        }
+      ]
+    },
+    {
+      "name": "Iceland morning",
+      "image": "R.drawable.dgdp.PNG",
+      "Ingredients": [
+        {
+          "Skyr": "178, 17, 0, 9, 112"
+        },
+        {
+          "Müsli": "29, 3, 2, 18, 108"
+        },
+        {
+          "Valnødder": "17, 3, 11, 1, 116"
+        },
+        {
+          "Proteinpulver": "26, 19, 2, 3, 107"
         }
       ]
     }

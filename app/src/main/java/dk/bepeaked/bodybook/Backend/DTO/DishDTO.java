@@ -1,20 +1,28 @@
 package dk.bepeaked.bodybook.Backend.DTO;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by sebho on 14-11-2016.
  */
 
 public class DishDTO {
-    private int ID;
     private String name;
+    private String imagePath;
     private ArrayList<Ingredient> ingredients;
 
-    public DishDTO(int ID, String name, ArrayList<Ingredient> ingredients) {
-        this.ID = ID;
+    public DishDTO(String name, String imagePath, ArrayList<String[]> ingredients) {
         this.name = name;
-        this.ingredients = ingredients;
+        this.imagePath = imagePath;
+        for (int i = 0; i < ingredients.size(); i++){
+            String[] ingredient = ingredients.get(i);
+            String ingName = ingredient[0];
+            String[] stats = ingredient[1].split(",");
+            this.ingredients.add(new Ingredient(ingName, Integer.parseInt(stats[0]), Integer.parseInt(stats[1]),
+                    Integer.parseInt(stats[2]), Integer.parseInt(stats[3]), Integer.parseInt(stats[4])));
+        }
+
     }
 
 
