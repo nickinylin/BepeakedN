@@ -15,7 +15,9 @@ import dk.bepeaked.bodybook.R;
  */
 
 public class DietDAO {
-    private void createJSON() throws IOException, JSONException {
+    private ArrayList<DishDTO> getDishes() throws IOException, JSONException {
+        ArrayList<DishDTO> result = new ArrayList<DishDTO>();
+
         JSONObject json = new JSONObject();
         JSONArray jA = json.getJSONArray(String.valueOf(R.raw.dish));
         JSONArray category;
@@ -34,8 +36,9 @@ public class DietDAO {
                     JSONObject ingredient = ingredientList.getJSONObject(k);
                     ingredients.add(new String[]{ingredient.getString("name"), ingredient.getString("stats")});
                 }
-                DishDTO dto = new DishDTO(name, imagePath, ingredients);
+                result.add(new DishDTO(i, name, imagePath, ingredients));
             }
         }
+        return result;
     }
 }
