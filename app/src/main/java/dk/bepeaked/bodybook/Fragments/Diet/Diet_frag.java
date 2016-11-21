@@ -79,19 +79,19 @@ public class Diet_frag extends Fragment {
         return view;
     }
 
-    // These two methods removes the Action menu in the appbar! 1/2
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
-
-    // These two methods removes the Action menu in the appbar! 2/2
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.action_settings).setVisible(false);
-        super.onPrepareOptionsMenu(menu);
-    }
+//    // These two methods removes the Action menu in the appbar! 1/2
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setHasOptionsMenu(true);
+//    }
+//
+//    // These two methods removes the Action menu in the appbar! 2/2
+//    @Override
+//    public void onPrepareOptionsMenu(Menu menu) {
+//        menu.findItem(R.id.action_settings).setVisible(false);
+//        super.onPrepareOptionsMenu(menu);
+//    }
 
     /**
      * Created by Nicki on 18/11/16.
