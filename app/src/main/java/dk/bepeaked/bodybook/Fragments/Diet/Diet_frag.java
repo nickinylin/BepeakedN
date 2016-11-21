@@ -63,7 +63,7 @@ public class Diet_frag extends Fragment {
 
         ArrayList<DishDTO> dishList = new ArrayList<DishDTO>();
         try {
-            dishList = ddao.getDishes();
+            dishList = ddao.getDishes(getActivity());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
