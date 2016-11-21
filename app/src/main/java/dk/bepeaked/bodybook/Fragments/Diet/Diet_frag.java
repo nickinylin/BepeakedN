@@ -37,42 +37,54 @@ public class Diet_frag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle("Kostplan");
-
         View view = inflater.inflate(R.layout.fragment_diet, container, false);
 
-        expandableListView = (ExpandableListView) view.findViewById(R.id.exp_listview);
+        getActivity().setTitle("Kostplan");
+
+
+        expandableListView = (ExpandableListView)  view.findViewById(R.id.expandA_listview);
 
         List<String> Headings = new ArrayList<String>();
         List<String> L1 = new ArrayList<String>();
         List<String> L2 = new ArrayList<String>();
         List<String> L3 = new ArrayList<String>();
-        HashMap<String,List<String>> childList = new HashMap<String, List<String>>();
+        List<String> L4 = new ArrayList<String>();
+        HashMap<String, List<String>> childList = new HashMap<String, List<String>>();
 
-        Headings.add("Morgenmad"); Headings.add("Frokost"); Headings.add("Aftensmad"); Headings.add("Snacks");
-        L1.add("Gør dig peaked!"); L1.add("Sej morgenmad");
-        L2.add("Niiickii"); L2.add("Cool");
-        L3.add("LUKAS!"); L3.add("SEJEE"); L3.add("Niiickii"); L3.add("Cool");
+        Headings.add("Morgenmad");
+        Headings.add("Frokost");
+        Headings.add("Aftensmad");
+        Headings.add("Snacks");
+        L1.add("Gør dig peaked!");
+        L1.add("Sej morgenmad");
+        L2.add("Niiickii");
+        L2.add("Cool");
+        L3.add("LUKAS!");
+        L3.add("SEJEE");
+        L3.add("Niiickii");
+        L3.add("Cool");
 
         childList.put(Headings.get(0), L1);
         childList.put(Headings.get(1), L2);
         childList.put(Headings.get(2), L3);
+        childList.put(Headings.get(3), L4);
 
         MyAdapter myAdapter = new MyAdapter(getActivity(), Headings, childList);
 
         expandableListView.setAdapter(myAdapter);
 
-//
 
-        return expandableListView;
+
+        return view;
     }
 
-// These two methods removes the Action menu in the appbar! 1/2
+    // These two methods removes the Action menu in the appbar! 1/2
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
+
     // These two methods removes the Action menu in the appbar! 2/2
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
