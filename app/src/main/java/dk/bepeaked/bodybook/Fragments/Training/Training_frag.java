@@ -56,7 +56,7 @@ public class Training_frag extends Fragment implements AdapterView.OnItemClickLi
         Toast.makeText(getActivity(), "hejsa " + position ,Toast.LENGTH_SHORT).show();
 
         Bundle i = new Bundle();
-        i.putString("Trainingplan", workouts[position]);
+        i.putString("Træningsplan", workouts[position]);
 
 
         Log.d("Nicki", "BUNDLE NICKI 1: " + i.getString("Trainingplan"));

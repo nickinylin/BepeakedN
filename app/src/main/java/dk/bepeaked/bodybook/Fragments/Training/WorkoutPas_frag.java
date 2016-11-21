@@ -76,14 +76,14 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getActivity(), nameTrainingplan ,Toast.LENGTH_LONG).show();
 
-//        Bundle i = new Bundle();
-//        i.putString("Trainingplan", workouts[position]);
-//
-//        Training_frag fragment = new Training_frag();
-//        android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//        fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
-//        fragment.setArguments(i);
-//        fragmentTransaction.commit();
+        Bundle i = new Bundle();
+        i.putString("Træningspas", workoutPases[position]);
+
+        Exercise_frag fragment = new Exercise_frag();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+        fragment.setArguments(i);
+        fragmentTransaction.commit();
 
     }
 
