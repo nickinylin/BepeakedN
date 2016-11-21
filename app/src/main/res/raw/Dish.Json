@@ -51,41 +51,32 @@
   ],
   "Frokost": [
     {
-      "name": "gør dig peaked!",
-      "image": "R.drawable.dgdp.PNG",
-      "Ingredients": [
-        }
-          "Havregryn": "39,5,3,22,139"
-        },
-        {
-          "Proteinpulver": "39, 30, 3, 2, 154"
-        },
-        {
-          "Mælk": "101, 4, 1, 5, 38"
-        },
-        {
-          "Knækbrød": "5, 0, 0, 3, 16"
-        },
-        {
-          "Peanut butter": "15, 3, 8, 3, 97"
-        }
-      ]
-    },
-    {
-      "name": "Iceland morning",
-      "image": "R.drawable.dgdp.PNG",
+      "name": "Asiatisk Kylling",
+      "image": "",
       "Ingredients": [
         {
-          "Skyr": "178, 17, 0, 9, 112"
+          "name": "Kylling brystfillet, 1.5%",
+          "stats": "168,35,3,2,165"
         },
         {
-          "Müsli": "29, 3, 2, 18, 108"
+          "name": "Kokusmælk light",
+          "stats": "76,1,5,3,56"
         },
         {
-          "Valnødder": "17, 3, 11, 1, 116"
+          "name": "Peanutbutter",
+          "stats": "8,2,4,1,46"
         },
         {
-          "Proteinpulver": "26, 19, 2, 3, 107"
+          "name": "Ris",
+          "stats": "37,3,0,28,129"
+        },
+        {
+          "name": "Grøntsager",
+          "stats": "115,2,1,3,28"
+        },
+        {
+          "name": "Olie",
+          "stats": "2,0,2,0,20"
         }
       ]
     }
