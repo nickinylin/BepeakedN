@@ -6,7 +6,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
 import dk.bepeaked.bodybook.R;
@@ -18,7 +17,7 @@ import dk.bepeaked.bodybook.R;
 public class DietDAO {
     private void createJSON() throws IOException, JSONException {
         JSONObject json = new JSONObject();
-        JSONArray jA = json.getJSONArray(String.valueOf(R.raw.Dish));
+        JSONArray jA = json.getJSONArray(String.valueOf(R.raw.dish));
         JSONArray category;
         JSONArray dish;
 
