@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
@@ -30,6 +31,7 @@ public class DietDAO {
 
         InputStream is = act.getResources().openRawResource(R.raw.dish);
         //InputStream is = new URL("http://javabog.dk/eksempel.json").openStream();
+
 
         byte b[] = new byte[is.available()]; // kun små filer
         is.read(b);
