@@ -36,18 +36,31 @@ public class DietDAO {
         String str = new String(b, "UTF-8");
 
         JSONObject json = new JSONObject();
-        JSONArray jA = json.getJSONArray(str);
+        JSONObject jA = new JSONObject(str);
         JSONArray category;
-        JSONArray dish;
+        JSONObject dish;
+        Log.d("Sebbyg", "getDishes: " + jA.length());
+
 
 //        Iterator<String> iterator =
         for (int i = 0; i < jA.length(); i++){
-            category = jA.getJSONArray(i);
+            category = jA.getJSONArray("Morgenmad");
+            switch (i){
+                case 0: category = jA.getJSONArray("Morgenmad");
+                    break;
+                case 1: category = jA.getJSONArray("Frokost");
+                    break;
+                case 2: category = jA.getJSONArray("Aftensmad");
+                    break;
+                case 3: category = jA.getJSONArray("Snack");
+                    break;
+            }
             for (int j = 0; j < category.length(); j++) {
-                dish = category.getJSONArray(i);
-                String name = dish.getString(0);
-                String imagePath = dish.getString(1);
-                JSONArray ingredientList = dish.getJSONArray(2);
+                dish = category.getJSONObject(j);
+                String name = dish.getString("name");
+                String imagePath = dish.getString("image");
+                JSONArray ingredientList = dish.getJSONArray("Ingredients");
+
                 ArrayList<String[]> ingredients = new ArrayList<String[]>();
                 for (int k = 0; k < ingredientList.length(); k++){
                     JSONObject ingredient = ingredientList.getJSONObject(k);

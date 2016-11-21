@@ -85,8 +85,6 @@ public class Diet_frag extends Fragment {
             }
         }
 
-        L1.add("Tets");
-
         childList.put(Headings.get(0), L1);
         childList.put(Headings.get(1), L2);
         childList.put(Headings.get(2), L3);
@@ -95,9 +93,6 @@ public class Diet_frag extends Fragment {
         MyAdapter myAdapter = new MyAdapter(getActivity(), Headings, childList);
 
         expandableListView.setAdapter(myAdapter);
-
-
-
         return view;
     }
 
