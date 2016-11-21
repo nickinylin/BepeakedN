@@ -1,10 +1,16 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
+import android.util.JsonReader;
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
@@ -15,7 +21,7 @@ import dk.bepeaked.bodybook.R;
  */
 
 public class DietDAO {
-    private ArrayList<DishDTO> getDishes() throws IOException, JSONException {
+    public ArrayList<DishDTO> getDishes() throws IOException, JSONException {
         ArrayList<DishDTO> result = new ArrayList<DishDTO>();
 
         JSONObject json = new JSONObject();
@@ -41,4 +47,5 @@ public class DietDAO {
         }
         return result;
     }
+
 }

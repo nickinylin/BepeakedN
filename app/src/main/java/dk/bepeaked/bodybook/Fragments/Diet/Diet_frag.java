@@ -14,10 +14,15 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import dk.bepeaked.bodybook.Backend.DAO.DietDAO;
+import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
 import dk.bepeaked.bodybook.R;
 
 /**
@@ -26,6 +31,7 @@ import dk.bepeaked.bodybook.R;
 public class Diet_frag extends Fragment {
 
     ExpandableListView expandableListView;
+    DietDAO ddao = new DietDAO();
 
     public Diet_frag() {
         // Required empty public constructor
@@ -55,15 +61,31 @@ public class Diet_frag extends Fragment {
         Headings.add("Aftensmad");
         Headings.add("Snacks");
 
+        ArrayList<DishDTO> dishList = new ArrayList<DishDTO>();
+        try {
+            dishList = ddao.getDishes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        L1.add("Gør dig peaked!");
-        L1.add("Sej morgenmad");
-        L2.add("Niiickii");
-        L2.add("Cool");
-        L3.add("LUKAS!");
-        L3.add("SEJEE");
-        L3.add("Niiickii");
-        L3.add("Cool");
+        System.out.println("size: " + dishList.size());
+
+        for (int i = 0; i < dishList.size(); i++){
+            DishDTO dish = dishList.get(i);
+            if (dish.getType() == 0){
+                L1.add(dish.getName());
+            } else if (dish.getType() == 1){
+                L2.add(dish.getName());
+            } else if (dish.getType() == 2){
+                L3.add(dish.getName());
+            } else if (dish.getType() == 3){
+                L4.add(dish.getName());
+            }
+        }
+
+        L1.add("Tets");
 
         childList.put(Headings.get(0), L1);
         childList.put(Headings.get(1), L2);
