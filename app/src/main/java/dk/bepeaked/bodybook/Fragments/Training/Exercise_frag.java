@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import dk.bepeaked.bodybook.R;
 
@@ -32,7 +33,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
         View view = inflater.inflate(R.layout.fragment_training, container, false);
 
-        getActivity().setTitle("Exercise");
+        getActivity().setTitle("Træningspas navn");
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, exercises);
 
         ListView listView = (ListView) view.findViewById(R.id.expandableListView);
@@ -48,6 +49,16 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(getActivity(), nameWorkoutPas ,Toast.LENGTH_LONG).show();
+
+        Bundle i = new Bundle();
+        i.putString("Træningspas", exercises[position]);
+
+        ChosenExercise_frag fragment = new ChosenExercise_frag();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+        fragment.setArguments(i);
+        fragmentTransaction.commit();
 
     }
 }

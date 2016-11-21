@@ -37,7 +37,7 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_training, container, false);
 
-        getActivity().setTitle("Træningspas");
+        getActivity().setTitle("Træningsplan navn");
 
 //        if (!getArguments().isEmpty()) {
 //            nameTrainingplan = getArguments().getString("Trainingplan");
