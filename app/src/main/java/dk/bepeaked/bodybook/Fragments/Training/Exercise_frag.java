@@ -31,12 +31,12 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_training, container, false);
+        View view = inflater.inflate(R.layout.listview, container, false);
 
         getActivity().setTitle("Træningspas navn");
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, exercises);
 
-        ListView listView = (ListView) view.findViewById(R.id.expandableListView);
+        ListView listView = (ListView) view.findViewById(R.id.ListView_id);
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
 
