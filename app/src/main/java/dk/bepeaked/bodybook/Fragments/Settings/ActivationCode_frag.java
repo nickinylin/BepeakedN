@@ -1,4 +1,4 @@
-package dk.bepeaked.bodybook.Fragments;
+package dk.bepeaked.bodybook.Fragments.Settings;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import dk.bepeaked.bodybook.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Settings_frag extends Fragment {
+public class ActivationCode_frag extends Fragment {
 
 
-    public Settings_frag() {
+    public ActivationCode_frag() {
         // Required empty public constructor
     }
 
@@ -23,9 +23,8 @@ public class Settings_frag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle("Indstillinger");
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        return inflater.inflate(R.layout.fragment_activation_code_frag, container, false);
     }
 
 }

@@ -7,12 +7,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import dk.bepeaked.bodybook.Fragments.Diet.Diet_frag;
 import dk.bepeaked.bodybook.Fragments.Profile_frag;
-import dk.bepeaked.bodybook.Fragments.Training.Training_frag;
+import dk.bepeaked.bodybook.Fragments.Settings.Settings_frag;
 import dk.bepeaked.bodybook.Fragments.Training.WorkoutPas_frag;
 import dk.bepeaked.bodybook.R;
 
@@ -111,6 +110,11 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
 
         } else if (id == R.id.nav_settings) {
+
+            Settings_frag fragment = new Settings_frag();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
 
         }
 

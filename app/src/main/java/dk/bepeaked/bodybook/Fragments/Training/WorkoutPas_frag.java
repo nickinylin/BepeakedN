@@ -1,9 +1,7 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -60,7 +58,7 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.workoutmeny, menu);
+        inflater.inflate(R.menu.workoutmenu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
