@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import dk.bepeaked.bodybook.Fragments.Diet.Diet_frag;
 import dk.bepeaked.bodybook.Fragments.Profile_frag;
 import dk.bepeaked.bodybook.Fragments.Training.Training_frag;
+import dk.bepeaked.bodybook.Fragments.Training.WorkoutPas_frag;
 import dk.bepeaked.bodybook.R;
 
 
@@ -28,10 +29,12 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
         setContentView(R.layout.activity_main);
 
         // Set the fragment initially
+        if (savedInstanceState==null) { // kun tilføje fragmenter ved en frisk start
         Profile_frag fragment = new Profile_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -88,22 +91,22 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
             Profile_frag fragment = new Profile_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.addToBackStack("hej");
+//            fragmentTransaction.addToBackStack("hej");
             fragmentTransaction.commit();
 
 
         } else if (id == R.id.nav_trainingplan) {
 
-            Training_frag fragment = new Training_frag();
+            WorkoutPas_frag fragment = new WorkoutPas_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_diet) {
 
             Diet_frag fragment = new Diet_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
 
 

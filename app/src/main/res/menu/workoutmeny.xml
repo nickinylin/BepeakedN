@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/tilføj_ny_pas"
+        android:orderInCategory="100"
+        android:title=""
+        android:icon="@drawable/ic_action_bepeaked_logotext"
+        app:showAsAction="always" />
+
+
+
+
+
+
+
+</menu>
