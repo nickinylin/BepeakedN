@@ -30,7 +30,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
         // Set the fragment initially
         if (savedInstanceState==null) { // kun tilføje fragmenter ved en frisk start
-        Profile_frag fragment = new Profile_frag();
+        WorkoutPas_frag fragment = new WorkoutPas_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fragment_container, fragment);
         fragmentTransaction.commit();

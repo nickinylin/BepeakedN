@@ -1,36 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="50dp"
-    >
+    android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/child_pic"
-        app:srcCompat="@drawable/ic_menu_camera" />
-
-    <LinearLayout
-        android:orientation="vertical"
+    <TextView
+        android:id="@+id/child_item"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="Hello LUKAS!!"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/child_item"
-            android:layout_marginLeft="10dp"
-            android:gravity="center_vertical"
-            android:text="Hello LUKAS!!"
-            android:textSize="20dp" />
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/child_desc" />
-    </LinearLayout>
-
+    <TextView
+        android:id="@+id/child_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:textColor="#ffffff"
+        android:text="Beskrivelse af opskriften" />
 
 </LinearLayout>
