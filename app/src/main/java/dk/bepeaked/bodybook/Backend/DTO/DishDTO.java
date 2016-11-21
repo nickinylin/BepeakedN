@@ -8,11 +8,14 @@ import java.util.HashMap;
  */
 
 public class DishDTO {
+    //Type: 0 = Morgenmad, 1 = Frokost, 2 = Aftensmad, 3 = Snack.
+    private int type;
     private String name;
     private String imagePath;
     private ArrayList<Ingredient> ingredients;
 
-    public DishDTO(String name, String imagePath, ArrayList<String[]> ingredients) {
+    public DishDTO(int type, String name, String imagePath, ArrayList<String[]> ingredients) {
+        this.type = type;
         this.name = name;
         this.imagePath = imagePath;
         for (int i = 0; i < ingredients.size(); i++){
