@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.R;
@@ -45,18 +47,10 @@ public class ChosenExercise_frag extends Fragment {
         View view = inflater.inflate(R.layout.fragment_chosen_exercise_frag, container, false);
 
         getActivity().setTitle("Valgte øvelse");
-int i = 1;
-        exercises.add(new ExerciseDTO(20+i, 10+i, 5+i++));
-        exercises.add(new ExerciseDTO(20+i, 10+i, 5+i++));
-        exercises.add(new ExerciseDTO(20+i, 10+i, 5+i++));
-        exercises.add(new ExerciseDTO(20+i, 10+i, 5+i++));
-        exercises.add(new ExerciseDTO(20+i, 10+i, 5+i++));
-        exercises.add(new ExerciseDTO(20+i, 10+i, 5+i++));
 
 
 
 //        ExerciseListAdapter adapter = new ExerciseListAdapter(getActivity(), R.layout.exercise_list_element, exercises );
-
 
 
 //        ListView listView = (ListView) view.findViewById(R.id.listView_exercise);
@@ -86,34 +80,64 @@ int i = 1;
         series.setCustomPaint(paint);
         graph.addSeries(series);
 
+//        Listen af sæt
+
+        int i = 1;
+        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
+        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
+        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
+        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
+        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
+        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
+        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
+        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
+        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
+        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
+        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
+        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
+
+        ListView listView = (ListView) view.findViewById(R.id.listView_exercise);
+
+        ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter();
+
+        listView.setAdapter(exerciseListAdapter);
+
 
         return view;
     }
 
-//    public class ExerciseListAdapter extends ArrayAdapter<ExerciseDTO> {
-//
-//
-//        public ExerciseListAdapter(Context context, int resource, ArrayList<ExerciseDTO> objects) {
-//            super(context, resource, objects);
-//        }
-//
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            View view = super.getView(position, convertView, parent);
-//
-//            TextView weight = (TextView) view.findViewById(R.id.tv_exercise_weight);
-//            TextView reps = (TextView) view.findViewById(R.id.tv_exercise_reps);
-//            TextView rm = (TextView) view.findViewById(R.id.tv_exercise_rm);
-//
-//            weight.setText(exercises.get(position).getWeight());
-//            reps.setText(exercises.get(position).getReps());
-//            rm.setText(exercises.get(position).getRM1());
-//
-//            return view;
-//
-//        }
-//    }
+    public class ExerciseListAdapter extends BaseAdapter {
 
+        @Override
+        public int getCount() {
+            return exercises.size();
+        }
 
+        @Override
+        public Object getItem(int position) {
+            return position;
+        }
 
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.exercise_list_element, parent, false);
+
+            TextView weight = (TextView) convertView.findViewById(R.id.tv_exercise_weight);
+            TextView reps = (TextView) convertView.findViewById(R.id.tv_exercise_reps);
+            TextView rm = (TextView) convertView.findViewById(R.id.tv_exercise_rm);
+
+            weight.setText(Integer.toString(exercises.get(position).getWeight()));
+            reps.setText(Integer.toString(exercises.get(position).getReps()));
+            rm.setText(Integer.toString(exercises.get(position).getRM1()));
+
+            return convertView;
+        }
+    }
 }
