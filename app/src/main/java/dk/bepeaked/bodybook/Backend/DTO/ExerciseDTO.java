@@ -11,13 +11,13 @@ public class ExerciseDTO {
     private int weight;
     private int reps;
     private int RM1;
-    private Date date;
+//    private Date date;
 
-    public ExerciseDTO (int weight, int reps, int RM1, Date date) {
+    public ExerciseDTO (int weight, int reps, int RM1) {
         this.weight = weight;
         this.reps = reps;
         this.RM1 = RM1;
-        this.date = date;
+//        this.date = date;
     }
 
     public int getWeight() {
@@ -44,12 +44,12 @@ public class ExerciseDTO {
         this.RM1 = RM1;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
+//    public Date getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(Date date) {
+//        this.date = date;
+//    }
 
 }

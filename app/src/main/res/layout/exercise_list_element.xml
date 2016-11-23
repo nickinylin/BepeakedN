@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal"
+    tools:context="dk.bepeaked.bodybook.Activities.Main_act"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_exercise_weight"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:text="weight"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:id="@+id/tv_exercise_reps"
+        android:text="Kilos"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:id="@+id/tv_exercise_rm"
+        android:text="1-RM"
+        />
+
+</LinearLayout>
