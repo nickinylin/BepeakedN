@@ -70,8 +70,6 @@ public class Diet_frag extends Fragment {
             e.printStackTrace();
         }
 
-        System.out.println("size: " + dishList.size());
-
         for (int i = 0; i < dishList.size(); i++){
             DishDTO dish = dishList.get(i);
             if (dish.getType() == 0){
