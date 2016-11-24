@@ -1,22 +1,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="dk.bepeaked.bodybook.Fragments.Training.ChosenExercise_frag">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <com.jjoe64.graphview.GraphView
-        android:layout_width="wrap_content"
-        android:layout_height="255dp"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
         android:id="@+id/graph"
         />
 
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listView_exercise">
     </ListView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="26dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:paddingRight="30dp"
+        android:paddingBottom="30dp"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:id="@+id/floatingActionButton_chosen_exercise" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        android:id="@+id/fragment_container_add_set"
+        android:orientation="vertical">
+
+    </FrameLayout>
+
+</RelativeLayout>
+
+
 
 </LinearLayout>

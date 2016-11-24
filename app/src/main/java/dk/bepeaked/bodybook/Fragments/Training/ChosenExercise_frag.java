@@ -1,16 +1,15 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,19 +19,23 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
+import dk.bepeaked.bodybook.Fragments.Settings.Settings_frag;
 import dk.bepeaked.bodybook.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChosenExercise_frag extends Fragment {
+public class ChosenExercise_frag extends Fragment implements View.OnClickListener {
 
     String[] workouts = {"Bepeaked", "Træningsplan 1", "Træningsplan 2", "Min egen træningsplan", "Træææning!", "Fuck det bliver godt!", "jeg vil ikke mere", "Træning 3", "Træning 4", "Træning 5", "Træning 6"};
-
     ArrayList<ExerciseDTO> exercises = new ArrayList<ExerciseDTO>();
+    FloatingActionButton fab;
+
+
+    //skal slettes. til test
+    boolean boo = true;
 
 
     public ChosenExercise_frag() {
@@ -48,14 +51,7 @@ public class ChosenExercise_frag extends Fragment {
 
         getActivity().setTitle("Valgte øvelse");
 
-
-
-//        ExerciseListAdapter adapter = new ExerciseListAdapter(getActivity(), R.layout.exercise_list_element, exercises );
-
-
-//        ListView listView = (ListView) view.findViewById(R.id.listView_exercise);
-////        listView.setOnItemClickListener(this);
-//        listView.setAdapter(adapter);
+        // making the graph
 
         GraphView graph = (GraphView) view.findViewById(R.id.graph);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
@@ -80,7 +76,7 @@ public class ChosenExercise_frag extends Fragment {
         series.setCustomPaint(paint);
         graph.addSeries(series);
 
-//        Listen af sæt
+//        Listen af sæt laves herunder. Den skal blot have en arrayliste af ExerciseDTO'er.
 
         int i = 1;
         exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
@@ -102,8 +98,20 @@ public class ChosenExercise_frag extends Fragment {
 
         listView.setAdapter(exerciseListAdapter);
 
+        fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton_chosen_exercise);
+
+        fab.setOnClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        AddSet_frag fragment = new AddSet_frag();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
+
     }
 
     public class ExerciseListAdapter extends BaseAdapter {
@@ -126,12 +134,20 @@ public class ChosenExercise_frag extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.exercise_list_element, parent, false);
 
+            if (boo) {
+                LayoutInflater inflater = LayoutInflater.from(getContext());
+                convertView = inflater.inflate(R.layout.exercise_list_element, parent, false);
+                boo = false;
+            } else if (!boo) {
+                LayoutInflater inflater = LayoutInflater.from(getContext());
+                convertView = inflater.inflate(R.layout.exercise_list_element_with_date, parent, false);
+                boo = true;
+            }
             TextView weight = (TextView) convertView.findViewById(R.id.tv_exercise_weight);
             TextView reps = (TextView) convertView.findViewById(R.id.tv_exercise_reps);
             TextView rm = (TextView) convertView.findViewById(R.id.tv_exercise_rm);
+            TextView date = (TextView) convertView.findViewById(R.id.tv_exercise_date);
 
             weight.setText(Integer.toString(exercises.get(position).getWeight()));
             reps.setText(Integer.toString(exercises.get(position).getReps()));

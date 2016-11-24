@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import dk.bepeaked.bodybook.Fragments.Training.AddSet_frag;
+import dk.bepeaked.bodybook.Fragments.Training.WorkoutPas_frag;
 import dk.bepeaked.bodybook.R;
 
 /**
