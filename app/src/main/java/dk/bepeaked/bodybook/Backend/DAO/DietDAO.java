@@ -12,7 +12,6 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
@@ -24,27 +23,16 @@ import dk.bepeaked.bodybook.R;
 
 public class DietDAO {
     public ArrayList<DishDTO> getDishes(Activity act) throws IOException, JSONException {
-
-
-
         ArrayList<DishDTO> result = new ArrayList<DishDTO>();
-
         InputStream is = act.getResources().openRawResource(R.raw.dish);
-        //InputStream is = new URL("http://javabog.dk/eksempel.json").openStream();
-
-
         byte b[] = new byte[is.available()]; // kun små filer
         is.read(b);
         String str = new String(b, "UTF-8");
-
         JSONObject json = new JSONObject();
         JSONObject jA = new JSONObject(str);
         JSONArray category;
         JSONObject dish;
-        Log.d("Sebbyg", "getDishes: " + jA.length());
 
-
-//        Iterator<String> iterator =
         for (int i = 0; i < jA.length(); i++){
             category = jA.getJSONArray("Morgenmad");
             switch (i){
@@ -62,7 +50,6 @@ public class DietDAO {
                 String name = dish.getString("name");
                 String imagePath = dish.getString("image");
                 JSONArray ingredientList = dish.getJSONArray("Ingredients");
-
                 ArrayList<String[]> ingredients = new ArrayList<String[]>();
                 for (int k = 0; k < ingredientList.length(); k++){
                     JSONObject ingredient = ingredientList.getJSONObject(k);
@@ -73,5 +60,4 @@ public class DietDAO {
         }
         return result;
     }
-
 }

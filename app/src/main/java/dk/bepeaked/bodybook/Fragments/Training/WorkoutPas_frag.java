@@ -16,6 +16,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+
+import dk.bepeaked.bodybook.Backend.DAO.WorkoutDAO;
 import dk.bepeaked.bodybook.R;
 
 
@@ -23,6 +28,7 @@ import dk.bepeaked.bodybook.R;
  * A simple {@link Fragment} subclass.
  */
 public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClickListener {
+    WorkoutDAO wdao = new WorkoutDAO();
 
     String[] workoutPases = {"Mandag", "Tirsdag", "Torsdag", "Lørdag", "Søndag"};
     String nameTrainingplan;
@@ -36,6 +42,14 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listview, container, false);
+
+        try {
+            wdao.createPlan("SebbyG2", getContext());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         getActivity().setTitle("Træningsplan navn");
 
