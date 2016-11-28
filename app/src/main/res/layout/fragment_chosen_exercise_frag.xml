@@ -6,46 +6,35 @@
     android:orientation="vertical"
     tools:context="dk.bepeaked.bodybook.Fragments.Training.ChosenExercise_frag">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:id="@+id/graph"
-        />
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graph"
+            android:layout_width="match_parent"
+            android:layout_height="180dp" />
 
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton_chosen_exercise"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/graph"
+            android:layout_alignRight="@id/graph"
+            android:clickable="true"
+            app:fabSize="mini"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+
+    </RelativeLayout>
+
+
     <ListView
+        android:id="@+id/listView_exercise"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView_exercise">
+        android:layout_height="wrap_content">
+
     </ListView>
-
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="26dp"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:paddingRight="30dp"
-        android:paddingBottom="30dp"
-        app:fabSize="mini"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:id="@+id/floatingActionButton_chosen_exercise" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-
-        android:id="@+id/fragment_container_add_set"
-        android:orientation="vertical">
-
-    </FrameLayout>
-
-</RelativeLayout>
-
 
 
 </LinearLayout>

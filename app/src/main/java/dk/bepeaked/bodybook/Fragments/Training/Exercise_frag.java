@@ -19,7 +19,7 @@ import dk.bepeaked.bodybook.R;
  */
 public class Exercise_frag extends Fragment implements AdapterView.OnItemClickListener{
 
-    String[] exercises = {"all u", "fuck boys", "wanna talk", "shit about", "me"};
+    String[] exercises = {"Benchpress", "Squat", "Deadlift", "Pullups", "Rows"};
     String nameWorkoutPas;
 
     public Exercise_frag() {
