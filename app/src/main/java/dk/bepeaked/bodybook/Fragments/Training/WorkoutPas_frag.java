@@ -86,7 +86,7 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getActivity(), nameTrainingplan ,Toast.LENGTH_LONG).show();
+//        Toast.makeText(getActivity(), nameTrainingplan ,Toast.LENGTH_LONG).show();
 
         Bundle i = new Bundle();
         i.putString("Træningspas", workoutPases[position]);

@@ -1,8 +1,10 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +48,8 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
         return view;
     }
+
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

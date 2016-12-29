@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/TextView_dialog_reps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reps"
+        android:textSize="20sp"
+        android:textColor="@color/F5ABC73" />
+
+
+    <TextView
+        android:id="@+id/TextView_dialog_weight1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/NumberPickerReps"
+        android:paddingStart="25sp"
+        android:text="Weight"
+        android:textSize="20sp"
+        android:textColor="@color/F5ABC73" />
+
+
+    <!--<Space-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!---->
+        <!--android:id="@+id/dialog_space"-->
+        <!--android:paddingLeft="20dp"/>-->
+
+    <NumberPicker
+        android:id="@+id/NumberPickerReps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="40dp"
+        android:layout_below="@+id/TextView_dialog_reps">
+
+    </NumberPicker>
+
+
+    <NumberPicker
+        android:id="@+id/NumberPickerWeight1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="40dp"
+        android:layout_below="@+id/TextView_dialog_reps"
+        android:layout_toRightOf="@+id/NumberPickerReps">
+
+    </NumberPicker>
+
+    <NumberPicker
+        android:id="@+id/NumberPickerWeight2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TextView_dialog_reps"
+        android:layout_toRightOf="@+id/NumberPickerWeight1">
+
+    </NumberPicker>
+
+    <Button
+        android:id="@+id/button_dialog_OK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NumberPickerWeight1"
+        android:layout_centerInParent="true"
+
+        android:text="OK" />
+
+
+</RelativeLayout>

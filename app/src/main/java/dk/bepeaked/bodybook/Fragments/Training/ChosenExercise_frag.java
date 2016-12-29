@@ -1,17 +1,23 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
+import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
@@ -21,7 +27,6 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
-import dk.bepeaked.bodybook.Fragments.Settings.Settings_frag;
 import dk.bepeaked.bodybook.R;
 
 /**
@@ -32,7 +37,9 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     String[] workouts = {"Bepeaked", "Træningsplan 1", "Træningsplan 2", "Min egen træningsplan", "Træææning!", "Fuck det bliver godt!", "jeg vil ikke mere", "Træning 3", "Træning 4", "Træning 5", "Træning 6"};
     ArrayList<ExerciseDTO> exercises = new ArrayList<ExerciseDTO>();
     FloatingActionButton fab;
-
+    NumberPicker npWeight1, npWeight2, npReps;
+    Button btnOK, btnCancel;
+    SharedPreferences prefs;
 
     //skal slettes. til test
     boolean boo = true;
@@ -107,12 +114,42 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        AddSet_frag fragment = new AddSet_frag();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.commit();
+
+        showDialogAlert();
 
     }
+
+    private void showDialogAlert() {
+
+        final Dialog dialog = new Dialog(getActivity(), R.style.MyAlertDialogStyle);
+        dialog.setTitle("NumberPicker");
+        dialog.setContentView(R.layout.fragment_dialog_add_set_frag);
+        npReps = (NumberPicker) dialog.findViewById(R.id.NumberPickerReps);
+        npWeight1 = (NumberPicker) dialog.findViewById(R.id.NumberPickerWeight1);
+        npWeight2 = (NumberPicker) dialog.findViewById(R.id.NumberPickerWeight2);
+        btnOK = (Button) dialog.findViewById(R.id.button_ok_add_set);
+
+        //TODO skal sættes til den sidst benyttede, så der skal bruges den der preference manager?
+        npReps.setMinValue(1);
+        npReps.setMaxValue(50);
+        npWeight1.setMinValue(0);
+        npWeight1.setMaxValue(200);
+        npWeight1.setValue(10);
+        npWeight2.setMinValue(0);
+        npWeight2.setMaxValue(3);
+        npWeight2.setDisplayedValues(new String[]{"0", "25", "50", "75"});
+
+
+
+
+        dialog.show();
+
+
+
+
+    }
+
+
 
     public class ExerciseListAdapter extends BaseAdapter {
 
