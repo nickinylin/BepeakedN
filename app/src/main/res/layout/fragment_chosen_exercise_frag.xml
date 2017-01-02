@@ -28,6 +28,46 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TV_info_weight"
+            android:text="Weight"
+            android:textSize="20sp"
+            android:textColor="#808080"
+            android:layout_weight="1"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TV_info_reps"
+            android:text="Reps"
+            android:textSize="20sp"
+            android:textColor="#808080"
+            android:layout_weight="1"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TV_info_RM"
+            android:text="1-RM"
+            android:textSize="20sp"
+            android:textColor="#808080"
+            android:layout_weight="1"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
 
     <ListView
         android:id="@+id/listView_exercise"

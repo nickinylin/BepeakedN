@@ -102,6 +102,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
         exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
 
+
         ListView listView = (ListView) view.findViewById(R.id.listView_exercise);
 
         ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter();
@@ -117,7 +118,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-
         showDialogAlert();
 
 
@@ -132,7 +132,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         npWeight1 = (NumberPicker) dialog.findViewById(R.id.NumberPickerWeight1);
         npWeight2 = (NumberPicker) dialog.findViewById(R.id.NumberPickerWeight2);
         btnOK = (Button) dialog.findViewById(R.id.button_dialog_OK);
-        System.out.println("knappens id "+btnOK.getId());
+
         //TODO skal sættes til den sidst benyttede, så der skal bruges den der sharedpreferences
         npReps.setMinValue(1);
         npReps.setMaxValue(50);
@@ -149,9 +149,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("OK knap i dialog");
-                Snackbar.make(getView(), "Knappen virker!", Snackbar.LENGTH_LONG);
-                ///Toast.makeText(getActivity(), "hej", Toast.LENGTH_LONG);
+
+
             }
         });
 
@@ -194,9 +193,9 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             TextView rm = (TextView) convertView.findViewById(R.id.tv_exercise_rm);
             TextView date = (TextView) convertView.findViewById(R.id.tv_exercise_date);
 
-            weight.setText(Integer.toString(exercises.get(position).getWeight()));
+            weight.setText(Integer.toString(exercises.get(position).getWeight()) + "kg");
             reps.setText(Integer.toString(exercises.get(position).getReps()));
-            rm.setText(Integer.toString(exercises.get(position).getRM1()));
+            rm.setText(Integer.toString(exercises.get(position).getRM1()) + "kg");
 
             return convertView;
         }
