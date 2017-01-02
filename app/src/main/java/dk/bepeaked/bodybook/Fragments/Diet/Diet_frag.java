@@ -2,12 +2,9 @@ package dk.bepeaked.bodybook.Fragments.Diet;
 
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -130,14 +127,14 @@ public class Diet_frag extends Fragment {
 
         private List<String> header_titles;
         private HashMap<String, List<String>> child_titles;
-        private HashMap<String, List<String>> deskription;
+        private HashMap<String, List<String>> description;
         private Context ctx;
 
         public MyAdapter(Context ctx, List<String> header_titles, HashMap<String,List<String>> child_titles, HashMap<String,List<String>> deskription) {
             this.ctx = ctx;
             this.child_titles = child_titles;
             this.header_titles = header_titles;
-            this.deskription = deskription;
+            this.description = deskription;
         }
 
         @Override
@@ -160,7 +157,7 @@ public class Diet_frag extends Fragment {
             return child_titles.get(header_titles.get(groupPosition)).get(childPosition);
         }
         public Object getDesk(int groupPosition, int childPosition){
-            return deskription.get(header_titles.get(groupPosition)).get(childPosition);
+            return description.get(header_titles.get(groupPosition)).get(childPosition);
         }
 
         @Override

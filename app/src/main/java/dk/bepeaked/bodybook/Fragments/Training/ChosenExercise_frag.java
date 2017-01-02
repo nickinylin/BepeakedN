@@ -8,6 +8,7 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -19,11 +20,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
@@ -117,6 +120,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         showDialogAlert();
 
+
     }
 
     private void showDialogAlert() {
@@ -127,8 +131,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         npReps = (NumberPicker) dialog.findViewById(R.id.NumberPickerReps);
         npWeight1 = (NumberPicker) dialog.findViewById(R.id.NumberPickerWeight1);
         npWeight2 = (NumberPicker) dialog.findViewById(R.id.NumberPickerWeight2);
-        btnOK = (Button) dialog.findViewById(R.id.button_ok_add_set);
-
+        btnOK = (Button) dialog.findViewById(R.id.button_dialog_OK);
+        System.out.println("knappens id "+btnOK.getId());
         //TODO skal sættes til den sidst benyttede, så der skal bruges den der sharedpreferences
         npReps.setMinValue(1);
         npReps.setMaxValue(50);
@@ -140,16 +144,19 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         npWeight2.setDisplayedValues(new String[]{"0", "25", "50", "75"});
 
 
-
-
-
         dialog.show();
 
-
+        btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("OK knap i dialog");
+                Snackbar.make(getView(), "Knappen virker!", Snackbar.LENGTH_LONG);
+                ///Toast.makeText(getActivity(), "hej", Toast.LENGTH_LONG);
+            }
+        });
 
 
     }
-
 
 
     public class ExerciseListAdapter extends BaseAdapter {

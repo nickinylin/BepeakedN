@@ -35,8 +35,6 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
         View view = inflater.inflate(R.layout.listview, container, false);
 
-        int i = 4/0;
-
         getActivity().setTitle("Træningspas navn");
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, exercises);
 
