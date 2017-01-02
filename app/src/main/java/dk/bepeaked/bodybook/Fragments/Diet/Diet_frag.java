@@ -102,6 +102,20 @@ public class Diet_frag extends Fragment {
         MyAdapter myAdapter = new MyAdapter(getActivity(), Headings, nameList, deskList);
 
         expandableListView.setAdapter(myAdapter);
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v,int groupPosition, int childPosition, long id) {
+
+                Recipe_frag frag = new Recipe_frag();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, frag).addToBackStack("diet");
+                fragmentTransaction.commit();
+
+                return true;
+            }
+        });
+
         return view;
     }
 
