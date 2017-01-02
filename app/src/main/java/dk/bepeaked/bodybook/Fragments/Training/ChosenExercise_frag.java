@@ -11,7 +11,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -37,7 +41,6 @@ import dk.bepeaked.bodybook.R;
  */
 public class ChosenExercise_frag extends Fragment implements View.OnClickListener {
 
-    String[] workouts = {"Bepeaked", "Træningsplan 1", "Træningsplan 2", "Min egen træningsplan", "Træææning!", "Fuck det bliver godt!", "jeg vil ikke mere", "Træning 3", "Træning 4", "Træning 5", "Træning 6"};
     ArrayList<ExerciseDTO> exercises = new ArrayList<ExerciseDTO>();
     FloatingActionButton fab;
     NumberPicker npWeight1, npWeight2, npReps;
@@ -113,6 +116,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         fab.setOnClickListener(this);
 
+        setHasOptionsMenu(true);
+
         return view;
     }
 
@@ -159,6 +164,34 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         });
 
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.exercisemenu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.exerciseMenu_help) {
+            //TODO hvad der skal ske når man vil have hjælp til øvelse
+
+            Bundle i = new Bundle();
+            i.putString("ExerciseHelp", "den valgte øvelse!");
+
+            ExerciseHelp_frag fragment = new ExerciseHelp_frag();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+            fragment.setArguments(i);
+            fragmentTransaction.commit();
+
+
+            Snackbar.make(getView(), "hrrra", Snackbar.LENGTH_LONG).show();
+        } else if (item.getItemId() == R.id.exerciseMenu_edit) {
+            // TODO Hvad der skal ske for at ændre i en øvelse
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
