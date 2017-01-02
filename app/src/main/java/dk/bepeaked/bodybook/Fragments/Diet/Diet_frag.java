@@ -50,11 +50,17 @@ public class Diet_frag extends Fragment {
         expandableListView = (ExpandableListView)  view.findViewById(R.id.expandA_listview);
 
         List<String> Headings = new ArrayList<String>();
-        List<String> L1 = new ArrayList<String>();
-        List<String> L2 = new ArrayList<String>();
-        List<String> L3 = new ArrayList<String>();
-        List<String> L4 = new ArrayList<String>();
-        HashMap<String, List<String>> childList = new HashMap<String, List<String>>();
+        List<String> name1 = new ArrayList<String>();
+        List<String> name2 = new ArrayList<String>();
+        List<String> name3 = new ArrayList<String>();
+        List<String> name4 = new ArrayList<String>();
+        List<String> shortDesk1 = new ArrayList<String>();
+        List<String> shortDesk2 = new ArrayList<String>();
+        List<String> shortDesk3 = new ArrayList<String>();
+        List<String> shortDesk4 = new ArrayList<String>();
+        HashMap<String, List<String>> nameList = new HashMap<String, List<String>>();
+        HashMap<String, List<String>> deskList = new HashMap<String, List<String>>();
+
 
         Headings.add("Morgenmad");
         Headings.add("Frokost");
@@ -73,22 +79,30 @@ public class Diet_frag extends Fragment {
         for (int i = 0; i < dishList.size(); i++){
             DishDTO dish = dishList.get(i);
             if (dish.getType() == 0){
-                L1.add(dish.getName());
+                name1.add(dish.getName());
+                shortDesk1.add(dish.getDeskShort());
             } else if (dish.getType() == 1){
-                L2.add(dish.getName());
+                name2.add(dish.getName());
+                shortDesk2.add(dish.getDeskShort());
             } else if (dish.getType() == 2){
-                L3.add(dish.getName());
+                name3.add(dish.getName());
+                shortDesk3.add(dish.getDeskShort());
             } else if (dish.getType() == 3){
-                L4.add(dish.getName());
+                name4.add(dish.getName());
+                shortDesk4.add(dish.getDeskShort());
             }
         }
 
-        childList.put(Headings.get(0), L1);
-        childList.put(Headings.get(1), L2);
-        childList.put(Headings.get(2), L3);
-        childList.put(Headings.get(3), L4);
+        nameList.put(Headings.get(0), name1);
+        deskList.put(Headings.get(0), shortDesk1);
+        nameList.put(Headings.get(1), name2);
+        deskList.put(Headings.get(1), shortDesk2);
+        nameList.put(Headings.get(2), name3);
+        deskList.put(Headings.get(2), shortDesk3);
+        nameList.put(Headings.get(3), name4);
+        deskList.put(Headings.get(3), shortDesk4);
 
-        MyAdapter myAdapter = new MyAdapter(getActivity(), Headings, childList);
+        MyAdapter myAdapter = new MyAdapter(getActivity(), Headings, nameList, deskList);
 
         expandableListView.setAdapter(myAdapter);
         return view;
@@ -116,12 +130,14 @@ public class Diet_frag extends Fragment {
 
         private List<String> header_titles;
         private HashMap<String, List<String>> child_titles;
+        private HashMap<String, List<String>> deskription;
         private Context ctx;
 
-        public MyAdapter(Context ctx, List<String> header_titles, HashMap<String,List<String>> child_titles) {
+        public MyAdapter(Context ctx, List<String> header_titles, HashMap<String,List<String>> child_titles, HashMap<String,List<String>> deskription) {
             this.ctx = ctx;
             this.child_titles = child_titles;
             this.header_titles = header_titles;
+            this.deskription = deskription;
         }
 
         @Override
@@ -142,6 +158,9 @@ public class Diet_frag extends Fragment {
         @Override
         public Object getChild(int groupPosition, int childPosition) {
             return child_titles.get(header_titles.get(groupPosition)).get(childPosition);
+        }
+        public Object getDesk(int groupPosition, int childPosition){
+            return deskription.get(header_titles.get(groupPosition)).get(childPosition);
         }
 
         @Override
@@ -177,6 +196,7 @@ public class Diet_frag extends Fragment {
         @Override
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
             String title = (String) this.getChild(groupPosition, childPosition);
+            String desk = (String) this.getDesk(groupPosition, childPosition);
 
             if(convertView == null) {
                 LayoutInflater layoutInflater = (LayoutInflater) this.ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -184,7 +204,9 @@ public class Diet_frag extends Fragment {
             }
 
             TextView textView = (TextView) convertView.findViewById(R.id.child_item);
+            TextView deskView = (TextView) convertView.findViewById(R.id.child_desc);
             textView.setText(title);
+            deskView.setText(desk);
 
             return convertView;
         }

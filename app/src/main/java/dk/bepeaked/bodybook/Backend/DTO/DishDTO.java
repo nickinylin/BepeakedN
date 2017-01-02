@@ -12,14 +12,15 @@ import java.util.HashMap;
 public class DishDTO {
     //Type: 0 = Morgenmad, 1 = Frokost, 2 = Aftensmad, 3 = Snack.
     private int type;
-    private String name;
-    private String imagePath;
+    private String name, imagePath, deskShort, deskLong;
     private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 
-    public DishDTO(int type, String name, String imagePath, ArrayList<String[]> ingredients) {
+    public DishDTO(int type, String name, String imagePath, String deskShort, String deskLong, ArrayList<String[]> ingredients) {
         this.type = type;
         this.name = name;
         this.imagePath = imagePath;
+        this.deskShort = deskShort;
+        this.deskLong = deskLong;
         for (int i = 0; i < ingredients.size(); i++){
             String[] ingredient = ingredients.get(i);
             String ingName = ingredient[0];
@@ -55,6 +56,22 @@ public class DishDTO {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public String getDeskShort() {
+        return deskShort;
+    }
+
+    public void setDeskShort(String deskShort) {
+        this.deskShort = deskShort;
+    }
+
+    public String getDeskLong() {
+        return deskLong;
+    }
+
+    public void setDeskLong(String deskLong) {
+        this.deskLong = deskLong;
     }
 
     public ArrayList<Ingredient> getIngredients() {

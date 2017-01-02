@@ -1,8 +1,10 @@
 {
   "Morgenmad": [
     {
-      "name": "gør dig peaked!",
+      "name": "Gør dig peaked!",
       "image": "R.drawable.dgdp.PNG",
+      "desk_short": "Havregryn og knækbrød.",
+      "desk_full": "Dejlig havregryn med proteinpulver og mælk. Knækbrød med dejlig peanutbutter på.",
       "Ingredients": [
         {
           "name": "Havregryn",
@@ -29,6 +31,8 @@
     {
       "name": "Iceland morning",
       "image": "R.drawable.dgdp.PNG",
+      "desk_short": "Skyr m.m.",
+      "desk_full": "Dejlig skyr med müsli, valnødder og proteinpulver.",
       "Ingredients": [
         {
           "name": "Skyr",
@@ -51,6 +55,8 @@
     {
       "name": "Proteinsmoothie og Æg",
       "image": "",
+      "desk_short": "Smoothie med bær. ÆG",
+      "desk_full": "Dejlig smoothie med havregryn og dejlige æg",
       "Ingredients": [
         {
           "name": "Proteinpulver",
@@ -75,6 +81,8 @@
     {
       "name": "Asiatisk Kylling",
       "image": "",
+      "desk_short": "Kyllingeret.",
+      "desk_full": "Dejlig velsmagende asiatisk kyllingeret",
       "Ingredients": [
         {
           "name": "Kylling brystfillet, 1.5%",
@@ -105,6 +113,8 @@
     {
       "name": "Chili Con Carne",
       "image": "",
+      "desk_short": "Chili med kød.",
+      "desk_full": "Hakket oksekød, bønner og masser af chili",
       "Ingredients": [
         {
           "name": "Hakket Oksekød 3-6%",
@@ -137,6 +147,8 @@
     {
       "name": "Røræg med tun og grøntsager",
       "image": "",
+      "desk_short": "Tun og æg, det er godt for maven.",
+      "desk_full": "Man skal huske at få fisk hver dag. Æg er også godt. Grøntsager er også godt.",
       "Ingredients": [
         {
           "name": "Tun i vand",
@@ -157,6 +169,8 @@
     {
       "name": "Shake, Fruit & Nuts",
       "image": "",
+      "desk_short": "Whey proteinpulver fordi, det er bedre en bare proteinpulver.",
+      "desk_full": "Banan er godt for knoglerne og træning.",
       "Ingredients": [
         {
           "name": "Whey protein pulver",
