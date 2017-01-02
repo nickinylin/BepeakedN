@@ -1,5 +1,6 @@
 package dk.bepeaked.bodybook.Activities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,11 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+
+import com.crashlytics.android.Crashlytics;
 import dk.bepeaked.bodybook.Fragments.Diet.Diet_frag;
 import dk.bepeaked.bodybook.Fragments.Profile_frag;
 import dk.bepeaked.bodybook.Fragments.Settings.Settings_frag;
 import dk.bepeaked.bodybook.Fragments.Training.WorkoutPas_frag;
 import dk.bepeaked.bodybook.R;
+import io.fabric.sdk.android.Fabric;
+
 
 
 public class Main_act extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -21,10 +26,17 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
     NavigationView navigationView = null;
     Toolbar toolbar = null;
+    boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        if (!EMULATOR) {
+            Fabric.with(this, new Crashlytics());
+//        }
+
         setContentView(R.layout.activity_main);
 
         // Set the fragment initially

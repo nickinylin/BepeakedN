@@ -27,6 +27,12 @@
             android:name="dk.bepeaked.bodybook.Activities.Login_act"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="dk.bepeaked.bodybook.Activities.AddUser_act"></activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="4bf0953eae16cf7a039859dedbb585d27e597b54" />
     </application>
 
+
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

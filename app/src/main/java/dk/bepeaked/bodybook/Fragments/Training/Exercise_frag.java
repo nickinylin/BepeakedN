@@ -35,6 +35,8 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
         View view = inflater.inflate(R.layout.listview, container, false);
 
+        int i = 4/0;
+
         getActivity().setTitle("Træningspas navn");
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, exercises);
 
@@ -54,6 +56,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getActivity(), nameWorkoutPas ,Toast.LENGTH_LONG).show();
+
 
         Bundle i = new Bundle();
         i.putString("Træningspas", exercises[position]);

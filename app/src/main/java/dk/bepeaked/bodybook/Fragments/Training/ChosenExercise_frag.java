@@ -129,7 +129,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         npWeight2 = (NumberPicker) dialog.findViewById(R.id.NumberPickerWeight2);
         btnOK = (Button) dialog.findViewById(R.id.button_ok_add_set);
 
-        //TODO skal sættes til den sidst benyttede, så der skal bruges den der preference manager?
+        //TODO skal sættes til den sidst benyttede, så der skal bruges den der sharedpreferences
         npReps.setMinValue(1);
         npReps.setMaxValue(50);
         npWeight1.setMinValue(0);
@@ -138,6 +138,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         npWeight2.setMinValue(0);
         npWeight2.setMaxValue(3);
         npWeight2.setDisplayedValues(new String[]{"0", "25", "50", "75"});
+
 
 
 
