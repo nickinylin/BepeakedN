@@ -116,6 +116,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         return view;
     }
 
+
     @Override
     public void onClick(View v) {
         showDialogAlert();
@@ -124,6 +125,9 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     }
 
     private void showDialogAlert() {
+
+//AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity(), R.style.MyAlertDialogStyle );
+
 
         final Dialog dialog = new Dialog(getActivity(), R.style.MyAlertDialogStyle);
         dialog.setTitle("NumberPicker");

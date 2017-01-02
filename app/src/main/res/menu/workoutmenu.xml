@@ -9,6 +9,20 @@
         android:icon="@drawable/ic_action_bepeaked_logotext"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/tilføj_ny_pas2"
+        android:orderInCategory="100"
+        android:title=""
+        android:icon="@drawable/ic_action_bepeaked_logotext"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/tilføj_ny_pas3"
+        android:orderInCategory="100"
+        android:title="xxxx"
+        android:icon="@drawable/ic_action_bepeaked_logotext"
+        app:showAsAction="withText" />
 
 
 
