@@ -3,10 +3,14 @@ package dk.bepeaked.bodybook.Fragments.Training;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -47,6 +51,22 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         setHasOptionsMenu(true);
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.pasmenu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.pasMenu_add_exercise) {
+            Snackbar.make(getView(), "Der skal tilføjes en ny øvelse!", Snackbar.LENGTH_LONG).show();
+        } else if (item.getItemId() == R.id.pasMenu_edit) {
+            // TODO Hvad der skal ske for at ændre i en træningsplan
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

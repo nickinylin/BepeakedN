@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/pasMenu_add_exercise"
+        android:orderInCategory="1"
+        android:title="Tilføj øvelse"
+        app:showAsAction="withText" />
+
+    <item
+        android:id="@+id/pasMenu_edit"
+        android:orderInCategory="2"
+        android:title="Rediger øvelser"
+        app:showAsAction="withText" />
+
+</menu>

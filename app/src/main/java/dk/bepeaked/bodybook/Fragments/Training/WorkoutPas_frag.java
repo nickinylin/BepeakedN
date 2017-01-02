@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -78,8 +77,14 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.tilføj_ny_pas) {
+        if (item.getItemId() == R.id.workoutMenu_add_pas) {
             Snackbar.make(getView(), "hrrra", Snackbar.LENGTH_LONG).show();
+        } else if (item.getItemId() == R.id.workoutMenu_edit) {
+            // TODO Hvad der skal ske for at ændre i en træningsplan
+        } else if (item.getItemId() == R.id.workoutMenu_change_plan) {
+            // TODO Hvad der skal ske for at skifte aktuel træningsplan
+        } else if (item.getItemId() == R.id.workoutMenu_add_workoutplan) {
+            // TODO Hvad der skal ske for at tilføje en ny træningsplan
         }
         return super.onOptionsItemSelected(item);
     }
