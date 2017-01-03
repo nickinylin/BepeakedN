@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="dk.bepeaked.bodybook.Fragments.Training.ChosenExercise_frag">
+    tools:context="dk.bepeaked.bodybook.Fragments.Training.ChosenExercise_frag"
+    android:weightSum="1">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -72,9 +73,23 @@
     <ListView
         android:id="@+id/listView_exercise"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="241dp"
+        android:layout_weight="0.15">
 
     </ListView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="75dp">
+
+        <Button
+            android:text="+"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:id="@+id/button2"
+            android:backgroundTint="@android:color/holo_blue_dark" />
+    </LinearLayout>
 
 
 </LinearLayout>
