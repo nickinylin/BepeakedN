@@ -16,15 +16,15 @@
             android:layout_width="match_parent"
             android:layout_height="180dp" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton_chosen_exercise"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/graph"
-            android:layout_alignRight="@id/graph"
-            android:clickable="true"
-            app:fabSize="mini"
-            app:srcCompat="@android:drawable/ic_input_add" />
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/Button_add_new_set"-->
+            <!--android:layout_width="60dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignBottom="@id/graph"-->
+            <!--android:layout_alignRight="@id/graph"-->
+            <!--android:clickable="true"-->
+            <!--app:fabSize="mini"-->
+            <!--app:srcCompat="@android:drawable/ic_input_add" />-->
 
 
     </RelativeLayout>
@@ -73,25 +73,25 @@
     <ListView
         android:id="@+id/listView_exercise"
         android:layout_width="match_parent"
-        android:layout_height="241dp"
-        android:layout_weight="0.15">
-
+        android:layout_height="300dp"
+>
     </ListView>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
 
         <Button
             android:text="Tilføj"
+            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:id="@+id/button2"
+            android:id="@+id/Button_add_new_set"
             android:backgroundTint="@android:color/holo_blue_dark"
             android:layout_weight="2.50"
-            android:layout_marginTop="15dp" />
+            />
     </LinearLayout>
 
 

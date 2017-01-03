@@ -35,17 +35,11 @@ public class Training_frag extends Fragment implements AdapterView.OnItemClickLi
 
         getActivity().setTitle("Træningsplaner");
 
-
-
-
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, workouts);
 
         ListView listView = (ListView) view.findViewById(R.id.ListView_id);
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
-
-
-
 
         return view;
     }
