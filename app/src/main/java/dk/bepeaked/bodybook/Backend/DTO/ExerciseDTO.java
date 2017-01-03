@@ -8,16 +8,15 @@ import java.util.Date;
 
 public class ExerciseDTO {
 
-    private int weight;
-    private int reps;
-    private int RM1;
-//    private Date date;
+    private String name;
+    //TODO LAV SOM I ExerciseDAO
+    private int weight, reps;
+    private Date date;
 
-    public ExerciseDTO (int weight, int reps, int RM1) {
+    public ExerciseDTO (int weight, int reps, Date date) {
         this.weight = weight;
         this.reps = reps;
-        this.RM1 = RM1;
-//        this.date = date;
+        this.date = date;
     }
 
     public int getWeight() {
@@ -36,20 +35,12 @@ public class ExerciseDTO {
         this.reps = reps;
     }
 
-    public int getRM1() {
-        return RM1;
+    public Date getDate() {
+        return date;
     }
 
-    public void setRM1(int RM1) {
-        this.RM1 = RM1;
+    public void setDate(Date date) {
+        this.date = date;
     }
-
-//    public Date getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(Date date) {
-//        this.date = date;
-//    }
 
 }

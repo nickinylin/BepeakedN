@@ -12,6 +12,9 @@ import android.view.MenuItem;
 
 
 import com.crashlytics.android.Crashlytics;
+
+import java.io.File;
+
 import dk.bepeaked.bodybook.Fragments.Diet.Diet_frag;
 import dk.bepeaked.bodybook.Fragments.Profile_frag;
 import dk.bepeaked.bodybook.Fragments.Settings.Settings_frag;
@@ -38,6 +41,15 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 //        }
 
         setContentView(R.layout.activity_main);
+
+        File f = new File(this.getFilesDir().getAbsolutePath() + File.separator + "/userdata/plans");
+        if (!(f.isDirectory())){
+            f.mkdirs();
+        }
+
+        System.out.println("SEBBYG: " + this.getFilesDir().getAbsolutePath());
+
+        //+ File.separator + "/userdata/plans"
 
         // Set the fragment initially
         if (savedInstanceState==null) { // kun tilføje fragmenter ved en frisk start

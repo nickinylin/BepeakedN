@@ -20,6 +20,9 @@ import dk.bepeaked.bodybook.R;
  */
 
 public class WorkoutDAO {
+    public void getPlans(){
+
+    }
     public void createPlan(String name, Context ct) throws JSONException, IOException {
         JSONObject plan = new JSONObject();
         plan.put("name", name);
