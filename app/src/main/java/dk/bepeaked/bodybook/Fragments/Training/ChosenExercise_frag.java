@@ -111,6 +111,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         fab.setOnClickListener(this);
 
+
+
         setHasOptionsMenu(true);
 
         return view;
