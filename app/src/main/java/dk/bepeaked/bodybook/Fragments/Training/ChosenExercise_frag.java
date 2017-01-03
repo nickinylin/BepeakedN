@@ -145,6 +145,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         //TODO skal sættes til den sidst benyttede, så der skal bruges den der sharedpreferences
         npReps.setMinValue(1);
         npReps.setMaxValue(50);
+//        npReps.setValue();
         npWeight1.setMinValue(0);
         npWeight1.setMaxValue(200);
         npWeight1.setValue(10);

@@ -100,7 +100,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
         if (id == R.id.nav_profile) {
             Profile_frag fragment = new Profile_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("stack");
 //            fragmentTransaction.addToBackStack("hej");
             fragmentTransaction.commit();
 
@@ -109,14 +109,14 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
             WorkoutPas_frag fragment = new WorkoutPas_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("stack");
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_diet) {
 
             Diet_frag fragment = new Diet_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("stack");
             fragmentTransaction.commit();
 
 
@@ -124,7 +124,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
             Settings_frag fragment = new Settings_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("stack");
             fragmentTransaction.commit();
 
         }
