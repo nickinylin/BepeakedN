@@ -10,27 +10,22 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
@@ -42,7 +37,7 @@ import dk.bepeaked.bodybook.R;
 public class ChosenExercise_frag extends Fragment implements View.OnClickListener {
 
     ArrayList<ExerciseDTO> exercises = new ArrayList<ExerciseDTO>();
-    FloatingActionButton fab;
+    Button fab;
     NumberPicker npWeight1, npWeight2, npReps;
     Button btnOK, btnCancel;
     SharedPreferences prefs;
@@ -112,7 +107,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         listView.setAdapter(exerciseListAdapter);
 
-        fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton_chosen_exercise);
+        fab = (Button) view.findViewById(R.id.Button_add_new_set);
 
         fab.setOnClickListener(this);
 
