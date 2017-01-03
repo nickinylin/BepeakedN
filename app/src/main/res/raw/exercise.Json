@@ -1,0 +1,46 @@
+{
+  "Exercises": [
+    {
+      "name" : "Benchpress",
+      "description" : "Du ligger på en bænk og løfter en tung vægt med begge arme",
+      "set" : [
+        {
+          "date" : "03-01-2017",
+          "weight" : 60,
+          "repetitions" : 8
+        },
+        {
+          "date" : "03-01-2017",
+          "weight" : 60,
+          "repetitions" : 7
+        },
+        {
+          "date" : "03-01-2017",
+          "weight" : 60,
+          "repetitions" : 6
+        }
+      ]
+    },
+    {
+      "name" : "Dumbell Curl",
+      "description" : "Har har dumbells i hænderne og løfter dem op til brystet",
+      "set" : [
+        {
+          "date" : "03-01-2017",
+          "weight" : 12,
+          "repetitions" : 8
+        },
+        {
+          "date" : "03-01-2017",
+          "weight" : 12,
+          "repetitions" : 8
+        },
+        {
+          "date" : "03-01-2017",
+          "weight" : 12,
+          "repetitions" : 5
+        }
+      ]
+    }
+  ]
+}
