@@ -24,7 +24,7 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
         // Required empty public constructor
     }
 
-//    String[] settings = {"Måleenhed (kg / pund)", "Aktiveringskode", "Sprog"};
+    String[] settings = {"Måleenhed (kg / pund)", "Aktiveringskode", "Sprog"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
