@@ -28,28 +28,27 @@ public class ExerciseDTO {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            set.add(new Set(Integer.parseInt(singleSet[0]), Integer.parseInt(singleSet[1]), date));
+            set.add(new Set(Double.parseDouble(singleSet[0]), Integer.parseInt(singleSet[1]), date, Double.parseDouble(singleSet[3])));
         }
     }
 
-    //TODO LAV SOM I ExerciseDAO
-
-
     public class Set{
-        private int weight, reps;
+        private int reps;
+        private double weight, rm;
         private Date date;
 
-        public Set (int weight, int reps, Date date) {
+        public Set (double weight, int reps, Date date, double rm) {
             this.weight = weight;
             this.reps = reps;
             this.date = date;
+            this.rm = rm;
         }
 
-        public int getWeight() {
+        public double getWeight() {
             return weight;
         }
 
-        public void setWeight(int weight) {
+        public void setWeight(double weight) {
             this.weight = weight;
         }
 
@@ -67,6 +66,14 @@ public class ExerciseDTO {
 
         public void setDate(Date date) {
             this.date = date;
+        }
+
+        public double getRm() {
+            return rm;
+        }
+
+        public void setRm(double rm) {
+            this.rm = rm;
         }
     }
 
