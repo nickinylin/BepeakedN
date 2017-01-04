@@ -29,6 +29,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
+import dk.bepeaked.bodybook.Backend.DTO.Set;
 import dk.bepeaked.bodybook.R;
 import io.realm.RealmList;
 
@@ -88,7 +89,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 //        Listen af sæt laves herunder. Den skal blot have en arrayliste af ExerciseDTO'er.
 
         ExerciseDTO dto = new ExerciseDTO("Chestpress", "Skub med bryst");
-        dto.addSet(20, 10, 30, "12-12-2016");
+        dto.addSet(new Set(20, 10, "12-12-2016", 30));
         exercises.add(dto);
 
         ListView listView = (ListView) view.findViewById(R.id.listView_exercise);

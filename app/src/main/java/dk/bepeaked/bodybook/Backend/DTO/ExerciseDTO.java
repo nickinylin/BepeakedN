@@ -3,11 +3,9 @@ package dk.bepeaked.bodybook.Backend.DTO;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import io.realm.RealmList;
-import io.realm.RealmModel;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -21,20 +19,14 @@ public class ExerciseDTO extends RealmObject{
     private String name, desc;
 
     private RealmList<Set> set = new RealmList<Set>();
-    private DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
     public ExerciseDTO(String name, String desc){
         this.name = name;
         this.desc = desc;
     }
-    public void addSet(double weight, int reps, double rm, String date){
-        Date realDate = null;
-        try {
-            realDate = df.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Set newSet = new Set(weight, reps, realDate, rm);
+
+    public void addSet(Set set){
+        this.set.add(set);
     }
 
     public String getName() {
@@ -61,50 +53,5 @@ public class ExerciseDTO extends RealmObject{
         this.set = set;
     }
 
-
-    public class Set extends RealmObject {
-        private int reps;
-        private double weight, rm;
-        private Date date;
-
-        public Set (double weight, int reps, Date date, double rm) {
-            this.weight = weight;
-            this.reps = reps;
-            this.date = date;
-            this.rm = rm;
-        }
-
-        public double getWeight() {
-            return weight;
-        }
-
-        public void setWeight(double weight) {
-            this.weight = weight;
-        }
-
-        public int getReps() {
-            return reps;
-        }
-
-        public void setReps(int reps) {
-            this.reps = reps;
-        }
-
-        public Date getDate() {
-            return date;
-        }
-
-        public void setDate(Date date) {
-            this.date = date;
-        }
-
-        public double getRm() {
-            return rm;
-        }
-
-        public void setRm(double rm) {
-            this.rm = rm;
-        }
-    }
 
 }
