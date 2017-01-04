@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import io.realm.RealmList;
+import io.realm.RealmModel;
+
 /**
  * Created by Nicki on 14/11/16.
  */
@@ -13,23 +16,13 @@ import java.util.Date;
 public class ExerciseDTO {
 
     private String name, desc;
-    private ArrayList<Set> set;
+    private RealmList<Set> set;
     private DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
-    public ExerciseDTO(String name, String desc, ArrayList<String[]> data){
+    public ExerciseDTO(String name, String desc, RealmList<Set> set){
         this.name = name;
         this.desc = desc;
-
-        for(int i = 0; i < data.size(); i++){
-            String[] singleSet = data.get(i);
-            Date date = null;
-            try {
-                date = df.parse(singleSet[2]);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            set.add(new Set(Double.parseDouble(singleSet[0]), Integer.parseInt(singleSet[1]), date, Double.parseDouble(singleSet[3])));
-        }
+        this.set = set;
     }
 
     public String getName() {
@@ -48,16 +41,16 @@ public class ExerciseDTO {
         this.desc = desc;
     }
 
-    public ArrayList<Set> getSet() {
+    public RealmList<Set> getSet() {
         return set;
     }
 
-    public void setSet(ArrayList<Set> set) {
+    public void setSet(RealmList<Set> set) {
         this.set = set;
     }
 
 
-    public class Set{
+    public class Set implements RealmModel {
         private int reps;
         private double weight, rm;
         private Date date;
