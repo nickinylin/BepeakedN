@@ -11,7 +11,8 @@ import io.realm.annotations.PrimaryKey;
 public class ExerciseDTO extends RealmObject{
 
     @PrimaryKey
-    private String name, desc;
+    private String name;
+    private String desc;
 
     private RealmList<SetDTO> set = new RealmList<SetDTO>();
 

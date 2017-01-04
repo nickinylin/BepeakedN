@@ -9,12 +9,12 @@ import io.realm.RealmObject;
  * Created by sebho on 14-11-2016.
  */
 
-public class WorkoutDTO extends RealmObject {
+public class WorkoutPassDTO extends RealmObject {
 
     String name;
     RealmList<WorkoutPasDTO> workouts;
 
-    public WorkoutDTO(String name, RealmList<WorkoutPasDTO> workouts) {
+    public WorkoutPassDTO(String name, RealmList<WorkoutPasDTO> workouts) {
         this.name = name;
         this.workouts = workouts;
     }

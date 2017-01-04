@@ -2,6 +2,7 @@ package dk.bepeaked.bodybook.Backend.DTO;
 
 import java.util.ArrayList;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 /**
@@ -11,18 +12,27 @@ import io.realm.RealmObject;
 public class WorkoutPasDTO extends RealmObject {
 
     String name;
-    ArrayList<ExerciseDTO> exercises;
+    RealmList<ExerciseDTO> exercises;
 
-    public WorkoutPasDTO (ArrayList<ExerciseDTO> exercises) {
+    public WorkoutPasDTO (String name, RealmList<ExerciseDTO> exercises) {
+        this.name = name;
         this.exercises = exercises;
     }
 
-    public ArrayList<ExerciseDTO> getExercises() {
+    public RealmList<ExerciseDTO> getExercises() {
         return exercises;
     }
 
-    public void setExercises(ArrayList<ExerciseDTO> exercises) {
+    public void setExercises(RealmList<ExerciseDTO> exercises) {
         this.exercises = exercises;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 
 
