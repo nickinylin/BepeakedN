@@ -12,13 +12,37 @@ import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.R;
+import io.realm.Realm;
+import io.realm.RealmList;
 
 /**
  * Created by Nicki on 14/11/16.
  */
 
 public class ExerciseDAO {
-    /*
+
+    Realm realm = Realm.getDefaultInstance();
+//    public RealmList<ExerciseDTO.Set> getSet(){
+//
+//
+//
+//    }
+
+    public void addExcersise(ExerciseDTO exerciseDTO){
+        realm.beginTransaction();
+        ExerciseDTO realmExercise = realm.copyToRealm(exerciseDTO);
+        realm.commitTransaction();
+
+    }
+
+
+
+
+
+
+
+
+
     public ArrayList<ExerciseDTO> getExercises(Activity act) throws IOException, JSONException {
         ArrayList<ExerciseDTO> result = new ArrayList<ExerciseDTO>();
         InputStream is = act.getResources().openRawResource(R.raw.exercise);
@@ -35,14 +59,14 @@ public class ExerciseDAO {
             exer = category.getJSONObject(j);
             String name = exer.getString("name");
             String desc = exer.getString("description");
-            JSONArray setList = exer.getJSONArray("set");
+            JSONArray ingredientList = exer.getJSONArray("set");
             ArrayList<String[]> sets = new ArrayList<String[]>();
-            for (int k = 0; k < setList.length(); k++) {
-                JSONObject set = setList.getJSONObject(k);
+            for (int k = 0; k < ingredientList.length(); k++) {
+                JSONObject set = ingredientList.getJSONObject(k);
                 sets.add(new String[]{set.getString("date"), set.getString("weight"), set.getString("repetitions")});
             }
-            result.add(new ExerciseDTO(name, desc, sets));
+            //result.add(new ExerciseDTO(name, desc, sets));
         }
         return result;
-    }*/
+    }
 }

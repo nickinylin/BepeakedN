@@ -9,6 +9,7 @@ import java.util.Date;
 import io.realm.RealmList;
 import io.realm.RealmModel;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by Nicki on 14/11/16.
@@ -16,7 +17,9 @@ import io.realm.RealmObject;
 
 public class ExerciseDTO extends RealmObject{
 
+    @PrimaryKey
     private String name, desc;
+
     private RealmList<Set> set = new RealmList<Set>();
     private DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -59,7 +62,7 @@ public class ExerciseDTO extends RealmObject{
     }
 
 
-    public class Set implements RealmModel {
+    public class Set extends RealmObject {
         private int reps;
         private double weight, rm;
         private Date date;

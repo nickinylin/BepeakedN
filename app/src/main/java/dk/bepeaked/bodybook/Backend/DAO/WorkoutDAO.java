@@ -13,40 +13,49 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 
+import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
+import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.R;
+import io.realm.Realm;
+import io.realm.RealmList;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 /**
  * Created by sebho on 14-11-2016.
  */
 
 public class WorkoutDAO {
-    public void getPlans(){
 
-    }
-    public void createPlan(String name, Context ct) throws JSONException, IOException {
-        JSONObject plan = new JSONObject();
-        plan.put("name", name);
-        JSONArray pas = new JSONArray();
-        plan.put("pas", pas);
-
-        FileWriter file = new FileWriter(ct.getFilesDir().getAbsolutePath() + File.separator + "/userdata/plans");
-
-        Log.d("sebby", "createPlan: " + ct.getFilesDir().getAbsolutePath());
-        file.write(plan.toString());
-
+    Realm realm = Realm.getDefaultInstance();
+    public void newPlan(WorkoutDTO workoutDTO){
+        realm.beginTransaction();
+        WorkoutDTO realmPlan = realm.copyToRealm(workoutDTO);
+        realm.commitTransaction();
     }
 
-    public void insertPas(String planName, String pasName, Activity act) throws JSONException, IOException {
-        InputStream is = act.getResources().openRawResource(R.raw.dish);
+    public RealmList<WorkoutDTO> getPlans(){
+        RealmResults<WorkoutDTO> resultPlans = realm.where(WorkoutDTO.class).findAll();
+        RealmList<WorkoutDTO> workoutPlans = new RealmList<WorkoutDTO>();
+        workoutPlans.addAll(resultPlans.subList(0, resultPlans.size()));
+        return workoutPlans;
+    }
 
-        byte b[] = new byte[is.available()];
-        is.read(b);
-        String str = new String(b, "UTF-8");
+    public void updatePlanName(String oldname, String newname){
 
-        JSONObject plan = new JSONObject(str);
+        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("Name", oldname).findFirst();
 
-        JSONArray pas = plan.getJSONArray("pas");
-        pas.put(pasName);
+        realm.commitTransaction();
+        plan.setName(newname);
+        realm.commitTransaction();
+    }
 
+    public void updatePlanPas(String name, RealmList<WorkoutPasDTO> newWorkoutPasList){
+
+        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("Name", name).findFirst();
+
+        realm.beginTransaction();
+        plan.setWorkouts(newWorkoutPasList);
+        realm.commitTransaction();
     }
 }
