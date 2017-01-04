@@ -9,9 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -22,12 +24,13 @@ import java.util.List;
 
 import dk.bepeaked.bodybook.Backend.DAO.DietDAO;
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
+import dk.bepeaked.bodybook.Fragments.Training.Exercise_frag;
 import dk.bepeaked.bodybook.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Diet_frag extends Fragment {
+public class Diet_frag extends Fragment{
 
     ExpandableListView expandableListView;
     DietDAO ddao = new DietDAO();
@@ -102,7 +105,7 @@ public class Diet_frag extends Fragment {
         nameList.put(Headings.get(3), name4);
         deskList.put(Headings.get(3), shortDesk4);
 
-        MyAdapter myAdapter = new MyAdapter(getActivity(), Headings, nameList, deskList);
+        final MyAdapter myAdapter = new MyAdapter(getActivity(), Headings, nameList, deskList);
 
         expandableListView.setAdapter(myAdapter);
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -110,11 +113,17 @@ public class Diet_frag extends Fragment {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,int groupPosition, int childPosition, long id) {
 
-                Recipe_frag frag = new Recipe_frag();
-                android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, frag).addToBackStack("diet");
-                fragmentTransaction.commit();
+                Object child = myAdapter.getChild(groupPosition, childPosition);
+                Object desc = myAdapter.getDesk(groupPosition, childPosition);
+                Bundle i = new Bundle();
+                i.putString("Name", child.toString());
+                i.putString("Description", desc.toString());
 
+                Recipe_frag fragment = new Recipe_frag();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+                fragment.setArguments(i);
+                fragmentTransaction.commit();
                 return true;
             }
         });

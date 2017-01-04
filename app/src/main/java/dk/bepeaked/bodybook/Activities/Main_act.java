@@ -42,13 +42,6 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
         setContentView(R.layout.activity_main);
 
-        File f = new File(this.getFilesDir().getAbsolutePath() + File.separator + "/userdata/plans");
-        if (!(f.isDirectory())){
-            f.mkdirs();
-        }
-
-        System.out.println("SEBBYG: " + this.getFilesDir().getAbsolutePath());
-
         //+ File.separator + "/userdata/plans"
 
         // SetDTO the fragment initially
