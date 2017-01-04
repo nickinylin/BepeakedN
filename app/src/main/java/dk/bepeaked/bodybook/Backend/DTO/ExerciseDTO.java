@@ -19,10 +19,9 @@ public class ExerciseDTO {
     private RealmList<Set> set;
     private DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
-    public ExerciseDTO(String name, String desc, RealmList<Set> set){
+    public ExerciseDTO(String name, String desc){
         this.name = name;
         this.desc = desc;
-        this.set = set;
     }
     public void addSet(double weight, int reps, double rm, String date){
         Date realDate = null;
