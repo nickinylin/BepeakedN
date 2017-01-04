@@ -13,14 +13,13 @@ android:layout_height="match_parent">
     android:textSize="18sp"
     android:textColor="@color/F5ABC73" />
 
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:inputType="textPersonName"
-    android:text="Navn"
-    android:ems="10"
-    android:id="@+id/editText3" />
-
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Navn"
+        android:ems="10"
+        android:id="@+id/editText3" />
 
     <LinearLayout
     android:layout_width="match_parent"

@@ -89,7 +89,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
 //        Listen af sæt laves herunder. Den skal blot have en arrayliste af ExerciseDTO'er.
 
-        dto = new ExerciseDTO("Chestpress", "Skub med bryst", "", "","");
+        dto = new ExerciseDTO("Chestpress", "Skub med bryst", "", "","", null); //parsing a null because i dont know the parameter
         dto.addSet(new SetDTO(29, 10, "12-12-2016", 30));
         dto.addSet(new SetDTO(2, 10, "12-12-2016", 30));
         dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
