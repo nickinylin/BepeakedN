@@ -32,6 +32,31 @@ public class ExerciseDTO {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public ArrayList<Set> getSet() {
+        return set;
+    }
+
+    public void setSet(ArrayList<Set> set) {
+        this.set = set;
+    }
+
+
     public class Set{
         private int reps;
         private double weight, rm;
