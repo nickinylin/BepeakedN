@@ -27,21 +27,13 @@ public class WorkoutPasDAO {
         return workoutPasses;
     }
 
-    public void updatePassName(String oldname, String newname){
+    public void updatePasName(String oldname, WorkoutPasDTO newWorkoutPassDTO){
 
         WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("Name", oldname).findFirst();
 
         realm.commitTransaction();
-        pas.setName(newname);
+        pas = newWorkoutPassDTO;
         realm.commitTransaction();
     }
 
-    public void updatePassExercise(String name, RealmList<ExerciseDTO> newExerciseList){
-
-        WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("Name", name).findFirst();
-
-        realm.beginTransaction();
-        pas.setExercises(newExerciseList);
-        realm.commitTransaction();
-    }
 }

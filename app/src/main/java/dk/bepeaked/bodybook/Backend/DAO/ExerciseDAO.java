@@ -23,11 +23,6 @@ import io.realm.RealmResults;
 public class ExerciseDAO {
 
     Realm realm = Realm.getDefaultInstance();
-//    public RealmList<ExerciseDTO.SetDTO> getSet(){
-//
-//
-//
-//    }
 
     public void newExercise(ExerciseDTO exerciseDTO) {
         realm.beginTransaction();
@@ -35,48 +30,18 @@ public class ExerciseDAO {
         realm.commitTransaction();
     }
 
-    public RealmList<ExerciseDTO> getExerciseDTO() {
+    public RealmList<ExerciseDTO> getExercisesDTO() {
         RealmResults<ExerciseDTO> resultExercise = realm.where(ExerciseDTO.class).findAll();
         RealmList<ExerciseDTO> exercisePlans = new RealmList<ExerciseDTO>();
         exercisePlans.addAll(resultExercise.subList(0, resultExercise.size()));
         return exercisePlans;
     }
 
-//    public void updateExer
+    public void updateExercise(String oldname, ExerciseDTO newExerciseDTO){
+        ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("Name", oldname).findFirst();
 
-
-    public void addExcersise(ExerciseDTO exerciseDTO) {
         realm.beginTransaction();
-        ExerciseDTO realmExercise = realm.copyToRealm(exerciseDTO);
+        realmExercise = newExerciseDTO;
         realm.commitTransaction();
-
-    }
-
-
-    public ArrayList<ExerciseDTO> getExercises(Activity act) throws IOException, JSONException {
-        ArrayList<ExerciseDTO> result = new ArrayList<ExerciseDTO>();
-        InputStream is = act.getResources().openRawResource(R.raw.exercise);
-        byte b[] = new byte[is.available()]; // kun små filer
-        is.read(b);
-        String str = new String(b, "UTF-8");
-        JSONObject json = new JSONObject();
-        JSONObject jA = new JSONObject(str);
-        JSONArray category;
-        JSONObject exer;
-
-        category = jA.getJSONArray("Exercises");
-        for (int j = 0; j < category.length(); j++) {
-            exer = category.getJSONObject(j);
-            String name = exer.getString("name");
-            String desc = exer.getString("description");
-            JSONArray ingredientList = exer.getJSONArray("set");
-            ArrayList<String[]> sets = new ArrayList<String[]>();
-            for (int k = 0; k < ingredientList.length(); k++) {
-                JSONObject set = ingredientList.getJSONObject(k);
-                sets.add(new String[]{set.getString("date"), set.getString("weight"), set.getString("repetitions")});
-            }
-            //result.add(new ExerciseDTO(name, desc, sets));
-        }
-        return result;
     }
 }
