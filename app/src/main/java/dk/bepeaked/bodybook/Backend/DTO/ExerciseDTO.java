@@ -8,15 +8,16 @@ import java.util.Date;
 
 import io.realm.RealmList;
 import io.realm.RealmModel;
+import io.realm.RealmObject;
 
 /**
  * Created by Nicki on 14/11/16.
  */
 
-public class ExerciseDTO {
+public class ExerciseDTO extends RealmObject{
 
     private String name, desc;
-    private RealmList<Set> set;
+    private RealmList<Set> set = new RealmList<Set>();
     private DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
     public ExerciseDTO(String name, String desc){
