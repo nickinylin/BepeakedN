@@ -2,6 +2,8 @@ package dk.bepeaked.bodybook.Fragments.Diet;
 
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -46,6 +48,7 @@ public class Diet_frag extends Fragment {
 
         expandableListView = (ExpandableListView)  view.findViewById(R.id.expandA_listview);
 
+        //expandableListView.setChildDivider();
         List<String> Headings = new ArrayList<String>();
         List<String> name1 = new ArrayList<String>();
         List<String> name2 = new ArrayList<String>();
@@ -115,6 +118,7 @@ public class Diet_frag extends Fragment {
                 return true;
             }
         });
+
 
         return view;
     }

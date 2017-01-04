@@ -62,6 +62,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         // making the graph
 
         GraphView graph = (GraphView) view.findViewById(R.id.graph);
+        initGraph(graph);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
                 new DataPoint(0, 0.25),
                 new DataPoint(0.3, 0.22),
