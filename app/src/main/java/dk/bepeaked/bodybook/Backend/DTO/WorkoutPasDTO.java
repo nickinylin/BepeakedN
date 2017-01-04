@@ -14,6 +14,8 @@ public class WorkoutPasDTO extends RealmObject {
     String name;
     RealmList<ExerciseDTO> exercises;
 
+    public WorkoutPasDTO() {}
+
     public WorkoutPasDTO (String name, RealmList<ExerciseDTO> exercises) {
         this.name = name;
         this.exercises = exercises;

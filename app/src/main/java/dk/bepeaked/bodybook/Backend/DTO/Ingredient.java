@@ -9,6 +9,8 @@ class Ingredient {
     private int carbohydrate;
     private int calories;
 
+    public Ingredient(){}
+
     public Ingredient(String name, int weight, int protein, int fat, int carbohydrate, int calories) {
         this.name = name;
         this.weight = weight;

@@ -1,7 +1,7 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
-import dk.bepeaked.bodybook.Backend.DTO.WorkoutPassDTO;
+import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -14,22 +14,22 @@ import io.realm.RealmResults;
 public class WorkoutPasDAO {
 
     Realm realm = Realm.getDefaultInstance();
-    public void newPas(WorkoutPassDTO workoutPassDTO){
+    public void newPas(WorkoutDTO workoutDTO){
         realm.beginTransaction();
-        WorkoutPassDTO realmPas = realm.copyToRealm(workoutPassDTO);
+        WorkoutDTO realmPas = realm.copyToRealm(workoutDTO);
         realm.commitTransaction();
     }
 
-    public RealmList<WorkoutPassDTO> getPasses(){
-        RealmResults<WorkoutPassDTO> resultPasses = realm.where(WorkoutPassDTO.class).findAll();
-        RealmList<WorkoutPassDTO>workoutPasses = new RealmList<WorkoutPassDTO>();
+    public RealmList<WorkoutDTO> getPasses(){
+        RealmResults<WorkoutDTO> resultPasses = realm.where(WorkoutDTO.class).findAll();
+        RealmList<WorkoutDTO>workoutPasses = new RealmList<WorkoutDTO>();
         workoutPasses.addAll(resultPasses.subList(0, resultPasses.size()));
         return workoutPasses;
     }
 
     public void updatePassName(String oldname, String newname){
 
-        WorkoutPassDTO pass = realm.where(WorkoutPassDTO.class).equalTo("Name", oldname).findFirst();
+        WorkoutDTO pass = realm.where(WorkoutDTO.class).equalTo("Name", oldname).findFirst();
 
         realm.commitTransaction();
         pass.setName(newname);

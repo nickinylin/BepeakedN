@@ -1,5 +1,6 @@
 package dk.bepeaked.bodybook.Backend.DTO;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 
 import io.realm.RealmList;
@@ -9,12 +10,14 @@ import io.realm.RealmObject;
  * Created by sebho on 14-11-2016.
  */
 
-public class WorkoutPassDTO extends RealmObject {
+public class WorkoutDTO extends RealmObject {
 
     String name;
     RealmList<WorkoutPasDTO> workouts;
 
-    public WorkoutPassDTO(String name, RealmList<WorkoutPasDTO> workouts) {
+    public WorkoutDTO(){}
+
+    public WorkoutDTO(String name, RealmList<WorkoutPasDTO> workouts) {
         this.name = name;
         this.workouts = workouts;
     }

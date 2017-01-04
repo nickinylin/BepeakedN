@@ -15,6 +15,8 @@ public class DishDTO {
     private String name, imagePath, deskShort, deskLong;
     private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 
+    public DishDTO() {}
+
     public DishDTO(int type, String name, String imagePath, String deskShort, String deskLong, ArrayList<String[]> ingredients) {
         this.type = type;
         this.name = name;

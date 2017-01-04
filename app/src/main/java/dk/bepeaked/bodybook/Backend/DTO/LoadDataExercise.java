@@ -3,6 +3,7 @@ package dk.bepeaked.bodybook.Backend.DTO;
 import java.util.ArrayList;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 /**
@@ -11,11 +12,12 @@ import io.realm.RealmObject;
 
 public class LoadDataExercise extends RealmObject {
 
-    ArrayList<ExerciseDTO> exercises = new ArrayList<ExerciseDTO>();
+    RealmList<ExerciseDTO> exercises = new RealmList<ExerciseDTO>();
     private String name, desc;
 
+    public LoadDataExercise() {}
 
-    public ArrayList LoadDataExercise() {
+    public RealmList<ExerciseDTO> getData() {
         exercises.add(new ExerciseDTO("Bench Press", "Lie on a flat bench with your feet flat on the floor, keep your back flat on the bench.\n" +
                 "Grasp the bar a little wider than shoulder width apart.\n" +
                 "Raise the barbell above your body and move it over the middle of your chest, this is your starting position.\n" +
@@ -73,7 +75,7 @@ public class LoadDataExercise extends RealmObject {
                 "With your abs drawn in, raise the dumbbells as high as you are able above your shoulders.\n" +
                 "Lower the dumbbells in a slow controlled manner to starting position."));
 //        exercises.add(new ExerciseDTO("", ""));
-       
+
         return exercises;
     }
 

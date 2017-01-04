@@ -16,6 +16,8 @@ public class ExerciseDTO extends RealmObject{
 
     private RealmList<SetDTO> set = new RealmList<SetDTO>();
 
+    public ExerciseDTO(){}
+
     public ExerciseDTO(String name, String desc){
         this.name = name;
         this.desc = desc;
