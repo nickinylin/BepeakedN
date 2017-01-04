@@ -14,34 +14,34 @@ import io.realm.RealmResults;
 public class WorkoutPasDAO {
 
     Realm realm = Realm.getDefaultInstance();
-    public void newPas(WorkoutDTO workoutDTO){
+    public void newPas(WorkoutPasDTO workoutPasDTO){
         realm.beginTransaction();
-        WorkoutDTO realmPas = realm.copyToRealm(workoutDTO);
+        WorkoutPasDTO realmPas = realm.copyToRealm(workoutPasDTO);
         realm.commitTransaction();
     }
 
-    public RealmList<WorkoutDTO> getPasses(){
-        RealmResults<WorkoutDTO> resultPasses = realm.where(WorkoutDTO.class).findAll();
-        RealmList<WorkoutDTO>workoutPasses = new RealmList<WorkoutDTO>();
-        workoutPasses.addAll(resultPasses.subList(0, resultPasses.size()));
+    public RealmList<WorkoutPasDTO> getPasses(){
+        RealmResults<WorkoutPasDTO> resultPaser = realm.where(WorkoutPasDTO.class).findAll();
+        RealmList<WorkoutPasDTO>workoutPasses = new RealmList<WorkoutPasDTO>();
+        workoutPasses.addAll(resultPaser.subList(0, resultPaser.size()));
         return workoutPasses;
     }
 
     public void updatePassName(String oldname, String newname){
 
-        WorkoutDTO pass = realm.where(WorkoutDTO.class).equalTo("Name", oldname).findFirst();
+        WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("Name", oldname).findFirst();
 
         realm.commitTransaction();
-        pass.setName(newname);
+        pas.setName(newname);
         realm.commitTransaction();
     }
 
     public void updatePassExercise(String name, RealmList<ExerciseDTO> newExerciseList){
 
-        WorkoutPasDTO pass = realm.where(WorkoutPasDTO.class).equalTo("Name", name).findFirst();
+        WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("Name", name).findFirst();
 
         realm.beginTransaction();
-        pass.setExercises(newExerciseList);
+        pas.setExercises(newExerciseList);
         realm.commitTransaction();
     }
 }
