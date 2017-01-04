@@ -12,13 +12,13 @@ public class ExerciseDTO extends RealmObject{
 
     @PrimaryKey
     private String name;
-    private String desc;
+    private String desc1, desc2, imagePath;
 
     private RealmList<SetDTO> set = new RealmList<SetDTO>();
 
     public ExerciseDTO(String name, String desc){
         this.name = name;
-        this.desc = desc;
+        this.desc1 = desc;
     }
 
     public void addSet(SetDTO set){
@@ -34,11 +34,11 @@ public class ExerciseDTO extends RealmObject{
     }
 
     public String getDesc() {
-        return desc;
+        return desc1;
     }
 
     public void setDesc(String desc) {
-        this.desc = desc;
+        this.desc1 = desc;
     }
 
     public RealmList<SetDTO> getSet() {
