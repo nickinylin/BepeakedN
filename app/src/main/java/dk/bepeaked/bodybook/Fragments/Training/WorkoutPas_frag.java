@@ -27,7 +27,7 @@ import dk.bepeaked.bodybook.R;
  * A simple {@link Fragment} subclass.
  */
 public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClickListener {
-    WorkoutDAO wdao = new WorkoutDAO();
+    //WorkoutDAO wdao = new WorkoutDAO();
 
     String[] workoutPases = {"Mandag", "Tirsdag", "Torsdag", "Lørdag", "Søndag"};
     String nameTrainingplan;
@@ -41,16 +41,16 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listview, container, false);
+        System.out.println("kommer vi hertil?");
 
-        try {
+        /*try {
             wdao.createPlan("SebbyG2", getContext());
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        getActivity().setTitle("Træningsplan navn");
+        }*/
+         getActivity().setTitle("Træningsplan navn");
 
 //        if (!getArguments().isEmpty()) {
 //            nameTrainingplan = getArguments().getString("Trainingplan");
@@ -59,6 +59,7 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, workoutPases);
 
         ListView listView = (ListView) view.findViewById(R.id.ListView_id);
+        System.out.println("NICKI ID: " + listView.getId());
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
 

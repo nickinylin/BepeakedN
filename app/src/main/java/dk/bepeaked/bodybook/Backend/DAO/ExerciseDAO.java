@@ -12,12 +12,37 @@ import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.R;
+import io.realm.Realm;
+import io.realm.RealmList;
 
 /**
  * Created by Nicki on 14/11/16.
  */
 
 public class ExerciseDAO {
+
+    Realm realm = Realm.getDefaultInstance();
+//    public RealmList<ExerciseDTO.SetDTO> getSet(){
+//
+//
+//
+//    }
+
+    public void addExcersise(ExerciseDTO exerciseDTO){
+        realm.beginTransaction();
+        ExerciseDTO realmExercise = realm.copyToRealm(exerciseDTO);
+        realm.commitTransaction();
+
+    }
+
+
+
+
+
+
+
+
+
     public ArrayList<ExerciseDTO> getExercises(Activity act) throws IOException, JSONException {
         ArrayList<ExerciseDTO> result = new ArrayList<ExerciseDTO>();
         InputStream is = act.getResources().openRawResource(R.raw.exercise);
@@ -40,7 +65,7 @@ public class ExerciseDAO {
                 JSONObject set = ingredientList.getJSONObject(k);
                 sets.add(new String[]{set.getString("date"), set.getString("weight"), set.getString("repetitions")});
             }
-            result.add(new ExerciseDTO(name, desc, sets));
+            //result.add(new ExerciseDTO(name, desc, sets));
         }
         return result;
     }
