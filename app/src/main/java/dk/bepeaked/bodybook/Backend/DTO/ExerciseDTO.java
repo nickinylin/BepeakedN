@@ -24,6 +24,15 @@ public class ExerciseDTO {
         this.desc = desc;
         this.set = set;
     }
+    public void addSet(double weight, int reps, double rm, String date){
+        Date realDate = null;
+        try {
+            realDate = df.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Set newSet = new Set(weight, reps, realDate, rm);
+    }
 
     public String getName() {
         return name;
