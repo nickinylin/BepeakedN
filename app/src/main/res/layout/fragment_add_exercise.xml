@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical" android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<TextView
+    android:text="Indtast navn på Øvelsen"
+    android:layout_width="wrap_content"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:id="@+id/textView"
+    android:layout_margin="20dp"
+    android:textSize="18sp"
+    android:textColor="@color/F5ABC73" />
+
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textPersonName"
+    android:text="Navn"
+    android:ems="10"
+    android:id="@+id/editText3" />
+
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/lefttext"
+        android:layout_width="wrap_content"
+        android:paddingLeft="80dp"
+        android:paddingRight="35dp"
+        android:layout_height="match_parent"
+        android:text="Sæt"
+        android:textSize="20sp"
+        android:textColor="#808080"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/righttext"
+        android:layout_width="wrap_content"
+        android:paddingLeft="100dp"
+        android:paddingRight="55dp"
+        android:layout_height="match_parent"
+        android:text="Rep"
+        android:textSize="20sp"
+        android:textColor="#808080"
+        android:layout_weight="1"/>
+
+
+</LinearLayout>
+
+
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="159dp">
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker9"
+        android:layout_weight="1" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker8"
+        android:layout_weight="1" />
+</LinearLayout>
+
+<Button
+    android:text="Færdig"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/button"
+    android:layout_gravity="bottom"
+    android:backgroundTint="@android:color/holo_blue_dark"
+    android:layout_marginTop="175dp" />
+
+
+</LinearLayout>
