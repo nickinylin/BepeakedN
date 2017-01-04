@@ -21,12 +21,13 @@ public class ExerciseDTO extends RealmObject{
 
     public ExerciseDTO(){}
 
-    public ExerciseDTO(String name, String desc1, String desc2, String imagePath1, String imagePath2){
+    public ExerciseDTO(String name, String desc1, String desc2, String imagePath1, String imagePath2, RealmList<SetDTO> set){
         this.name = name;
         this.desc1 = desc1;
         this.desc2 = desc2;
         this.imagePath1 = imagePath1;
         this.imagePath2 = imagePath2;
+        this.set = set;
     }
 
     public void addSet(SetDTO set){
@@ -41,12 +42,12 @@ public class ExerciseDTO extends RealmObject{
         this.name = name;
     }
 
-    public String getDesc() {
+    public String getDesc1() {
         return desc1;
     }
 
-    public void setDesc(String desc) {
-        this.desc1 = desc;
+    public void setDesc1(String desc1) {
+        this.desc1 = desc1;
     }
 
     public RealmList<SetDTO> getSet() {
@@ -80,4 +81,6 @@ public class ExerciseDTO extends RealmObject{
     public void setImagePath2(String imagePath) {
         this.imagePath2 = imagePath;
     }
+
+
 }

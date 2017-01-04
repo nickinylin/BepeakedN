@@ -27,7 +27,7 @@ public class WorkoutPasDAO {
         return workoutPasses;
     }
 
-    public void updatePasName(String oldname, WorkoutPasDTO newWorkoutPassDTO){
+    public void updatePas(String oldname, WorkoutPasDTO newWorkoutPassDTO){
 
         WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("Name", oldname).findFirst();
 
