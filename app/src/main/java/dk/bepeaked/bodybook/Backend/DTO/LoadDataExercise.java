@@ -18,6 +18,8 @@ public class LoadDataExercise extends RealmObject {
     public LoadDataExercise() {}
 
     public RealmList<ExerciseDTO> getData() {
+
+        //##### page 1 #####
         exercises.add(new ExerciseDTO("Bench Press", "This is an exercise for the chest.", "Lie on a flat bench with your feet flat on the floor, keep your back flat on the bench.\n" +
                 "Grasp the bar a little wider than shoulder width apart.\n" +
                 "Raise the barbell above your body and move it over the middle of your chest, this is your starting position.\n" +
@@ -74,6 +76,8 @@ public class LoadDataExercise extends RealmObject {
                 "With your elbows bent raise your arms up until in line with your shoulders this is your starting position.\n" +
                 "With your abs drawn in, raise the dumbbells as high as you are able above your shoulders.\n" +
                 "Lower the dumbbells in a slow controlled manner to starting position." , "", "", null));
+
+        //##### page 2 #####
         exercises.add(new ExerciseDTO("Incline Dumbbell Press", "This exercises is for mainly chest strengthening but also strengthens your triceps and shoulders.", "Set and incline bench at a 45 degree angle.\n" +
                         "Start with the dumbbells at shoulder height, your arms wide and elbows pointing down to the floor.\n" +
                         "Raise your arms up over your chest bringing the dumbbells closer together as they meet over your chest.\n" +
@@ -141,6 +145,8 @@ public class LoadDataExercise extends RealmObject {
                 "Keeping a slight bend in your elbows, lower the dumbbells to the floor in an arc like motion.\n" +
                 "Slowly return the dumbbells over your chest to the starting position in a controlled motion.\n" +
                 "Repeat." , "", "", null));
+
+        //##### page 3 #####
         exercises.add(new ExerciseDTO("Chest Dips", "This is an exercise for chest, triceps and shoulder strengthening.", "Stand in between the parallel bars.\n" +
                 "Grip the handles of the parallel bars and push yourself up to the starting position with straightened arms.\n" +
                 "With your elbows close to your body keep your hips straight, lower your body forward by bending your elbows so your chest is leading as you go down.\n" +
@@ -202,6 +208,8 @@ public class LoadDataExercise extends RealmObject {
                 "Grasp the bar with an overhand grip and straightened arms.\n" +
                 "As you lift the bar allow the weight to pull your shoulders down, shrug your shoulders up and to the back.\n" +
                 "Hold for a moment and then return to starting position." , "", "", null));
+
+        //##### page 4 #####
         exercises.add(new ExerciseDTO("Seated Barbell Shoulder Press", "This is an exercise for shoulder, chest and triceps strengthening.", "Sitting on a bench with a barbell rack, grasp the barbell with a grip 3 to 4 inches wider than your shoulders.\n" +
                 "Lift the bar off the rack and lower it to just at the height of your shoulders.\n" +
                 "While maintaining  good posture, straighten your arms and raise the bar up above your head.\n" +
@@ -258,6 +266,8 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("Incline Chest Press", "This exercise is for strengthening the upper chest and is preferred among beginners as it provides support and control.", "Adjust the seat of the machine so that the handles are near the upper portion of your chest.\n" +
                 "Slowly press the handles forward until your hands are fully extended, do not lock your elbows.\n" +
                 "Pause for a moment and then with a controlled movement lower your hands back to starting position." , "", "", null));
+
+        //##### page 5 #####
         exercises.add(new ExerciseDTO("Smith Machine Squats", "This exercise uses the Smith Machine to work the Quadriceps, Hamstrings, Calves and Glutes. A great overall exercise for the lower body. There are many variations on the squat, this is the original version using a Smith Machine for better flow of movement.", "Set the height of the barbell to shoulder height.\n" +
                 "Place your feet slightly wider than shoulder width apart with your knees and toes pointed slightly outward.\n" +
                 "Drawing your abs in descend slowly by bending at the knees and hips as if you are sitting down (squatting).\n" +
@@ -317,6 +327,8 @@ public class LoadDataExercise extends RealmObject {
                 "With your abs drawn in and back straight pull the bar down to your upper chest.\n" +
                 "Pause for a moment and then return the bar to the starting position.\n" +
                 "Repeat." , "", "", null));
+
+        //##### page 6 #####
         exercises.add(new ExerciseDTO("Barbell Neck Press", "This is an advanced exercise for chest strengthening.", "Lie on a flat bench with you feet planted firmly on the floor.\n" +
                 "Grasp the bar a little wider than shoulder width apart.\n" +
                 "Raise the barbell above your body and move it to the top of your chest, near your neck.\n" +
@@ -380,6 +392,8 @@ public class LoadDataExercise extends RealmObject {
                 "Grasp a pulley in each hand with your palms facing up.\n" +
                 "With a slight bend in your elbows, squeeze your chest and pull the cables in an arc so they meet together in the middle of your chest.\n" +
                 "Hold for a moment and then slowly lower your hands back to starting position at along the same arc." , "", "", null));
+
+        //##### page 7 #####
         exercises.add(new ExerciseDTO("Smith Machine Rear Deltoid Row", "This is an exercise for rear deltoid,shoulder, biceps and back strengthening.", "Set the bar to the lowest setting.\n" +
                 "Place your feet shoulder width apart with a slight bend in the knees.\n" +
                 "Bend at the waist while keeping your back straight and chest parallel to the floor.\n" +
@@ -439,6 +453,7 @@ public class LoadDataExercise extends RealmObject {
                 "Return to the starting position in a slow controlled manner.\n" +
                 "Repeat." , "", "", null));
 
+        //##### page 8 #####
         exercises.add(new ExerciseDTO("Gironda Sternum Chins", "This is an exercise for lats, biceps and middle back strengthening; which is similar t the basic chin up but focusses more on lats.", "Grasp the pull up bar with a shoulder width underhand grip.\n" +
                 "Hang from the bar with your arms fully extended.\n" +
                 "Pulling yourself towards the bar lean your head back as far as you can and arch your spine.\n" +
@@ -504,6 +519,7 @@ public class LoadDataExercise extends RealmObject {
                 "Return to starting position.\n" +
                 "Repeat." , "", "", null));
 
+        //##### page 9 #####
         exercises.add(new ExerciseDTO("Butterfly Machine", "This is an exercise for chest strengthening.", "Adjust the machine so you are sitting at chest heights with the pads.\n" +
                 "Sit on the machine with your back flat.\n" +
                 "Place your forearms on the pads, parallel to the floor, this is starting position.\n" +
@@ -564,6 +580,7 @@ public class LoadDataExercise extends RealmObject {
                 "Slowly kick your ankle back in and arc as high as you are able to.\n" +
                 "Return to starting position and switch ankles." , "", "", null));
 
+        //##### page 10 #####
         exercises.add(new ExerciseDTO("Bent Over Row with Barbell", "This exercise focuses on the middle back", "Place your feet shoulder width apart.\n" +
                 "Bend over the bar so your back is flat and parallel to the floor.\n" +
                 "Grasp the bar a bit wider than shoulder width apart with an overhand grip.\n" +
@@ -626,6 +643,7 @@ public class LoadDataExercise extends RealmObject {
                 "Slowly curl your legs back towards you and hold for a moment.\n" +
                 "With controlled movement return to the starting position." , "", "", null));
 
+        //##### page 11 #####
         exercises.add(new ExerciseDTO("Walking Lunges", "A walking lunge gives you the benefit of lunges plus core muscle training from the constant motion.", "Start by either placing a barbell across your upper back or by grasping a dumbbell in each hand.\n" +
                 "Stand with your feet about 8 inches apart, toes facing forward.\n" +
                 "Take a lunge forward keeping your abs drawn in and your upper body straight.\n" +
@@ -689,6 +707,7 @@ public class LoadDataExercise extends RealmObject {
                 "Lower yourself as far as you can control without letting your body shift towards your toes (this will cause you to loose balance).\n" +
                 "Pause in the downward position and slowly return upright to the starting position." , "", "", null));
 
+        //##### page 12 #####
         exercises.add(new ExerciseDTO("Step Ups with Dumbbells", "This exercise builds coordination as well as muscle.", "Place a bench, box or step in front of you.\n" +
                 "Grasp a dumbbell in each hand.\n" +
                 "With your left leg, step up on the bench, and follow by stepping up with your right leg.\n" +
@@ -743,6 +762,7 @@ public class LoadDataExercise extends RealmObject {
                 "Grasp the bar with an overhead grip.\n" +
                 "Starting with the barbell held slightly above the knees (hang position), lift the weight up over your head (step 1) then back to shoulder height (step 2) and finally back to starting position between near your knees." , "", "", null));
 
+        //##### page 13 #####
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
@@ -756,6 +776,7 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
 
+        //##### page 14 #####
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
@@ -769,6 +790,7 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
 
+        //##### page 15 #####
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
@@ -782,6 +804,7 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
 
+        //##### page 16 #####
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
@@ -795,6 +818,7 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
 
+        //##### page 17 #####
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
@@ -808,6 +832,7 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
 
+        //##### page 18 #####
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
@@ -821,6 +846,7 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
 
+        //##### page 19 #####
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
@@ -834,6 +860,7 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
 
+        //##### page 20 #####
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
@@ -847,6 +874,7 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
 
+        //##### page 21 #####
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
@@ -860,6 +888,7 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
 
+        //##### page 22 #####
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
@@ -873,6 +902,7 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
 
+        //##### page 23 #####
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
@@ -886,6 +916,7 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
 
+        //##### page 24 #####
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
@@ -899,6 +930,7 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
 
+        //##### page 25 #####
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
@@ -911,73 +943,6 @@ public class LoadDataExercise extends RealmObject {
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
         exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-
-
 
 //        exercises.add(new ExerciseDTO("", "", null));
 
