@@ -62,7 +62,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         // making the graph
 
         GraphView graph = (GraphView) view.findViewById(R.id.graph);
-        initGraph(graph);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
                 new DataPoint(0, 0.25),
                 new DataPoint(0.3, 0.22),
@@ -88,19 +87,10 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 //        Listen af sæt laves herunder. Den skal blot have en arrayliste af ExerciseDTO'er.
 
         int i = 1;
-        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
-        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
-        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
-        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
-        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
-        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
-        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
-        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
-        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
-        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
-        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
-        exercises.add(new ExerciseDTO(20 + i, 10 + i, 5 + i++));
-
+        String[] lel = new String[]{"20", "10", "12-12-2016"};
+        ArrayList<String[]> lol = new ArrayList<String[]>();
+        lol.add(lel);
+        exercises.add(new ExerciseDTO("Chestpress", "Skub med bryst", lol));
 
         ListView listView = (ListView) view.findViewById(R.id.listView_exercise);
 
@@ -112,25 +102,19 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         fab.setOnClickListener(this);
 
-
-
         setHasOptionsMenu(true);
 
         return view;
     }
 
-
     @Override
     public void onClick(View v) {
         showDialogAlert();
-
-
     }
 
     private void showDialogAlert() {
 
 //AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity(), R.style.MyAlertDialogStyle );
-
 
         final Dialog dialog = new Dialog(getActivity(), R.style.MyAlertDialogStyle);
         dialog.setTitle("NumberPicker");
@@ -151,18 +135,14 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         npWeight2.setMaxValue(3);
         npWeight2.setDisplayedValues(new String[]{"0", "25", "50", "75"});
 
-
         dialog.show();
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
             }
         });
-
-
     }
 
     @Override
@@ -185,7 +165,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             fragment.setArguments(i);
             fragmentTransaction.commit();
 
-
             Snackbar.make(getView(), "hrrra", Snackbar.LENGTH_LONG).show();
         } else if (item.getItemId() == R.id.exerciseMenu_edit) {
             // TODO Hvad der skal ske for at ændre i en øvelse
@@ -193,9 +172,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         return super.onOptionsItemSelected(item);
     }
 
-
     public class ExerciseListAdapter extends BaseAdapter {
-
         @Override
         public int getCount() {
             return exercises.size();
@@ -213,8 +190,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-
-
             if (boo) {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(R.layout.exercise_list_element, parent, false);
@@ -229,9 +204,9 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             TextView rm = (TextView) convertView.findViewById(R.id.tv_exercise_rm);
             TextView date = (TextView) convertView.findViewById(R.id.tv_exercise_date);
 
-            weight.setText(Integer.toString(exercises.get(position).getWeight()) + "kg");
-            reps.setText(Integer.toString(exercises.get(position).getReps()));
-            rm.setText(Integer.toString(exercises.get(position).getRM1()) + "kg");
+            weight.setText(exercises.get(position).getSet().get(0).getWeight() + "kg");
+            reps.setText(Integer.toString(exercises.get(position).getSet().get(0).getReps()));
+            rm.setText(exercises.get(position).getSet().get(0).getRm() + "kg");
 
             return convertView;
         }
