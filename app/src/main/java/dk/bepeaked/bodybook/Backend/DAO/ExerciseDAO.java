@@ -14,6 +14,7 @@ import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.R;
 import io.realm.Realm;
 import io.realm.RealmList;
+import io.realm.RealmResults;
 
 /**
  * Created by Nicki on 14/11/16.
@@ -28,19 +29,28 @@ public class ExerciseDAO {
 //
 //    }
 
-    public void addExcersise(ExerciseDTO exerciseDTO){
+    public void newExercise(ExerciseDTO exerciseDTO) {
+        realm.beginTransaction();
+        ExerciseDTO realmExerciseDTO = realm.copyToRealm(exerciseDTO);
+        realm.commitTransaction();
+    }
+
+    public RealmList<ExerciseDTO> getExerciseDTO() {
+        RealmResults<ExerciseDTO> resultExercise = realm.where(ExerciseDTO.class).findAll();
+        RealmList<ExerciseDTO> exercisePlans = new RealmList<ExerciseDTO>();
+        exercisePlans.addAll(resultExercise.subList(0, resultExercise.size()));
+        return exercisePlans;
+    }
+
+//    public void updateExer
+
+
+    public void addExcersise(ExerciseDTO exerciseDTO) {
         realm.beginTransaction();
         ExerciseDTO realmExercise = realm.copyToRealm(exerciseDTO);
         realm.commitTransaction();
 
     }
-
-
-
-
-
-
-
 
 
     public ArrayList<ExerciseDTO> getExercises(Activity act) throws IOException, JSONException {

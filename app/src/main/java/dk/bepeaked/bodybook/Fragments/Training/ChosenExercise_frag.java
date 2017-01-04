@@ -26,21 +26,24 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
 import dk.bepeaked.bodybook.R;
+import io.realm.RealmList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ChosenExercise_frag extends Fragment implements View.OnClickListener {
 
-    ArrayList<ExerciseDTO> exercises = new ArrayList<ExerciseDTO>();
+    RealmList<SetDTO> exercises = new RealmList<SetDTO>();
     Button fab;
     NumberPicker npWeight1, npWeight2, npReps;
     Button btnOK, btnCancel;
     SharedPreferences prefs;
+    ExerciseDTO dto;
 
     //skal slettes. til test
     boolean boo = true;
@@ -86,9 +89,17 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
 //        Listen af sæt laves herunder. Den skal blot have en arrayliste af ExerciseDTO'er.
 
-        ExerciseDTO dto = new ExerciseDTO("Chestpress", "Skub med bryst");
+        dto = new ExerciseDTO("Chestpress", "Skub med bryst", "", "","");
+        dto.addSet(new SetDTO(29, 10, "12-12-2016", 30));
+        dto.addSet(new SetDTO(2, 10, "12-12-2016", 30));
         dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
-        exercises.add(dto);
+        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
+        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
+        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
+        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
+        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
+        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
+        exercises = dto.getSet();
 
         ListView listView = (ListView) view.findViewById(R.id.listView_exercise);
 
@@ -202,9 +213,14 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             TextView rm = (TextView) convertView.findViewById(R.id.tv_exercise_rm);
             TextView date = (TextView) convertView.findViewById(R.id.tv_exercise_date);
 
-            weight.setText(exercises.get(position).getSet().get(0).getWeight() + "kg");
-            reps.setText(Integer.toString(exercises.get(position).getSet().get(0).getReps()));
-            rm.setText(exercises.get(position).getSet().get(0).getRm() + "kg");
+            weight.setText(exercises.get(position).getWeight() + "kg");
+            reps.setText(Integer.toString(exercises.get(position).getReps()));
+            rm.setText(exercises.get(position).getRm() + "kg");
+
+
+//            weight.setText(exercises.get(position).getSet().get(0).getWeight() + "kg");
+//            reps.setText(Integer.toString(exercises.get(position).getSet().get(0).getReps()));
+//            rm.setText(exercises.get(position).getSet().get(0).getRm() + "kg");
 
             return convertView;
         }
