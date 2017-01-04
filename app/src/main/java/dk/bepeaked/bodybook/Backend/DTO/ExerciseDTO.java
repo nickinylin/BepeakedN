@@ -1,10 +1,5 @@
 package dk.bepeaked.bodybook.Backend.DTO;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -18,14 +13,14 @@ public class ExerciseDTO extends RealmObject{
     @PrimaryKey
     private String name, desc;
 
-    private RealmList<Set> set = new RealmList<Set>();
+    private RealmList<SetDTO> set = new RealmList<SetDTO>();
 
     public ExerciseDTO(String name, String desc){
         this.name = name;
         this.desc = desc;
     }
 
-    public void addSet(Set set){
+    public void addSet(SetDTO set){
         this.set.add(set);
     }
 
@@ -45,11 +40,11 @@ public class ExerciseDTO extends RealmObject{
         this.desc = desc;
     }
 
-    public RealmList<Set> getSet() {
+    public RealmList<SetDTO> getSet() {
         return set;
     }
 
-    public void setSet(RealmList<Set> set) {
+    public void setSet(RealmList<SetDTO> set) {
         this.set = set;
     }
 

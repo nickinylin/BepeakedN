@@ -22,7 +22,7 @@ import io.realm.RealmList;
 public class ExerciseDAO {
 
     Realm realm = Realm.getDefaultInstance();
-//    public RealmList<ExerciseDTO.Set> getSet(){
+//    public RealmList<ExerciseDTO.SetDTO> getSet(){
 //
 //
 //

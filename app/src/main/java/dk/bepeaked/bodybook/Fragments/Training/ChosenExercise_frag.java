@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -29,9 +28,8 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
-import dk.bepeaked.bodybook.Backend.DTO.Set;
+import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
 import dk.bepeaked.bodybook.R;
-import io.realm.RealmList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -89,7 +87,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 //        Listen af sæt laves herunder. Den skal blot have en arrayliste af ExerciseDTO'er.
 
         ExerciseDTO dto = new ExerciseDTO("Chestpress", "Skub med bryst");
-        dto.addSet(new Set(20, 10, "12-12-2016", 30));
+        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
         exercises.add(dto);
 
         ListView listView = (ListView) view.findViewById(R.id.listView_exercise);

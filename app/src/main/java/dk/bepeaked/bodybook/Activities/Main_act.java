@@ -51,7 +51,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
         //+ File.separator + "/userdata/plans"
 
-        // Set the fragment initially
+        // SetDTO the fragment initially
         if (savedInstanceState==null) { // kun tilføje fragmenter ved en frisk start
         WorkoutPas_frag fragment = new WorkoutPas_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

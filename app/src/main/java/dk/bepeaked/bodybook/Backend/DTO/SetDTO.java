@@ -10,14 +10,14 @@ import io.realm.RealmObject;
 /**
  * Created by sebho on 04-01-2017.
  */
-public class Set extends RealmObject {
+public class SetDTO extends RealmObject {
     private int reps;
     private double weight, rm;
     private Date date;
     private DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
 
-    public Set(double weight, int reps, String dateString, double rm) {
+    public SetDTO(double weight, int reps, String dateString, double rm) {
         this.weight = weight;
         this.reps = reps;
         try {
