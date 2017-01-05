@@ -15,21 +15,21 @@ public class WorkoutDTO extends RealmObject {
 
     @PrimaryKey
     String name;
-    RealmList<WorkoutPasDTO> workouts;
+    RealmList<WorkoutPasDTO> workoutPas;
 
     public WorkoutDTO(){}
 
     public WorkoutDTO(String name, RealmList<WorkoutPasDTO> workouts) {
         this.name = name;
-        this.workouts = workouts;
+        this.workoutPas = workouts;
     }
 
     public RealmList<WorkoutPasDTO> getWorkouts() {
-        return workouts;
+        return workoutPas;
     }
 
-    public void setWorkouts(RealmList<WorkoutPasDTO> workouts) {
-        this.workouts = workouts;
+    public void addWorkoutPas(WorkoutPasDTO newWorkoutPass){
+        this.workoutPas.add(newWorkoutPass);
     }
 
     public String getName(){
