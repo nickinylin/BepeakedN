@@ -763,186 +763,688 @@ public class LoadDataExercise extends RealmObject {
                 "Starting with the barbell held slightly above the knees (hang position), lift the weight up over your head (step 1) then back to shoulder height (step 2) and finally back to starting position between near your knees." , "", "", null));
 
         //##### page 13 #####
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
+        exercises.add(new ExerciseDTO("One Arm Side Deadlift with Barbell", "This is an advanced exercise that works most of the muscles of the body. Exercises like this are used to develop functional strength for sports that require strong hands.", "Stand besides a barbell placed on the floor.\n" +
+                "Grasp the bar with an overhand grip in the center.\n" +
+                "Crouching down as if your were performing a squat, bend down so your thighs are parallel with the floor.\n" +
+                "Extend your legs slowly as you straighten your body up, drawing in your abs as you rise." , "", "", null));
+        exercises.add(new ExerciseDTO("Overhead Squat with Barbell", "In this version of the squat you hold the bar overhead as you perform the exercise.", "Stand with your feet a bit wider than shoulder width apart with your toes pointed slightly outward.\n" +
+                "Grasp a barbell using a wide side snatch grip with your arms and elbows fully extended.\n" +
+                "Keeping the bar overhead, bend your knees and lower your body until your thighs are parallel with the floor.\n" +
+                "Return to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Pile Squat with Dumbbell", "This version of the squat is done with a dumbbell and mimics the action of a pile driver.", "Stand with your feet 2-4 inches wider than your shoulders, with your toes pointed out at a 45 degree angle.\n" +
+                "Grasp a dumbbell with both hands in the center of your body.\n" +
+                "Keep your knees slightly bent and your back straight.\n" +
+                "Squat down as if you were going to sit in a chair, bringing your thighs parallel to the floor.\n" +
+                "With a controlled motion return to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Speed Squats with Barbell", "This version of the squat uses an empty barbell and moves at a faster pace than the standard squat. This is a good exercise for building speed and conditioning used in running and jumping sports.", "Place your feet slightly wider than shoulder width apart with your knees and toes pointed slightly outward.\n" +
+                "Drawing your abs in, descend slowly by bending at the knees and hips as if you are sitting down (squatting).\n" +
+                "Lower yourself as far as you can control without letting your body shift towards your toes (this will cause you to loose balance).\n" +
+                "Pause in the downward position and slowly return upright to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Squats with Exercise Bands", "This version of the Squat uses flexible exercise bands for resistance instead of weights.", "Stand with your feet on the exercise bands with your feet shoulder width apart.\n" +
+                "Grasp the handles of the bands and pull them up to your shoulders.\n" +
+                "With your abs drawn in, squat down until your thighs are parallel with the floor.\n" +
+                "Slowly return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Thigh Abductor", "This exercise targets and works the muscles of the outer thigh", "Sit on the machine and place your knees against the pads.\n" +
+                "Draw your abs in and “abduct” or move your thighs apart against the pads.\n" +
+                "Slowly return to the starting position and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Thigh Adductor", "This exercise targets and works the muscles of the inner thigh.", "Sit on the machine and place your knees against the pads.\n" +
+                "Draw your abs in and “adduct” or move your thighs together.\n" +
+                "Slowly return to the starting position and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Weighted Sissy Squat with Weight Plate", "Don’t let the name of this exercise fool you, it is a an assisted squat which effectively works the quadriceps (leg muscles).", "Grasp a weight rack or bar for support with one arm and hold a free weight plate across your chest with your other hand.\n" +
+                "With your abs drawn in, squat down lowering your body to the floor until your knees are almost fully flexed.\n" +
+                "Return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Wide Stance Squat with Barbell", "This version of the squat uses a wider stance to isolate the inner thigh.", "Lifting a barbell off of a weight rack, position it on your shoulders.\n" +
+                "Stand with your feet wider than shoulder width apart (about 30 inches apart) with your toes pointing out.\n" +
+                "Drawing your abs in descend slowly by bending at the knees and hips as if you are sitting down (squatting).\n" +
+                "Lower yourself as far as you can control without letting your body shift towards your toes (this will cause you to loose balance).\n" +
+                "Pause in the downward position and slowly return upright to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Zecher Squats", "This variation of squat is similar to a Front Squat, it works to build the upper muscles of the quadriceps (thighs).", "Lift a barbell off of a weight rack and place across your chest. Hold the barbell with your arms crossed.\n" +
+                "Place your feet slightly wider than shoulder width apart with your knees and toes pointed slightly outward.\n" +
+                "Drawing your abs in, descend slowly by bending at the knees and hips as if you are sitting down (squatting).\n" +
+                "Lower yourself as far as you can control without letting your body shift towards your toes (this will cause you to loose balance).\n" +
+                "Pause in the downward position and slowly return upright to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Bench Dips", "This exercise is one of the most basic and still one of the best for building the triceps (muscles on the back of the arm).", "Place two benches parallel to each other 3-4 feet apart.\n" +
+                "Sit on one bench and place your feet on the edge of the other bench so that your legs are suspended between the 2 benches.\n" +
+                "Cross your feet for support.\n" +
+                "Hold onto the bench with your hands for support and slowly lower body towards the floor by bending your elbows.\n" +
+                "Pause and then return to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Incline Pushdown with Cable", "This exercise uses cables to isolate and work the triceps (muscles on the back of the arms).", "Place an incline bench facing away from a cable pulley.\n" +
+                "Attach a short straight bar to the pulley and adjust the height so that your arms can extend fully.\n" +
+                "Lie face up on the bench and grasp the bar with a narrow overhand grip.\n" +
+                "Keeping your arms straight, slowly push the bar down towards your feet.\n" +
+                "Pause at the bottom and then return to starting position." , "", "", null));
 
         //##### page 14 #####
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
+        exercises.add(new ExerciseDTO("Incline Triceps Extension with Cable", "This exercise uses cables to isolate and work the triceps (muscles on the back of the arms).", "Place an incline bench facing away from a cable pulley.\n" +
+                "Attach a short straight bar to the pulley and adjust the height so that your arms can extend fully.\n" +
+                "Lie face up on the bench and grasp the bar with a narrow overhand grip.\n" +
+                "Starting with your elbows bent overhead, slowly lower the bar towards your feet.\n" +
+                "Pause at the bottom and then return to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Lying Tricep Extension with Cable", "This exercise uses cables to isolate and work the triceps (muscles on the back of the arms).", "Place a flat bench with the end towards a weight stack.\n" +
+                "Attach a short straight bar to the pulley and lower the pulley to the bottom of the stack.\n" +
+                "Lie face up on the bench and grasp the bar with a narrow overhand grip.\n" +
+                "Starting with your arms extended lower the bar towards the bar towards the stack by bending your elbows.\n" +
+                "Slowly extend your arms upright and return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("One Arm Tricep Extension with Cable", "This exercise isolates the triceps muscles individually.", "Place a cable pulley on the highest setting and adjust a stirrup handle to the pulley.\n" +
+                "Stand facing the weight stack and grasp the handle with and underhand grip.\n" +
+                "Keep your back straight, your abs drawn in and your knees slightly bent.\n" +
+                "Starting at the top, push your arm down until it is straight, feeling the concentration in your tricep.\n" +
+                "Slowly return to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Standing Triceps Extension", "This exercise works the triceps by reaching behind your neck", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
+                "Hold a dumbbell in both hands, with your palms facing up.\n" +
+                "Raise the dumbbell over your head and slowly lower the dumbbell in an arc behind your head.\n" +
+                "Slowly raise the dumbbell back up to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Decline Close Grip Bench to Skull Crusher", "This exercise combines a close grip bench press with triceps extension.", "Lay with your back on a flat bench.\n" +
+                "Grip a barbell with a close grip 8-12 inches apart.\n" +
+                "Keeping your arms close to your sides lower the bar so it touches your chest, approximately an inch below your nipples.\n" +
+                "Slowly return to starting position, concentrating on your triceps.\n" +
+                "At the top of the exercise bend your arms down towards your head.\n" +
+                "Raise the bar back up over your chest and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Decline Triceps Extension with Dumbbell", "This exercise combines a decline bench and dumbbells to target the triceps.", "Lay face up on a decline bench with a dumbbell in each hand.\n" +
+                "Extend your arms so they are perpendicular to your chest, and keeping your elbows in one place, lower your hands so the dumbbells are lowered near your head.\n" +
+                "Slowly return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Decline EZ Bar Triceps Extension with Barbell", "This exercise combines a decline bench and a curved bar to more efficiently work the triceps.", "Lay face up on a decline bench and grasp an EZ Bar (Curved Barbell).\n" +
+                "Extend your arms so they are perpendicular to your chest, and keeping your elbows in one place, lower the bar toward your head.\n" +
+                "Slowly return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Tricep Dips using Machine", "This exercise uses a machine to work the triceps while in seated position.", "Adjust the seat of the machine so that the handles are equal with your elbows.\n" +
+                "Grasping the handles, press down with equal pressure until your arms are fully extended.\n" +
+                "Pause, and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Tricep Dips using Body Weight", "This classic exercise uses the weight of your own body to work your triceps.", "Grasp a set of parallel bars and push yourself up to the starting position.\n" +
+                "Keeping your elbows close to your body, lower yourself down until your triceps are parallel to the floor.\n" +
+                "Slowly raise yourself back to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("One Arm Triceps Extension with Dumbbell", "This exercise uses a dumbbell to work each arm individually.", "Sit on a bench with your back straight and your abs drawn in.\n" +
+                "Grasp a dumbbell in your hand and place it behind your neck with your elbow bent.\n" +
+                "Slowly extend your arm straight up over your head and slowly return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Incline Triceps Extension with Barbell", "This version of a triceps extension uses gravity to increase the resistance of the exercise.", "Grasp a barbell with a close grip (4-6 inches apart).\n" +
+                "Lie on an incline bench and hold the bar over your head.\n" +
+                "Lower your arms in a slight arc so your forearms are touching your biceps.\n" +
+                "Slowly return back to the starting position with the bar over your head." , "", "", null));
+        exercises.add(new ExerciseDTO("JM Press", "his exercise is named after the inventor, J.M. Blakley. This is an advanced exercise used by bodybuilders and power lifters to build explosive power in the triceps muscle (back of the arms).", "Lay on a flat bench with your head just at the end of the bench.\n" +
+                "Grasp the bar with a medium overhand grip keeping your elbows close to your side, over your sternum (mid chest).\n" +
+                "Lower the bar towards your sternum at a regular pace, then pause for a moment.\n" +
+                "With a controlled but rapid pace, push the bar back to starting position." , "", "", null));
 
         //##### page 15 #####
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
+        exercises.add(new ExerciseDTO("Kneeling Triceps Concentration Extension with Cable", "Concentration exercises limit your range of movement to increase the effectiveness of the movement.", "Attach a stirrup handle to a cable pulley and adjust the pulley up high.\n" +
+                "Kneeling on your left knee, with the left side of your body turned towards the machine, keep your right leg bent and the upper portion of your thigh parallel to the floor.\n" +
+                "With your right elbow and upper arm pressed against your inner thigh just above your knee, pull the cable down towards the floor in a slight arcing motion.\n" +
+                "Slowly to return to starting position.\n" +
+                "Repeat and switch arms." , "", "", null));
+        exercises.add(new ExerciseDTO("Kneeling Triceps Extension with Cable", "Kneeling allows you to isolate your triceps more effectively.", "Place a bench sideways in front of a high pulley machine.\n" +
+                "Grasp a straight bar with an over head grip.\n" +
+                "Kneel on the floor in front of the bench with your back straight and your head down.\n" +
+                "With your elbows and forearms above your head, push the bar down in an arc so that your forearms are touching the bench." , "", "", null));
+        exercises.add(new ExerciseDTO("Low Triceps Extension with Cable", "This exercise is done while lying on a seated row station.", "Attach a rope to the cable pulley at of a seated row station.\n" +
+                "Lie on your back on the bench with your head facing the weight stack.\n" +
+                "Grasp the rope with your palms facing each other and raise your arms over your chest, with your forearms parallel to the floor at a 90 degree angle.\n" +
+                "Slowly extend your arms upward squeezing your triceps.\n" +
+                "Return to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Lying Close-Grip Triceps Extension Behind the Head with Barbell", "You can use a barbell or EZ (curl) bar to further concentrate the benefit to your triceps.", "Lie flat on a bench on your back.\n" +
+                "Grasp the bar with a grip approximately 8 inches apart and lower the bar behind your head.\n" +
+                "Keeping the bar parallel with the floor, bend your arms down in an arc so the bar moves in a direction under your head.\n" +
+                "Slowly return to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Lying Close Grip Triceps Press to Chin with Barbell", "This exercise is a classic for building the triceps.", "Lie on a flat bench on your back, with your head at one end.\n" +
+                "Grasp a bar with a close grip, approximately 6 inches apart.\n" +
+                "Raise the bar straight up over your shoulders, keeping your elbows close in.\n" +
+                "Slowly lower the bar in an arc towards your chin.\n" +
+                "Return the bar to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Lying Triceps Extension with Dumbbells", "This exercise uses gravity to increase the resistance of the weight.", "Lay on a flat bench with your head at one end and your feet planted firmly on the floor.\n" +
+                "Grasp a dumbbell with both hands with palms facing up.\n" +
+                "Raise dumbbell over your body. Your arms will be pointed towards the ceiling.\n" +
+                "While keeping your upper arms and elbows still, lower the dumbbell in an arc behind your head.\n" +
+                "Slowly raise the dumbbell back to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Lying Triceps Extension Across Face with Dumbbell", "This is an advanced exercise and should be avoided by beginners.", "Lay on a flat bench with your head at one end and your feet planted firmly on the floor.\n" +
+                "Grasp a dumbbell in each hand with palms facing up.\n" +
+                "Raise dumbbells over your body. Your arms will be pointed towards the ceiling.\n" +
+                "While keeping your upper arms and elbows still, lower the dumbbell slowly over your face bending only your elbow.\n" +
+                "Slowly raise the dumbbell back to the starting position and repeat with your other arm." , "", "", null));
+        exercises.add(new ExerciseDTO("Lying Triceps Press with Barbell", "This is another classic exercise for building the triceps.", "Lie on a flat bench with your head at one end.\n" +
+                "Grasp an EZ or Curl bar with an overhand grip.\n" +
+                "Raise the bar straight up over your shoulders, taking care to keep your elbows in close.\n" +
+                "Slowly lower the bar in an arc over your head.\n" +
+                "Return the bar to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Lying Two Arm Triceps Extension with Dumbbell", "This a lying version of a Triceps Kickback.", "Lie flat on a bench, on your back, with your head at one end.\n" +
+                "Grasp a dumbbell in each hand and raise them at arms length over your shoulders.\n" +
+                "Lower the dumbbells in an arc bending your elbows until your forearms are touching your biceps.\n" +
+                "Slowly return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Old School Reverse Extensions", "As the name suggests, this is an old classic exercise that hits the triceps hard.", "Lie down on a bench, on your back, with your head at one end.\n" +
+                "Grasp a barbell with an underhand grip.\n" +
+                "Move your arms beyond your head, keeping them in a straight line.\n" +
+                "Bending only your elbows, slowly lower and raise the barbell." , "", "", null));
+        exercises.add(new ExerciseDTO("Single Arm Pronated Triceps Extension with Dumbbell", "This is an advanced exercise to isolate and work the tricep (back of the arm) muscles.", "Lie flat in a bench with your head at one end and your feet placed firmly on the floor.\n" +
+                "Grasp a dumbbell in one hand and raise it to a position above your chest, with your palm facing your feet.\n" +
+                "Place your free hand under the shoulder to support your other arm.\n" +
+                "Slowly lower the weight moving only your forearm and elbow towards and away from your chest.\n" +
+                "Repeat with your other arm." , "", "", null));
+        exercises.add(new ExerciseDTO("Single Arm Supinated Triceps Extension with Dumbbell", "This exercise is similar to the Single Arm Pronated Triceps Extension except the movement is over the head instead of across the chest.", "Lie flat in a bench with your head at one end and your feet placed firmly on the floor.\n" +
+                "Grasp a dumbbell in one hand and raise it to a position above your chest, with your palm facing the floor.\n" +
+                "Place your free hand under the shoulder to support your other arm. Slowly bend your elbow over your head with the weight moving only your forearm and elbow.\n" +
+                "Return to the starting position and repeat with your other arm." , "", "", null));
 
         //##### page 16 #####
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
+        exercises.add(new ExerciseDTO("Close Triceps Pushup", "This version of the Pushup isolates the tricep (back of the arm) muscles.", "Kneel down on the floor or a mat, placing your hand thumbs together and raise your up on your toes.\n" +
+                "Draw your abs in and keep your back and neck in a straight line.\n" +
+                "Slowly lower your body towards the floor, by bending your arms, until you are nearly touching the floor.\n" +
+                "In a controlled manner raise your body back up to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Reverse Grip Triceps Pushdown", "This exercise is the reverse version of the triceps pushdown.", "Stand in front of a cable machine and attach a bar to a high pulley.\n" +
+                "Grasp the handle with palms facing up.\n" +
+                "Keeping your elbows at your side, pull the handle down towards your thighs.\n" +
+                "Pause for a moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Reverse Triceps Bench Press with Barbell", "This exercise is a version of the Bench Press that specifically isolates the triceps.", "Lie on a flat bench with your head at one end and your feet placed firmly on the floor.\n" +
+                "Grasp a barbell with palms facing your head about 16 inches apart.\n" +
+                "Move the bar over your chest (about 1 inch below your nipples).\n" +
+                "Extend your arms fully raising the bar fully and then lower the bar to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Seated One Arm Triceps Extension with Dumbbell", "This exercise uses a kickback movement to work the triceps in each arm individually.", "Sit on the edge of a bench with your feet flat on the floor.\n" +
+                "Hold a dumbbell in your right hand.\n" +
+                "Bring your right arm up to your side so the dumbbell is almost parallel to your chest, keeping your lower arm vertical.\n" +
+                "Press your arm back in arc.\n" +
+                "Return to the starting position repeat and switch arms." , "", "", null));
+        exercises.add(new ExerciseDTO("Seated Two-Arm Triceps Extension with Dumbbell", "This exercise is the two handed version of seated triceps extension.", "Sit on the edge of a bench with your feet flat on the floor.\n" +
+                "Hold a dumbbell in each hand.\n" +
+                "Bring your arms up to your side so the dumbbell is almost parallel to your chest, keeping your lower arm vertical.\n" +
+                "Press your arm back in arc towards your back.\n" +
+                "Return to the starting position repeat and switch arms." , "", "", null));
+        exercises.add(new ExerciseDTO("Seated Overhead Triceps Extension with Barbell", "This exercise uses a barbell behind your neck to isolate the triceps effectively.", "Sit on a short straight back chair with your feet firmly placed on the floor and your back straight.\n" +
+                "Grasp an EZ or Curl bar, or barbell with a grip about 6 inches apart.\n" +
+                "Raise the bar to arms length above your head and then lower the bar in an arc towards the floor behind your head.\n" +
+                "Return to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Seated Triceps Press with Dumbbell", "This exercise uses a single dumbbell held between both hands to work the triceps.", "Sit on a short, straight backed bench with your feet planted firmly on the floor.\n" +
+                "Drawing your abs in, grasp the dumbbell with both hands with a palms up grip.\n" +
+                "Raise the weight over your head, this is your starting position.\n" +
+                "Lower the dumbbell in an arc from above your head to behind your back.\n" +
+                "Slowly return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Smith Machine Close Grip Bench Press", "This version of a Bench Press uses a close grip to isolate the triceps as well as working the chest.", "Place a flat bench in the middle of a Smith Machine.\n" +
+                "Using a close grip (about 6 inches apart) unlatch the bar and lower it towards your chest.\n" +
+                "Pause just before the bar hits your chest and raise the bar by extending your arms to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Bent-Over One Arm Triceps Extension with Dumbbell", "This exercise uses a kickback movement to work the triceps in each arm individually.", "Stand with your feet shoulder width apart, your abs drawn in and your back straight as you bend at the waist.\n" +
+                "Hold a dumbbell in your right hand.\n" +
+                "Bring your right arm up to your side so the dumbbell is almost parallel to your chest, keeping your lower arm vertical and press your arm back in arc.\n" +
+                "Return to the starting position repeat and switch arms." , "", "", null));
+        exercises.add(new ExerciseDTO("Bent-Over Two Arm Triceps Extension with Dumbbell", "This exercise uses a kickback movement to work the triceps in each arm individually.", "Stand with your feet shoulder width apart, your abs drawn in and your back straight as you bend at the waist until your upper body is parallel to the floor.\n" +
+                "Hold a dumbbell in each hand.\n" +
+                "Bring your right arm up to your side so the dumbbell in line with your chest, keeping your lower arm vertical and press your arm back in arc.\n" +
+                "Return to the starting position repeat and switch arms." , "", "", null));
+        exercises.add(new ExerciseDTO("Standing Triceps Extension", "This exercise works the triceps by reaching behind your neck.", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
+                "Hold a dumbbell in both hands, with your palms facing up.\n" +
+                "Raise the dumbbell over your head and slowly lower the dumbbell in an arc behind your head.\n" +
+                "Slowly raise the dumbbell back up to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("One Arm Low-Pulley Triceps Extension with Cable", "This exercise uses a cable machine to isolate the triceps.", "Attach a handle to a low cable pulley machine.\n" +
+                "Stand with your back to the weight stack, your feet shoulder width apart.\n" +
+                "With your left hand, reach behind you and grasp the handle.\n" +
+                "Place your right hand on your left elbow for support.\n" +
+                "Extend your left arm straight up towards the ceiling and then lower it to the starting position.\n" +
+                "Repeat and switch arms." , "", "", null));
 
         //##### page 17 #####
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
+        exercises.add(new ExerciseDTO("Standing One Arm Triceps Extension with Dumbbell", "This is a single arm version of a behind the neck triceps exercise.", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
+                "Hold a dumbbell in your right hand with your palms facing up.\n" +
+                "Raise the dumbbell over your head and slowly lower the dumbbell in an arc behind your head, so that the dumbbell lines up with your spine.\n" +
+                "Slowly raise the dumbbell back up to the starting position.\n" +
+                "Switch arms and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Standing Overhead Triceps Extension with Barbell", "This is a double arm barbell version of a behind the neck triceps exercise.", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
+                "Hold a barbell or EZ Curl bar about 6-8 inches apart with your palms facing up.\n" +
+                "Raise the bar over your head and slowly lower the dumbbell in an arc behind your head, towards your back.\n" +
+                "Slowly raise the bar back up to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Standing Triceps Extension with Towel", "This exercise requires another person and uses manual resistance, or your body’s own weight to build muscle.", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
+                "Hold a towel or rope facing up behind and in back of your head.\n" +
+                "Have a partner hold the towel taught during the exercise so the resistance is constant.\n" +
+                "Lower your forearms down until they reach your biceps, then slowly raise your arms back up to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Tate Press with Dumbbell", "This is an advanced triceps exercise which moves the muscle differently than other exercises.", "Lay flat on a bench with your head at one end and your feet firmly planted on the floor.\n" +
+                "Hold a dumbbell in each hand so your palms are facing your feet.\n" +
+                "Drawing your abs in and keeping your back on the bench, raise the weights to the center of your chest.\n" +
+                "Without moving elbows, slowly raise your arms up and out contracting your triceps." , "", "", null));
+        exercises.add(new ExerciseDTO("Triceps Kickback with Dumbbell", "This along with the Triceps Push Down is one of the most beneficial exercises for the arms.", "Standing along side a flat bench, bend your left knee and place it on the bench.\n" +
+                "Place your left hand on the bench for support, keeping your back at a 45 degree angle.\n" +
+                "Hold a dumbbell in your right hand and place your right foot on the floor.\n" +
+                "Bend your right arm and raise it up to your shoulder, then with controlled motion kick it back, fully extending your arm.\n" +
+                "Switch arms and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Standing Overhead Triceps Extension with Barbell", "This is a double arm barbell version of a behind the neck triceps exercise.", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
+                "Hold a barbell or EZ Curl bar about 6-8 inches apart with your palms facing up.\n" +
+                "Raise the bar over your head and slowly lower the dumbbell in an arc behind your head, towards your back.\n" +
+                "Slowly raise the bar back up to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Standing Triceps Extension with Towel", "This exercise requires another person and uses manual resistance, or your body’s own weight to build muscle.", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
+                "Hold a towel or rope facing up behind and in back of your head.\n" +
+                "Have a partner hold the towel taught during the exercise so the resistance is constant.\n" +
+                "Lower your forearms down until they reach your biceps, then slowly raise your arms back up to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Tate Press with Dumbbell", "This is an advanced triceps exercise which moves the muscle differently than other exercises.", "Lay flat on a bench with your head at one end and your feet firmly planted on the floor.\n" +
+                "Hold a dumbbell in each hand so your palms are facing your feet.\n" +
+                "Drawing your abs in and keeping your back on the bench, raise the weights to the center of your chest.\n" +
+                "Without moving elbows, slowly raise your arms up and out contracting your triceps." , "", "", null));
+        exercises.add(new ExerciseDTO("Triceps Kickback with Dumbbell", "This along with the Triceps Push Down is one of the most beneficial exercises for the arms.", "Standing along side a flat bench, bend your left knee and place it on the bench.\n" +
+                "Place your left hand on the bench for support, keeping your back at a 45 degree angle.\n" +
+                "Hold a dumbbell in your right hand and place your right foot on the floor.\n" +
+                "Bend your right arm and raise it up to your shoulder, then with controlled motion kick it back, fully extending your arm.\n" +
+                "Switch arms and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Triceps Pushdown with Cable", "This exercise is the original version of the triceps pushdown.", "Stand in front of a cable machine and attach a short bar to a high pulley.\n" +
+                "Grasp the handle with your palms facing down.\n" +
+                "Draw your abs in and keep your back straight.\n" +
+                "Keeping your elbows at your side push the handle down towards your thighs.\n" +
+                "Pause for a moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Triceps Pushdown with Rope and Cable", "This version of the triceps pushdown uses a rope for better definition in the muscle.", "Stand in front of a cable machine and attach a rope to a high pulley.\n" +
+                "Grasp the rope with palms facing down.\n" +
+                "Draw your abs in and keep your back straight.\n" +
+                "Keeping your elbows at your side push the rope down towards your thighs, if possible “split” the rope apart at the bottom.\n" +
+                "Pause for a moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Triceps Pushdown with V Bar and Cable", "This exercise is the triceps pushdown uses a V shaped bar. Many people find this version easier on the elbows.", "Stand in front of a cable machine and attach a V Bar to a high pulley.\n" +
+                "Grasp the bar with palms facing down.\n" +
+                "Draw your abs in and keep your back straight.\n" +
+                "Keeping your elbows at your side push the bar down towards your thighs.\n" +
+                "Pause for a moment and then return to the starting position." , "", "", null));
 
         //##### page 18 #####
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
+        exercises.add(new ExerciseDTO("Standing Biceps Curl with Cable", "This version of the biceps curl uses a cable instead of a barbell to work the muscles of the arms.", "Attach a short bar to a cable pulley to the bottom of the weight stack.\n" +
+                "Stand with your feet shoulder width apart, your knees slightly bent and your abs drawn in.\n" +
+                "Grasp the bar with palms facing up, and hands fairly close together.\n" +
+                "Lower your arms fully to above your thighs and bending only your elbows, raise the bar to your upper chest.\n" +
+                "Pause for a moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Alternating Hammer Curl with Dumbbell", "This exercise uses a hammering (up and down) motion to isolate the biceps.", "Stand with our feet shoulder width apart, your knees slightly bent and your abs drawn in.\n" +
+                "Grasp a dumbbell in each hand so your palms are facing each other.\n" +
+                "Extend your arms so they are at the sides of your body.\n" +
+                "Keeping your elbows locked lift your left arm in an arc towards your left shoulder.\n" +
+                "Lower your arm and repeat with your right arm." , "", "", null));
+        exercises.add(new ExerciseDTO("Alternating Incline Curl with Dumbbell", "This exercise uses an incline bench to change your body’s position as you perform bicep curls.", "Adjust an incline bench to a 45 degree angle.\n" +
+                "Grasp a dumbbell in each hand and sit back on the bench with your feet firmly planted on the floor.\n" +
+                "Allow your arms to hang down at your sides.\n" +
+                "Keeping your elbow straight, raise your right arm up towards your head.\n" +
+                "In a controlled manner lower the weight and repeat with your left arm." , "", "", null));
+        exercises.add(new ExerciseDTO("Lying Incline Curl with Barbell", "This exercise uses an incline bench to change your body’s position as you perform bicep curls. The movement is very similar to a Preacher Curl.", "Adjust an incline bench to a 45 degree angle.\n" +
+                "Grasp a barbell with a shoulder width grip and lean face down against the bench, with your feet resting on the floor for support.\n" +
+                "Allow your arms to hang down at your sides.\n" +
+                "Keeping your elbows straight, raise the bar up towards your head, contracting your biceps.\n" +
+                "In a controlled manner lower the weight and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Hammer Curls with Rope and Cable", "Using the rope with the cable machine allows you isolate the biceps with this version of the Hammer Curl. This is a good exercise for beginners.", "Attach a rope to a cable pulley to the bottom of the weight stack. Stand with your feet shoulder width apart, your knees slightly bent and your abs drawn in. Grasp the rope with a close underhand grip (palms facing up). Lower your arms fully to above your thighs and bending only your elbows, raise the rope to your upper chest. Pause for a moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Preacher Curl with Cable", "A Preacher Curl uses a special bench to support the triceps and isolate the biceps to build the arms.", "Place a padded arm curl bench in front of a cable machine.\n" +
+                "Attach a short bar to the bottom pulley.\n" +
+                "Rest your arms against the bench and extend them fully.\n" +
+                "With a narrow grip (6 inches) grasp the bar with palms facing up and pull it towards your head.\n" +
+                "Pause for a moment and then lower the bar back to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Close Grip EZ Bar Curl with Barbell", "This exercise uses a cambered EZ or curl bar to isolate the biceps during a curl.", "Stand with your feet shoulder width apart, your knees slightly bent and your abs drawn in.\n" +
+                "Grasp an EZ bar with an underhand close (4 inch) grip on the innermost part of the bar.\n" +
+                "Extend your arms fully against your thighs.\n" +
+                "Keeping your elbows straight, raise the bar towards your chest.\n" +
+                "Pause for moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Close Grip Standing Bicep Curls with Barbell", "This exercise uses a standard barbell to isolate the biceps during a curl.", "Stand with your feet shoulder width apart, your knees slightly bent and your abs drawn in.\n" +
+                "Grasp a barbell with palms up, about 12 inches apart.\n" +
+                "Extend your arms fully against your thighs.\n" +
+                "Keeping your elbows straight, raise the bar towards your chest until your forearms touch your chest.\n" +
+                "Pause for moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Concentration Curls with Dumbbell", "Concentration exercises limit your range of movement to increase the effectiveness of the movement.", "Sit on the end of a flat bench with your feet flat and your legs spread apart.\n" +
+                "Grasp a dumbbell in your hand, palms facing up.\n" +
+                "With your elbow pressed against your inner thigh, curl the dumbbell up towards your chest.\n" +
+                "Slowly return to the starting position.\n" +
+                "Repeat and switch arms." , "", "", null));
+        exercises.add(new ExerciseDTO("Cross Body Hammer Curl with Dumbbell", "This exercise targets the biceps using a crossing motion rather than a standard curl.", "While standing, grab a dumbbell in each arm with palms facing in.\n" +
+                "Keeping your palms facing in (and not twisting your arms) curl the dumbbell up towards your opposite shoulder.\n" +
+                "Bring the top of dumbbell up to and touching the shoulder.\n" +
+                "Slowly with a controlled manner, lower the dumbbell back to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Drag Curl with Barbell", "This exercise is credited to the late Vince Gironda, the “Iron Guru”. It not only blasts the biceps and works the forearms as well.", "Stand with your feet shoulder width apart, your knees slightly bent, and your abs drawn in.\n" +
+                "Grasp the bar with palms down, shoulder width apart.\n" +
+                "Extend your arms fully so they are against your thighs.\n" +
+                "Slowly raise your arms, palms down, to touch your chest." , "", "", null));
+        exercises.add(new ExerciseDTO("Alternating Bicep Curl with Dumbbell", "This exercise is a single arm version of a biceps curl.", "Stand with your feet shoulder width apart, your knees slightly bent and your abs drawn in.\n" +
+                "Grasp a dumbbell in each hand so your palms are facing up.\n" +
+                "Extend your arms so they are at the sides of your body.\n" +
+                "Keeping your elbows locked lift your left arm to your chest so that your forearm touches your bicep.\n" +
+                "Lower your arm and repeat with your right arm." , "", "", null));
 
         //##### page 19 #####
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
+        exercises.add(new ExerciseDTO("Biceps Curl with Dumbbell", "This version of a biceps curl uses both arms at the same time.", "Stand with our feet shoulder width apart, your knees slightly bent and your abs drawn in.\n" +
+                "Grasp a dumbbell in each hand with your palms facing up.\n" +
+                "Extend your arms so they are at the sides of your body.\n" +
+                "Keeping your elbows, locked lift your arms to your chest so that your forearms touch your biceps.\n" +
+                "In a slow controlled manner, lower your arms to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Prone Incline Biceps Curl with Dumbbell", "This exercise uses an incline bench to change your body’s position as you perform bicep curls. The movement is very similar to a Preacher Curl.", "Adjust an incline bench to a 45 degree angle.\n" +
+                "Grasp dumbbells in each hand and lean face down against the bench, with your feet resting on the floor for support.\n" +
+                "Allow your arms to hang down at your sides.\n" +
+                "Keeping your elbow straight, raise the dumbbells up towards your head, contracting your biceps.\n" +
+                "In a controlled manner, lower the weight and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("EZ Bar Curl with Barbell", "This exercise uses an EZ or curl bar to better isolate and build the arms.", "Stand with your feet shoulder width apart and your knees slightly bent.\n" +
+                "Grasp the barbell with palms up.\n" +
+                "Lower the bar so it is against your thighs.\n" +
+                "Keeping your elbows still, raise the bar up to your chest so that your forearms touch your biceps." , "", "", null));
+        exercises.add(new ExerciseDTO("Bicep Hammer Curl with Dumbbell", "This exercise uses a hammering (up and down) motion to isolate the biceps.", "Stand with your feet shoulder width apart, your knees slightly bent and your abs drawn in.\n" +
+                "Grasp a dumbbell in each hand so your palms are facing each other.\n" +
+                "Extend your arms so they are at the sides of your body.\n" +
+                "Keeping your elbows locked lift your arms in an arc towards your shoulders.\n" +
+                "Lower your arms in a steady controlled motion and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Flexor Incline Curls with Dumbbell", "This exercise was designed to keep the stress on the biceps.", "Sit on an incline bench with your feet firmly on the floor in front of you.\n" +
+                "Grasp a dumbbell with your palms facing up.\n" +
+                "Bring your arms down to your sides and while keeping your wrists as straight as possible, raise your wrists to your shoulders.\n" +
+                "Concentrate on squeezing your biceps as you contract (raise) your arms." , "", "", null));
+        exercises.add(new ExerciseDTO("High Cable Curls", "This exercise allows you to target the muscles of your arms from a different position.", "Place a flat bench next to a cable weigh stack.\n" +
+                "Attach a short bar to the high pulley.\n" +
+                "Lay on your back with your head towards the stack.\n" +
+                "Grip the bar with palms facing you)and extend your arms fully on a slight angle over your head.\n" +
+                "Pull the bar down towards you, curling your arms as much as possible.\n" +
+                "Slowly return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Incline Biceps Curl with Dumbbell", "This exercise uses an incline bench to change your body’s position as you perform bicep curls. The movement is very similar to a Preacher Curl.", "Adjust an incline bench to a 45 degree angle.\n" +
+                "Grasp dumbbells in each hand and sit down with your back against the bench, with your feet resting on the floor for support.\n" +
+                "Allow your arms to hang down at your sides.\n" +
+                "Keeping your elbow straight, raise the dumbbells up towards your head, contracting your biceps.\n" +
+                "In a controlled manner lower the weight and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Incline Inner Biceps Curl with Dumbbell", "This exercise uses an incline bench and twist to more to change your body’s position as you perform bicep curls. The movement is very similar to a Preacher Curl.", "Adjust an incline bench to a 45 degree angle.\n" +
+                "Grasp dumbbells in each hand with and sit down with your back against the bench, with your feet resting on the floor for support.\n" +
+                "Allow your arms to hang down at your sides, your palms facing your body.\n" +
+                "Keeping your elbow straight, raise the dumbbells up towards your head, contracting your biceps.\n" +
+                "In a controlled manner lower the weight and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Lying Bicep Cable Curl", "By lying down you are able to isolate the muscles of your biceps without standing or sitting.", "Attach a short bar to a cable pulley set on the lowest setting.\n" +
+                "Lie down on a mat or the floor with your feet touching the weight stack.\n" +
+                "Grasp the bar with and palms facing up.\n" +
+                "With your arms fully extended and your elbows at your sides, pull the bar in an arc to your chest.\n" +
+                "Pause for a moment contracting your biceps, and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Lying Close Grip Biceps Curls with Cable", "This exercise combines a flat body position with a pulling motion to work the biceps.", "Place a flat bench under a cable weight stack and attach a flat bar to the pulley.\n" +
+                "Lie down with your head towards the stack and your feet firmly on the floor.\n" +
+                "Grasp the bar with your palms down, about 8 inches apart, and extend your arms straight up.\n" +
+                "Curl the bar down in an arc touching your chin.\n" +
+                "Slowly return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Lying High Bench Biceps Curl with Barbell", "With this exercise your lay face down to isolate your biceps.", "Lay face down on a high bench with your head at one end and your toes pressed against the floor to support you.\n" +
+                "Grasp a barbell with palms facing up, about 12 inches apart.\n" +
+                "Extending your arms to the floor, curl your arms back towards your head in a slight arc, so your biceps touch your forearm.\n" +
+                "Slowly return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Lying Supine Biceps Curl with Dumbbell", "This is another biceps exercise where you lay down to isolate the muscles you are working. This is an advanced exercise.", "Lie on a flat bench with your head at one end and your feet planted firmly on the floor.\n" +
+                "With a dumbbell in each hand, palms facing in, bring your arms down to your sides, hanging off the bench.\n" +
+                "Slowly raise your arms up until they are level with your chest.\n" +
+                "Curl the dumbbells by twisting your palms, so that your forearms touch your biceps.\n" +
+                "Slowly lower your arms to the starting position." , "", "", null));
 
         //##### page 20 #####
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
+        exercises.add(new ExerciseDTO("Preacher Curl with Machine", "A Preacher Curl uses a special bench to support the triceps and isolate the biceps to build the arms. This version of the exercises is a machine exercise. This is a good exercise for beginners.",
+                "Adjust the seat of the bench so your arms are level with the top of the bench. Rest your arms against the bench and extend them fully. Grasp the bar underhand (palms facing up) and pull it towards your head. Pause for a moment and then lower the bar back to starting position." ,
+                "", "", null));
+        exercises.add(new ExerciseDTO("One Arm Preacher Curl with Dumbbell", "A Preacher Curl uses a special bench to support the triceps and isolate the biceps to build the arms. This version uses dumbbells and single arm movements for better control.", "Adjust the seat of the bench so your arm is level with the top of the bench.\n" +
+                "Grasp a dumbbell in your hand with palms facing up.\n" +
+                "Rest your arm against the bench and extend it fully down.\n" +
+                "Keeping your arm on the bench at all times, curl the dumbbell up towards your head.\n" +
+                "Pause for a moment and then lower the dumbbell back to starting position.\n" +
+                "Switch arms and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Overhead Curl with Cable", "By using cable this exercise isolates and defines the biceps (arm) muscles.", "Attach a stirrup handle to each side of a high pulley on a cable machine.\n" +
+                "Grasp the handles with palms facing up and stand with your feet shoulder width apart.\n" +
+                "Extend your arms fully to each side.\n" +
+                "Keeping your elbows steady, curl your wrists towards the sides of your head.\n" +
+                "Contract your biceps and pause for a moment.\n" +
+                "Then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Preacher Curl with Barbell", "A Preacher Curl uses a special bench to support the triceps and isolate the biceps to build the arms.", "Adjust the seat of the bench so that your arms are level with the top of the bench.\n" +
+                "Grasp the bar with palms facing up, shoulder width apart.\n" +
+                "Picking up the bar, rest your arms against the bench and extend them fully.\n" +
+                "Keeping your arms on the bench at all times, curl the bar up towards your head.\n" +
+                "Pause for a moment and then lower the bar back to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Preacher Hammer Curl with Dumbbell", "This exercise combines a Hammer Curl with a Preacher bench.", "Adjust the seat of the bench so that your arms are level with the top of the bench.\n" +
+                "Grasp a dumbbell in each hand with your palms facing each other, shoulder width apart and extend your arms fully along the bench.\n" +
+                "Keeping your arms and elbows on the bench at all times, curl the dumbbells up towards your head.\n" +
+                "Pause for a moment and then lower the bar back to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Reverse Plate Curls with Weight", "This exercise uses a free weight plate to build muscle.", "Stand with your feet shoulder width apart, your knees slightly bent and your abs drawn in.\n" +
+                "Grasp a plate in your hands with palms facing down, at the 11:00 and 1:00 o’clock position.\n" +
+                "Keeping your elbows and arms at your side, curl the slowly up towards your head.\n" +
+                "Slowly return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Seated Close Grip Concentration Curls with Barbell", "Concentration exercises limit your range of movement to increase the effectiveness of the movement. This version uses a barbell.", "Sit on the end of a flat bench with your feet flat and your legs spread apart.\n" +
+                "Bend forward at your waist keeping your back straight.\n" +
+                "Grasp a barbell in your hands with a close grip approximately 6 inches apart with your palms facing up.\n" +
+                "With your elbow pressed against your inner thigh, curl the bar up towards your chest.\n" +
+                "Slowly lower the bar to the starting position near the floor." , "", "", null));
+        exercises.add(new ExerciseDTO("Seated Bicep Curl with Dumbbell", "This exercise is a seated biceps curl using dumbbells.", "Sit on bench with your feet firmly on the floor and your back straight.\n" +
+                "Grasp a dumbbell in each hand with your palms facing each other.\n" +
+                "Lower the dumbbells to your sides and slowly curl your arms up so your palms are facing up.\n" +
+                "Squeeze your biceps at the top and slowly lower to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Seated Inner Biceps Curl with Dumbbell", "This exercise works the inner biceps.", "Sit on the edge of a bench with your feet firmly planted on the floor.\n" +
+                "Keep your back straight and your abs drawn in.\n" +
+                "Grasp a dumbbell in each arm with your palms facing each other and fully extend your arms along your sides.\n" +
+                "Curl your arms up and out, turning your palms up and out as you lift.\n" +
+                "Slowly lower the dumbbells to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Spider Curl with Barbell", "This exercise uses the straight side of a Preacher Curl bench to increase the range of motion of the exercise.", "Turn a Preacher Curl bench around so you are leaning against the angled side.\n" +
+                "Grasp a barbell with palms up, approximately 6 inches apart.\n" +
+                "Leaning against the bench, lower the bar along the flat side of the bench fully extending your arms.\n" +
+                "Curl your arms up so your biceps are touching your forearms.\n" +
+                "Slowly lower the bar to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Standing Inner Biceps Curl with Dumbbell", "This exercise works the inner biceps.", "Stand with your feet shoulder width apart, your knees slightly bent and your abs drawn in.\n" +
+                "Grasp a dumbbell in each arm with your palms facing each other, fully extend your arms along your sides.\n" +
+                "Curl your arms up and out, turning your palms up and out as you lift.\n" +
+                "Slowly lower the dumbbells to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Standing One Arm Bicep Curl with Cable", "This is a single arm version of a bicep cable curl. Cable machines are great for helping you learn proper form while building muscle.", "Attach a stirrup bar to a low cable pulley.\n" +
+                "Stand of the side of the weight stack with your legs shoulder width apart and your knees slightly bent and your abs drawn in.\n" +
+                "Grasp the stirrup in one hand with an palms facing up.\n" +
+                "Lower the stirrup to the top of your thighs.\n" +
+                "Keeping your elbows still, curl the stirrup up towards your chest.\n" +
+                "Slowly lower the stirrup to the starting position." , "", "", null));
 
         //##### page 21 #####
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
+        exercises.add(new ExerciseDTO("Standing One Arm Curl Over Incline Bench with Dumbbell", "This exercise is a great alternative to the Preacher Curl.", "Stand in front of an incline bench so your arm is resting on the top of the angled portion of the bench.\n" +
+                "Grasp a dumbbell in your hand with palms facing up.\n" +
+                "Rest your arm against the back bench and extend it fully down.\n" +
+                "Keeping your arm on the bench at all times, curl the dumbbell up towards your head.\n" +
+                "Pause for a moment and then lower the dumbbell back to starting position.\n" +
+                "Switch arms and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Two-Arm Preacher Curl with Dumbbell", "A Preacher Curl uses a special bench to support the triceps and isolate the biceps to build the arms. This version of the exercise uses dumbbells.", "Adjust the seat of the bench so your arms are level with the top of the bench.\n" +
+                "Grasp a dumbbell in each hand with palms facing up.\n" +
+                "Picking up the dumbbells, rest your arms against the bench and extend them fully towards the floor.\n" +
+                "Keeping your arms on the bench at all times, curl the weight up towards your head.\n" +
+                "Pause for a moment and then lower the weights back to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Wide Grip Standing Biceps Curl with Barbell", "This is a wide grip version of a biceps curl. The wider grip targets the lateral or outer portion of the muscle.", "Stand with your feet shoulder width apart, your knees slightly bent and your abs drawn in.\n" +
+                "Grasp a barbell with palms up as wide as you comfortably can.\n" +
+                "Extend your arms fully against your thighs.\n" +
+                "Keeping your elbows straight, raise the bar towards your chest until your forearms touch your chest.\n" +
+                "Pause for moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Zottman Curl with Dumbbells", "This is an advanced exercise where you turn the dumbbells up and out.", "Stand with your feet shoulder width apart, your knees slightly bent and your and your abs drawn in.\n" +
+                "Grasp a dumbbell in each hand with your palms facing each other.\n" +
+                "Start with your hands at your sides.\n" +
+                "Curl your arms up turning your wrists so they are facing down as the dumbbells reach your chest.\n" +
+                "Pause for a moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Zottman Preacher Curl with Dumbbells", "This is an advanced exercise where you turn the dumbbells up and out using a Preacher Curl bench for support.", "Sit at a Preacher Curl Bench.\n" +
+                "Grasp a dumbbell in your hand with your palms facing up.\n" +
+                "Extend your arm fully along the bench.\n" +
+                "Curl your arm up turning your wrist so it faces down as the dumbbell reaches your chest.\n" +
+                "Pause for a moment and then return to the starting position and switch arms." , "", "", null));
+        exercises.add(new ExerciseDTO("Bicep Curl with Machine", "This exercise uses a machine to insure proper form.", "Adjust the seat of the machine so your elbows are correctly aligned with the rotation axis.\n" +
+                "Press your arms against the pads and keep them stationary throughout the exercise.\n" +
+                "Curl your forearms until your arms are fully flexed.\n" +
+                "Slowly lower your arms back to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("One Arm Bicep Curl with Olympic Bar or Barbell", "This is an advanced exercise for building stability and the muscles of the arms.", "Stand with your feet shoulder width apart and your knees slightly bent.\n" +
+                "Grasp an Olympic bar (empty weight bar) in the middle with one hand so that the bar is equally balanced.\n" +
+                "Keep your free hand at your side for support.\n" +
+                "Curl the bar up so your forearm touches your bicep.\n" +
+                "Slowly lower the bar and change arms." , "", "", null));
+        exercises.add(new ExerciseDTO("Biceps Curl Seated on Stability Ball with Dumbbell", "This version of a biceps curl uses a Stability Ball. Exercises preformed with Stability Balls encourage better posture and core muscle development.", "Grasp a dumbbell in each hand while sitting on a Stability Ball with your feet placed firmly in front of you, and your abs drawn in.\n" +
+                "Keeping your elbows at your side and your back straight, curl your arms up to your chest.\n" +
+                "Pause for a moment, contracting your biceps.\n" +
+                "Slowly lower your arms to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Biceps Curl Squat with Dumbbell", "This exercise combines a squat with a curl to effectively work the entire body. This is an advanced exercise.", "Stand with your feet shoulder width apart, your knees slightly bent and your abs drawn in.\n" +
+                "Grasp a dumbbell in each hand and curl your arms up to your shoulders.\n" +
+                "Bending at the waist, squat down as you lower your hands to the floor (the lower part of a curl).\n" +
+                "Pause for a moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Biceps Curl Reverse with Dumbbells", "This is a reverse curl exercise that works all of the muscles of the arms.", "Stand with your feet shoulder width apart, your knees slightly bent and your abs drawn in.\n" +
+                "Grasp a dumbbell in each hand with palms facing down.\n" +
+                "Keeping your arms at your side your elbows steady, lift the dumbbells up towards your shoulders.\n" +
+                "Pause for a moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("One Arm Bicep Concentration on Stability Ball with Dumbbell", "This exercise uses a Stability Ball instead of a bench for better form.", "Grasp a dumbbell in one hand and sit on a Stability Ball with your feet wide apart.\n" +
+                "Bend forward leaning at the waist.\n" +
+                "With the dumbbell in your hand, place your elbow against your knee.\n" +
+                "Lower your arm so it is flat against your calves.\n" +
+                "Curl your arm up to your chest keeping your elbow steady.\n" +
+                "Return to starting position and change hands." , "", "", null));
+        exercises.add(new ExerciseDTO("Bicep Curl with Deadlift with Barbell", "This is an advanced exercise. This exercise combines a bicep curl with a deadlift.", "Grasp an EZ Curl or barbell with palms facing up.\n" +
+                "Standing with your feet shoulder width apart and your knees slightly bent, draw your abs in.\n" +
+                "Extend your arms so the bar rests in front of your thighs.\n" +
+                "Bending at the waist, bring the bar down to just above the floor.\n" +
+                "As you return to a standing position, bring the bar up and curl your arms bringing your forearms to your biceps.\n" +
+                "Return the starting position and repeat." , "", "", null));
 
         //##### page 22 #####
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
+        exercises.add(new ExerciseDTO("Biceps Curl with Overhead Extension using Dumbbells on Stability Ball", "This is an advanced exercise. This exercise requires you to be able to balance kneeling on a stability ball before you can correctly perform this exercise.", "Grasp a dumbbell in each hand with palms facing up.\n" +
+                "Kneel on a Stability Ball, drawing your abs in and keeping your back straight.\n" +
+                "Raise one arm up over your shoulder and keep your other arm curled.\n" +
+                "Bend your raised arm back as if performing a triceps extension while lowering your other arm and curling it back.\n" +
+                "Return to starting position and repeat arms." , "", "", null));
+        exercises.add(new ExerciseDTO("Quick Alternating Bicep Curls with Band", "This exercise uses a bungy or exercise band for resistance.", "Place a bungy under your feet and hold the handles palms forward in your hands.\n" +
+                "Stand with your feet shoulder width apart, knees slightly bent and your abs drawn in.\n" +
+                "Curl your arms up and down in an alternating motion, keeping your body straight.\n" +
+                "As you become comfortable with the motion, increase your speed." , "", "", null));
+        exercises.add(new ExerciseDTO("Bicep Curl Lunge with Bowling Motion", "This exercise is similar to the motions of bowling.", "Hold a Medicine Ball in one hand with your palms facing up at shoulder height.\n" +
+                "Bring one foot back and into a lunge, keeping your front foot stationary and not letting your back knee touch the ground.\n" +
+                "While lunging, bring the ball down and back as if you were bowling.\n" +
+                "Bring your arm back up to the starting position, switch legs and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Bicep Curl on Stability Ball with Leg Raised", "This exercise incorporates balance along with a bicep curl.", "Grasp a dumbbell in each hand with a palms up grip.\n" +
+                "Place the top of one foot behind you on a Stability Ball (see illustration) as if you were stretching your leg.\n" +
+                "Keep your back straight and your abs drawn in.\n" +
+                "Bring your arms down in front of your legs.\n" +
+                "Raise your arms up, curling and contracting your biceps.\n" +
+                "Lower your arms and return to starting position and switch legs." , "", "", null));
+        exercises.add(new ExerciseDTO("Lateral Lunge with Bicep Curl with Dumbbell", "This is an advanced exercise that combines a lateral lunge with a bicep curl.", "Grasp a dumbbell in each hand with your palms facing up.\n" +
+                "Stand with your feet together, your back straight and your abs drawn in.\n" +
+                "Allow your arms to extend down fully in front of your thighs.\n" +
+                "While keeping your body straight, take a step sideways and then bend your waist and your knee into a lunge.\n" +
+                "As you go into the lunge, curl your arms up towards your shoulders contracting your biceps.\n" +
+                "Return to starting position and switch legs." , "", "", null));
+        exercises.add(new ExerciseDTO("Forward Lunge with Bicep Curl using Dumbbell", "This exercise combines a forward lunge with a bicep curl.", "Grasp a dumbbell in each hand with your palms facing up.\n" +
+                "Stand with your feet together, your back straight and your abs drawn in.\n" +
+                "Allow your arms to extend down fully to the sides of your body.\n" +
+                "While keeping your body straight, take a step forward then bend your waist and your knee into a lunge.\n" +
+                "Be careful not to let your back knee drop to the floor.\n" +
+                "As you go into the lunge, curl your arms up towards your shoulders, contracting your biceps.\n" +
+                "Return to starting position and switch legs." , "", "", null));
+        exercises.add(new ExerciseDTO("Step Up Single Leg Balance with Bicep Curl using Dumbbells", "This is an advanced exercise. This exercise combines a step up with a bicep curl.", "Place a box or bench in front of you.\n" +
+                "Place a dumbbell in each hand with palms facing up.\n" +
+                "Keep your back straight, your shoulders back and your abs drawn in.\n" +
+                "With one leg, step up on to the box and raise your other leg up (as if taking another step).\n" +
+                "At the top of the step, curl your arms up by bringing your biceps towards your shoulders.\n" +
+                "Return to the starting position and switch legs." , "", "", null));
+        exercises.add(new ExerciseDTO("Medicine Ball Biceps Curl on Stability Ball", "This exercise combines a new technology, Stability Ball, with a old piece of fitness equipment, the Medicine Ball.", "Sit on a Stability Ball with your feet firmly on the floor in front of you.\n" +
+                "Sit with your back straight, your shoulders back and your abs drawn in.\n" +
+                "Hold a Medicine Ball in one hand and curl it up bringing your forearm up to your bicep.\n" +
+                "Return to starting position and switch arms." , "", "", null));
+        exercises.add(new ExerciseDTO("Stork Stance Bicep Curl with Dumbbells", "This is an advanced exercise that requires excellent coordination and balance.", "Grasp a pair of dumbbells in each hand, palms facing up.\n" +
+                "Standing on one foot, extend your other foot back (see illustration) and extend your arms down so they are handing in front of your leg.\n" +
+                "While on one foot, curl your arms up contracting your biceps.\n" +
+                "Return to the starting position and switch legs." , "", "", null));
+        exercises.add(new ExerciseDTO("Biceps Curl V Sit on Dome with Dumbbells", "This exercise uses a Dome (or Bosu) as a seat forcing you to engage and contract your abs throughout the exercise. The name comes from having our body in the shape of a “V”.", "Grasp a dumbbell in each hand and sit on a dome.\n" +
+                "Keep your legs together and your knees bent.\n" +
+                "Draw in and hold your abs and keep your back straight.\n" +
+                "With you arms extended to your sides, curl and contract your biceps, bringing your forearms towards your shoulders.\n" +
+                "Slowly return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Ankle Circles", "This is the most simple of all exercises for the calves.", "Stand on one foot near a chair or wall for support.\n" +
+                "Lift your foot off the ground and draw circles clockwise in the air with your toes.\n" +
+                "Reverse the direction (counter-clockwise) as well as switch feet." , "", "", null));
+        exercises.add(new ExerciseDTO("Balance Board", "Your calves are stabilizing muscles for your legs, so this exercises uses a Balance Board or wobble board to force you to balance.", "Place a Balance Board on the floor.\n" +
+                "Step onto the board with both feet and try to balance yourself." , "", "", null));
 
         //##### page 23 #####
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
+        exercises.add(new ExerciseDTO("Seated Calf Raise with Barbell", "This version of a calves raise uses a block and a barbell.", "Place a block on the floor about one foot in front of a bench.\n" +
+                "Sit on the bench with a barbell across your upper thighs and the balls of your feet on the block.\n" +
+                "Slowly raise and lower your toes up as high as possible without lifting your foot off the block." , "", "", null));
+        exercises.add(new ExerciseDTO("Calves Press on Leg Machine", "This exercise uses a Leg Press Machine to work your calves. You can perform this exercise along with Leg Presses.", "Sit down on a Leg Press Machine and press the plate up as if you were performing a leg press.\n" +
+                "Slide your feet down so that the balls of your feet are pressing against the rack (with your heels hanging free).\n" +
+                "Keeping the handles locked, press up and flex your toes and then slowly bring your toes back towards your body.\n" +
+                "Perform theses movements slowly for maximum benefit." , "", "", null));
+        exercises.add(new ExerciseDTO("Calves Press on Leg Machine", "This exercise uses a Leg Press Machine to work your calves. You can perform this exercise along with Leg Presses.", "Sit down on a Leg Press Machine and press the plate up as if you were performing a leg press.\n" +
+                "Slide your feet down so that the balls of your feet are pressing against the rack (with your heels hanging free).\n" +
+                "Keeping the handles locked, press up and flex your toes and then slowly bring your toes back towards your body.\n" +
+                "Perform theses movements slowly for maximum benefit." , "", "", null));
+        exercises.add(new ExerciseDTO("Donkey Calf Raises", "This is an old school gym exercise which requires the assistance of another person. This is an advanced exercise and not recommended for beginners.", "Bend your waist and lean your arms against a weight rack or bench that is waist height.\n" +
+                "Have a partner sit on top of your lower back.\n" +
+                "Raise up on your toes leaning slightly forward.\n" +
+                "Pause at the top and then lower your heels to the floor." , "", "", null));
+        exercises.add(new ExerciseDTO("Seated One Leg Calf Raise with Dumbbell", "This version of a calf raise allows you to exercise each leg individually. This exercise is helpful to people who are rehabilitating from injury as it allows you flexibility with the weight.", "Place a block on the floor about one foot in front of a bench.\n" +
+                "Sit on the bench with a dumbbell across your upper thigh and the balls of one foot on the block.\n" +
+                "Slowly raise and lower your toe up as high as possible without lifting your foot off the block.\n" +
+                "Switch feet and repeat." , "", "", null));
+        exercises.add(new ExerciseDTO("Knee Circles", "This is a simple exercise and a great stretch.", "Stand with your feet a little closer than shoulder width apart.\n" +
+                "Keeping your arms across your chest or on your hips, move your knees in a circular motion, paying attention to keeping your feet flat on the floor and the movement in your ankles." , "", "", null));
+        exercises.add(new ExerciseDTO("Rocking Standing Calf Raise with Barbell", "This exercise uses a simple rocking motion to strengthen the calves.", "Stand with a bar across your shoulders.\n" +
+                "With your feet flat on the floor, lift your feet up and forward as if you are performing a calf raise.\n" +
+                "Then “rock” back onto your ankles so your toes are flexed and off the floor.\n" +
+                "Return to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Seated Calf Raise using Machine", "This is one of the simplest and most effective exercises for the calves.", "Sit at a calf raise machine.\n" +
+                "Put the balls of your feet on the footpad.\n" +
+                "Place your thighs under the leg pad above your knees.\n" +
+                "Unlock the bar and slowly raise your toes up as far as possible.\n" +
+                "Pause for a moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Smith Machine Reverse Calf Raises", "This is a unique exercise that works the tibialis anterior muscle, one of the muscles of the calves.", "Place a block or low box under the bar at a Smith Machine.\n" +
+                "Stand on the edge of the box with your toes hanging off.\n" +
+                "Place the bar across your shoulders and lean forward lifting your ankles off the box.\n" +
+                "Return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Standing Barbell Calf Raise", "This is standing version of a Calf Raise.", "Place a block or two free weight plates on the floor.\n" +
+                "Place a barbell across your back and step up so the balls of your feet are on the block.\n" +
+                "Slowly lift your heels up and then lower them back to the floor getting as much of a stretch as possible.\n" +
+                "Return to starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Standing Calf Raises using Machine", "This exercise uses a machine to allow for proper form.", "Stand with your toes on the footpad of the machine and adjust your shoulders under the upper pads.\n" +
+                "Raise up on the balls of your feet, lifting your heels off the pad.\n" +
+                "Hold for a moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Standing Calf Raise with Dumbbell", "This version of a Calf Raise uses dumbbells.", "Place a block or two free weight plates on the floor.\n" +
+                "Grasp a dumbbell in each hand and step up so the balls of your feet are on the block.\n" +
+                "Slowly lift your heels up and then lower them back to the floor getting as much of a stretch as possible.\n" +
+                "Lower your heels and bend your ankles to stretch your calves.\n" +
+                "Return to starting position." , "", "", null));
 
         //##### page 24 #####
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
+        exercises.add(new ExerciseDTO("Air Bike", "This exercise works your abs by raising your arms to meet your legs. The movements are similar to riding a bike.", "Lie on your back on a mat.\n" +
+                "Place your hands on either side of your head (over your ears).\n" +
+                "Raise your legs up, bending your knees and keeping your calves parallel to the floor.\n" +
+                "Bring your left arm elbow up to meet your right knee, as if riding a bike.\n" +
+                "Repeat with your right elbow and left knee.\n" +
+                "Continue alternating sides." , "", "", null));
+        exercises.add(new ExerciseDTO("Ab Rollout with Barbell", "This exercise works the abs and lower back and is the proper version of an “ab roller”.", "Place a barbell on the floor at your feet.\n" +
+                "Bending at the waist, grip the barbell with a shoulder with overhand grip.\n" +
+                "With a slow controlled motion, roll the bar out so that your back is straight.\n" +
+                "Keep your arms straight throughout the exercise.\n" +
+                "Roll back up raising your hips and butt as you return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Ab Rollout on Knees with Barbell", "This exercise works the abs and lower back and is the proper version of an “ab roller”. This version is performed on your knees.", "Place a barbell on the floor in front of you.\n" +
+                "Start by kneeling in front of the bar, grip the barbell with a shoulder with overhand grip.\n" +
+                "With a slow controlled motion, roll the bar out so that your back is straight, bend your knees and keep your feet off the floor.\n" +
+                "Keep your arms straight throughout the exercise.\n" +
+                "Roll back up bring the bar under your shoulders and return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Bent Knee Hip Raise", "This is a good exercise core muscle development.", "Lie on your back with your arms outstretched to your sides.\n" +
+                "Bend your knees at a 60 degree angle and hold your feet up just off the floor.\n" +
+                "Keeping your back and arms down, raise your hips up and off the floor so that your knees are over your chest.\n" +
+                "Contract your abs for a moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Seated Ab Crunch with Cable", "This exercise uses the weight of a cable machine to assist in a crunch.", "Attach a rope to a high cable pulley.\n" +
+                "Place a bench in front of cable weight stack.\n" +
+                "Grasp the rope over your shoulders and sit with your back towards the stack.\n" +
+                "With your feet firmly on the floor and keeping your hips steady, flex at the waist bringing your elbows towards your knees.\n" +
+                "Return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Cross Body Crunch", "This version of the crunch works both the upper and lower portion of the abs.", "Lie on your back and bring your knees up to a 60 degree angle, keep your feet flat on the floor.\n" +
+                "Place your hands on either side of your head (over your ears).\n" +
+                "Curl up raising your right elbow and your left knee so that they touch over your chest.\n" +
+                "Return to the starting position and repeat with alternate arms and legs." , "", "", null));
+        exercises.add(new ExerciseDTO("Crunches with Legs on Stability Ball", "This exercise uses a Stability Ball as the base during your crunches.", "Lie on your back and place your feet up on a stability ball.\n" +
+                "Place your hands across your chest, or on either side of your head.\n" +
+                "Keeping the small of your back on the floor, raise your head, shoulders and chest up and off the floor.\n" +
+                "Pause for a moment contracting your abs and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Crunches", "This is the most common abdominal exercise and possibly the most often improperly performed. Here is how to perform it correctly.", "Lie on your back with your feet up on a bench and your knees bent at a 90 degree angle.\n" +
+                "Place your hands across your chest or on either side of your head (over your ears).\n" +
+                "Raise your head, shoulders and chest off the floor and towards your knees, crunching your abs.\n" +
+                "Hold the position for a moment and then lower to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Decline Crunch", "Using a decline crunch allows you keep your legs steady and isolate all of the abdominal muscles.", "Lie on a decline bench face up.\n" +
+                "Place your feet securely under the pads.\n" +
+                "Place your hands either across your chest or on either side of your head (over your ears).\n" +
+                "Lay fully back and then rise slowly crunching your abs.\n" +
+                "Pause for a moment and then return to the starting position." , "", "", null));
+        exercises.add(new ExerciseDTO("Decline Oblique Crunch", "This version of a decline crunch isolates the oblique (side) muscles of the abs", "Lie on a decline bench face up.\n" +
+                "Place your feet securely under the pads.\n" +
+                "Place your hands either across your chest or on either side of your head (over your ears).\n" +
+                "Raise your shoulders and chest up keeping your back straight and bring your left elbow to your right knee, slowly crunching your abs.\n" +
+                "Pause for a moment and then return to the starting position.\n" +
+                "Lay fully back and repeat with your right elbow to your left knee." , "", "", null));
+        exercises.add(new ExerciseDTO("Side Bend with Dumbbell", "This exercise works the obliques, the muscles on the sides of your abs", "Stand with your feet shoulder width apart, your knees slightly bent and your abs drawn in.\n" +
+                "Grasp a dumbbell in one hand and standing straight upright, bend at the waist as far as possible to one side.\n" +
+                "Slowly return back up to the staring position.\n" +
+                "Switch the dumbbell to your other hand and repeat the exercise." , "", "", null));
+        exercises.add(new ExerciseDTO("Stability Ball Abdominal Crunch", "This crunch uses a Stability Ball. The ball allows you a better range of movement because it adapts better to your spine.", "Sit on top of an exercise or stability ball with your feet placed firmly on the floor for support.\n" +
+                "Position yourself so that your lower back is centered on the middle of the ball.\n" +
+                "Lie back and bring your hands across your chest, or on either side of your head (over your ears).\n" +
+                "Raise your head, chest and shoulders up crunching your abs as you sit upright.\n" +
+                "Pause for a moment and then lower yourself to the starting position." , "", "", null));
 
         //##### page 25 #####
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
-        exercises.add(new ExerciseDTO("", "", "" , "", "", null));
+        exercises.add(new ExerciseDTO("Exercise Ball Pull In", "This exercise uses a ball to isolate and work the lower abdominal muscles.", "Lay down as if you were performing a pushup.\n" +
+                "Place your feet and shins over an exercise or stability ball.\n" +
+                "Keeping your back straight and supporting your weight on your hands, pull your knees towards your chest, so the ball rolls forward under your ankles.\n" +
+                "Crunch your abs and then roll the ball back to starting position straighten your legs." , "", "", null));
+        exercises.add(new ExerciseDTO("Bent Over Row with Barbell", "This exercise focuses on the middle back.", "Place your feet shoulder width apart.\n" +
+                "Bend over the bar so your back is flat and parallel to the floor.\n" +
+                "Grasp the bar a bit wider than shoulder width apart with an overhand grip.\n" +
+                "Hold the bar at arms length, this is starting position.\n" +
+                "Slowly raise the bar to the lower part of your chest.\n" +
+                "Pause for a moment than return to starting position.\n" +
+                "Note: Keep your head up and your back straight while perform" , "", "", null));
+
 
 //        exercises.add(new ExerciseDTO("", "", null));
 
