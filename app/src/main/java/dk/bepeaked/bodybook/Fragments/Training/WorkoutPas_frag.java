@@ -35,10 +35,10 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
     //WorkoutDAO wdao = new WorkoutDAO();
 
     WorkoutController wc = new WorkoutController();
-    //    String[] workoutPases = {"Mandag", "Tirsdag", "Torsdag", "Lørdag", "Søndag" , "Nicki"};
+    String[] workoutPases = {"Mandag", "Tirsdag", "Torsdag", "Lørdag", "Søndag" , "Nicki"};
     String nameTrainingplan;
     RealmList<WorkoutPasDTO> realmListString = new RealmList<WorkoutPasDTO>();
-    ArrayList<String> workoutPases = new ArrayList<String>();
+    //ArrayList<String> workoutPases = new ArrayList<String>();
 
     public WorkoutPas_frag() {
         // Required empty public constructor
@@ -56,12 +56,12 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
 //        wc.addNewPasToPlan("Nicki", "Hobo");
 //        wc.addNewPasToPlan("Nicki", "Tiiiirsdag");
 
-        realmListString = wc.getPasses("Nicki");
+//        realmListString = wc.getPasses("Nicki");
 
-        for (int i = 0; i < realmListString.size(); i++) {
-            workoutPases.add(realmListString.get(i).getName());
-            Log.d("Udskriv", "onCreateView: " + realmListString.get(i).getName());
-        }
+//        for (int i = 0; i < realmListString.size(); i++) {
+//            workoutPases.add(realmListString.get(i).getName());
+//            Log.d("Udskriv", "onCreateView: " + realmListString.get(i).getName());
+//        }
 
 
         /*try {
