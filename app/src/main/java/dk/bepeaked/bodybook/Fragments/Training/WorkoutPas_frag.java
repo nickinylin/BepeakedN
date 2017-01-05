@@ -52,9 +52,9 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
 
 
 
-        wc.addPlan("Nicki");
-        wc.addNewPasToPlan("Nicki", "Hobo");
-        wc.addNewPasToPlan("Nicki", "Tiiiirsdag");
+//        wc.addPlan("Nicki");
+//        wc.addNewPasToPlan("Nicki", "Hobo");
+//        wc.addNewPasToPlan("Nicki", "Tiiiirsdag");
 
         realmListString = wc.getPasses("Nicki");
 
@@ -106,7 +106,12 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
         } else if (item.getItemId() == R.id.workoutMenu_change_plan) {
             // TODO Hvad der skal ske for at skifte aktuel træningsplan
         } else if (item.getItemId() == R.id.workoutMenu_add_workoutplan) {
-            // TODO Hvad der skal ske for at tilføje en ny træningsplan
+            AddPlan_frag fragment = new AddPlan_frag();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.listView_fragment_container, fragment).addToBackStack("hej");
+//        fragment.setArguments(i);
+            fragmentTransaction.commit();
+
         }
         return super.onOptionsItemSelected(item);
     }
