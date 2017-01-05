@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by Nicki on 14/11/16.
@@ -11,6 +12,7 @@ import io.realm.RealmObject;
 
 public class WorkoutPasDTO extends RealmObject {
 
+    @PrimaryKey
     String name;
     RealmList<ExerciseDTO> exercises;
 

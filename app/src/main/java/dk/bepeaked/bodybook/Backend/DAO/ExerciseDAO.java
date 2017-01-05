@@ -37,11 +37,25 @@ public class ExerciseDAO {
         return exercisePlans;
     }
 
+    /**
+     *
+     * @param oldname
+     * @param newExerciseDTO
+     */
     public void updateExercise(String oldname, ExerciseDTO newExerciseDTO){
-        ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("Name", oldname).findFirst();
+        ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("name", oldname).findFirst();
 
         realm.beginTransaction();
         realmExercise = newExerciseDTO;
+        realm.commitTransaction();
+    }
+
+    public void deleteExercise(String name){
+
+        ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("name", name).findFirst();
+
+        realm.beginTransaction();
+        realmExercise.deleteFromRealm();
         realm.commitTransaction();
     }
 }

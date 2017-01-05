@@ -29,11 +29,19 @@ public class WorkoutPasDAO {
 
     public void updatePas(String oldname, WorkoutPasDTO newWorkoutPassDTO){
 
-        WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("Name", oldname).findFirst();
+        WorkoutPasDTO realmPas = realm.where(WorkoutPasDTO.class).equalTo("Name", oldname).findFirst();
 
         realm.commitTransaction();
-        pas = newWorkoutPassDTO;
+        realmPas = newWorkoutPassDTO;
         realm.commitTransaction();
     }
 
+    public void deletePas(String name){
+
+        WorkoutPasDTO realmPas = realm.where(WorkoutPasDTO.class).equalTo("name", name).findFirst();
+
+        realm.beginTransaction();
+        realmPas.deleteFromRealm();
+        realm.commitTransaction();
+    }
 }

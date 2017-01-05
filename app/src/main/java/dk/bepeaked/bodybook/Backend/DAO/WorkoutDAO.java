@@ -28,11 +28,19 @@ public class WorkoutDAO {
 
     public void updatePlan(String oldname, WorkoutDTO newWorkoutDTO){
 
-        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("Name", oldname).findFirst();
+        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", oldname).findFirst();
 
         realm.commitTransaction();
         plan = newWorkoutDTO;
         realm.commitTransaction();
     }
 
+    public void deletePlan(String name){
+
+        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", name).findFirst();
+
+        realm.beginTransaction();
+        plan.deleteFromRealm();
+        realm.commitTransaction();
+    }
 }

@@ -47,13 +47,13 @@ public class SetDTO extends RealmObject {
         this.reps = reps;
     }
 
-//    public Date getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(Date date) {
-//        this.date = date;
-//    }
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public double getRm() {
         return rm;
