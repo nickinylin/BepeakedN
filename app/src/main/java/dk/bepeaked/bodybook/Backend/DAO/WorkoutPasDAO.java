@@ -28,12 +28,12 @@ public class WorkoutPasDAO {
         return workoutPasses;
     }
 
-    public void updatePas(String oldname, WorkoutPasDTO newWorkoutPassDTO){
+    public void updatePasName(String oldname, String newName){
 
         WorkoutPasDTO realmPas = realm.where(WorkoutPasDTO.class).equalTo("Name", oldname).findFirst();
 
         realm.commitTransaction();
-        realmPas = newWorkoutPassDTO;
+        realmPas.setName(newName);
         realm.commitTransaction();
     }
 
@@ -44,5 +44,22 @@ public class WorkoutPasDAO {
         realm.beginTransaction();
         realmPas.deleteFromRealm();
         realm.commitTransaction();
+    }
+
+     public void addNewExercise(String pasName, ExerciseDTO newExercise){
+
+         WorkoutPasDTO realmPas = realm.where(WorkoutPasDTO.class).equalTo("name", pasName).findFirst();
+
+         realm.beginTransaction();
+         realmPas.getExercises().add(newExercise);
+         realm.commitTransaction();
+     }
+
+    public void deleteExercise(String pasName, ExerciseDTO exerciseToBeDeleted){
+
+         WorkoutPasDTO realmPas = realm.where(WorkoutPasDTO.class).equalTo("name", pasName).findFirst();
+
+        realm.beginTransaction();
+        realmPas.getExercises().remove(exerciseToBeDeleted);
     }
 }

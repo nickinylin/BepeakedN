@@ -27,10 +27,6 @@ public class WorkoutPasDTO extends RealmObject {
         return exercises;
     }
 
-    public void setExercises(RealmList<ExerciseDTO> exercises) {
-        this.exercises = exercises;
-    }
-
     public String getName(){
         return this.name;
     }

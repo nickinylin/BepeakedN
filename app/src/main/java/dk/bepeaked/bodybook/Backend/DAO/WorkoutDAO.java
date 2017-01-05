@@ -33,12 +33,12 @@ public class WorkoutDAO {
         return workoutPlans;
     }
 
-    public void updatePlan(String oldname, WorkoutDTO newWorkoutDTO){
+    public void updatePlanName(String oldname, String newname){
 
         WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", oldname).findFirst();
 
         realm.commitTransaction();
-        plan = newWorkoutDTO;
+        plan.setName(newname);
         realm.commitTransaction();
     }
 
@@ -51,12 +51,21 @@ public class WorkoutDAO {
         realm.commitTransaction();
     }
 
-    public void addWorkoutPas(String planname, WorkoutPasDTO newWorkoutPass){
+    public void addWorkoutPas(String planName, WorkoutPasDTO newWorkoutPass){
 
-        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", planname).findFirst();
+        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
 
         realm.beginTransaction();
         plan.getWorkouts().add(newWorkoutPass);
         realm.commitTransaction();
+    }
+
+    public void removeWorkoutPas(String planName, WorkoutPasDTO pasToBeRemoved){
+
+        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
+
+        realm.beginTransaction();
+        plan.getWorkouts().remove(pasToBeRemoved);
+        realm.beginTransaction();
     }
 }
