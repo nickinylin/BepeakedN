@@ -18,15 +18,26 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
+import dk.bepeaked.bodybook.Backend.DTO.LoadDataExercise;
 import dk.bepeaked.bodybook.R;
+import io.realm.RealmList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Exercise_frag extends Fragment implements AdapterView.OnItemClickListener{
 
-    String[] exercises = {"Benchpress", "Squat", "Deadlift", "Pullups", "Rows"};
+
     String nameWorkoutPas;
+//    RealmList<String> realmExercise = new RealmList<String>();
+    RealmList<ExerciseDTO> realmExercise2 = new RealmList<ExerciseDTO>();
+//    String[] exercises = {"Benchpress", "Squat", "Deadlift", "Pullups", "Rows"};
+    ArrayList<String> hej = new ArrayList<String>();
+    LoadDataExercise ld = new LoadDataExercise();
+
 
     public Exercise_frag() {
         // Required empty public constructor
@@ -39,8 +50,15 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
         View view = inflater.inflate(R.layout.listview, container, false);
 
+        realmExercise2 = ld.getData();
+
+        for (int i = 0; i < realmExercise2.size(); i++) {
+            hej.add(realmExercise2.get(i).getName());
+            Log.d("Nicki", "I =" + i);
+        }
+
         getActivity().setTitle("Træningspas navn");
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, exercises);
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, hej);
 
         ListView listView = (ListView) view.findViewById(R.id.ListView_id);
         listView.setOnItemClickListener(this);
@@ -49,6 +67,10 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         Log.d("workoutpass", "BUNDLE NICKI 3: " + nameWorkoutPas);
 
         setHasOptionsMenu(true);
+
+//        if (!getArguments().isEmpty()) {
+//            nameWorkoutPas = getArguments().getString("Træningspas");
+//        }
 
         return view;
     }
@@ -73,16 +95,16 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getActivity(), nameWorkoutPas ,Toast.LENGTH_LONG).show();
+//        Toast.makeText(getActivity(), position ,Toast.LENGTH_LONG).show();
 
 
-        Bundle i = new Bundle();
-        i.putString("Træningspas", exercises[position]);
+//        Bundle i = new Bundle();
+//        i.putString("Træningspas", exercises[position]);
 
         ChosenExercise_frag fragment = new ChosenExercise_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
-        fragment.setArguments(i);
+//        fragment.setArguments(i);
         fragmentTransaction.commit();
 
     }

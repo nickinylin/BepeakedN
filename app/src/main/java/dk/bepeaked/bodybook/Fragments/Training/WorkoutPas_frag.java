@@ -29,7 +29,7 @@ import dk.bepeaked.bodybook.R;
 public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClickListener {
     //WorkoutDAO wdao = new WorkoutDAO();
 
-    String[] workoutPases = {"Mandag", "Tirsdag", "Torsdag", "Lørdag", "Søndag"};
+    String[] workoutPases = {"Mandag", "Tirsdag", "Torsdag", "Lørdag", "Søndag" , "Nicki"};
     String nameTrainingplan;
 
     public WorkoutPas_frag() {
@@ -41,7 +41,6 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listview, container, false);
-        System.out.println("kommer vi hertil?");
 
         /*try {
             wdao.createPlan("SebbyG2", getContext());
