@@ -15,12 +15,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DAO.WorkoutDAO;
+import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.R;
+import io.realm.RealmList;
 
 
 /**
@@ -29,8 +34,11 @@ import dk.bepeaked.bodybook.R;
 public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClickListener {
     //WorkoutDAO wdao = new WorkoutDAO();
 
-    String[] workoutPases = {"Mandag", "Tirsdag", "Torsdag", "Lørdag", "Søndag" , "Nicki"};
+    WorkoutController wc = new WorkoutController();
+    //    String[] workoutPases = {"Mandag", "Tirsdag", "Torsdag", "Lørdag", "Søndag" , "Nicki"};
     String nameTrainingplan;
+    RealmList<WorkoutPasDTO> realmListString = new RealmList<WorkoutPasDTO>();
+    ArrayList<String> workoutPases = new ArrayList<String>();
 
     public WorkoutPas_frag() {
         // Required empty public constructor
@@ -42,6 +50,17 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listview, container, false);
 
+        wc.addPlan("Nicki");
+        wc.addNewPasToPlan("Nicki", "Hobo");
+        wc.addNewPasToPlan("Nicki", "Tiiiirsdag");
+
+        realmListString = wc.getPasses("Nicki");
+
+        for (int i = 0; i < realmListString.size(); i++) {
+            workoutPases.add(realmListString.get(i).getName());
+        }
+
+
         /*try {
             wdao.createPlan("SebbyG2", getContext());
         } catch (JSONException e) {
@@ -49,7 +68,7 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-         getActivity().setTitle("Træningsplan navn");
+        getActivity().setTitle("Træningsplan navn");
 
 //        if (!getArguments().isEmpty()) {
 //            nameTrainingplan = getArguments().getString("Trainingplan");
@@ -93,13 +112,13 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //        Toast.makeText(getActivity(), nameTrainingplan ,Toast.LENGTH_LONG).show();
 
-        Bundle i = new Bundle();
-        i.putString("Træningspas", workoutPases[position]);
+//        Bundle i = new Bundle();
+//        i.putString("Træningspas", workoutPases[position]);
 
         Exercise_frag fragment = new Exercise_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
-        fragment.setArguments(i);
+//        fragment.setArguments(i);
         fragmentTransaction.commit();
 
     }

@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -100,6 +101,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
         dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
         exercises = dto.getSet();
+
 
         ListView listView = (ListView) view.findViewById(R.id.listView_exercise);
 

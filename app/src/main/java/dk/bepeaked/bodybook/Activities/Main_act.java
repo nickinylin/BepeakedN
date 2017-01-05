@@ -21,7 +21,7 @@ import dk.bepeaked.bodybook.Fragments.Settings.Settings_frag;
 import dk.bepeaked.bodybook.Fragments.Training.WorkoutPas_frag;
 import dk.bepeaked.bodybook.R;
 import io.fabric.sdk.android.Fabric;
-
+import io.realm.Realm;
 
 
 public class Main_act extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,6 +36,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Realm.init(this);
 //        if (!EMULATOR) {
             Fabric.with(this, new Crashlytics());
 //        }

@@ -14,6 +14,7 @@ import io.realm.RealmResults;
 public class WorkoutPasDAO {
 
     Realm realm = Realm.getDefaultInstance();
+
     public void newPas(WorkoutPasDTO workoutPasDTO){
         realm.beginTransaction();
         WorkoutPasDTO realmPas = realm.copyToRealm(workoutPasDTO);

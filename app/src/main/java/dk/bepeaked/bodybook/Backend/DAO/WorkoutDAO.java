@@ -5,12 +5,14 @@ import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
+import io.realm.internal.Context;
 
 /**
  * Created by sebho on 14-11-2016.
  */
 
 public class WorkoutDAO {
+
 
     Realm realm = Realm.getDefaultInstance();
     public void newPlan(WorkoutDTO workoutDTO){
