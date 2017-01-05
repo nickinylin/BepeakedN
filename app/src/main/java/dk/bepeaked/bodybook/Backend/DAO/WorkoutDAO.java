@@ -1,5 +1,7 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
+import android.util.Log;
+
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import io.realm.Realm;
@@ -13,6 +15,9 @@ import io.realm.internal.Context;
 
 public class WorkoutDAO {
 
+    public WorkoutDAO (){
+        Log.d("Nicki", "path: " + realm.getPath());
+    }
 
     Realm realm = Realm.getDefaultInstance();
     public void newPlan(WorkoutDTO workoutDTO){
