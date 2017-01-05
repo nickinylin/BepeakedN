@@ -110,7 +110,7 @@ public class WorkoutController {
         workoutPasDTO = getSpecificPas(planName, pasName);
         workoutDTO = getSpecificPlan(planName);
 //        workoutDTO.addWorkoutPas(workoutPasDTO);
-        workoutDAO.updatePlan(planName, workoutDTO);
+//        workoutDAO.updatePlan(planName, workoutDTO);
     }
 
     public void addExerciseToPas(String exerciseName) {
