@@ -102,14 +102,14 @@ public class WorkoutController {
         workoutPasDTO = new WorkoutPasDTO(pasName, new RealmList<ExerciseDTO>());
         workoutPasDAO.newPas(workoutPasDTO);
         workoutDTO = getSpecificPlan(planName);
-        workoutDTO.addWorkoutPas(workoutPasDTO);
-        workoutDAO.updatePlan(planName, workoutDTO);
+        workoutDAO.addWorkoutPas(planName, workoutPasDTO);
+//        workoutDAO.updatePlan(planName, workoutDTO);
     }
 
     public void addPasToPlan(String planName, String pasName) {
         workoutPasDTO = getSpecificPas(planName, pasName);
         workoutDTO = getSpecificPlan(planName);
-        workoutDTO.addWorkoutPas(workoutPasDTO);
+//        workoutDTO.addWorkoutPas(workoutPasDTO);
         workoutDAO.updatePlan(planName, workoutDTO);
     }
 

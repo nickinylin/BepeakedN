@@ -3,6 +3,7 @@ package dk.bepeaked.bodybook.Backend.DTO;
 import java.security.PublicKey;
 import java.util.ArrayList;
 
+import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -26,10 +27,6 @@ public class WorkoutDTO extends RealmObject {
 
     public RealmList<WorkoutPasDTO> getWorkouts() {
         return workoutPas;
-    }
-
-    public void addWorkoutPas(WorkoutPasDTO newWorkoutPass){
-        this.workoutPas.add(newWorkoutPass);
     }
 
     public String getName(){

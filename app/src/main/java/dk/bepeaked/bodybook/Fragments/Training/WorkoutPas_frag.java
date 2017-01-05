@@ -50,14 +50,15 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listview, container, false);
 
-        wc.addPlan("Nicki");
-        wc.addNewPasToPlan("Nicki", "Hobo");
-        wc.addNewPasToPlan("Nicki", "Tiiiirsdag");
+//        wc.addPlan("Nicki");
+//        wc.addNewPasToPlan("Nicki", "Hobo");
+//        wc.addNewPasToPlan("Nicki", "Tiiiirsdag");
 
         realmListString = wc.getPasses("Nicki");
 
         for (int i = 0; i < realmListString.size(); i++) {
             workoutPases.add(realmListString.get(i).getName());
+            Log.d("Udskriv", "onCreateView: " + realmListString.get(i).getName());
         }
 
 
