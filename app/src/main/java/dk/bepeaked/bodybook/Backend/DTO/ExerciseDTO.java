@@ -1,5 +1,7 @@
 package dk.bepeaked.bodybook.Backend.DTO;
 
+import java.util.ArrayList;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -77,6 +79,4 @@ public class ExerciseDTO extends RealmObject{
     public void setImagePath2(String imagePath) {
         this.imagePath2 = imagePath;
     }
-
-
 }

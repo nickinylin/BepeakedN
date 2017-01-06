@@ -1,190 +1,221 @@
 {
-  "Morgenmad": [
+  "workout": [
     {
-      "name": "Gør dig peaked!",
-      "image": "R.drawable.dgdp.PNG",
-      "desk_short": "Havregryn og knækbrød.",
-      "desk_full": "Dejlig havregryn med proteinpulver og mælk. Knækbrød med dejlig peanutbutter på.",
-      "Ingredients": [
+      "plan": [
         {
-          "name": "Havregryn",
-          "stats": "39,5,3,22,139"
-        },
-        {
-          "name": "Proteinpulver",
-          "stats": "39,30,3,2,154"
-        },
-        {
-          "name": "Mælk",
-          "stats": "101,4,1,5,38"
-        },
-        {
-          "name": "Knækbrød",
-          "stats": "5,0,0,3,16"
-        },
-        {
-          "name": "Peanut butter",
-          "stats": "15,3,8,3,97"
-        }
-      ]
-    },
-    {
-      "name": "Iceland morning",
-      "image": "R.drawable.dgdp.PNG",
-      "desk_short": "Skyr m.m.",
-      "desk_full": "Dejlig skyr med müsli, valnødder og proteinpulver.",
-      "Ingredients": [
-        {
-          "name": "Skyr",
-          "stats": "178,17,0,9,112"
-        },
-        {
-          "name": "Müsli",
-          "stats": "29,3,2,18,108"
-        },
-        {
-          "name": "Valnødder",
-          "stats": "17,3,11,1,116"
-        },
-        {
-          "name": "Proteingpulver",
-          "stats": "26,19,2,3,107"
-        }
-      ]
-    },
-    {
-      "name": "Proteinsmoothie og Æg",
-      "image": "",
-      "desk_short": "Smoothie med bær. ÆG",
-      "desk_full": "Dejlig smoothie med havregryn og dejlige æg",
-      "Ingredients": [
-        {
-          "name": "Proteinpulver",
-          "stats": "36,26,3,4,148"
-        },
-        {
-          "name": "Havregryn",
-          "stats": "42,5,3,29,155"
-        },
-        {
-          "name": "Frosne bær",
-          "stats": "48,0,0,4,17"
-        },
-        {
-          "name": "Æg",
-          "stats": "88,11,9,1,125"
+          "name": "primary",
+          "pas": [
+            {
+              "name": "mandag",
+              "exercises": [
+                {
+                  "name" : "Benchpress",
+                  "set" : 3,
+                  "reps" : 8
+                },
+                {
+                  "name" : "Dumbell Curl",
+                  "set" : 4,
+                  "reps" : 10
+                }
+              ]
+            }
+          ]
         }
       ]
     }
   ],
-  "Frokost": [
+  "dish": [
     {
-      "name": "Asiatisk Kylling",
-      "image": "",
-      "desk_short": "Kyllingeret.",
-      "desk_full": "Dejlig velsmagende asiatisk kyllingeret",
-      "Ingredients": [
+      "Morgenmad": [
         {
-          "name": "Kylling brystfillet, 1.5%",
-          "stats": "168,35,3,2,165"
+          "name": "Gør dig peaked!",
+          "image": "R.drawable.dgdp.PNG",
+          "desk_short": "Havregryn og knækbrød.",
+          "desk_full": "Dejlig havregryn med proteinpulver og mælk. Knækbrød med dejlig peanutbutter på.",
+          "Ingredients": [
+            {
+              "name": "Havregryn",
+              "stats": "39,5,3,22,139"
+            },
+            {
+              "name": "Proteinpulver",
+              "stats": "39,30,3,2,154"
+            },
+            {
+              "name": "Mælk",
+              "stats": "101,4,1,5,38"
+            },
+            {
+              "name": "Knækbrød",
+              "stats": "5,0,0,3,16"
+            },
+            {
+              "name": "Peanut butter",
+              "stats": "15,3,8,3,97"
+            }
+          ]
         },
         {
-          "name": "Kokusmælk light",
-          "stats": "76,1,5,3,56"
+          "name": "Iceland morning",
+          "image": "R.drawable.dgdp.PNG",
+          "desk_short": "Skyr m.m.",
+          "desk_full": "Dejlig skyr med müsli, valnødder og proteinpulver.",
+          "Ingredients": [
+            {
+              "name": "Skyr",
+              "stats": "178,17,0,9,112"
+            },
+            {
+              "name": "Müsli",
+              "stats": "29,3,2,18,108"
+            },
+            {
+              "name": "Valnødder",
+              "stats": "17,3,11,1,116"
+            },
+            {
+              "name": "Proteingpulver",
+              "stats": "26,19,2,3,107"
+            }
+          ]
         },
         {
-          "name": "Peanutbutter",
-          "stats": "8,2,4,1,46"
-        },
-        {
-          "name": "Ris",
-          "stats": "37,3,0,28,129"
-        },
-        {
-          "name": "Grøntsager",
-          "stats": "115,2,1,3,28"
-        },
-        {
-          "name": "Olie",
-          "stats": "2,0,2,0,20"
+          "name": "Proteinsmoothie og Æg",
+          "image": "",
+          "desk_short": "Smoothie med bær. ÆG",
+          "desk_full": "Dejlig smoothie med havregryn og dejlige æg",
+          "Ingredients": [
+            {
+              "name": "Proteinpulver",
+              "stats": "36,26,3,4,148"
+            },
+            {
+              "name": "Havregryn",
+              "stats": "42,5,3,29,155"
+            },
+            {
+              "name": "Frosne bær",
+              "stats": "48,0,0,4,17"
+            },
+            {
+              "name": "Æg",
+              "stats": "88,11,9,1,125"
+            }
+          ]
         }
-      ]
-    },
-    {
-      "name": "Chili Con Carne",
-      "image": "",
-      "desk_short": "Chili med kød.",
-      "desk_full": "Hakket oksekød, bønner og masser af chili",
-      "Ingredients": [
+      ],
+      "Frokost": [
         {
-          "name": "Hakket Oksekød 3-6%",
-          "stats": "124,26,6,0,157"
+          "name": "Asiatisk Kylling",
+          "image": "",
+          "desk_short": "Kyllingeret.",
+          "desk_full": "Dejlig velsmagende asiatisk kyllingeret",
+          "Ingredients": [
+            {
+              "name": "Kylling brystfillet, 1.5%",
+              "stats": "168,35,3,2,165"
+            },
+            {
+              "name": "Kokusmælk light",
+              "stats": "76,1,5,3,56"
+            },
+            {
+              "name": "Peanutbutter",
+              "stats": "8,2,4,1,46"
+            },
+            {
+              "name": "Ris",
+              "stats": "37,3,0,28,129"
+            },
+            {
+              "name": "Grøntsager",
+              "stats": "115,2,1,3,28"
+            },
+            {
+              "name": "Olie",
+              "stats": "2,0,2,0,20"
+            }
+          ]
         },
         {
-          "name": "Kidney Bønner",
-          "stats": "165,14,0,14,116"
-        },
+          "name": "Chili Con Carne",
+          "image": "",
+          "desk_short": "Chili med kød.",
+          "desk_full": "Hakket oksekød, bønner og masser af chili",
+          "Ingredients": [
+            {
+              "name": "Hakket Oksekød 3-6%",
+              "stats": "124,26,6,0,157"
+            },
+            {
+              "name": "Kidney Bønner",
+              "stats": "165,14,0,14,116"
+            },
+            {
+              "name": "Hakkede Tomater",
+              "stats": "151,2,2,5,30"
+            },
+            {
+              "name": "Ris",
+              "stats": "17,1,0,13,60"
+            },
+            {
+              "name": "Løg",
+              "stats": "79,1,0,8,32"
+            },
+            {
+              "name": "Olie",
+              "stats": "6,0,6,0,49"
+            }
+          ]
+        }
+      ],
+      "Aftensmad": [
         {
-          "name": "Hakkede Tomater",
-          "stats": "151,2,2,5,30"
-        },
+          "name": "Røræg med tun og grøntsager",
+          "image": "",
+          "desk_short": "Tun og æg, det er godt for maven.",
+          "desk_full": "Man skal huske at få fisk hver dag. Æg er også godt. Grøntsager er også godt.",
+          "Ingredients": [
+            {
+              "name": "Tun i vand",
+              "stats": "150,38,1,0,168"
+            },
+            {
+              "name": "Æggehvider",
+              "stats": "96,10,0,1,47"
+            },
+            {
+              "name": "Hvidløg",
+              "stats": "2,0,0,1,3"
+            }
+          ]
+        }
+      ],
+      "Snack": [
         {
-          "name": "Ris",
-          "stats": "17,1,0,13,60"
-        },
-        {
-          "name": "Løg",
-          "stats": "79,1,0,8,32"
-        },
-        {
-          "name": "Olie",
-          "stats": "6,0,6,0,49"
+          "name": "Shake, Fruit & Nuts",
+          "image": "",
+          "desk_short": "Whey proteinpulver fordi, det er bedre en bare proteinpulver.",
+          "desk_full": "Banan er godt for knoglerne og træning.",
+          "Ingredients": [
+            {
+              "name": "Whey protein pulver",
+              "stats": "28,20,2,3,116"
+            },
+            {
+              "name": "Banan",
+              "stats": "41,1,0,8,39"
+            },
+            {
+              "name": "Mandler",
+              "stats": "12,3,5,4,67"
+            }
+          ]
         }
       ]
     }
-  ],
-  "Aftensmad": [
-    {
-      "name": "Røræg med tun og grøntsager",
-      "image": "",
-      "desk_short": "Tun og æg, det er godt for maven.",
-      "desk_full": "Man skal huske at få fisk hver dag. Æg er også godt. Grøntsager er også godt.",
-      "Ingredients": [
-        {
-          "name": "Tun i vand",
-          "stats": "150,38,1,0,168"
-        },
-        {
-          "name": "Æggehvider",
-          "stats": "96,10,0,1,47"
-        },
-        {
-          "name": "Hvidløg",
-          "stats": "2,0,0,1,3"
-        }
-      ]
-    }
-  ],
-  "Snack": [
-    {
-      "name": "Shake, Fruit & Nuts",
-      "image": "",
-      "desk_short": "Whey proteinpulver fordi, det er bedre en bare proteinpulver.",
-      "desk_full": "Banan er godt for knoglerne og træning.",
-      "Ingredients": [
-        {
-          "name": "Whey protein pulver",
-          "stats": "28,20,2,3,116"
-        },
-        {
-          "name": "Banan",
-          "stats": "41,1,0,8,39"
-        },
-        {
-          "name": "Mandler",
-          "stats": "12,3,5,4,67"
-        }
-      ]
-    }
+
   ]
 }

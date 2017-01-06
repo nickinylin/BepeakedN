@@ -1,6 +1,7 @@
 package dk.bepeaked.bodybook.Backend.DTO;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -15,6 +16,7 @@ public class WorkoutPasDTO extends RealmObject {
     @PrimaryKey
     String name;
     RealmList<ExerciseDTO> exercises;
+    HashMap<String, int[]> hm = new HashMap<>();
 
     public WorkoutPasDTO() {}
 
@@ -35,5 +37,11 @@ public class WorkoutPasDTO extends RealmObject {
         this.name = name;
     }
 
+    public HashMap<String, int[]> getSetReps(){
+        return hm;
+    }
 
+    public void addEntry(String name, int set, int reps){
+        hm.put(name, new int[]{set, reps});
+    }
 }
