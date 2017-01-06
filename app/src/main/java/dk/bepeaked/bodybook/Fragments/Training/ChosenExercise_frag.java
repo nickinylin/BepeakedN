@@ -91,16 +91,16 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 //        Listen af sæt laves herunder. Den skal blot have en arrayliste af ExerciseDTO'er.
 
         dto = new ExerciseDTO("Chestpress", "Skub med bryst", "", "", "", exercises);
-        dto.addSet(new SetDTO(29, 10, "12-12-2016", 30));
-        dto.addSet(new SetDTO(2, 10, "12-12-2016", 30));
-        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
-        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
-        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
-        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
-        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
-        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
-        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
-        exercises = dto.getSet();
+//        dto.addSet(new SetDTO(29, 10, "12-12-2016", 30));
+//        dto.addSet(new SetDTO(2, 10, "12-12-2016", 30));
+//        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
+//        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
+//        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
+//        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
+//        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
+//        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
+//        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));
+//        exercises = dto.getSet();
 
 
         ListView listView = (ListView) view.findViewById(R.id.listView_exercise);
@@ -125,35 +125,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
     private void showDialogAlert() {
 
-//AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity(), R.style.MyAlertDialogStyle );
 
-        final Dialog dialog = new Dialog(getActivity(), R.style.MyAlertDialogStyle);
-        dialog.setTitle("NumberPicker");
-        dialog.setContentView(R.layout.fragment_dialog_add_set_frag);
-        npReps = (NumberPicker) dialog.findViewById(R.id.NumberPickerReps);
-        npWeight1 = (NumberPicker) dialog.findViewById(R.id.NumberPickerWeight1);
-        npWeight2 = (NumberPicker) dialog.findViewById(R.id.NumberPickerWeight2);
-        btnOK = (Button) dialog.findViewById(R.id.button_dialog_OK);
 
-        //TODO skal sættes til den sidst benyttede, så der skal bruges den der sharedpreferences
-        npReps.setMinValue(1);
-        npReps.setMaxValue(50);
-//        npReps.setValue();
-        npWeight1.setMinValue(0);
-        npWeight1.setMaxValue(200);
-        npWeight1.setValue(10);
-        npWeight2.setMinValue(0);
-        npWeight2.setMaxValue(3);
-        npWeight2.setDisplayedValues(new String[]{"0", "25", "50", "75"});
-
-        dialog.show();
-
-        btnOK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     @Override
