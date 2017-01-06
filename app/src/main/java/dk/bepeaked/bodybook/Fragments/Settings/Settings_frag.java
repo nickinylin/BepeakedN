@@ -45,14 +45,20 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0) {
-
+            MeasureUnit_frag fragment = new MeasureUnit_frag();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+            fragmentTransaction.commit();
         } else if (position == 1) {
             ActivationCode_frag fragment = new ActivationCode_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
             fragmentTransaction.commit();
         } else if  (position == 2) {
-
+            Language_frag fragment = new Language_frag();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+            fragmentTransaction.commit();
         }
     }
 }
