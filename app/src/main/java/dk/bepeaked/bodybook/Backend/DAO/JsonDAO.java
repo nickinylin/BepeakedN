@@ -19,8 +19,12 @@ import dk.bepeaked.bodybook.R;
 
 public class JsonDAO {
     public ArrayList<DishDTO> getDishes(Activity act, String code) throws IOException, JSONException {
+
+        int file = act.getResources().getIdentifier(code, "drawable", act.getPackageName());
+
+        InputStream is = act.getResources().openRawResource(file);
+
         ArrayList<DishDTO> result = new ArrayList<DishDTO>();
-        InputStream is = act.getResources().openRawResource(R.raw.dish);
         byte b[] = new byte[is.available()]; // kun små filer
         is.read(b);
         String str = new String(b, "UTF-8");
