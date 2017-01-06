@@ -15,16 +15,16 @@ public class WorkoutPasDTO extends RealmObject {
 
     @PrimaryKey
     String name;
-    RealmList<ExerciseDTO> exercises;
+    ArrayList<String> exercises;
     Goals goals = new Goals();
     public WorkoutPasDTO() {}
 
-    public WorkoutPasDTO (String name, RealmList<ExerciseDTO> exercises) {
+    public WorkoutPasDTO (String name, ArrayList<String> exercises) {
         this.name = name;
         this.exercises = exercises;
     }
 
-    public RealmList<ExerciseDTO> getExercises() {
+    public ArrayList<String> getExercises() {
         return exercises;
     }
 

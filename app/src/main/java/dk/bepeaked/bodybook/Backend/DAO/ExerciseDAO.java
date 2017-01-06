@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
+import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
+import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.R;
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -26,7 +28,7 @@ public class ExerciseDAO {
     Realm realm = Realm.getDefaultInstance();
 
     /**
-     * Add's a new exercise
+     * Add's a new exercise to the exercise library
      * @param exerciseDTO (String Name, String Description1, String Description2, String Imagepath1, String imagepath2, RealmList<SetDTO></SetDTO>)
      */
     public void newExercise(ExerciseDTO exerciseDTO) {
@@ -39,11 +41,57 @@ public class ExerciseDAO {
      * Gets a RealmList of all the exercises in database (in every plan, in every pas)
      * @return RealmList<ExerciseDTO>
      */
-    public RealmList<ExerciseDTO> getExercisesDTO() {
+    public RealmList<ExerciseDTO> getExercises() {
         RealmResults<ExerciseDTO> resultExercise = realm.where(ExerciseDTO.class).findAll();
         RealmList<ExerciseDTO> exercisePlans = new RealmList<ExerciseDTO>();
         exercisePlans.addAll(resultExercise.subList(0, resultExercise.size()));
         return exercisePlans;
+    }
+
+    /**
+     * Gets a RealmList of all exercises in a specific pas, in a specific plan
+     * @param planName
+     * @param pasName
+     * @return RealmList<ExerciseDTO>
+     * @throws Exception if the pas doesnt exist either in the plan
+     */
+    public RealmList<ExerciseDTO> getExercisesInPas(String planName, String pasName) throws Exception {
+
+        int position = -1;
+
+        WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
+
+        RealmList<WorkoutPasDTO> realmPas = realmPlan.getWorkoutPasses();
+        for(int i = 0; i < realmPas.size(); i++){
+            if(realmPas.get(i).getName().equals(pasName)){
+                position = i;
+                break;
+            }
+        }
+
+        if(position == -1){
+            throw new Exception();
+        }else {
+
+            RealmList<ExerciseDTO> allExercises = getExercises();
+            RealmList<ExerciseDTO> pasExercises = new RealmList<ExerciseDTO>();
+
+            ArrayList<String> exerciseNamesPas = realmPlan.getWorkoutPasses().get(position).getExercises();
+
+            for(int i = 0; i < allExercises.size(); i++){
+                String exerciseName = allExercises.get(i).getName();
+                for(int k = 0; k < exerciseNamesPas.size(); k++){
+                    String exerciseNamePas = pasExercises.get(k).getName();
+                    if(exerciseName.equals(exerciseNamePas)){
+                        pasExercises.add(allExercises.get(i));
+                    }
+                }
+
+            }
+
+            return pasExercises;
+        }
+
     }
 
     /**
@@ -72,26 +120,4 @@ public class ExerciseDAO {
         realm.commitTransaction();
     }
 
-    /**
-     * Add a set to an exercise
-     * @param exerciseName The exercise which you want to add the set to
-     * @param newSet The new set you want to add
-     */
-    public void addSet(String exerciseName, SetDTO newSet){
-
-        ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("name", exerciseName).findFirst();
-
-        realm.beginTransaction();
-        realmExercise.getSet().add(newSet);
-        realm.commitTransaction();
-    }
-
-    public void deleteSet(String exerciseName, SetDTO setDeleted){
-
-        ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("name", exerciseName).findFirst();
-
-        realm.beginTransaction();
-        realmExercise.deleteFromRealm();
-        realm.commitTransaction();
-    }
 }

@@ -50,22 +50,4 @@ public class WorkoutDAO {
         plan.deleteFromRealm();
         realm.commitTransaction();
     }
-
-    public void addWorkoutPas(String planName, WorkoutPasDTO newWorkoutPass){
-
-        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
-
-        realm.beginTransaction();
-        plan.getWorkouts().add(newWorkoutPass);
-        realm.commitTransaction();
-    }
-
-    public void removeWorkoutPas(String planName, WorkoutPasDTO pasToBeRemoved){
-
-        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
-
-        realm.beginTransaction();
-        plan.getWorkouts().remove(pasToBeRemoved);
-        realm.beginTransaction();
-    }
 }

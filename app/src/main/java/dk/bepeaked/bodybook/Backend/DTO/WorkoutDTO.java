@@ -25,7 +25,7 @@ public class WorkoutDTO extends RealmObject {
         this.workoutPas = workouts;
     }
 
-    public RealmList<WorkoutPasDTO> getWorkouts() {
+    public RealmList<WorkoutPasDTO> getWorkoutPasses() {
         return workoutPas;
     }
 
