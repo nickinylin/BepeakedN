@@ -29,7 +29,7 @@ public class ExerciseDAO {
 
     /**
      * Add's a new exercise to the exercise library
-     * @param exerciseDTO (String Name, String Description1, String Description2, String Imagepath1, String imagepath2, RealmList<SetDTO></SetDTO>)
+     * @param exerciseDTO (String Name, String Description1, String Description2, String Imagepath1, String imagepath2, ArrayList<String>)
      */
     public void newExercise(ExerciseDTO exerciseDTO) {
         realm.beginTransaction();
@@ -76,7 +76,7 @@ public class ExerciseDAO {
             RealmList<ExerciseDTO> allExercises = getExercises();
             RealmList<ExerciseDTO> pasExercises = new RealmList<ExerciseDTO>();
 
-            ArrayList<String> exerciseNamesPas = realmPlan.getWorkoutPasses().get(position).getExercises();
+            ArrayList<String> exerciseNamesPas = null;
 
             for(int i = 0; i < allExercises.size(); i++){
                 String exerciseName = allExercises.get(i).getName();
