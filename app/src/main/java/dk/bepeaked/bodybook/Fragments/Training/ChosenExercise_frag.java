@@ -1,7 +1,6 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
-import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
@@ -9,7 +8,6 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,9 +23,6 @@ import android.widget.TextView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-
-import java.util.ArrayList;
-import java.util.Set;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
@@ -116,6 +111,12 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         setHasOptionsMenu(true);
 
         return view;
+    }
+
+    private int convertKilo(int kilo){
+        double d = kilo * 2.2046;
+        int pounds = (int) d;
+        return pounds;
     }
 
     @Override
