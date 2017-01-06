@@ -1,18 +1,14 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
 import android.app.Activity;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
-import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import io.realm.RealmList;
@@ -20,7 +16,7 @@ import io.realm.RealmList;
 public class JsonDAO {
     ExerciseDAO dao = new ExerciseDAO();
 
-    public ArrayList<DishDTO> getDishes(Activity act, String code) throws IOException, JSONException {
+    public void getData(Activity act, String code) throws IOException, JSONException {
         int file = act.getResources().getIdentifier(code, "drawable", act.getPackageName());
         InputStream is = act.getResources().openRawResource(file);
 
@@ -35,9 +31,9 @@ public class JsonDAO {
         JSONArray category;
         JSONObject dish;
 
-        ArrayList<DishDTO> result = new ArrayList<DishDTO>();
+        RealmList<DishDTO> result = new RealmList<DishDTO>();
 
-        section = jA.getJSONArray("dish");
+        section = jA.getJSONArray("abc123");
         for (int i = 0; i < section.length(); i++){
             category = section.getJSONArray(0);
             switch (i){
@@ -66,7 +62,7 @@ public class JsonDAO {
             }
         }
 
-        ArrayList<WorkoutDTO> plan = new ArrayList<WorkoutDTO>();
+        RealmList<WorkoutDTO> plan = new RealmList<WorkoutDTO>();
         JSONArray plans;
         JSONArray passes;
         JSONArray exercises;
@@ -77,15 +73,15 @@ public class JsonDAO {
         for (int i = 0; i < plans.length(); i++) {
             String planName = plans.getJSONObject(i).getString("name");
             passes = plans.getJSONObject(i).getJSONArray("pas");
-            ArrayList<WorkoutPasDTO> pas = new ArrayList<WorkoutPasDTO>();
+            RealmList<WorkoutPasDTO> pas = new RealmList<WorkoutPasDTO>();
 
             for (int j = 0; j < passes.length(); j++) {
                 String pasName = passes.getJSONObject(j).getString("name");
                 pas.add(new WorkoutPasDTO());
                 exercises = passes.getJSONObject(j).getJSONArray("exercises");
-                String exName;
-                int sets;
-                int repetitions;
+                String exName = "";
+                int sets = 0;
+                int repetitions = 0;
 
                 for (int k = 0; k < exercises.length(); k++){
                     String exerciseName = exercises.getJSONObject(k).getString("name");
@@ -99,10 +95,10 @@ public class JsonDAO {
                         }
                     }
                 }
+                pas.get(pas.size()-1).setName(pasName);
                 pas.get(pas.size()-1).addEntry(exName, sets, repetitions);
             }
-
+            plan.add(new WorkoutDTO(planName, pas));
         }
-        return result;
     }
 }

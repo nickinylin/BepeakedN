@@ -5,11 +5,14 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import io.realm.RealmModel;
+import io.realm.RealmObject;
+
 /**
  * Created by sebho on 14-11-2016.
  */
 
-public class DishDTO {
+public class DishDTO extends RealmObject {
     //Type: 0 = Morgenmad, 1 = Frokost, 2 = Aftensmad, 3 = Snack.
     private int type;
     private String name, imagePath, deskShort, deskLong;

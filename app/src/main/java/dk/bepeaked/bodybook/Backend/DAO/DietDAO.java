@@ -1,15 +1,11 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
 import android.app.Activity;
-import android.util.JsonReader;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -24,7 +20,7 @@ import dk.bepeaked.bodybook.R;
 public class DietDAO {
     public ArrayList<DishDTO> getDishes(Activity act) throws IOException, JSONException {
         ArrayList<DishDTO> result = new ArrayList<DishDTO>();
-        InputStream is = act.getResources().openRawResource(R.raw.dish);
+        InputStream is = act.getResources().openRawResource(R.raw.abc123);
         byte b[] = new byte[is.available()]; // kun små filer
         is.read(b);
         String str = new String(b, "UTF-8");
