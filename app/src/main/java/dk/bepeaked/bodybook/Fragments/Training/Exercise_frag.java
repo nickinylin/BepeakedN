@@ -86,7 +86,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         if (item.getItemId() == R.id.pasMenu_add_exercise) {
             Snackbar.make(getView(), "Der skal tilføjes en ny øvelse!", Snackbar.LENGTH_LONG).show();
         } else if (item.getItemId() == R.id.pasMenu_edit) {
-            // TODO Hvad der skal ske for at ændre i en træningsplan
+            // TODO Hvad der skal ske for at ændre bundleArgs en træningsplan
         }
         return super.onOptionsItemSelected(item);
     }
@@ -98,13 +98,13 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 //        Toast.makeText(getActivity(), position ,Toast.LENGTH_LONG).show();
 
 
-//        Bundle i = new Bundle();
-//        i.putString("Træningspas", exercises[position]);
+        Bundle bundleArgs = new Bundle();
+        bundleArgs.putString("chosenExerciseName", hej.get(position));
 
         ChosenExercise_frag fragment = new ChosenExercise_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
-//        fragment.setArguments(i);
+        fragment.setArguments(bundleArgs);
         fragmentTransaction.commit();
 
     }

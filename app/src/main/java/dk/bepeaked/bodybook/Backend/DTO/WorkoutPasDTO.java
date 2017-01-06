@@ -2,9 +2,11 @@ package dk.bepeaked.bodybook.Backend.DTO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.RealmModel;
 import io.realm.annotations.PrimaryKey;
 
 /**
@@ -15,16 +17,17 @@ public class WorkoutPasDTO extends RealmObject {
 
     @PrimaryKey
     String name;
-    ArrayList<String> exercises;
+
+    ArrayList<StringObjectToRealm> exercises;
     Goals goals = new Goals();
     public WorkoutPasDTO() {}
 
-    public WorkoutPasDTO (String name, ArrayList<String> exercises) {
+    public WorkoutPasDTO (String name, ArrayList<StringObjectToRealm> exercises) {
         this.name = name;
         this.exercises = exercises;
     }
 
-    public ArrayList<String> getExercises() {
+    public ArrayList<StringObjectToRealm> getExercises() {
         return exercises;
     }
 

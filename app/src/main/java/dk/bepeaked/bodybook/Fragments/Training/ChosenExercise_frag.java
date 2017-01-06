@@ -1,7 +1,6 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
-import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
@@ -9,7 +8,6 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,9 +23,6 @@ import android.widget.TextView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-
-import java.util.ArrayList;
-import java.util.Set;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
@@ -45,6 +40,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     Button btnOK, btnCancel;
     SharedPreferences prefs;
     ExerciseDTO dto;
+    Bundle bundleArgs;
+    String argument;
 
     //skal slettes. til test
     boolean boo = true;
@@ -61,7 +58,11 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         View view = inflater.inflate(R.layout.fragment_chosen_exercise_frag, container, false);
 
-        getActivity().setTitle("Valgte øvelse");
+        if (!getArguments().isEmpty()) {
+            argument = getArguments().getString("chosenExerciseName");
+        }
+
+        getActivity().setTitle(argument);
 
         // making the graph
 
@@ -124,8 +125,10 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     }
 
     private void showDialogAlert() {
-
+        bundleArgs = new Bundle();
+        bundleArgs.putString("chosenExerciseName", argument);
         DialogAddSet_frag dialog = new DialogAddSet_frag();
+        dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "empty");
 
     }
@@ -152,7 +155,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
             Snackbar.make(getView(), "hrrra", Snackbar.LENGTH_LONG).show();
         } else if (item.getItemId() == R.id.exerciseMenu_edit) {
-            // TODO Hvad der skal ske for at ændre i en øvelse
+            // TODO Hvad der skal ske for at ændre bundleArgs en øvelse
         }
         return super.onOptionsItemSelected(item);
     }
