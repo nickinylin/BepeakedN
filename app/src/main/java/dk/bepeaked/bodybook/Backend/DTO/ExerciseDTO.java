@@ -30,14 +30,6 @@ public class ExerciseDTO extends RealmObject{
         this.set = set;
     }
 
-    public void addSet(SetDTO set){
-        this.set.add(set);
-    }
-
-    public void deleteSet(int position){
-        this.set.remove(position);
-    }
-
     public String getName() {
         return name;
     }

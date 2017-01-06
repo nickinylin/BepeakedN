@@ -28,38 +28,96 @@ public class WorkoutPasDAO {
         return workoutPasses;
     }
 
-    public void updatePasName(String oldname, String newName){
+    public void updatePasName(String planName, String oldPasName, String newPasName) throws Exception {
 
-        WorkoutPasDTO realmPas = realm.where(WorkoutPasDTO.class).equalTo("Name", oldname).findFirst();
 
-        realm.commitTransaction();
-        realmPas.setName(newName);
-        realm.commitTransaction();
+        int position = -1;
+
+        WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
+
+        RealmList<WorkoutPasDTO> realmPas = realmPlan.getWorkouts();
+        for(int i = 0; i < realmPas.size(); i++){
+            if(realmPas.get(i).getName().equals(oldPasName)){
+                position = i;
+                break;
+            }
+        }
+
+        if(position == -1){
+            throw new Exception();
+        }else {
+            realm.beginTransaction();
+            realmPlan.getWorkouts().get(position).setName(newPasName);
+            realm.commitTransaction();
+        }
     }
 
-    public void deletePas(String name){
+    public void deletePas(String planName, String pasName) throws Exception {
 
-        WorkoutPasDTO realmPas = realm.where(WorkoutPasDTO.class).equalTo("name", name).findFirst();
+        int position = -1;
 
-        realm.beginTransaction();
-        realmPas.deleteFromRealm();
-        realm.commitTransaction();
+        WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
+
+        RealmList<WorkoutPasDTO> realmPas = realmPlan.getWorkouts();
+        for(int i = 0; i < realmPas.size(); i++){
+            if(realmPas.get(i).getName().equals(pasName)){
+                position = i;
+                break;
+            }
+        }
+
+        if(position == -1){
+            throw new Exception();
+        }else {
+            realm.beginTransaction();
+            realmPlan.getWorkouts().remove(position);
+            realm.commitTransaction();
+        }
     }
 
-     public void addNewExercise(String pasName, ExerciseDTO newExercise){
+     public void addNewExercise(String planName, String pasName, ExerciseDTO newExercise) throws Exception {
 
-         WorkoutPasDTO realmPas = realm.where(WorkoutPasDTO.class).equalTo("name", pasName).findFirst();
+         int position = -1;
 
-         realm.beginTransaction();
-         realmPas.getExercises().add(newExercise);
-         realm.commitTransaction();
+         WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
+
+         RealmList<WorkoutPasDTO> realmPas = realmPlan.getWorkouts();
+         for(int i = 0; i < realmPas.size(); i++){
+             if(realmPas.get(i).getName().equals(pasName)){
+                 position = i;
+                 break;
+             }
+         }
+
+         if(position == -1){
+             throw new Exception();
+         }else {
+             realm.beginTransaction();
+             realmPlan.getWorkouts().get(position).getExercises().add(newExercise);
+             realm.commitTransaction();
+         }
      }
 
-    public void deleteExercise(String pasName, ExerciseDTO exerciseToBeDeleted){
+    public void deleteExercise(String planName, String pasName, ExerciseDTO exerciseToBeDeleted) throws Exception {
 
-         WorkoutPasDTO realmPas = realm.where(WorkoutPasDTO.class).equalTo("name", pasName).findFirst();
+        int position = -1;
 
-        realm.beginTransaction();
-        realmPas.getExercises().remove(exerciseToBeDeleted);
+        WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
+
+        RealmList<WorkoutPasDTO> realmPas = realmPlan.getWorkouts();
+        for(int i = 0; i < realmPas.size(); i++){
+            if(realmPas.get(i).getName().equals(pasName)){
+                position = i;
+                break;
+            }
+        }
+
+        if(position == -1){
+            throw new Exception();
+        }else {
+            realm.beginTransaction();
+            realmPlan.getWorkouts().get(position).getExercises().remove(exerciseToBeDeleted);
+            realm.commitTransaction();
+        }
     }
 }
