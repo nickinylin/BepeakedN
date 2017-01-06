@@ -27,6 +27,7 @@ public class DialogAddSet_frag extends DialogFragment {
     Button btnOK, btnCancel;
     SharedPreferences prefs;
     ExerciseDTO dto;
+    String argumentString;
 
 
     public DialogAddSet_frag() {
@@ -38,9 +39,7 @@ public class DialogAddSet_frag extends DialogFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_add_set_frag, container, false);
 
-//        Bundle args = getArguments();
-//        String title = args.getString("title", "");
-//        String message = args.getString("message", "");
+        argumentString = getArguments().getString("chosenExerciseName", "empty");
 
         npReps = (NumberPicker) view.findViewById(R.id.NumberPickerReps);
         npWeight1 = (NumberPicker) view.findViewById(R.id.NumberPickerWeight1);

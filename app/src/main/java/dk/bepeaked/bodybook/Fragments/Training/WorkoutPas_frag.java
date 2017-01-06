@@ -60,9 +60,9 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
 
 //        realmListString = wc.getPasses("Nicki");
 
-//        for (int i = 0; i < realmListString.size(); i++) {
-//            workoutPases.add(realmListString.get(i).getName());
-//            Log.d("Udskriv", "onCreateView: " + realmListString.get(i).getName());
+//        for (int bundleArgs = 0; bundleArgs < realmListString.size(); bundleArgs++) {
+//            workoutPases.add(realmListString.get(bundleArgs).getName());
+//            Log.d("Udskriv", "onCreateView: " + realmListString.get(bundleArgs).getName());
 //        }
 
 
@@ -104,7 +104,7 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
         if (item.getItemId() == R.id.workoutMenu_add_pas) {
             Snackbar.make(getView(), "hrrra", Snackbar.LENGTH_LONG).show();
         } else if (item.getItemId() == R.id.workoutMenu_edit) {
-            // TODO Hvad der skal ske for at ændre i en træningsplan
+            // TODO Hvad der skal ske for at ændre bundleArgs en træningsplan
         } else if (item.getItemId() == R.id.workoutMenu_change_plan) {
             // TODO Hvad der skal ske for at skifte aktuel træningsplan
         } else if (item.getItemId() == R.id.workoutMenu_add_workoutplan) {
@@ -119,13 +119,13 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //        Toast.makeText(getActivity(), nameTrainingplan ,Toast.LENGTH_LONG).show();
 
-//        Bundle i = new Bundle();
-//        i.putString("Træningspas", workoutPases[position]);
+//        Bundle bundleArgs = new Bundle();
+//        bundleArgs.putString("Træningspas", workoutPases[position]);
 
         Exercise_frag fragment = new Exercise_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
-//        fragment.setArguments(i);
+//        fragment.setArguments(bundleArgs);
         fragmentTransaction.commit();
 
     }
