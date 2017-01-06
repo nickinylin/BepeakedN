@@ -47,7 +47,10 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
         if (position == 0) {
 
         } else if (position == 1) {
-
+            ActivationCode_frag fragment = new ActivationCode_frag();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+            fragmentTransaction.commit();
         } else if  (position == 2) {
 
         }
