@@ -96,7 +96,7 @@ public class JsonDAO {
                     }
                 }
                 pas.get(pas.size()-1).setName(pasName);
-                pas.get(pas.size()-1).addEntry(exName, sets, repetitions);
+                pas.get(pas.size()-1).addGoals(exName, sets, repetitions);
             }
             plan.add(new WorkoutDTO(planName, pas));
         }

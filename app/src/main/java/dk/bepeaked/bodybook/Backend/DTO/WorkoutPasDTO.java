@@ -16,8 +16,7 @@ public class WorkoutPasDTO extends RealmObject {
     @PrimaryKey
     String name;
     RealmList<ExerciseDTO> exercises;
-    HashMap<String, int[]> hm = new HashMap<>();
-
+    Goals goals = new Goals();
     public WorkoutPasDTO() {}
 
     public WorkoutPasDTO (String name, RealmList<ExerciseDTO> exercises) {
@@ -37,11 +36,13 @@ public class WorkoutPasDTO extends RealmObject {
         this.name = name;
     }
 
-    public HashMap<String, int[]> getSetReps(){
-        return hm;
+    public Goals getGoals(){
+        return goals;
     }
 
-    public void addEntry(String name, int set, int reps){
-        hm.put(name, new int[]{set, reps});
+    public void addGoals(String name, int set, int reps){
+        goals.setName(name);
+        goals.setSet(set);
+        goals.setReps(reps);
     }
 }

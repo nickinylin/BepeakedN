@@ -1,6 +1,8 @@
 package dk.bepeaked.bodybook.Backend.DTO;
-// Private inner class
-class Ingredient {
+
+import io.realm.RealmObject;
+
+public class Ingredient extends RealmObject{
 
     private String name;
     private int weight;

@@ -5,6 +5,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import io.realm.RealmList;
 import io.realm.RealmModel;
 import io.realm.RealmObject;
 
@@ -16,7 +17,7 @@ public class DishDTO extends RealmObject {
     //Type: 0 = Morgenmad, 1 = Frokost, 2 = Aftensmad, 3 = Snack.
     private int type;
     private String name, imagePath, deskShort, deskLong;
-    private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+    private RealmList<Ingredient> ingredients = new RealmList<Ingredient>();
 
     public DishDTO() {}
 
@@ -30,9 +31,6 @@ public class DishDTO extends RealmObject {
             String[] ingredient = ingredients.get(i);
             String ingName = ingredient[0];
             String[] stats = ingredient[1].split(",");
-            for (int j = 0; j < stats.length; j++) {
-                Log.d("Sebbyg", "DishDTO: " + stats[j]);
-            }
             this.ingredients.add(new Ingredient(ingName, Integer.parseInt(stats[0]), Integer.parseInt(stats[1]),
                     Integer.parseInt(stats[2]), Integer.parseInt(stats[3]), Integer.parseInt(stats[4])));
         }
@@ -79,11 +77,11 @@ public class DishDTO extends RealmObject {
         this.deskLong = deskLong;
     }
 
-    public ArrayList<Ingredient> getIngredients() {
+    public RealmList<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(ArrayList<Ingredient> ingredients) {
+    public void setIngredients(RealmList<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 }

@@ -55,7 +55,7 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
             for(int i = 0; i < fields.length; i++){
                 if(fields[i].getName().equals(input)){
                     try {
-                        json.getDishes(this.getActivity(), input);
+                        json.getData(this.getActivity(), input);
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (JSONException e) {
