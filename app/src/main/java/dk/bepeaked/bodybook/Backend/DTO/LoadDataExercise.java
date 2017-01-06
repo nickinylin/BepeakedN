@@ -79,10 +79,10 @@ public class LoadDataExercise extends RealmObject {
 
         //##### page 2 #####
         exercises.add(new ExerciseDTO("Incline Dumbbell Press", "This exercises is for mainly chest strengthening but also strengthens your triceps and shoulders.", "Set and incline bench at a 45 degree angle.\n" +
-                        "Start with the dumbbells at shoulder height, your arms wide and elbows pointing down to the floor.\n" +
-                        "Raise your arms up over your chest bringing the dumbbells closer together as they meet over your chest.\n" +
-                        "Slowly return the dumbbells to starting position.\n" +
-                        "Repeat." , "", "", new RealmList<SetDTO>()));
+                "Start with the dumbbells at shoulder height, your arms wide and elbows pointing down to the floor.\n" +
+                "Raise your arms up over your chest bringing the dumbbells closer together as they meet over your chest.\n" +
+                "Slowly return the dumbbells to starting position.\n" +
+                "Repeat." , "", "", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO("Bench Press Dumbbell", "This is an exercise for chest, triceps and shoulder strengthening.", "Grasp the dumbbells in each hand and lie on a flat bench with your feet firmly on the ground.\n" +
                 "Extend your arms up over your chest with your palms facing forwards.\n" +
                 "Press the dumbbells up over your chest till your arm are fully extended this is your starting position.\n" +
