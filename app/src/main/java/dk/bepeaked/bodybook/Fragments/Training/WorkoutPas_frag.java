@@ -4,6 +4,8 @@ package dk.bepeaked.bodybook.Fragments.Training;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -106,11 +108,8 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
         } else if (item.getItemId() == R.id.workoutMenu_change_plan) {
             // TODO Hvad der skal ske for at skifte aktuel træningsplan
         } else if (item.getItemId() == R.id.workoutMenu_add_workoutplan) {
-            AddPlan_frag fragment = new AddPlan_frag();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.listView_fragment_container, fragment).addToBackStack("hej");
-//        fragment.setArguments(i);
-            fragmentTransaction.commit();
+            AddPlan_frag dialog = new AddPlan_frag();
+            dialog.show(getActivity().getFragmentManager(), "empty");
 
         }
         return super.onOptionsItemSelected(item);

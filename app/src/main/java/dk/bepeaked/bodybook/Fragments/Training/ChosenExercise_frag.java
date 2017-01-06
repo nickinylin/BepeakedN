@@ -125,7 +125,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
     private void showDialogAlert() {
 
-
+        DialogAddSet_frag dialog = new DialogAddSet_frag();
+        dialog.show(getActivity().getFragmentManager(), "empty");
 
     }
 

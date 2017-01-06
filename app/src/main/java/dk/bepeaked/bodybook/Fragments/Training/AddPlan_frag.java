@@ -1,6 +1,7 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,7 +14,7 @@ import dk.bepeaked.bodybook.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddPlan_frag extends Fragment {
+public class AddPlan_frag extends DialogFragment {
 
 
     public AddPlan_frag() {
@@ -25,6 +26,8 @@ public class AddPlan_frag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_trainingplan, container, false);
+
+
 
         return view;
     }
