@@ -2,18 +2,14 @@ package dk.bepeaked.bodybook.Fragments.Diet;
 
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -24,8 +20,9 @@ import java.util.List;
 
 import dk.bepeaked.bodybook.Backend.DAO.DietDAO;
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
-import dk.bepeaked.bodybook.Fragments.Training.Exercise_frag;
+import dk.bepeaked.bodybook.Backend.DTO.Ingredient;
 import dk.bepeaked.bodybook.R;
+import io.realm.RealmList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,6 +75,18 @@ public class Diet_frag extends Fragment{
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        //Testdata HUSK AT SLETTE!!
+        Ingredient in = new Ingredient("Rugmel", 500, 50, 40, 150, 700);
+        Ingredient in2 = new Ingredient("Proteinpulver", 100, 100, 0, 0, 250);
+        Ingredient in3 = new Ingredient("Havregryn", 100, 0, 20, 80, 150);
+        RealmList<Ingredient> ar = new RealmList<Ingredient>();
+        ar.add(in);
+        ar.add(in2);
+        ar.add(in3);
+        DishDTO test = new DishDTO(0, "Proteinboller", null, "Proteinboller er gode til efter træning", "", ar);
+        dishList.add(test);
+        //TESTDATA SLUTTER HER
 
         for (int i = 0; i < dishList.size(); i++){
             DishDTO dish = dishList.get(i);

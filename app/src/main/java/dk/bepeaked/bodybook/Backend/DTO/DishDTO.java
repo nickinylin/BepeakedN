@@ -1,12 +1,6 @@
 package dk.bepeaked.bodybook.Backend.DTO;
 
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import io.realm.RealmList;
-import io.realm.RealmModel;
 import io.realm.RealmObject;
 
 /**
@@ -21,19 +15,20 @@ public class DishDTO extends RealmObject {
 
     public DishDTO() {}
 
-    public DishDTO(int type, String name, String imagePath, String deskShort, String deskLong, ArrayList<String[]> ingredients) {
+    public DishDTO(int type, String name, String imagePath, String deskShort, String deskLong, RealmList<Ingredient> ingredients) {
         this.type = type;
         this.name = name;
         this.imagePath = imagePath;
         this.deskShort = deskShort;
         this.deskLong = deskLong;
-        for (int i = 0; i < ingredients.size(); i++){
-            String[] ingredient = ingredients.get(i);
-            String ingName = ingredient[0];
-            String[] stats = ingredient[1].split(",");
-            this.ingredients.add(new Ingredient(ingName, Integer.parseInt(stats[0]), Integer.parseInt(stats[1]),
-                    Integer.parseInt(stats[2]), Integer.parseInt(stats[3]), Integer.parseInt(stats[4])));
-        }
+        this.ingredients = ingredients;
+//        for (int i = 0; i < ingredients.size(); i++){
+//            String[] ingredient = ingredients.get(i);
+//            String ingName = ingredient[0];
+//            String[] stats = ingredient[1].split(",");
+//            this.ingredients.add(new Ingredient(ingName, Integer.parseInt(stats[0]), Integer.parseInt(stats[1]),
+//                    Integer.parseInt(stats[2]), Integer.parseInt(stats[3]), Integer.parseInt(stats[4])));
+//        }
 
     }
 
