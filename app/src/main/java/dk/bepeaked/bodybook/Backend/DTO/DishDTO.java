@@ -1,5 +1,7 @@
 package dk.bepeaked.bodybook.Backend.DTO;
 
+import java.io.Serializable;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
@@ -7,15 +9,15 @@ import io.realm.RealmObject;
  * Created by sebho on 14-11-2016.
  */
 
-public class DishDTO extends RealmObject {
+public class DishDTO extends RealmObject implements Serializable{
     //Type: 0 = Morgenmad, 1 = Frokost, 2 = Aftensmad, 3 = Snack.
-    private int type;
-    private String name, imagePath, deskShort, deskLong;
+    private int type, imagePath;
+    private String name, deskShort, deskLong;
     private RealmList<Ingredient> ingredients = new RealmList<Ingredient>();
 
     public DishDTO() {}
 
-    public DishDTO(int type, String name, String imagePath, String deskShort, String deskLong, RealmList<Ingredient> ingredients) {
+    public DishDTO(int type, String name, int imagePath, String deskShort, String deskLong, RealmList<Ingredient> ingredients) {
         this.type = type;
         this.name = name;
         this.imagePath = imagePath;
@@ -48,11 +50,11 @@ public class DishDTO extends RealmObject {
         this.name = name;
     }
 
-    public String getImagePath() {
+    public int getImagePath() {
         return imagePath;
     }
 
-    public void setImagePath(String imagePath) {
+    public void setImagePath(int imagePath) {
         this.imagePath = imagePath;
     }
 

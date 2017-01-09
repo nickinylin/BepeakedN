@@ -31,6 +31,7 @@ public class Diet_frag extends Fragment{
 
     ExpandableListView expandableListView;
     DietDAO ddao = new DietDAO();
+    ArrayList<DishDTO> dishList;
 
     public Diet_frag() {
         // Required empty public constructor
@@ -67,7 +68,7 @@ public class Diet_frag extends Fragment{
         Headings.add("Aftensmad");
         Headings.add("Snacks");
 
-        ArrayList<DishDTO> dishList = new ArrayList<DishDTO>();
+        dishList = new ArrayList<DishDTO>();
         try {
             dishList = ddao.getDishes(getActivity());
         } catch (IOException e) {
@@ -84,7 +85,11 @@ public class Diet_frag extends Fragment{
         ar.add(in);
         ar.add(in2);
         ar.add(in3);
-        DishDTO test = new DishDTO(0, "Proteinboller", null, "Proteinboller er gode til efter træning", "", ar);
+        DishDTO test = new DishDTO(0, "Proteinboller", R.drawable.proteinboller, "Proteinboller er gode til efter træning",
+                "Proteinboller er proteinholdige boller, som sørger for at dine muskler kan genopbygge efter du har trænet. \n" +
+                "Først skal du hælde mel i en skål \nSå skal du hælde proteinpulver og havregryn i. \n" +
+                "Til sidst skal du tilsætte vand efter behov og rør rundt indtil du får en god dej. \n" +
+                "Form til boller og giv dem 20 minutter på 200 grader i varmluftovn.", ar);
         dishList.add(test);
         //TESTDATA SLUTTER HER
 
@@ -124,14 +129,19 @@ public class Diet_frag extends Fragment{
 
                 Object child = myAdapter.getChild(groupPosition, childPosition);
                 Object desc = myAdapter.getDesk(groupPosition, childPosition);
-                Bundle i = new Bundle();
-                i.putString("Name", child.toString());
-                i.putString("Description", desc.toString());
+
+                Bundle bundle = new Bundle();
+
+                for(int i = 0; i < dishList.size(); i++){
+                    if(dishList.get(i).getName().equals((child.toString()))){
+                        bundle.putSerializable("Dish", dishList.get(i));
+                    }
+                }
 
                 Recipe_frag fragment = new Recipe_frag();
                 android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
-                fragment.setArguments(i);
+                fragment.setArguments(bundle);
                 fragmentTransaction.commit();
                 return true;
             }
