@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -28,6 +29,9 @@ import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
 import dk.bepeaked.bodybook.R;
 import io.realm.RealmList;
+
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.WHITE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,9 +68,35 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         getActivity().setTitle(argument);
 
-        // making the graph
 
         GraphView graph = (GraphView) view.findViewById(R.id.graph);
+        graph.getGridLabelRenderer().setGridColor(BLACK);
+        graph.getGridLabelRenderer().setVerticalAxisTitle("1RM");
+        graph.getGridLabelRenderer().setVerticalAxisTitleTextSize(35);
+        graph.getGridLabelRenderer().setLabelVerticalWidth(20);
+        graph.getGridLabelRenderer().setVerticalLabelsColor(BLACK);
+        graph.getGridLabelRenderer().setVerticalAxisTitleColor(BLACK);
+        graph.getGridLabelRenderer().setHorizontalAxisTitle("Dage");
+        graph.getGridLabelRenderer().setHorizontalAxisTitleTextSize(35);
+        graph.getGridLabelRenderer().setHorizontalAxisTitleColor(BLACK);
+        graph.getGridLabelRenderer().setHorizontalLabelsColor(BLACK);
+        graph.getGridLabelRenderer().setVerticalLabelsVisible(true);
+
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                // return as Integer
+                return ""+((int) value);
+            }
+        });
+
+        graph.getLegendRenderer().setBackgroundColor(WHITE);
+
+
+        graph.getViewport().setBorderColor(BLACK);
+        graph.getViewport().setDrawBorder(true);
+        graph.getViewport().setScalable(true);
+
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
                 new DataPoint(0, 0.25),
                 new DataPoint(0.3, 0.22),
@@ -75,18 +105,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
                 new DataPoint(2, 1.3)
         });
         // styling series
-        series.setTitle("Random Curve 1");
-        series.setColor(Color.GREEN);
-        series.setDrawDataPoints(true);
-        series.setDataPointsRadius(10);
-        series.setThickness(8);
-
-// custom paint to make a dotted line
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(10);
-        paint.setPathEffect(new DashPathEffect(new float[]{8, 5}, 0));
-        series.setCustomPaint(paint);
+        series.setColor(Color.BLACK);
+        series.setThickness(4);
         graph.addSeries(series);
 
 //        Listen af sæt laves herunder. Den skal blot have en arrayliste af ExerciseDTO'er.
