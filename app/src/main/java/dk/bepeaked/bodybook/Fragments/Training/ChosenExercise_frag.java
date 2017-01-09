@@ -38,7 +38,7 @@ import static android.graphics.Color.WHITE;
  */
 public class ChosenExercise_frag extends Fragment implements View.OnClickListener {
 
-    RealmList<SetDTO> exercises = new RealmList<SetDTO>();
+    RealmList<SetDTO> exercises = new RealmList<>();
     Button fab;
     NumberPicker npWeight1, npWeight2, npReps;
     Button btnOK, btnCancel;
