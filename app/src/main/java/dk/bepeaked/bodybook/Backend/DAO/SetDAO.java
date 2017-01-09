@@ -3,6 +3,7 @@ package dk.bepeaked.bodybook.Backend.DAO;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
 import io.realm.Realm;
+import io.realm.RealmList;
 
 /**
  * Created by lukas on 06-01-2017.
@@ -40,4 +41,8 @@ public class SetDAO {
         realmExercise.deleteFromRealm();
         realm.commitTransaction();
     }
+
+//    public RealmList<SetDTO> getSets(String exersiceName){
+//
+//    }
 }
