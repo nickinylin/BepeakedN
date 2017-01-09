@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
+import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
 import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
@@ -95,7 +96,7 @@ public class ExerciseDAO {
     }
 
     /**
-     * Updates an exercise's name
+     * Updates an exercise's name everywhere
      * @param oldname
      * @param newName
      */
@@ -103,20 +104,61 @@ public class ExerciseDAO {
         ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("name", oldname).findFirst();
 
         realm.beginTransaction();
+        //Updates the name in the exercise library
         realmExercise.setName(newName);
+
+        //Updates the name in all the passes in all the plans
+        WorkoutDAO planDAO = new WorkoutDAO();
+        RealmList<WorkoutDTO> planer;
+        planer = planDAO.getPlans();
+
+        for(int i = 0; i < planer.size(); i++){
+            RealmList<WorkoutPasDTO> pas = planer.get(i).getWorkoutPasses();
+            for(int k = 0; k < pas.size(); i++){
+                RealmList<ExerciseGoals> exercises = pas.get(k).getExercises();
+                for(int j = 0; j < exercises.size(); j++){
+                    if(exercises.get(j).getName().equals(oldname)){
+                        exercises.get(j).setName(newName);
+                        break;
+                    }
+                }
+            }
+        }
         realm.commitTransaction();
+
+
     }
 
     /**
      * Delete an exercise from the database
-     * @param name
+     * (This deletes it from existence)
+     * @param name The exercise name
      */
     public void deleteExercise(String name){
 
         ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("name", name).findFirst();
 
         realm.beginTransaction();
+        //Deletes the exercises from the exercises library
         realmExercise.deleteFromRealm();
+
+        //Deletes the exercises from all the passes in all the plans
+        WorkoutDAO planDAO = new WorkoutDAO();
+        RealmList<WorkoutDTO> planer;
+        planer = planDAO.getPlans();
+
+        for(int i = 0; i < planer.size(); i++){
+            RealmList<WorkoutPasDTO> pas = planer.get(i).getWorkoutPasses();
+            for(int k = 0; k < pas.size(); i++){
+                RealmList<ExerciseGoals> exercises = pas.get(k).getExercises();
+                for(int j = 0; j < exercises.size(); j++){
+                    if(exercises.get(j).getName().equals(name)){
+                        exercises.get(j).deleteFromRealm();
+                        break;
+                    }
+                }
+            }
+        }
         realm.commitTransaction();
     }
 

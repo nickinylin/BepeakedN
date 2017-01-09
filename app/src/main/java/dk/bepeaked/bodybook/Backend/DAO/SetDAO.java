@@ -27,6 +27,11 @@ public class SetDAO {
         realm.commitTransaction();
     }
 
+    /**
+     * Deletes a set from an exercise
+     * @param exerciseName the name of the exercise
+     * @param setDeleted the set object to be deleted
+     */
     public void deleteSet(String exerciseName, SetDTO setDeleted){
 
         ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("name", exerciseName).findFirst();

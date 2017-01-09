@@ -20,12 +20,21 @@ public class WorkoutDAO {
     }
 
     Realm realm = Realm.getDefaultInstance();
+
+    /**
+     * Adds a new workoutplan
+     * @param workoutDTO (String name, RealmList<WorkoutPasDTO>)
+     */
     public void newPlan(WorkoutDTO workoutDTO){
         realm.beginTransaction();
         WorkoutDTO realmPlan = realm.copyToRealm(workoutDTO);
         realm.commitTransaction();
     }
 
+    /**
+     * Gets a list of all the plans
+     * @return RealmList<WorkoutDTO>
+     */
     public RealmList<WorkoutDTO> getPlans(){
         RealmResults<WorkoutDTO> resultPlans = realm.where(WorkoutDTO.class).findAll();
         RealmList<WorkoutDTO> workoutPlans = new RealmList<WorkoutDTO>();
@@ -33,6 +42,11 @@ public class WorkoutDAO {
         return workoutPlans;
     }
 
+    /**
+     * Updates a plan name
+     * @param oldname
+     * @param newname
+     */
     public void updatePlanName(String oldname, String newname){
 
         WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", oldname).findFirst();
@@ -42,6 +56,10 @@ public class WorkoutDAO {
         realm.commitTransaction();
     }
 
+    /**
+     * Deletes a plan
+     * @param name The name of the plan
+     */
     public void deletePlan(String name){
 
         WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", name).findFirst();

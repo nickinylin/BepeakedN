@@ -1,13 +1,10 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
-import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
-import dk.bepeaked.bodybook.Backend.DTO.StringObjectToRealm;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import io.realm.Realm;
 import io.realm.RealmList;
-import io.realm.RealmResults;
 
 /**
  * Created by Nicki on 14/11/16.
@@ -17,6 +14,11 @@ public class WorkoutPasDAO {
 
     Realm realm = Realm.getDefaultInstance();
 
+    /**
+     * Adds a new pas to a plan
+     * @param planName The plan you wish to add the pas to
+     * @param workoutPasDTO the new workoutpas
+     */
     public void newPas(String planName, WorkoutPasDTO workoutPasDTO){
 
         WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
@@ -26,7 +28,11 @@ public class WorkoutPasDAO {
         realm.commitTransaction();
     }
 
-
+    /**
+     * Gets a list of all the passes created in a plan
+     * @param planName
+     * @return RealmList<WorkoutPasDTO>
+     */
     public RealmList<WorkoutPasDTO> getPasses(String planName){
 
         WorkoutDTO realmPas = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
@@ -35,7 +41,13 @@ public class WorkoutPasDAO {
         return workoutPasses;
     }
 
-
+    /**
+     * Updates a pas name
+     * @param planName The plan it's in
+     * @param oldPasName
+     * @param newPasName
+     * @throws Exception if it doesnt exist in the plan
+     */
     public void updatePasName(String planName, String oldPasName, String newPasName) throws Exception {
 
         int position = -1;
@@ -59,7 +71,12 @@ public class WorkoutPasDAO {
         }
     }
 
-
+    /**
+     * Deletes a pas from a plan
+     * @param planName the plan its in
+     * @param pasName the name of the pas you want to delete
+     * @throws Exception if it doesn't exist in the plan
+     */
     public void deletePas(String planName, String pasName) throws Exception {
 
         int position = -1;
@@ -83,6 +100,15 @@ public class WorkoutPasDAO {
         }
     }
 
+    /**
+     * Adds an exercise to a pas
+     * @param planName the plan the pas is in
+     * @param pasName the name of the pas
+     * @param exerciseName the name of the exercise
+     * @param sets the amount of sets of said exercise
+     * @param reps the amount of reps of said exercise
+     * @throws Exception if the pas doesn't exist in the plan
+     */
      public void addExerciseToPas(String planName, String pasName, String exerciseName, int sets, int reps) throws Exception {
 
          int position = -1;
@@ -107,6 +133,13 @@ public class WorkoutPasDAO {
          }
      }
 
+    /**
+     * Removes an exercise from a pas
+     * @param planName the plan the pas is in
+     * @param pasName the pas the exercise is in
+     * @param exerciseName the name of the exercise
+     * @throws Exception if the pas doesn't exist in the plan
+     */
     public void removeExerciseFromPas(String planName, String pasName, String exerciseName) throws Exception {
 
         int position = -1;
