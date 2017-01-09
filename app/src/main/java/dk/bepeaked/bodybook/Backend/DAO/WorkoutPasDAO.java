@@ -1,6 +1,8 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
+import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
+import dk.bepeaked.bodybook.Backend.DTO.StringObjectToRealm;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import io.realm.Realm;
@@ -81,7 +83,7 @@ public class WorkoutPasDAO {
         }
     }
 
-     public void addExerciseToPas(String planName, String pasName, String exerciseName) throws Exception {
+     public void addExerciseToPas(String planName, String pasName, String exerciseName, int sets, int reps) throws Exception {
 
          int position = -1;
 
@@ -99,12 +101,13 @@ public class WorkoutPasDAO {
              throw new Exception();
          }else {
              realm.beginTransaction();
-  //           realmPlan.getWorkoutPasses().get(position).getExercises().add(exerciseName);
+             ExerciseGoals newExercise = new ExerciseGoals(exerciseName, sets, reps);
+             realmPlan.getWorkoutPasses().get(position).getExercises().add(newExercise);
              realm.commitTransaction();
          }
      }
 
-    public void removeExerciseFromPas(String planName, String pasName, ExerciseDTO exerciseToBeDeleted) throws Exception {
+    public void removeExerciseFromPas(String planName, String pasName, String exerciseName) throws Exception {
 
         int position = -1;
 
@@ -122,8 +125,15 @@ public class WorkoutPasDAO {
             throw new Exception();
         }else {
             realm.beginTransaction();
-            realmPlan.getWorkoutPasses().get(position).getExercises().remove(exerciseToBeDeleted);
+            RealmList<ExerciseGoals> exercises = realmPlan.getWorkoutPasses().get(position).getExercises();
+            for (int i = 0; i < exercises.size(); i++){
+                if(exercises.get(i).getName().equals(exerciseName)){
+                    exercises.remove(i);
+                    break;
+                }
+            }
             realm.commitTransaction();
         }
     }
+
 }

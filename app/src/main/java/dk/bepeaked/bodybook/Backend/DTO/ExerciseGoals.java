@@ -6,12 +6,12 @@ import io.realm.RealmObject;
  * Created by sebho on 06-01-2017.
  */
 
-public class Goals extends RealmObject{
+public class ExerciseGoals extends RealmObject{
     String name;
     int set, reps;
-    public Goals(){}
+    public ExerciseGoals(){}
 
-    public Goals(String name, int set, int reps){
+    public ExerciseGoals(String name, int set, int reps){
         this.name = name;
         this.set = set;
         this.reps = reps;
