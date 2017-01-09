@@ -1,12 +1,9 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -51,7 +47,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
         View view = inflater.inflate(R.layout.listview, container, false);
 
-        realmExercise2 = ld.getData();
+        realmExercise2 = ld.dataCreateAllExercises();
 
         for (int i = 0; i < realmExercise2.size(); i++) {
             hej.add(realmExercise2.get(i).getName());

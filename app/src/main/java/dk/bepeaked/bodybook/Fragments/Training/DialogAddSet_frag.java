@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.NumberPicker;
 
@@ -40,6 +41,8 @@ public class DialogAddSet_frag extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_dialog_add_set_frag, container, false);
 
         argumentString = getArguments().getString("chosenExerciseName", "empty");
+
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
         npReps = (NumberPicker) view.findViewById(R.id.NumberPickerReps);
         npWeight1 = (NumberPicker) view.findViewById(R.id.NumberPickerWeight1);

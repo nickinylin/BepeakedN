@@ -1,7 +1,9 @@
 package dk.bepeaked.bodybook.Activities;
 
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +17,7 @@ import com.crashlytics.android.Crashlytics;
 
 import java.io.File;
 
+import dk.bepeaked.bodybook.Backend.DTO.LoadDataExercise;
 import dk.bepeaked.bodybook.Fragments.Diet.Diet_frag;
 import dk.bepeaked.bodybook.Fragments.Profile_frag;
 import dk.bepeaked.bodybook.Fragments.Settings.Settings_frag;
@@ -30,6 +33,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
     NavigationView navigationView = null;
     Toolbar toolbar = null;
     boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
+    SharedPreferences prefs;
 
 
 
@@ -40,6 +44,15 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 //        if (!EMULATOR) {
             Fabric.with(this, new Crashlytics());
 //        }
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+//        if (prefs.getBoolean("firstAppRun", true)) {
+//            LoadDataExercise ld = new LoadDataExercise();
+//            ld.dataCreateAllNeededData();
+//            prefs.edit().putBoolean("firstAppRun", false).commit();
+//        }
+
 
         setContentView(R.layout.activity_main);
 

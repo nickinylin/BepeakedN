@@ -1,6 +1,7 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,7 +22,7 @@ import dk.bepeaked.bodybook.R;
 public class Training_frag extends Fragment implements AdapterView.OnItemClickListener {
 
     String[] workouts = {"Bepeaked", "Træningsplan 1", "Træningsplan 2", "Min egen træningsplan", "Træææning!", "Fuck det bliver godt!", "jeg vil ikke mere", "Træning 3","Træning 4","Træning 5","Træning 6" };
-
+    SharedPreferences prefs;
 
     public Training_frag() {
         // Required empty public constructor
@@ -32,6 +33,8 @@ public class Training_frag extends Fragment implements AdapterView.OnItemClickLi
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.listview, container, false);
+
+
 
         getActivity().setTitle("Træningsplaner");
 

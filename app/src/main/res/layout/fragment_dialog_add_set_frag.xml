@@ -1,8 +1,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/colorPrimaryDark"
+    android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tilføj sæt"
+        android:textSize="25sp"
+        android:gravity="center" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -10,23 +16,22 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/TextView_dialog_reps"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:text="Reps"
-                android:textColor="@color/F5ABC73"
                 android:textSize="20sp" />
 
             <NumberPicker
                 android:id="@+id/NumberPickerReps"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/TextView_dialog_reps">
 
@@ -34,7 +39,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:orientation="vertical">
@@ -46,20 +51,18 @@
                 android:layout_toRightOf="@+id/NumberPickerReps"
                 android:paddingLeft="10dp"
                 android:text="Weight"
-                android:textColor="@color/F5ABC73"
                 android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="50">
+                android:layout_height="wrap_content">
                 <NumberPicker
                     android:id="@+id/NumberPickerWeight1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/TextView_dialog_reps"
                     android:layout_toRightOf="@+id/NumberPickerReps"
-                    android:layout_weight="1">
+                   >
 
                 </NumberPicker>
 
@@ -69,16 +72,14 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/TextView_dialog_reps"
                     android:layout_toRightOf="@+id/NumberPickerWeight1"
-                    android:layout_weight="1">
+                    >
 
                 </NumberPicker>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
 
         <Button
             android:id="@+id/button_dialog_OK"
@@ -87,7 +88,6 @@
             android:layout_below="@+id/NumberPickerWeight1"
             android:text="OK" />
 
-    </LinearLayout>
 
 
 
