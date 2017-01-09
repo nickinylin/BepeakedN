@@ -22,13 +22,12 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
         // Required empty public constructor
     }
 
-    String[] settings = {getActivity().getResources().getString(R.string.measure), getActivity().getResources().getString(R.string.activationcode)};
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listview, container, false);
         getActivity().setTitle("Indstillinger");
+        String[] settings = {getActivity().getResources().getString(R.string.measure), getActivity().getResources().getString(R.string.activationcode)};
 
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, settings);
 
