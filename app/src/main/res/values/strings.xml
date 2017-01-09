@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Body Book</string>
-
     <string name="navigation_drawer_open">Åben navigations skuffe</string>
     <string name="navigation_drawer_close">Luk navigations skuffe</string>
     <string name="nameOnExercise">Indtast navn på Øvelsen</string>
@@ -12,10 +11,13 @@
     <string name="add">Tilføj</string>
     <string name="weight">Vægt</string>
     <string name="measure">Måleenhed kg / lbs</string>
-
     <string name="action_settings">Indstillinger</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hej blankt fragment</string>
+    <string name="breakfast">Morgenmad</string>
+    <string name="lunch">Frokost</string>
+    <string name="dinner">Aftensmad</string>
+    <string name="snack">Snack</string>
+    <string name="activationcode">Aktiveringskode</string>
 
 </resources>
