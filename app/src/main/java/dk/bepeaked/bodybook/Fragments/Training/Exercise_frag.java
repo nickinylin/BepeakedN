@@ -102,6 +102,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         Bundle bundleArgs = new Bundle();
         bundleArgs.putString("chosenExerciseName", hej.get(position));
 
+
         TabLayoutExercise_frag fragment = new TabLayoutExercise_frag ();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");

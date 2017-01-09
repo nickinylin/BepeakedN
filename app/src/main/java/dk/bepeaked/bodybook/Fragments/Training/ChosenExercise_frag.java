@@ -58,9 +58,9 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         View view = inflater.inflate(R.layout.fragment_chosen_exercise_frag, container, false);
 
-        if (!getArguments().isEmpty()) {
-            argument = getArguments().getString("chosenExerciseName");
-        }
+
+        argument = getArguments().getString("chosenExerciseName");
+
 
         getActivity().setTitle(argument);
 
@@ -119,7 +119,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         return view;
     }
 
-    private int convertKilo(int kilo){
+    private int convertKilo(int kilo) {
         double d = kilo * 2.2046;
         int pounds = (int) d;
         return pounds;

@@ -23,6 +23,7 @@ public class TabLayoutExercise_frag extends Fragment {
 
     TabLayout tabLayout;
     ViewPager viewPager;
+    Bundle bundleArgs = new Bundle();
 
     public TabLayoutExercise_frag() {
         // Required empty public constructor
@@ -77,10 +78,14 @@ public class TabLayoutExercise_frag extends Fragment {
 
             switch (position) {
                 case 0:
+                    bundleArgs.putString("chosenExerciseName", getArguments().getString("chosenExerciseName"));
                     ChosenExercise_frag frag1 = new ChosenExercise_frag();
+                    frag1.setArguments(bundleArgs);
                     return frag1;
                 case 1:
+                    bundleArgs.putString("chosenExerciseName", getArguments().getString("chosenExerciseName"));
                     ExerciseHelp_frag frag2 = new ExerciseHelp_frag();
+                    frag2.setArguments(bundleArgs);
                     return frag2;
                 default:
                     return null;
