@@ -48,12 +48,12 @@ public class DietDAO {
                 String deskShort = dish.getString("desk_short");
                 String deskFull = dish.getString("desk_full");
                 JSONArray ingredientList = dish.getJSONArray("Ingredients");
-                ArrayList<String[]> ingredients = new ArrayList<String[]>();
-                for (int k = 0; k < ingredientList.length(); k++){
-                    JSONObject ingredient = ingredientList.getJSONObject(k);
-                    ingredients.add(new String[]{ingredient.getString("name"), ingredient.getString("stats")});
-                }
-                result.add(new DishDTO(i, name, imagePath, deskShort, deskFull, ingredients));
+//                RealmList<String[]> ingredients = new RealmList<String[]>();
+//                for (int k = 0; k < ingredientList.length(); k++){
+//                    JSONObject ingredient = ingredientList.getJSONObject(k);
+//                    ingredients.add(new String[]{ingredient.getString("name"), ingredient.getString("stats")});
+//                }
+//                result.add(new DishDTO(i, name, imagePath, deskShort, deskFull, ingredients));
             }
         }
         return result;
