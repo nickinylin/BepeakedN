@@ -5,13 +5,13 @@
     <item
         android:id="@+id/exerciseMenu_help"
         android:orderInCategory="1"
-        android:title="Hjælp til øvelse"
+        android:title="Hjælp til øvelse xx"
         app:showAsAction="withText" />
 
     <item
         android:id="@+id/exerciseMenu_edit"
         android:orderInCategory="2"
-        android:title="Rediger øvelse"
+        android:title="Rediger øvelse xx"
         app:showAsAction="withText" />
 
 </menu>

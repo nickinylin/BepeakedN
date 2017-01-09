@@ -2,10 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:fitsSystemWindows="false"
     tools:context="dk.bepeaked.bodybook.Fragments.Training.ChosenExercise_frag"
-    android:weightSum="1">
+    >
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -14,7 +15,7 @@
         <com.jjoe64.graphview.GraphView
             android:id="@+id/graph"
             android:layout_width="match_parent"
-            android:layout_height="180dp" />
+            android:layout_height="160dp" />
 
 
     </RelativeLayout>
@@ -63,8 +64,8 @@
     <ListView
         android:id="@+id/listView_exercise"
         android:layout_width="match_parent"
-        android:layout_height="175dp"
-        android:layout_weight="0.96">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
     </ListView>
 
@@ -76,7 +77,7 @@
         <Button
             android:text="Tilføj"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/Button_add_new_set"
             android:backgroundTint="@android:color/holo_blue_dark" />
     </LinearLayout>

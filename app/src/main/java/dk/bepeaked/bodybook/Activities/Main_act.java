@@ -47,11 +47,11 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-//        if (prefs.getBoolean("firstAppRun", true)) {
-//            LoadDataExercise ld = new LoadDataExercise();
-//            ld.dataCreateAllNeededData();
-//            prefs.edit().putBoolean("firstAppRun", false).commit();
-//        }
+        if (prefs.getBoolean("firstAppRun", true)) {
+            LoadDataExercise ld = new LoadDataExercise();
+            ld.dataCreateAllNeededData();
+            prefs.edit().putBoolean("firstAppRun", false).commit();
+        }
 
 
         setContentView(R.layout.activity_main);
