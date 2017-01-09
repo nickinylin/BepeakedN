@@ -1,12 +1,21 @@
 <resources>
     <string name="app_name">Body Book</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Åben navigations skuffe</string>
+    <string name="navigation_drawer_close">Luk navigations skuffe</string>
+    <string name="nameOnExercise">Indtast navn på Øvelsen</string>
+    <string name="name">Navn</string>
+    <string name="set">Sæt</string>
+    <string name="repetitions">Gentag.</string>
+    <string name="done">Færdig</string>
+    <string name="nameForPlan">Indtast navn på træningsplan</string>
+    <string name="add">Tilføj</string>
+    <string name="weight">Vægt</string>
+    <string name="measure">Måleenhed kg / lbs</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Indstillinger</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Hej blankt fragment</string>
 
 </resources>
