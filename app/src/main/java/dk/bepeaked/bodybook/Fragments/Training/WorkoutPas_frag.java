@@ -95,7 +95,9 @@ public class WorkoutPas_frag extends Fragment implements AdapterView.OnItemClick
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
         inflater.inflate(R.menu.workoutmenu, menu);
+        Log.d("Nicki", "onCreateOptionsMenu: " + "Her bliver workoutmenut kaldt");
         super.onCreateOptionsMenu(menu, inflater);
     }
 

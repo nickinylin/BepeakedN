@@ -39,11 +39,10 @@ public class DialogAddSet_frag extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_add_set_frag, container, false);
-
+//        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.MyAlertDialogStyle);
         argumentString = getArguments().getString("chosenExerciseName", "empty");
 
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-
         npReps = (NumberPicker) view.findViewById(R.id.NumberPickerReps);
         npWeight1 = (NumberPicker) view.findViewById(R.id.NumberPickerWeight1);
         npWeight2 = (NumberPicker) view.findViewById(R.id.NumberPickerWeight2);

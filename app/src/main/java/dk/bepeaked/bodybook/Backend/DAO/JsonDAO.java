@@ -16,7 +16,7 @@ import io.realm.RealmList;
 public class JsonDAO {
     ExerciseDAO dao = new ExerciseDAO();
 
-//    public void getData(Activity act, String code) throws IOException, JSONException {
+//    public void dataCreateAllExercises(Activity act, String code) throws IOException, JSONException {
 //        int file = act.getResources().getIdentifier(code, "drawable", act.getPackageName());
 //        InputStream is = act.getResources().openRawResource(file);
 //

@@ -63,7 +63,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_chosen_exercise_frag, container, false);
 
 
-        argument = getArguments().getString("chosenExerciseName");
+//        argument = getArguments().getString("chosenExerciseName");
 
 
         getActivity().setTitle(argument);
@@ -161,6 +161,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
         inflater.inflate(R.menu.exercisemenu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }

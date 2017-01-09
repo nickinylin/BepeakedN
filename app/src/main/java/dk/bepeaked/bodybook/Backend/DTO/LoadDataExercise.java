@@ -2,6 +2,7 @@ package dk.bepeaked.bodybook.Backend.DTO;
 
 import dk.bepeaked.bodybook.Backend.DAO.ExerciseDAO;
 import dk.bepeaked.bodybook.Backend.DAO.WorkoutDAO;
+import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
@@ -17,6 +18,7 @@ public class LoadDataExercise {
     WorkoutDTO workoutDTO;
     WorkoutDAO workoutDAO = new WorkoutDAO();
     ExerciseDAO exerciseDAO = new ExerciseDAO();
+    Realm realm = Realm.getDefaultInstance();
 
 
     public LoadDataExercise() {
@@ -28,6 +30,10 @@ public class LoadDataExercise {
 
 
     public void dataCreateAllNeededData() {
+        realm.beginTransaction();
+        realm.deleteAll();
+        realm.commitTransaction();
+
         dataCreateAllExercises();
 
         for (int i = 0; i < exercises.size(); i++) {
@@ -403,15 +409,6 @@ public class LoadDataExercise {
                 "Using a hammer grip (with your palms facing each other), lift the weights to shoulder height on either side of your chest.\n" +
                 "Extend your arms fully and press the dumbbells up.\n" +
                 "Slowly return the dumbbells to the starting position at the sides of your chest.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Smith Machine Upright Row", "This is an exercise for shoulder and biceps strengthening.", "Stand with your feet shoulder width apart and your abs drawn in.\n" +
-                "Place the bar on the Smith Machine in the position where your arms are fully extended in front of you.\n" +
-                "Place your hands shoulder width apart and raise the bar up towards your chin with a controlled motion.\n" +
-                "Pause at the top for a moment and rotate your shoulder blades together.\n" +
-                "Lower the bar to the starting position.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Incline Cable Fly’s", "This exercise is an alternative to the Butterfly or Pec Deck, it defines the muscles of the chest.Place an incline bench set at a 45 degree angle between two cable towers.", "Place an incline bench set at a 45 degree angle between two cable towers.\n" +
-                "Grasp a pulley in each hand with your palms facing up.\n" +
-                "With a slight bend in your elbows, squeeze your chest and pull the cables in an arc so they meet together in the middle of your chest.\n" +
-                "Hold for a moment and then slowly lower your hands back to starting position at along the same arc.", "", "", new RealmList<SetDTO>()));
 
         //##### page 7 #####
         exercises.add(new ExerciseDTO("Smith Machine Rear Deltoid Row", "This is an exercise for rear deltoid,shoulder, biceps and back strengthening.", "Set the bar to the lowest setting.\n" +
@@ -456,22 +453,6 @@ public class LoadDataExercise {
                 "Place your left hand against the left side of your head, above your ear.\n" +
                 "Push your head against your hand, without moving your head.\n" +
                 "Repeat with your right hand, right side of your head.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Rear Deltoid Row Barbell", "This is an exercise for shoulder and biceps strengthening.", "Place a barbell on the floor in front of you with the resided weights attached.\n" +
-                "With your knees bent and back straight grasp the bar with a wide overhand grip (palms facing downwards).\n" +
-                "Keep your chest steady and your arms perpendicular to your chest.\n" +
-                "Pull the bar as far up to your chest as you can.\n" +
-                "Hold for a moment than lower the bar in a controlled manner.\n" +
-                "Repeat.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Dumbbell Bent Arm Pullover", "This is an exercise for chest, shoulder, lats and biceps strengthening.", "Lie flat on a bench with your head hanging slightly over the end and your feet flat on the floor.\n" +
-                "Hold a dumbbell with both hands, keep your elbows in throughout the exercise.\n" +
-                "Starting with your arms fully extended over your chest, slowly lower the dumbbell in an arc over your head and towards the floor.\n" +
-                "Pull the dumbbell back up to chest height in a slow controlled manner and return to starting position.\n" +
-                "Repeat.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Decline Dumbbell Fly’s", "This is an exercise for chest and shoulder strengthening.", "Lie on a decline bench with your head lower than your body and your feet firmly on the ground.\n" +
-                "With dumbbells together above your shoulders and your arms straight out above you as your starting position.\n" +
-                "Keeping your arms straight and with a slight bend in your elbows lower the dumbbells down towards the floor in an arc, up until just above your shoulders.\n" +
-                "Return to the starting position in a slow controlled manner.\n" +
-                "Repeat.", "", "", new RealmList<SetDTO>()));
 
         //##### page 8 #####
         exercises.add(new ExerciseDTO("Gironda Sternum Chins", "This is an exercise for lats, biceps and middle back strengthening; which is similar t the basic chin up but focusses more on lats.", "Grasp the pull up bar with a shoulder width underhand grip.\n" +
@@ -540,21 +521,6 @@ public class LoadDataExercise {
                 "Repeat.", "", "", new RealmList<SetDTO>()));
 
         //##### page 9 #####
-        exercises.add(new ExerciseDTO("Butterfly Machine", "This is an exercise for chest strengthening.", "Adjust the machine so you are sitting at chest heights with the pads.\n" +
-                "Sit on the machine with your back flat.\n" +
-                "Place your forearms on the pads, parallel to the floor, this is starting position.\n" +
-                "Using your forearms, push the pads together slowly as you squeeze your chest.\n" +
-                "Return your arms to the stretched out starting position in a controlled motion.\n" +
-                "Repeat.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Crossover with Bands", "This is an exercise for chest, biceps and shoulder strengthening.", "Secure an exercise to a post (or secure pole) and hold it in each hand.\n" +
-                "Step forward so the band has some tension, facing away from the post.\n" +
-                " Your arms at mid chest height and out to the side, palms facing forward this is your starting position.\n" +
-                "Bring your hands together in front of you.\n" +
-                "Hold this for a moment and then in a controlled motion return to starting position.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Barbell Front Raise and Pullover", "This is an exercise for chest, triceps and shoulder strengthening.", "Lie on a flat bench and grasp a barbell using a medium grip (about 15” apart).\n" +
-                "Place the barbell on your upper thighs and lock your arms straight with a slight bend in your elbows.\n" +
-                "Draw your abs in and keeping your back flat on the bench, raise your arms up in an arc over and behind your head (as if you were performing a reverse pullover).\n" +
-                "Slowly return the barbell to the starting position on your thighs.", "", "", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO("Incline Fly’s with a Twist", "This is an exercise for chest sculpting and strengthening which is very similar to the incline fly’s.", "Lie on an incline bench set at a 45 degree angle with a dumbbell in each hand and your feet flat on the ground.\n" +
                 "Start with the dumbbells out to the sides of your chest, parallel to the floor as you would a regular Fly.\n" +
                 "Raise the dumbbells over your chest in and arc, at the top turn your pinky finger in so they are facing each other.\n" +
@@ -589,24 +555,14 @@ public class LoadDataExercise {
                 "Pull the bar down till the bar reaches your upper chest, keeping your elbows close to your body.\n" +
                 "Slowly return the bar to the starting position.\n" +
                 "Repeat.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Pullover On Stability Ball With Weight", "This is an exercise for back, shoulders and neck strengthening", "Grasp a Barbell or Dumbbell and sit on a Ball with your feet firmly placed on the floor.\n" +
-                "Lower your body so your upper abs are the only part of your body supported on the Ball.\n" +
-                "Bring the Barbell or Dumbbell to your chest with your arms extend.\n" +
-                "In an arcing motion raise the Barbell or Dumbbell over and behind your head towards the floor.\n" +
-                "Return to starting position.\n" +
-                "Repeat.", "", "", new RealmList<SetDTO>()));
+
         exercises.add(new ExerciseDTO("One Legged Cable Kickback", "This is an exercise for gluts and hamstring strengthening.", "Standing at a cable tower attach an ankle cuff to a low pulley.\n" +
                 "Facing the weight stack, with a slight bend in your knees and your abs drawn in\n" +
                 "Slowly kick your ankle back in and arc as high as you are able to.\n" +
                 "Return to starting position and switch ankles.", "", "", new RealmList<SetDTO>()));
 
         //##### page 10 #####
-        exercises.add(new ExerciseDTO("Bent Over Row with Barbell", "This exercise focuses on the middle back", "Place your feet shoulder width apart.\n" +
-                "Bend over the bar so your back is flat and parallel to the floor.\n" +
-                "Grasp the bar a bit wider than shoulder width apart with an overhand grip.\n" +
-                "Hold the bar at arms length, this is starting position.\n" +
-                "Slowly raise the bar to the lower part of your chest.\n" +
-                "Pause for a moment than return to starting position.", "", "", new RealmList<SetDTO>()));
+
         exercises.add(new ExerciseDTO("Back Fly’s with Exercise Band", "This is an exercise for shoulder, middle back and triceps strengthening.", "Place an exercise band around a post or machine at mid chest height.\n" +
                 "Stand with your feet shoulder width apart, abs drawn in and knees slightly bent.\n" +
                 "Stand back from the post so there is tension in the band, grasping the band with your arms extended in front of you and a slight bend in your elbows; this is your starting position.\n" +
@@ -850,7 +806,7 @@ public class LoadDataExercise {
                 "Keep your back straight, your abs drawn in and your knees slightly bent.\n" +
                 "Starting at the top, push your arm down until it is straight, feeling the concentration in your tricep.\n" +
                 "Slowly return to starting position.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Standing Triceps Extension", "This exercise works the triceps by reaching behind your neck", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
+        exercises.add(new ExerciseDTO("Standing Triceps Extension 1", "This exercise works the triceps by reaching behind your neck", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
                 "Hold a dumbbell in both hands, with your palms facing up.\n" +
                 "Raise the dumbbell over your head and slowly lower the dumbbell in an arc behind your head.\n" +
                 "Slowly raise the dumbbell back up to the starting position.", "", "", new RealmList<SetDTO>()));
@@ -984,7 +940,7 @@ public class LoadDataExercise {
                 "Hold a dumbbell in each hand.\n" +
                 "Bring your right arm up to your side so the dumbbell in line with your chest, keeping your lower arm vertical and press your arm back in arc.\n" +
                 "Return to the starting position repeat and switch arms.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Standing Triceps Extension", "This exercise works the triceps by reaching behind your neck.", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
+        exercises.add(new ExerciseDTO("Standing Triceps Extension 2", "This exercise works the triceps by reaching behind your neck.", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
                 "Hold a dumbbell in both hands, with your palms facing up.\n" +
                 "Raise the dumbbell over your head and slowly lower the dumbbell in an arc behind your head.\n" +
                 "Slowly raise the dumbbell back up to the starting position.", "", "", new RealmList<SetDTO>()));
@@ -1001,18 +957,11 @@ public class LoadDataExercise {
                 "Raise the dumbbell over your head and slowly lower the dumbbell in an arc behind your head, so that the dumbbell lines up with your spine.\n" +
                 "Slowly raise the dumbbell back up to the starting position.\n" +
                 "Switch arms and repeat.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Standing Overhead Triceps Extension with Barbell", "This is a double arm barbell version of a behind the neck triceps exercise.", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
-                "Hold a barbell or EZ Curl bar about 6-8 inches apart with your palms facing up.\n" +
-                "Raise the bar over your head and slowly lower the dumbbell in an arc behind your head, towards your back.\n" +
-                "Slowly raise the bar back up to the starting position.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Standing Triceps Extension with Towel", "This exercise requires another person and uses manual resistance, or your body’s own weight to build muscle.", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
+
+        exercises.add(new ExerciseDTO("Standing Triceps Extension with Towel 1", "This exercise requires another person and uses manual resistance, or your body’s own weight to build muscle.", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
                 "Hold a towel or rope facing up behind and in back of your head.\n" +
                 "Have a partner hold the towel taught during the exercise so the resistance is constant.\n" +
                 "Lower your forearms down until they reach your biceps, then slowly raise your arms back up to starting position.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Tate Press with Dumbbell", "This is an advanced triceps exercise which moves the muscle differently than other exercises.", "Lay flat on a bench with your head at one end and your feet firmly planted on the floor.\n" +
-                "Hold a dumbbell in each hand so your palms are facing your feet.\n" +
-                "Drawing your abs in and keeping your back on the bench, raise the weights to the center of your chest.\n" +
-                "Without moving elbows, slowly raise your arms up and out contracting your triceps.", "", "", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO("Triceps Kickback with Dumbbell", "This along with the Triceps Push Down is one of the most beneficial exercises for the arms.", "Standing along side a flat bench, bend your left knee and place it on the bench.\n" +
                 "Place your left hand on the bench for support, keeping your back at a 45 degree angle.\n" +
                 "Hold a dumbbell in your right hand and place your right foot on the floor.\n" +
@@ -1022,7 +971,7 @@ public class LoadDataExercise {
                 "Hold a barbell or EZ Curl bar about 6-8 inches apart with your palms facing up.\n" +
                 "Raise the bar over your head and slowly lower the dumbbell in an arc behind your head, towards your back.\n" +
                 "Slowly raise the bar back up to the starting position.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Standing Triceps Extension with Towel", "This exercise requires another person and uses manual resistance, or your body’s own weight to build muscle.", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
+        exercises.add(new ExerciseDTO("Standing Triceps Extension with Towel 2", "This exercise requires another person and uses manual resistance, or your body’s own weight to build muscle.", "Stand with your feet shoulder width apart, your back straight and your abs drawn in.\n" +
                 "Hold a towel or rope facing up behind and in back of your head.\n" +
                 "Have a partner hold the towel taught during the exercise so the resistance is constant.\n" +
                 "Lower your forearms down until they reach your biceps, then slowly raise your arms back up to starting position.", "", "", new RealmList<SetDTO>()));
@@ -1030,11 +979,6 @@ public class LoadDataExercise {
                 "Hold a dumbbell in each hand so your palms are facing your feet.\n" +
                 "Drawing your abs in and keeping your back on the bench, raise the weights to the center of your chest.\n" +
                 "Without moving elbows, slowly raise your arms up and out contracting your triceps.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Triceps Kickback with Dumbbell", "This along with the Triceps Push Down is one of the most beneficial exercises for the arms.", "Standing along side a flat bench, bend your left knee and place it on the bench.\n" +
-                "Place your left hand on the bench for support, keeping your back at a 45 degree angle.\n" +
-                "Hold a dumbbell in your right hand and place your right foot on the floor.\n" +
-                "Bend your right arm and raise it up to your shoulder, then with controlled motion kick it back, fully extending your arm.\n" +
-                "Switch arms and repeat.", "", "", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO("Triceps Pushdown with Cable", "This exercise is the original version of the triceps pushdown.", "Stand in front of a cable machine and attach a short bar to a high pulley.\n" +
                 "Grasp the handle with your palms facing down.\n" +
                 "Draw your abs in and keep your back straight.\n" +
@@ -1349,10 +1293,6 @@ public class LoadDataExercise {
         exercises.add(new ExerciseDTO("Seated Calf Raise with Barbell", "This version of a calves raise uses a block and a barbell.", "Place a block on the floor about one foot in front of a bench.\n" +
                 "Sit on the bench with a barbell across your upper thighs and the balls of your feet on the block.\n" +
                 "Slowly raise and lower your toes up as high as possible without lifting your foot off the block.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO("Calves Press on Leg Machine", "This exercise uses a Leg Press Machine to work your calves. You can perform this exercise along with Leg Presses.", "Sit down on a Leg Press Machine and press the plate up as if you were performing a leg press.\n" +
-                "Slide your feet down so that the balls of your feet are pressing against the rack (with your heels hanging free).\n" +
-                "Keeping the handles locked, press up and flex your toes and then slowly bring your toes back towards your body.\n" +
-                "Perform theses movements slowly for maximum benefit.", "", "", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO("Calves Press on Leg Machine", "This exercise uses a Leg Press Machine to work your calves. You can perform this exercise along with Leg Presses.", "Sit down on a Leg Press Machine and press the plate up as if you were performing a leg press.\n" +
                 "Slide your feet down so that the balls of your feet are pressing against the rack (with your heels hanging free).\n" +
                 "Keeping the handles locked, press up and flex your toes and then slowly bring your toes back towards your body.\n" +

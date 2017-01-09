@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -32,16 +32,16 @@
         <!--<item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>-->
     <!--</style>-->
 
-    <!--<style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">-->
-        <!--&lt;!&ndash; Used for the buttons &ndash;&gt;-->
-        <!--<item name="colorAccent">#FFC107</item>-->
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Used for the buttons -->
+        <item name="colorAccent">#FFC107</item>
 
         <!--<item name="android:windowTitleStyle">@style/MyTitleTextStyle</item>-->
-        <!--&lt;!&ndash; Used for the title and text &ndash;&gt;-->
+        <!-- Used for the title and text -->
         <!--<item name="android:textColorPrimary">#FFFFFF</item>-->
-        <!--&lt;!&ndash; Used for the background &ndash;&gt;-->
-    <!--<item name="android:background">#707470</item>-->
-<!--</style>-->
+        <!-- Used for the background -->
+    <!--<item name="android:background">#FFFFFF</item>-->
+    </style>
 
 <!-- alertDialog styling end // Nicki -->
 
