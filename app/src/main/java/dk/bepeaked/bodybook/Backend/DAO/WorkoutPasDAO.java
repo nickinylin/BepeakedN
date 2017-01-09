@@ -99,7 +99,7 @@ public class WorkoutPasDAO {
              throw new Exception();
          }else {
              realm.beginTransaction();
-             realmPlan.getWorkoutPasses().get(position).getExercises().add(exerciseName);
+  //           realmPlan.getWorkoutPasses().get(position).getExercises().add(exerciseName);
              realm.commitTransaction();
          }
      }

@@ -1,10 +1,12 @@
 package dk.bepeaked.bodybook.Backend.DTO;
 
+import io.realm.RealmObject;
+
 /**
  * Created by Nicki on 06/01/17.
  */
 
-public class StringObjectToRealm {
+public class StringObjectToRealm extends RealmObject {
 
     String string;
 
