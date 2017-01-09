@@ -11,7 +11,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/bodybook"
+        android:icon="@drawable/body_book"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
