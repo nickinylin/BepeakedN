@@ -40,10 +40,16 @@ public class Recipe_frag extends Fragment {
 
         ArrayList<String> ingredientNames = new ArrayList<String>();
         String text = "";
+        int protein = 0, fat = 0, carbonhydrate = 0, calories = 0;
         for(int i = 0; i < dish.getIngredients().size(); i++){
             int nr = i+1;
-            text = text + nr + ". " + dish.getIngredients().get(i).getName() + "\n";
+            text = text + nr + ". " + dish.getIngredients().get(i).getName() + " - " + dish.getIngredients().get(i).getWeight() + "g" + "\n";
+            protein = protein + dish.getIngredients().get(i).getProtein();
+            fat = fat + dish.getIngredients().get(i).getFat();
+            carbonhydrate = carbonhydrate + dish.getIngredients().get(i).getCarbohydrate();
+            calories = calories + dish.getIngredients().get(i).getCalories();
         }
+        text = text + "\n" + protein + "g protein. " + fat + "g fat. " + carbonhydrate + "g carbonhydrates. " + calories + " calories.";
         ingredients.setText(text);
         description.setText(dish.getDeskLong());
 

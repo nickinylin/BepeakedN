@@ -87,7 +87,7 @@ public class Diet_frag extends Fragment{
         ar.add(in3);
         DishDTO test = new DishDTO(0, "Proteinboller", R.drawable.proteinboller, "Proteinboller er gode til efter træning",
                 "Proteinboller er proteinholdige boller, som sørger for at dine muskler kan genopbygge efter du har trænet. \n" +
-                "Først skal du hælde mel i en skål \nSå skal du hælde proteinpulver og havregryn i. \n" +
+                "Først skal du hælde mel i en skål. \nSå skal du hælde proteinpulver og havregryn i. \n" +
                 "Til sidst skal du tilsætte vand efter behov og rør rundt indtil du får en god dej. \n" +
                 "Form til boller og giv dem 20 minutter på 200 grader i varmluftovn.", ar);
         dishList.add(test);
