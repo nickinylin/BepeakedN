@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import dk.bepeaked.bodybook.R;
 
@@ -24,7 +25,17 @@ public class ExerciseHelp_frag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_exercise_help_frag, container, false);
+        View rod = inflater.inflate(R.layout.fragment_exercise_help_frag, container, false);
+
+
+        ImageView before = (ImageView) rod.findViewById(R.id.ex_imagebefore);
+        ImageView after = (ImageView) rod.findViewById(R.id.ex_imageafter);
+
+        before.setImageResource(R.drawable.bench_press_small_1);
+        after.setImageResource(R.drawable.bench_press_small_2);
+
+        return rod;
+
     }
 
 }
