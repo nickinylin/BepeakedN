@@ -4,6 +4,7 @@ package dk.bepeaked.bodybook.Fragments.Training;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -101,7 +102,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         Bundle bundleArgs = new Bundle();
         bundleArgs.putString("chosenExerciseName", hej.get(position));
 
-        ChosenExercise_frag fragment = new ChosenExercise_frag();
+        TabLayoutExercise_frag fragment = new TabLayoutExercise_frag ();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
         fragment.setArguments(bundleArgs);
