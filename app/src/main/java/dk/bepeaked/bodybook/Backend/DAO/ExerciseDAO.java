@@ -149,7 +149,7 @@ public class ExerciseDAO {
 
         for(int i = 0; i < planer.size(); i++){
             RealmList<WorkoutPasDTO> pas = planer.get(i).getWorkoutPasses();
-            for(int k = 0; k < pas.size(); i++){
+            for(int k = 0; k < pas.size(); k++){
                 RealmList<ExerciseGoals> exercises = pas.get(k).getExercises();
                 for(int j = 0; j < exercises.size(); j++){
                     if(exercises.get(j).getName().equals(name)){
