@@ -10,8 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import dk.bepeaked.bodybook.Fragments.Training.AddSet_frag;
-import dk.bepeaked.bodybook.Fragments.Training.WorkoutPas_frag;
 import dk.bepeaked.bodybook.R;
 
 /**
@@ -24,7 +22,7 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
         // Required empty public constructor
     }
 
-    String[] settings = {"Måleenhed (kg / pund)", "Aktiveringskode", "Sprog"};
+    String[] settings = {getActivity().getResources().getString(R.string.measure), getActivity().getResources().getString(R.string.activationcode)};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,11 +49,6 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
             fragmentTransaction.commit();
         } else if (position == 1) {
             ActivationCode_frag fragment = new ActivationCode_frag();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
-            fragmentTransaction.commit();
-        } else if  (position == 2) {
-            Language_frag fragment = new Language_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
             fragmentTransaction.commit();
