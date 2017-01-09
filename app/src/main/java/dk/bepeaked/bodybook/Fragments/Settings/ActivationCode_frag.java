@@ -49,20 +49,20 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        String input = field.getText().toString();
-        if(!(input.matches(""))){
-            Field[] fields=R.raw.class.getFields();
-            for(int i = 0; i < fields.length; i++){
-                if(fields[i].getName().equals(input)){
-                    try {
-                        json.getData(this.getActivity(), input);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
+//        String input = field.getText().toString();
+//        if(!(input.matches(""))){
+//            Field[] fields=R.raw.class.getFields();
+//            for(int i = 0; i < fields.length; i++){
+//                if(fields[i].getName().equals(input)){
+//                    try {
+//                        json.getData(this.getActivity(), input);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }
     }
 }
