@@ -112,15 +112,26 @@ public class WorkoutController {
      */
     public void addNewPasToPlan(String planName, String pasName) throws ExceptionNameAlreadyExist {
 
-        realmListWorkoutDTO = workoutDAO.getPlans();
-        for (int i = 0; i < realmListWorkoutDTO.size(); i++) {
-            realmListWorkoutPasDTO = realmListWorkoutDTO.get(i).getWorkoutPasses();
-            for (int l = 0; l < realmListWorkoutPasDTO.size(); l++) {
-                if (realmListWorkoutPasDTO.get(l).getName().equals(pasName)) {
-                    throw new ExceptionNameAlreadyExist("The name already exists in another pas");
+        Log.d("LUKAS", "loop0");
+        try {
+            realmListWorkoutDTO = workoutDAO.getPlans();
+            for (int i = 0; i < realmListWorkoutDTO.size(); i++) {
+                Log.d("LUKAS", "loop1: 1");
+                realmListWorkoutPasDTO = realmListWorkoutDTO.get(i).getWorkoutPasses();
+                Log.d("LUKAS", "loop1: 2");
+                for (int l = 0; l < realmListWorkoutPasDTO.size(); l++) {
+                    Log.d("LUKAS", "loop2: 1");
+                    if (realmListWorkoutPasDTO.get(l).getName().equals(pasName)) {
+                        Log.d("LUKAS", "loop2: 2");
+                        throw new ExceptionNameAlreadyExist("The name already exists in another pas");
+                    }
                 }
             }
+        }catch(NullPointerException e){
         }
+        workoutDTO = workoutDAO.getPlans().first();
+
+        Log.d("LUKAS", "uden for loop, navn på plan: "+ workoutDTO.getName());
         workoutPasDTO = new WorkoutPasDTO(pasName, new RealmList<ExerciseGoals>());
         workoutPasDAO.newPas(planName, workoutPasDTO);
     }
@@ -183,13 +194,13 @@ public class WorkoutController {
         RealmList<WorkoutPasDTO> newList;
         newList = getPasses(planName);
         ArrayList<String> pasNames = new ArrayList<String>();
-       try {
-           for (int i = 0; i < newList.size(); i++) {
-               pasNames.add(newList.get(i).getName());
-           }
-       }catch(Exception e){
-           
-       }
+        try {
+            for (int i = 0; i < newList.size(); i++) {
+                pasNames.add(newList.get(i).getName());
+            }
+        }catch(Exception e){
+
+        }
         return pasNames;
     }
 

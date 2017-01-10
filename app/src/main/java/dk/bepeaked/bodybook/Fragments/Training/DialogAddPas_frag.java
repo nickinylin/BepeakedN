@@ -72,7 +72,7 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
                 dismiss();
             } catch (ExceptionNameAlreadyExist e) {
                 e.printStackTrace();
-                Log.d("LUKAS", "exception: name already exist");
+                Log.d("LUKAS", "exception: name already e");
                 tv.setText(e.getMessage());
             }
         }

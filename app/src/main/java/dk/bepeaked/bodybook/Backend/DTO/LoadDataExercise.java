@@ -1,5 +1,8 @@
 package dk.bepeaked.bodybook.Backend.DTO;
 
+import android.util.Log;
+
+import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DAO.ExerciseDAO;
 import dk.bepeaked.bodybook.Backend.DAO.WorkoutDAO;
 import io.realm.Realm;
@@ -16,7 +19,7 @@ public class LoadDataExercise {
     private String name, desc;
     RealmList<WorkoutDTO> realmListWorkoutDTO;
     WorkoutDTO workoutDTO;
-    WorkoutDAO workoutDAO = new WorkoutDAO();
+    WorkoutController wc = new WorkoutController();
     ExerciseDAO exerciseDAO = new ExerciseDAO();
     Realm realm = Realm.getDefaultInstance();
 
@@ -31,6 +34,7 @@ public class LoadDataExercise {
 
 
     public void dataCreateAllNeededData(String newPlanName) {
+        Log.d("LUKAS", "creating all needed data");
         realm.beginTransaction();
         realm.deleteAll();
         realm.commitTransaction();
@@ -41,7 +45,9 @@ public class LoadDataExercise {
             exerciseDAO.newExercise(exercises.get(i));
         }
 
-        workoutDAO.newPlan(new WorkoutDTO(newPlanName, new RealmList<WorkoutPasDTO>()));
+        Log.d("LUKAS", "dataCreateAllNeededData: Tilføjer plan herunder");
+        wc.addPlan(newPlanName);
+//        workoutDAO.newPlan(new WorkoutDTO(newPlanName, new RealmList<WorkoutPasDTO>()));
     }
 
     public RealmList<ExerciseDTO> dataCreateAllExercises() {
