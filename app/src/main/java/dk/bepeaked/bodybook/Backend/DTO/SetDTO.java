@@ -13,21 +13,14 @@ import io.realm.RealmObject;
 public class SetDTO extends RealmObject {
     private int reps;
     private double weight, rm;
-    private Date date1;
-//    private SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-    private String date = "date";
+    private Date date;
 
     public SetDTO(){}
 
-    public SetDTO(double weight, int reps, String dateString, double rm) {
+    public SetDTO(double weight, int reps, Date date, double rm) {
         this.weight = weight;
         this.reps = reps;
-        this.date = dateString;
-//        try {
-//            this.date = df.parse(dateString);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+        this.date = date;
         this.rm = rm;
     }
 
@@ -47,11 +40,11 @@ public class SetDTO extends RealmObject {
         this.reps = reps;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

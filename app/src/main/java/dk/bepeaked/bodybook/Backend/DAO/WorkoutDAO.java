@@ -38,7 +38,6 @@ public class WorkoutDAO {
     public RealmList<WorkoutDTO> getPlans(){
         RealmResults<WorkoutDTO> resultPlans = realm.where(WorkoutDTO.class).findAll();
         RealmList<WorkoutDTO> workoutPlans = new RealmList<WorkoutDTO>();
-        workoutPlans.addAll(resultPlans.subList(0, resultPlans.size()));
         return workoutPlans;
     }
 

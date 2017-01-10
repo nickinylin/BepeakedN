@@ -49,6 +49,16 @@ public class ExerciseDAO {
         return exercisePlans;
     }
 
+    public ExerciseDTO getExercise(String name){
+        RealmList<ExerciseDTO> exercises = getExercises();
+        for(int i = 0; i < exercises.size(); i++){
+            if(exercises.get(i).getName().equals(name)){
+                return exercises.get(i);
+            }
+        }
+        return null;
+    }
+
     /**
      * Gets a RealmList of all exercises in a specific pas, in a specific plan
      * @param planName

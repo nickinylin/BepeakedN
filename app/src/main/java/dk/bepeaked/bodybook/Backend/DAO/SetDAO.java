@@ -24,7 +24,7 @@ public class SetDAO {
         ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("name", exerciseName).findFirst();
 
         realm.beginTransaction();
-        realmExercise.getSet().add(newSet);
+        realmExercise.getSets().add(newSet);
         realm.commitTransaction();
     }
 

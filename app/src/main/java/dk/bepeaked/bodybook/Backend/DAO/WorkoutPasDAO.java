@@ -5,6 +5,7 @@ import android.util.Log;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import io.realm.Realm;
 import io.realm.RealmList;
 
@@ -53,7 +54,7 @@ public class WorkoutPasDAO {
      * @param newPasName
      * @throws Exception if it doesnt exist in the plan
      */
-    public void updatePasName(String planName, String oldPasName, String newPasName) throws Exception {
+    public void updatePasName(String planName, String oldPasName, String newPasName) throws ExceptionPasDoesntExist {
 
         int position = -1;
 
@@ -68,7 +69,7 @@ public class WorkoutPasDAO {
         }
 
         if (position == -1) {
-            throw new Exception();
+            throw new ExceptionPasDoesntExist("The pas doesnt exist");
         } else {
             realm.beginTransaction();
             realmPlan.getWorkoutPasses().get(position).setName(newPasName);
@@ -83,7 +84,7 @@ public class WorkoutPasDAO {
      * @param pasName  the name of the pas you want to delete
      * @throws Exception if it doesn't exist in the plan
      */
-    public void deletePas(String planName, String pasName) throws Exception {
+    public void deletePas(String planName, String pasName) throws ExceptionPasDoesntExist {
 
         int position = -1;
 
@@ -98,7 +99,7 @@ public class WorkoutPasDAO {
         }
 
         if (position == -1) {
-            throw new Exception();
+            throw new ExceptionPasDoesntExist("The pas "+pasName+" in " + planName + " doesnt exist");
         } else {
             realm.beginTransaction();
             realmPlan.getWorkoutPasses().remove(position);
@@ -116,7 +117,7 @@ public class WorkoutPasDAO {
      * @param reps         the amount of reps of said exercise
      * @throws Exception if the pas doesn't exist in the plan
      */
-    public void addExerciseToPas(String planName, String pasName, String exerciseName, int sets, int reps) throws Exception {
+    public void addExerciseToPas(String planName, String pasName, String exerciseName, int sets, int reps) throws ExceptionPasDoesntExist {
 
         int position = -1;
 
@@ -131,7 +132,7 @@ public class WorkoutPasDAO {
         }
 
         if (position == -1) {
-            throw new Exception();
+            throw new ExceptionPasDoesntExist("The pas "+pasName+" in " + planName + " doesnt exist");
         } else {
             realm.beginTransaction();
             ExerciseGoals newExercise = new ExerciseGoals(exerciseName, sets, reps);
@@ -148,7 +149,7 @@ public class WorkoutPasDAO {
      * @param exerciseName the name of the exercise
      * @throws Exception if the pas doesn't exist in the plan
      */
-    public void removeExerciseFromPas(String planName, String pasName, String exerciseName) throws Exception {
+    public void removeExerciseFromPas(String planName, String pasName, String exerciseName) throws ExceptionPasDoesntExist {
 
         int position = -1;
 
@@ -163,7 +164,7 @@ public class WorkoutPasDAO {
         }
 
         if (position == -1) {
-            throw new Exception();
+            throw new ExceptionPasDoesntExist("The pas "+pasName+" in " + planName + " doesnt exist");
         } else {
             realm.beginTransaction();
             RealmList<ExerciseGoals> exercises = realmPlan.getWorkoutPasses().get(position).getExercises();

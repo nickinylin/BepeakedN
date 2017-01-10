@@ -48,7 +48,7 @@ public class ExerciseDTO extends RealmObject{
         this.desc1 = desc1;
     }
 
-    public RealmList<SetDTO> getSet() {
+    public RealmList<SetDTO> getSets() {
         return set;
     }
 
