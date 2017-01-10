@@ -2,6 +2,8 @@ package dk.bepeaked.bodybook.Backend.DAO;
 
 import android.util.Log;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
@@ -29,7 +31,7 @@ public class WorkoutPasDAO {
         WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
         realm.beginTransaction();
         Log.d("Nicki", "WorkoutPasDAO begintra: ");
-            realmPlan.getWorkoutPasses().add(workoutPasDTO);
+        realmPlan.getWorkoutPasses().add(workoutPasDTO);
         realm.commitTransaction();
     }
 
@@ -39,15 +41,17 @@ public class WorkoutPasDAO {
      * @param planName
      * @return RealmList<WorkoutPasDTO>
      */
-    public RealmList<WorkoutPasDTO> getPasses(String planName) throws ExceptionNullPointer {
+    public RealmList<WorkoutPasDTO> getPasses(String planName) throws NullPointerException{
 
         WorkoutDTO realmPas = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
 
         try {
             return realmPas.getWorkoutPasses();
-        }catch (NullPointerException e){
-            throw new ExceptionNullPointer("Nullpointer");
+        }catch(NullPointerException e){
+            Log.d("LUKAS", "nullpointer: when pulling passes from plan");
+            throw new NullPointerException(e.getMessage());
         }
+
     }
 
     /**

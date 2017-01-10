@@ -139,11 +139,13 @@ public class WorkoutController {
         workoutname = getSpecificPlan(workoutPlan).getName();
 
         Log.d("LUKAS", "workoutPlanName: "+ workoutPlan);
+
         try {
             passes = workoutPasDAO.getPasses(workoutname);
-        }catch(ExceptionNullPointer e){
-            Log.d("LUKAS", "exception: "+e.getMessage());
+        }catch(NullPointerException e){
+            passes = null;
         }
+
         return passes;
     }
 
@@ -181,10 +183,13 @@ public class WorkoutController {
         RealmList<WorkoutPasDTO> newList;
         newList = getPasses(planName);
         ArrayList<String> pasNames = new ArrayList<String>();
-//        if(realmListWorkoutPasDTO)
-         for (int i = 0; i < realmListWorkoutPasDTO.size(); i++ ){
-            pasNames.add(realmListWorkoutPasDTO.get(i).getName());
-        }
+       try {
+           for (int i = 0; i < newList.size(); i++) {
+               pasNames.add(newList.get(i).getName());
+           }
+       }catch(Exception e){
+           
+       }
         return pasNames;
     }
 
