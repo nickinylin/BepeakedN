@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.Switch;
 
 import dk.bepeaked.bodybook.R;
 
@@ -25,28 +27,41 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.listview, container, false);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
         getActivity().setTitle("Indstillinger");
-        String[] settings = {getActivity().getResources().getString(R.string.measure), getActivity().getResources().getString(R.string.activationcode)};
+        String[] settings = {getActivity().getResources().getString(R.string.activationcode), "Om os"};
 
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, settings);
 
-        ListView listView = (ListView) view.findViewById(R.id.ListView_id);
+        Switch measure = (Switch) view.findViewById(R.id.switch1);
+        measure.setText("Measureunit kg/lbs");
+
+        ListView listView = (ListView) view.findViewById(R.id.settings);
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
 
+        measure.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    //Sæt lbs til
+                }else{
+                    //Sæt kg til
+                }
+            }
+        });
 
         return view;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (position == 0) {
+        if (position == 1) {
             MeasureUnit_frag fragment = new MeasureUnit_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
             fragmentTransaction.commit();
-        } else if (position == 1) {
+        } else if (position == 0) {
             ActivationCode_frag fragment = new ActivationCode_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
