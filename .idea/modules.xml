@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Bepeaked.iml" filepath="$PROJECT_DIR$/Bepeaked.iml" />
       <module fileurl="file://$PROJECT_DIR$/BepeakedN.iml" filepath="$PROJECT_DIR$/BepeakedN.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BepeakedNew.iml" filepath="$PROJECT_DIR$/BepeakedNew.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BepeakedN.iml" filepath="$PROJECT_DIR$/BepeakedN.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
