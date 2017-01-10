@@ -1,7 +1,10 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
+import android.app.Activity;
 import android.app.DialogFragment;
+import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -70,6 +73,15 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
                 e.printStackTrace();
                 tv.setText(e.getMessage());
             }
+        }
+    }
+
+    @Override
+    public void onDismiss(final DialogInterface dialog) {
+        super.onDismiss(dialog);
+        final Activity activity = getActivity();
+        if (activity instanceof DialogInterface.OnDismissListener) {
+            ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
         }
     }
 }

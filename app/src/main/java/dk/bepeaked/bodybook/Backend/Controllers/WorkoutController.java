@@ -2,6 +2,8 @@ package dk.bepeaked.bodybook.Backend.Controllers;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import dk.bepeaked.bodybook.Backend.DAO.ExerciseDAO;
 import dk.bepeaked.bodybook.Backend.DAO.SetDAO;
 import dk.bepeaked.bodybook.Backend.DAO.WorkoutDAO;
@@ -60,7 +62,15 @@ public class WorkoutController {
         RealmList<WorkoutPasDTO> passes = workoutPasDAO.getPasses(workoutname);
 
         return passes;
+    }
 
+    public ArrayList<String> getPasNamesFromPlan (String planName) {
+        realmListWorkoutPasDTO = getPasses(planName);
+        ArrayList<String> pasNames = new ArrayList<String>();
+        for (int i = 0; i < realmListWorkoutPasDTO.size(); i++ ){
+            pasNames.add(realmListWorkoutPasDTO.get(i).getName());
+        }
+        return pasNames;
     }
 
     public WorkoutPasDTO getSpecificPas(String planName, String pasName) {

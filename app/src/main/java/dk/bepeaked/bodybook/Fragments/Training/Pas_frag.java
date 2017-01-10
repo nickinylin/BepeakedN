@@ -1,9 +1,11 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +28,7 @@ import io.realm.RealmList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Pas_frag extends Fragment implements AdapterView.OnItemClickListener {
+public class Pas_frag extends Fragment implements AdapterView.OnItemClickListener, DialogInterface.OnDismissListener {
     //WorkoutDAO wdao = new WorkoutDAO();
 
     WorkoutController wc = new WorkoutController();
@@ -53,7 +55,8 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
         getActivity().setTitle(nameTrainingplan);
 
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, workoutPases);
+
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, wc.getPasNamesFromPlan(nameTrainingplan));
 
         ListView listView = (ListView) view.findViewById(R.id.ListView_id);
         System.out.println("NICKI ID: " + listView.getId());
@@ -112,7 +115,10 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
         DialogAddPas_frag dialog = new DialogAddPas_frag();
         dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "Empty_pas");
-
     }
 
+    @Override
+    public void onDismiss(final DialogInterface dialog) {
+        Snackbar.make(getView(), "onDismiss bliver kørt!", Snackbar.LENGTH_LONG).show();
+    }
 }
