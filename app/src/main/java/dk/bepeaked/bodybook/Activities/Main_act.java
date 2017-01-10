@@ -10,13 +10,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
-
 
 import com.crashlytics.android.Crashlytics;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 
+import dk.bepeaked.bodybook.Backend.DAO.ExcelDAO;
 import dk.bepeaked.bodybook.Backend.DTO.LoadDataExercise;
 import dk.bepeaked.bodybook.Fragments.Diet.Diet_frag;
 import dk.bepeaked.bodybook.Fragments.Profile_frag;
@@ -34,8 +36,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar = null;
     boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
     SharedPreferences prefs;
-
-
+    ExcelDAO dao = new ExcelDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,10 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
             Fabric.with(this, new Crashlytics());
 //        }
 
+        ArrayList<String[]> test = dao.readCsv(this);
+        for(int i = 0; i < test.size(); i++){
+            Log.d("SEBBY", "onCreate: " + Arrays.toString(test.get(i)));
+        }
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         if (prefs.getBoolean("firstAppRun", true)) {

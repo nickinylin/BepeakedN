@@ -1,7 +1,14 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+
+import com.opencsv.CSVReader;
+
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +18,28 @@ import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
 public class ExcelDAO {
+
+    public final ArrayList<String[]> readCsv(Context context) {
+        ArrayList<String[]> questionList = new ArrayList<String[]>();
+        AssetManager assetManager = context.getAssets();
+
+        try {
+            InputStream csvStream = assetManager.open("kostplan.csv");
+            InputStreamReader csvStreamReader = new InputStreamReader(csvStream);
+            CSVReader csvReader = new CSVReader(csvStreamReader);
+            String[] line;
+
+            // throw away the header
+            csvReader.readNext();
+
+            while ((line = csvReader.readNext()) != null) {
+                questionList.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return questionList;
+    }
 
     public List<String> read(String key) throws IOException {
         List<String> resultSet = new ArrayList<String>();

@@ -44,7 +44,7 @@ public class Diet_frag extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_diet, container, false);
 
-        getActivity().setTitle("Kostplan");
+        getActivity().setTitle("kostplan");
 
 
         expandableListView = (ExpandableListView)  view.findViewById(R.id.expandA_listview);
