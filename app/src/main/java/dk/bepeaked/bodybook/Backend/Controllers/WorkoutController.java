@@ -315,6 +315,7 @@ public class WorkoutController {
         return realmListSetDTO;
     }
 
+    //****************************SETS*********************************
     /**
      * Adds a new set
      * @param exerciseName The exercise name
@@ -342,6 +343,19 @@ public class WorkoutController {
         }else{
             throw new ExceptionWrongInput("Weight input can't be less than 0");
         }
+    }
+
+    /**
+     * Deletes a set from an exercise
+     * @param exerciseName
+     * @param position the position in the array (get this from the list in the gui)
+     * @throws ExceptionExerciseDoesntExist if the exception doesn't exist
+     */
+    public void deleteSet(String exerciseName, int position) throws ExceptionExerciseDoesntExist {
+
+        RealmList<SetDTO> sets = getSetsFromExercise(exerciseName);
+        setDTO = sets.get(position);
+        setDAO.deleteSet(exerciseName, setDTO);
     }
 
 }
