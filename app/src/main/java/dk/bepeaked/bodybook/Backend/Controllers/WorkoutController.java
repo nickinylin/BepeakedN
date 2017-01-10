@@ -17,6 +17,7 @@ import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionExerciseDoesntExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionNullPointer;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionWrongInput;
 import io.realm.ExerciseDTORealmProxy;
@@ -132,12 +133,17 @@ public class WorkoutController {
      */
     public RealmList<WorkoutPasDTO> getPasses(String workoutPlan) {
         realmListWorkoutPasDTO = new RealmList<WorkoutPasDTO>();
+        RealmList<WorkoutPasDTO> passes = null;
 
         String workoutname;
         workoutname = getSpecificPlan(workoutPlan).getName();
 
-        RealmList<WorkoutPasDTO> passes = workoutPasDAO.getPasses(workoutname);
-
+        Log.d("LUKAS", "workoutPlanName: "+ workoutPlan);
+        try {
+            passes = workoutPasDAO.getPasses(workoutname);
+        }catch(ExceptionNullPointer e){
+            Log.d("LUKAS", "exception: "+e.getMessage());
+        }
         return passes;
     }
 
@@ -172,9 +178,11 @@ public class WorkoutController {
      * @return ArrayList<String>
      */
     public ArrayList<String> getPasNamesFromPlan (String planName) {
-        realmListWorkoutPasDTO = getPasses(planName);
+        RealmList<WorkoutPasDTO> newList;
+        newList = getPasses(planName);
         ArrayList<String> pasNames = new ArrayList<String>();
-        for (int i = 0; i < realmListWorkoutPasDTO.size(); i++ ){
+//        if(realmListWorkoutPasDTO)
+         for (int i = 0; i < realmListWorkoutPasDTO.size(); i++ ){
             pasNames.add(realmListWorkoutPasDTO.get(i).getName());
         }
         return pasNames;
@@ -304,8 +312,8 @@ public class WorkoutController {
 
     /**
      * Adds a new set
-     * @param exerciseName
-     * @param kg
+     * @param exerciseName The exercise name
+     * @param kg NOTE: if exercise requires
      * @param reps
      * @throws ExceptionWrongInput
      */

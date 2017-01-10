@@ -5,6 +5,7 @@ import android.util.Log;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionNullPointer;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -38,12 +39,15 @@ public class WorkoutPasDAO {
      * @param planName
      * @return RealmList<WorkoutPasDTO>
      */
-    public RealmList<WorkoutPasDTO> getPasses(String planName) {
+    public RealmList<WorkoutPasDTO> getPasses(String planName) throws ExceptionNullPointer {
 
         WorkoutDTO realmPas = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
 
-        RealmList<WorkoutPasDTO> workoutPasses = realmPas.getWorkoutPasses();
-        return workoutPasses;
+        try {
+            return realmPas.getWorkoutPasses();
+        }catch (NullPointerException e){
+            throw new ExceptionNullPointer("Nullpointer");
+        }
     }
 
     /**
