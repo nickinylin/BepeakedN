@@ -11,9 +11,6 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,13 +66,7 @@ public class Diet_frag extends Fragment{
         Headings.add("Snacks");
 
         dishList = new ArrayList<DishDTO>();
-        try {
-            dishList = ddao.getDishes(getActivity());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        dishList = ddao.getDishes(getActivity());
 
         //Testdata HUSK AT SLETTE!!
         Ingredient in = new Ingredient("Rugmel", 500, 50, 40, 150, 700);
