@@ -3,6 +3,8 @@ package dk.bepeaked.bodybook.Fragments.Training;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
@@ -18,6 +20,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
@@ -38,6 +45,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     //ArrayList<String> workoutPases = new ArrayList<String>();
     SharedPreferences prefs;
     Bundle bundleArgs;
+    private SwipeMenuListView listView;
 
     public Pas_frag() {
         // Required empty public constructor
@@ -55,15 +63,80 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
         getActivity().setTitle(nameTrainingplan);
 
-
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, wc.getPasNamesFromPlan(nameTrainingplan));
 
-        ListView listView = (ListView) view.findViewById(R.id.ListView_id);
-        System.out.println("NICKI ID: " + listView.getId());
+        listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id);
+
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
 
-        Log.d("Nicki", "BUNDLE NICKI 2: " + nameTrainingplan);
+        SwipeMenuCreator creator = new SwipeMenuCreator() {
+
+            @Override
+            public void create(SwipeMenu menu) {
+                // create "open" item
+                SwipeMenuItem openItem = new SwipeMenuItem(
+                        getActivity().getApplicationContext());
+                // set item background
+                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
+                        0xCE)));
+                // set item width
+                openItem.setWidth(300);
+                // set item title
+                openItem.setTitle("Open");
+                // set item title fontsize
+                openItem.setTitleSize(18);
+                // set item title font color
+                openItem.setTitleColor(Color.WHITE);
+                // add to menu
+                menu.addMenuItem(openItem);
+
+                // create "delete" item
+                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                        getActivity().getApplicationContext());
+                // set item background
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                        0x3F, 0x25)));
+                // set item width
+                deleteItem.setWidth(300);
+                // set a icon
+                deleteItem.setIcon(R.drawable.ic_action_bepeaked_logo);
+                // add to menu
+                menu.addMenuItem(deleteItem);
+            }
+        };
+
+// set creator
+
+        listView.setMenuCreator(creator);
+
+        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                switch (index) {
+                    case 0:
+                        // open
+                        Snackbar.make(getView(), "Open!", Snackbar.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        // delete
+                        Snackbar.make(getView(), "delete!", Snackbar.LENGTH_LONG).show();
+                        break;
+                }
+                // false : close the menu; true : not close the menu
+                return false;
+            }
+        });
+
+
+
+
+//        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, wc.getPasNamesFromPlan(nameTrainingplan));
+//
+//        ListView listView = (ListView) view.findViewById(R.id.ListView_id);
+//        System.out.println("NICKI ID: " + listView.getId());
+//        listView.setOnItemClickListener(this);
+//        listView.setAdapter(adapter);
 
         setHasOptionsMenu(true);
 
@@ -114,15 +187,15 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
         bundleArgs.putString("planCurrent", nameTrainingplan);
         DialogAddPas_frag dialog = new DialogAddPas_frag();
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                        @Override
-                                        public void onDismiss(DialogInterface dialog) {
-                                            Pas_frag fragment = new Pas_frag();
-                                            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                                            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
-                                            fragment.setArguments(bundleArgs);
-                                            fragmentTransaction.commit();
-                                        }
-                                    });
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Pas_frag fragment = new Pas_frag();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+                fragment.setArguments(bundleArgs);
+                fragmentTransaction.commit();
+            }
+        });
         dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "Empty_pas");
     }
