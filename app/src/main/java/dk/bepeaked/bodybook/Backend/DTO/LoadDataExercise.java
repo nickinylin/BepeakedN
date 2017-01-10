@@ -34,7 +34,7 @@ public class LoadDataExercise {
 
 
     public void dataCreateAllNeededData(String newPlanName) {
-        Log.d("LUKAS", "creating all needed data");
+
         realm.beginTransaction();
         realm.deleteAll();
         realm.commitTransaction();
@@ -45,9 +45,7 @@ public class LoadDataExercise {
             exerciseDAO.newExercise(exercises.get(i));
         }
 
-        Log.d("LUKAS", "dataCreateAllNeededData: Tilføjer plan herunder");
         wc.addPlan(newPlanName);
-//        workoutDAO.newPlan(new WorkoutDTO(newPlanName, new RealmList<WorkoutPasDTO>()));
     }
 
     public RealmList<ExerciseDTO> dataCreateAllExercises() {

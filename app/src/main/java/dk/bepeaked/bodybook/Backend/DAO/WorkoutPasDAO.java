@@ -41,16 +41,11 @@ public class WorkoutPasDAO {
      * @param planName
      * @return RealmList<WorkoutPasDTO>
      */
-    public RealmList<WorkoutPasDTO> getPasses(String planName) throws NullPointerException{
+    public RealmList<WorkoutPasDTO> getPasses(String planName) {
 
         WorkoutDTO realmPas = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
 
-        try {
-            return realmPas.getWorkoutPasses();
-        }catch(NullPointerException e){
-            Log.d("LUKAS", "nullpointer: when pulling passes from plan");
-            throw new NullPointerException(e.getMessage());
-        }
+        return realmPas.getWorkoutPasses();
 
     }
 
@@ -117,7 +112,6 @@ public class WorkoutPasDAO {
 
     /**
      * Adds an exercise to a pas
-     *
      * @param planName     the plan the pas is in
      * @param pasName      the name of the pas
      * @param exerciseName the name of the exercise
