@@ -76,12 +76,17 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
         }
     }
 
+    private DialogInterface.OnDismissListener onDismissListener;
+
+    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
+
     @Override
-    public void onDismiss(final DialogInterface dialog) {
+    public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        final Activity activity = getActivity();
-        if (activity instanceof DialogInterface.OnDismissListener) {
-            ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(dialog);
         }
     }
 }

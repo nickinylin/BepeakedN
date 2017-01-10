@@ -28,7 +28,7 @@ import io.realm.RealmList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Pas_frag extends Fragment implements AdapterView.OnItemClickListener, DialogInterface.OnDismissListener {
+public class Pas_frag extends Fragment implements AdapterView.OnItemClickListener {
     //WorkoutDAO wdao = new WorkoutDAO();
 
     WorkoutController wc = new WorkoutController();
@@ -113,12 +113,18 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
         bundleArgs = new Bundle();
         bundleArgs.putString("planCurrent", nameTrainingplan);
         DialogAddPas_frag dialog = new DialogAddPas_frag();
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                        @Override
+                                        public void onDismiss(DialogInterface dialog) {
+                                            Pas_frag fragment = new Pas_frag();
+                                            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                                            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+                                            fragment.setArguments(bundleArgs);
+                                            fragmentTransaction.commit();
+                                        }
+                                    });
         dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "Empty_pas");
     }
 
-    @Override
-    public void onDismiss(final DialogInterface dialog) {
-        Snackbar.make(getView(), "onDismiss bliver kørt!", Snackbar.LENGTH_LONG).show();
-    }
 }
