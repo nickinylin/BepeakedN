@@ -67,12 +67,10 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
         if (v == btn) {
             pasNew = "" + et.getText();
             try {
-                Log.d("LUKAS", "planCurrent: " + planCurrent +" pasNew: "+pasNew);
                 wc.addNewPasToPlan(planCurrent, pasNew);
                 dismiss();
             } catch (ExceptionNameAlreadyExist e) {
                 e.printStackTrace();
-                Log.d("LUKAS", "exception: name already e");
                 tv.setText(e.getMessage());
             }
         }

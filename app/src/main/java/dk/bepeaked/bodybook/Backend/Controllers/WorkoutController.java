@@ -110,28 +110,19 @@ public class WorkoutController {
      * @param pasName
      * @throws ExceptionNameAlreadyExist if a pas of that name already exist (anywhere)
      */
-    public void addNewPasToPlan(String planName, String pasName) throws ExceptionNameAlreadyExist {
+    public void addNewPasToPlan(String planName, String pasName)throws ExceptionNameAlreadyExist {
 
-        Log.d("LUKAS", "loop0");
-        try {
+
             realmListWorkoutDTO = workoutDAO.getPlans();
             for (int i = 0; i < realmListWorkoutDTO.size(); i++) {
-                Log.d("LUKAS", "loop1: 1");
                 realmListWorkoutPasDTO = realmListWorkoutDTO.get(i).getWorkoutPasses();
-                Log.d("LUKAS", "loop1: 2");
                 for (int l = 0; l < realmListWorkoutPasDTO.size(); l++) {
-                    Log.d("LUKAS", "loop2: 1");
                     if (realmListWorkoutPasDTO.get(l).getName().equals(pasName)) {
-                        Log.d("LUKAS", "loop2: 2");
                         throw new ExceptionNameAlreadyExist("The name already exists in another pas");
                     }
                 }
             }
-        }catch(NullPointerException e){
-        }
-        workoutDTO = workoutDAO.getPlans().first();
 
-        Log.d("LUKAS", "uden for loop, navn på plan: "+ workoutDTO.getName());
         workoutPasDTO = new WorkoutPasDTO(pasName, new RealmList<ExerciseGoals>());
         workoutPasDAO.newPas(planName, workoutPasDTO);
     }
@@ -148,8 +139,6 @@ public class WorkoutController {
 
         String workoutname;
         workoutname = getSpecificPlan(workoutPlan).getName();
-
-        Log.d("LUKAS", "workoutPlanName: "+ workoutPlan);
 
         try {
             passes = workoutPasDAO.getPasses(workoutname);
