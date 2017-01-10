@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ListView;
-import android.widget.Switch;
+import android.widget.ToggleButton;
 
 import dk.bepeaked.bodybook.R;
 
@@ -33,8 +33,7 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
 
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, settings);
 
-        Switch measure = (Switch) view.findViewById(R.id.switch1);
-        measure.setText("Measureunit kg/lbs");
+        ToggleButton measure = (ToggleButton) view.findViewById(R.id.switch1);
 
         ListView listView = (ListView) view.findViewById(R.id.settings);
         listView.setOnItemClickListener(this);
