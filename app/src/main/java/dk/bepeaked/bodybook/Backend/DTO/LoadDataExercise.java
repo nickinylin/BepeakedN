@@ -21,6 +21,7 @@ public class LoadDataExercise {
     Realm realm = Realm.getDefaultInstance();
 
 
+
     public LoadDataExercise() {
     }
 
@@ -29,7 +30,7 @@ public class LoadDataExercise {
     }
 
 
-    public void dataCreateAllNeededData() {
+    public void dataCreateAllNeededData(String newPlanName) {
         realm.beginTransaction();
         realm.deleteAll();
         realm.commitTransaction();
@@ -40,7 +41,7 @@ public class LoadDataExercise {
             exerciseDAO.newExercise(exercises.get(i));
         }
 
-        workoutDAO.newPlan(new WorkoutDTO("My plan", new RealmList<WorkoutPasDTO>()));
+        workoutDAO.newPlan(new WorkoutDTO(newPlanName, new RealmList<WorkoutPasDTO>()));
     }
 
     public RealmList<ExerciseDTO> dataCreateAllExercises() {

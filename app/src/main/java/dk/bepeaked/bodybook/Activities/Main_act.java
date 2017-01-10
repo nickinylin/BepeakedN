@@ -10,20 +10,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
+
 
 import com.crashlytics.android.Crashlytics;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.File;
 
-import dk.bepeaked.bodybook.Backend.DAO.ExcelDAO;
 import dk.bepeaked.bodybook.Backend.DTO.LoadDataExercise;
 import dk.bepeaked.bodybook.Fragments.Diet.Diet_frag;
 import dk.bepeaked.bodybook.Fragments.Profile_frag;
 import dk.bepeaked.bodybook.Fragments.Settings.Settings_frag;
-import dk.bepeaked.bodybook.Fragments.Training.WorkoutPas_frag;
+import dk.bepeaked.bodybook.Fragments.Training.Pas_frag;
 import dk.bepeaked.bodybook.R;
 import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
@@ -36,7 +34,8 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar = null;
     boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
     SharedPreferences prefs;
-    ExcelDAO dao = new ExcelDAO();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +45,13 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
             Fabric.with(this, new Crashlytics());
 //        }
 
-        ArrayList<String[]> test = dao.readCsv(this);
-        for(int i = 0; i < test.size(); i++){
-            Log.d("SEBBY", "onCreate: " + Arrays.toString(test.get(i)));
-        }
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         if (prefs.getBoolean("firstAppRun", true)) {
+            String newPlanName = "My plan";
             LoadDataExercise ld = new LoadDataExercise();
-            ld.dataCreateAllNeededData();
+            ld.dataCreateAllNeededData(newPlanName);
+            prefs.edit().putString("lastUsedPlan", newPlanName).commit();
             prefs.edit().putBoolean("firstAppRun", false).commit();
         }
 
@@ -65,7 +62,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
         // SetDTO the fragment initially
         if (savedInstanceState==null) { // kun tilføje fragmenter ved en frisk start
-        WorkoutPas_frag fragment = new WorkoutPas_frag();
+        Pas_frag fragment = new Pas_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
@@ -131,7 +128,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
         } else if (id == R.id.nav_trainingplan) {
 
-            WorkoutPas_frag fragment = new WorkoutPas_frag();
+            Pas_frag fragment = new Pas_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("stack");
             fragmentTransaction.commit();

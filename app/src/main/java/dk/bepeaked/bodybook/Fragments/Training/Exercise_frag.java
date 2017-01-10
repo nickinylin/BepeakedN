@@ -1,7 +1,9 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -34,6 +36,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 //    String[] exercises = {"Benchpress", "Squat", "Deadlift", "Pullups", "Rows"};
     ArrayList<String> hej = new ArrayList<String>();
     LoadDataExercise ld = new LoadDataExercise();
+    SharedPreferences prefs;
 
 
     public Exercise_frag() {
@@ -47,6 +50,10 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
         View view = inflater.inflate(R.layout.listview, container, false);
 
+        nameWorkoutPas = getArguments().getString("TræningspasNavn", "Empty");
+
+        getActivity().setTitle(nameWorkoutPas);
+
         realmExercise2 = ld.dataCreateAllExercises();
 
         for (int i = 0; i < realmExercise2.size(); i++) {
@@ -54,7 +61,6 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
             Log.d("Nicki", "I =" + i);
         }
 
-        getActivity().setTitle("Træningspas navn");
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, hej);
 
         ListView listView = (ListView) view.findViewById(R.id.ListView_id);
@@ -65,9 +71,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
         setHasOptionsMenu(true);
 
-//        if (!getArguments().isEmpty()) {
-//            nameWorkoutPas = getArguments().getString("Træningspas");
-//        }
+
 
         return view;
     }

@@ -13,8 +13,7 @@ public class WorkoutPasDTO extends RealmObject {
     @PrimaryKey
     String name;
 
-    ExerciseGoals exerciseGoals = new ExerciseGoals();
-    RealmList<ExerciseGoals> exercises = new RealmList<ExerciseGoals>();
+    RealmList<ExerciseGoals> exercises = new RealmList  <ExerciseGoals>();
     public WorkoutPasDTO() {}
 
     public WorkoutPasDTO (String name, RealmList<ExerciseGoals> exercises) {

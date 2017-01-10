@@ -1,5 +1,7 @@
 package dk.bepeaked.bodybook.Backend.Controllers;
 
+import android.util.Log;
+
 import dk.bepeaked.bodybook.Backend.DAO.ExerciseDAO;
 import dk.bepeaked.bodybook.Backend.DAO.SetDAO;
 import dk.bepeaked.bodybook.Backend.DAO.WorkoutDAO;
@@ -9,6 +11,7 @@ import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
 import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import io.realm.RealmList;
 
 /**
@@ -99,7 +102,17 @@ public class WorkoutController {
         workoutDAO.newPlan(new WorkoutDTO(planName, new RealmList<WorkoutPasDTO>()));
     }
 
-    public void addNewPasToPlan(String planName, String pasName) {
+    public void addNewPasToPlan(String planName, String pasName) throws ExceptionNameAlreadyExist {
+
+       realmListWorkoutDTO = workoutDAO.getPlans();
+        for (int i = 0; i < realmListWorkoutDTO.size(); i++) {
+            realmListWorkoutPasDTO = realmListWorkoutDTO.get(i).getWorkoutPasses();
+            for (int l = 0; l < realmListWorkoutPasDTO.size(); l++) {
+                if (realmListWorkoutPasDTO.get(l).getName().equals(pasName)) {
+                    throw new ExceptionNameAlreadyExist("The name already exists in another pas");
+                }
+            }
+        }
         workoutPasDTO = new WorkoutPasDTO(pasName, new RealmList<ExerciseGoals>());
         workoutPasDAO.newPas(planName, workoutPasDTO);
     }
