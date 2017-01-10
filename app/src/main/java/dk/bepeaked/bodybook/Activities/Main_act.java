@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 
@@ -49,6 +50,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
 
         if (prefs.getBoolean("firstAppRun", true)) {
+            Log.d("Nicki", "Første gang appen bliver kørt!");
             String newPlanName = "My plan";
             LoadDataExercise ld = new LoadDataExercise();
             ld.dataCreateAllNeededData(newPlanName);

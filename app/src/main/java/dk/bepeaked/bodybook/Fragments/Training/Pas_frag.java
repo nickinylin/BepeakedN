@@ -1,6 +1,7 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -26,6 +27,8 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 
+import java.util.ArrayList;
+
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.R;
@@ -42,7 +45,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     String[] workoutPases = {"Mandag", "Tirsdag", "Torsdag", "Lørdag", "Søndag", "Nicki"};
     String nameTrainingplan;
     RealmList<WorkoutPasDTO> realmListString = new RealmList<WorkoutPasDTO>();
-    //ArrayList<String> workoutPases = new ArrayList<String>();
+    ArrayList<String> arrayListPasNames = new ArrayList<String>();
     SharedPreferences prefs;
     Bundle bundleArgs;
     private SwipeMenuListView listView;
@@ -63,7 +66,9 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
         getActivity().setTitle(nameTrainingplan);
 
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, wc.getPasNamesFromPlan(nameTrainingplan));
+        arrayListPasNames = wc.getPasNamesFromPlan(nameTrainingplan);
+
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
 
         listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id);
 
@@ -83,7 +88,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                 // set item width
                 openItem.setWidth(300);
                 // set item title
-                openItem.setTitle("Open");
+                openItem.setTitle("Rediger");
                 // set item title fontsize
                 openItem.setTitleSize(18);
                 // set item title font color
@@ -117,18 +122,35 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                     case 0:
                         // open
                         Snackbar.make(getView(), "Open!", Snackbar.LENGTH_LONG).show();
+
+
                         break;
                     case 1:
                         // delete
-                        Snackbar.make(getView(), "delete!", Snackbar.LENGTH_LONG).show();
+                        bundleArgs = new Bundle();
+                        bundleArgs.putString("planCurrent", nameTrainingplan);
+                        bundleArgs.putString("pasToDelete", arrayListPasNames.get(position));
+
+                        DialogDeletePas_frag dialog = new DialogDeletePas_frag();
+                        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                Pas_frag fragment = new Pas_frag();
+                                android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                                fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+                                fragment.setArguments(bundleArgs);
+                                fragmentTransaction.commit();
+                            }
+                        });
+                        dialog.setArguments(bundleArgs);
+                        dialog.show(getFragmentManager(), "Empty_pas");
+
                         break;
                 }
                 // false : close the menu; true : not close the menu
                 return false;
             }
         });
-
-
 
 
 //        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, wc.getPasNamesFromPlan(nameTrainingplan));
@@ -199,5 +221,4 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
         dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "Empty_pas");
     }
-
 }
