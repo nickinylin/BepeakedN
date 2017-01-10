@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
+import dk.bepeaked.bodybook.Backend.DTO.Ingredient;
+import io.realm.RealmList;
 
 /**
  * Created by sebho on 14-11-2016.
@@ -37,6 +39,49 @@ public class DietDAO {
         }
         for(int i = 0; i < cleanData2.size(); i++) {
             Log.d("SEBBY", "getDishes: " + Arrays.toString(cleanData2.get(i).toArray()));
+        }
+        for(int i = 0; i < cleanData2.size(); i++){
+            DishDTO dto = new DishDTO();
+            int indexStart = 0;
+            int indexEnd = 0;
+            String[] nameSplit;
+            RealmList<Ingredient> ingredients = new RealmList<>();
+            String name;
+            if(cleanData2.get(i).get(0).contains("Morgenmad") || cleanData2.get(i).get(0).contains("Frokost")
+                    || cleanData2.get(i).get(0).contains("Aftensmad") || cleanData2.get(i).get(0).contains("Snack")){
+                indexStart = i;
+                nameSplit = cleanData2.get(i).get(0).split(":");
+                name = nameSplit[1];
+                for(int j = i; j < cleanData2.size(); j++){
+                    if(cleanData2.get(j).get(0).contains("Total")){
+                        indexEnd = j;
+                        break;
+                    }
+                }
+                if(cleanData2.get(i).get(0).contains("Morgenmad")){
+                    dto.setType(0);
+                }else if(cleanData2.get(i).get(0).contains("Frokost")){
+                    dto.setType(1);
+                }else if(cleanData2.get(i).get(0).contains("Aftensmad")){
+                    dto.setType(2);
+                }else if(cleanData2.get(i).get(0).contains("Snack")){
+                    dto.setType(3);
+                }
+
+                for(int k = indexStart+2; k < indexEnd; k++){
+                    Log.d("SEBBYG22", "getbitches: " + cleanData2.get(k).get(0));
+                    String inName = cleanData2.get(k).get(0);
+                    int weight = Integer.parseInt(cleanData2.get(k).get(1).replaceAll("\\D+",""));
+                    int protein = Integer.parseInt(cleanData2.get(k).get(2).replaceAll("\\D+",""));
+                    int fat = Integer.parseInt(cleanData2.get(k).get(3).replaceAll("\\D+",""));
+                    int carbon = Integer.parseInt(cleanData2.get(k).get(4).replaceAll("\\D+",""));
+                    int cal = Integer.parseInt(cleanData2.get(k).get(5).replaceAll("\\D+",""));
+                    ingredients.add(new Ingredient(inName, weight, protein, fat, carbon, cal));
+                }
+                dto.setName(name);
+                dto.setIngredients(ingredients);
+                dtos.add(dto);
+            }
         }
             return dtos;
     }

@@ -17,9 +17,7 @@ import java.util.List;
 
 import dk.bepeaked.bodybook.Backend.DAO.DietDAO;
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
-import dk.bepeaked.bodybook.Backend.DTO.Ingredient;
 import dk.bepeaked.bodybook.R;
-import io.realm.RealmList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,22 +65,6 @@ public class Diet_frag extends Fragment{
 
         dishList = new ArrayList<DishDTO>();
         dishList = ddao.getDishes(getActivity());
-
-        //Testdata HUSK AT SLETTE!!
-        Ingredient in = new Ingredient("Rugmel", 500, 50, 40, 150, 700);
-        Ingredient in2 = new Ingredient("Proteinpulver", 100, 100, 0, 0, 250);
-        Ingredient in3 = new Ingredient("Havregryn", 100, 0, 20, 80, 150);
-        RealmList<Ingredient> ar = new RealmList<Ingredient>();
-        ar.add(in);
-        ar.add(in2);
-        ar.add(in3);
-        DishDTO test = new DishDTO(0, "Proteinboller", R.drawable.proteinboller, "Proteinboller er gode til efter træning",
-                "Proteinboller er proteinholdige boller, som sørger for at dine muskler kan genopbygge efter du har trænet. \n" +
-                "Først skal du hælde mel i en skål. \nSå skal du hælde proteinpulver og havregryn i. \n" +
-                "Til sidst skal du tilsætte vand efter behov og rør rundt indtil du får en god dej. \n" +
-                "Form til boller og giv dem 20 minutter på 200 grader i varmluftovn.", ar);
-        dishList.add(test);
-        //TESTDATA SLUTTER HER
 
         for (int i = 0; i < dishList.size(); i++){
             DishDTO dish = dishList.get(i);
