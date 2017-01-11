@@ -174,7 +174,8 @@ public class WorkoutPasDAO {
             throw new ExceptionPasDoesntExist("The pas "+pasName+" in " + planName + " doesnt exist");
         } else {
             realm.beginTransaction();
-            ExerciseGoals newExercise = new ExerciseGoals(exerciseName, sets, reps);
+            ExerciseGoals newExercise = new ExerciseGoals(id, exerciseName, sets, reps);
+            id++;
             realmPlan.getWorkoutPasses().get(position).getExercises().add(newExercise);
             realm.commitTransaction();
         }

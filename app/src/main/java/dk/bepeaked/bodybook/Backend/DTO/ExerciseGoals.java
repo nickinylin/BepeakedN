@@ -8,13 +8,14 @@ import io.realm.RealmObject;
 
 public class ExerciseGoals extends RealmObject{
     String name;
-    int set, reps;
+    int set, reps, id;
     public ExerciseGoals(){}
 
-    public ExerciseGoals(String name, int set, int reps){
+    public ExerciseGoals(int id, String name, int set, int reps){
         this.name = name;
         this.set = set;
         this.reps = reps;
+        this.id = id;
     }
 
     public String getName() {
@@ -39,5 +40,13 @@ public class ExerciseGoals extends RealmObject{
 
     public void setReps(int reps) {
         this.reps = reps;
+    }
+
+    public int getID(){
+        return id;
+    }
+
+    public void setID(int id){
+        this.id = id;
     }
 }
