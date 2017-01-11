@@ -1,22 +1,20 @@
 package dk.bepeaked.bodybook.Fragments.Settings;
 
 
+import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import org.json.JSONException;
-
-import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
+import java.util.ArrayList;
 
+import dk.bepeaked.bodybook.Backend.DAO.DietDAO;
 import dk.bepeaked.bodybook.Backend.DAO.JsonDAO;
 import dk.bepeaked.bodybook.R;
 
@@ -27,6 +25,8 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
 
     private EditText field;
     private JsonDAO json = new JsonDAO();
+    private ArrayList<String[]> files = new ArrayList<>();
+    private DietDAO dao;
 
     public ActivationCode_frag() {
         // Required empty public constructor
@@ -42,27 +42,41 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
         field = (EditText) view.findViewById(R.id.editText2);
         Button button = (Button) view.findViewById(R.id.button_dialog_OK);
 
+        this.dao = (DietDAO) getArguments().getSerializable("DietDAO");
+
         button.setOnClickListener(this);
+
+        listFiles("");
 
         return view;
     }
 
     @Override
     public void onClick(View v) {
-//        String input = field.getText().toString();
-//        if(!(input.matches(""))){
-//            Field[] fields=R.raw.class.getFields();
-//            for(int i = 0; i < fields.length; i++){
-//                if(fields[i].getName().equals(input)){
-//                    try {
-//                        json.dataCreateAllExercises(this.getActivity(), input);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }
+        for(int i = 0; i < files.size(); i++){
+            if(field.getText().toString().equals(files.get(i)[0])){
+                if(files.get(i)[1].equals("csv")){
+                    dao.getDishes(getActivity());
+                }
+            }
+        }
+    }
+    private void listFiles(String dirFrom) {
+        Resources res = getResources(); //if you are in an activity
+        AssetManager am = res.getAssets();
+        String fileList[] = new String[0];
+        try {
+            fileList = am.list(dirFrom);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (fileList != null)
+        {
+            for ( int i = 0;i<fileList.length;i++)
+            {
+                files.add(fileList[i].split("\\."));
+            }
+        }
     }
 }

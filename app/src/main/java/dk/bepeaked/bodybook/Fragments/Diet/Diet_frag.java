@@ -25,7 +25,7 @@ import dk.bepeaked.bodybook.R;
 public class Diet_frag extends Fragment{
 
     ExpandableListView expandableListView;
-    DietDAO ddao = new DietDAO();
+    DietDAO ddao;
     ArrayList<DishDTO> dishList;
 
     public Diet_frag() {
@@ -64,7 +64,8 @@ public class Diet_frag extends Fragment{
         Headings.add("Snacks");
 
         dishList = new ArrayList<DishDTO>();
-        dishList = ddao.getDishes(getActivity());
+        ddao = (DietDAO) getArguments().getSerializable("DietDAO");
+        dishList = ddao.getDTOS();
 
         for (int i = 0; i < dishList.size(); i++){
             DishDTO dish = dishList.get(i);
