@@ -7,6 +7,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNullPointer;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import io.realm.Realm;
@@ -26,9 +27,16 @@ public class WorkoutPasDAO {
      * @param planName      The plan you wish to add the pas to
      * @param workoutPasDTO the new workoutpas
      */
-    public void newPas(String planName, WorkoutPasDTO workoutPasDTO) {
+    public void newPas(String planName, WorkoutPasDTO workoutPasDTO) throws ExceptionNameAlreadyExist {
 
         WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
+
+        RealmList<WorkoutPasDTO> passes = realmPlan.getWorkoutPasses();
+        for(int i = 0; i<passes.size(); i++){
+            if(passes.get(i).getName().equals(workoutPasDTO.getName())){
+                throw new ExceptionNameAlreadyExist("A pas with the name "+ workoutPasDTO.getName() +" already exist");
+            }
+        }
         realm.beginTransaction();
         Log.d("Nicki", "WorkoutPasDAO begintra: ");
         realmPlan.getWorkoutPasses().add(workoutPasDTO);
@@ -57,7 +65,7 @@ public class WorkoutPasDAO {
      * @param newPasName
      * @throws Exception if it doesnt exist in the plan
      */
-    public void updatePasName(String planName, String oldPasName, String newPasName) throws ExceptionPasDoesntExist {
+    public void updatePasName(String planName, String oldPasName, String newPasName) throws ExceptionPasDoesntExist, ExceptionNameAlreadyExist {
 
         int position = -1;
 
@@ -65,6 +73,9 @@ public class WorkoutPasDAO {
 
         RealmList<WorkoutPasDTO> realmPas = oldRealmPlan.getWorkoutPasses();
         for (int i = 0; i < realmPas.size(); i++) {
+            if(realmPas.get(i).getName().equals(newPasName)){
+                throw new ExceptionNameAlreadyExist("A pas by the name "+newPasName+" already exist");
+            }
             if (realmPas.get(i).getName().equals(oldPasName)) {
                 position = i;
                 break;
