@@ -243,7 +243,7 @@ public class WorkoutController {
     //************Exercises*************
 
     //CREATE
-    public void createNewExercise(String exerciseName){
+    public void createNewExercise(String exerciseName) throws ExceptionNameAlreadyExist {
 
         ExerciseDTO newExercise = new ExerciseDTO(exerciseName, null, null, null, null, new RealmList<SetDTO>());
         exerciseDAO.newExercise(newExercise);
@@ -297,7 +297,7 @@ public class WorkoutController {
      * @param sets the amount of sets (unique for the pas)
      * @param reps the amount of reps (unique for the pas)
      */
-    public void addExerciseToPas(String planName, String pasName, String exerciseName, int sets, int reps) throws ExceptionPasDoesntExist {
+    public void addExerciseToPas(String planName, String pasName, String exerciseName, int sets, int reps) throws ExceptionPasDoesntExist, ExceptionNameAlreadyExist {
 
         ExerciseGoals newExercise = new ExerciseGoals(exerciseName, sets, reps);
 

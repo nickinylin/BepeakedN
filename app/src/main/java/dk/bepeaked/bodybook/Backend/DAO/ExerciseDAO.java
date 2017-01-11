@@ -16,6 +16,7 @@ import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionCantDelete;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import dk.bepeaked.bodybook.R;
 import io.realm.Realm;
@@ -34,7 +35,14 @@ public class ExerciseDAO {
      * Add's a new exercise to the exercise library
      * @param exerciseDTO (String Name, String Description1, String Description2, String Imagepath1, String imagepath2, ArrayList<String>)
      */
-    public void newExercise(ExerciseDTO exerciseDTO) {
+    public void newExercise(ExerciseDTO exerciseDTO) throws ExceptionNameAlreadyExist {
+
+        RealmList<ExerciseDTO> exercises = getExercises();
+        for(int i = 0; i<exercises.size(); i++){
+            if(exercises.get(i).getName().equals(exerciseDTO.getName())){
+                throw new ExceptionNameAlreadyExist("An exercise by the name "+ exerciseDTO.getName() + " already exist");
+            }
+        }
         realm.beginTransaction();
         ExerciseDTO realmExerciseDTO = realm.copyToRealm(exerciseDTO);
         realm.commitTransaction();

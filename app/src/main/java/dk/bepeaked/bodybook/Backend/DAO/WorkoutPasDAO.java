@@ -151,7 +151,8 @@ public class WorkoutPasDAO {
      * @param reps         the amount of reps of said exercise
      * @throws Exception if the pas doesn't exist in the plan
      */
-    public void addExerciseToPas(String planName, String pasName, String exerciseName, int sets, int reps) throws ExceptionPasDoesntExist {
+    public void
+    addExerciseToPas(String planName, String pasName, String exerciseName, int sets, int reps) throws ExceptionPasDoesntExist, ExceptionNameAlreadyExist {
 
         int position = -1;
 
@@ -159,9 +160,13 @@ public class WorkoutPasDAO {
 
         RealmList<WorkoutPasDTO> realmPas = realmPlan.getWorkoutPasses();
         for (int i = 0; i < realmPas.size(); i++) {
-            if (realmPas.get(i).getName().equals(pasName)) {
-                position = i;
-                break;
+            if(exerciseName.equals(realmPas.get(i).getName())){
+                throw new ExceptionNameAlreadyExist("The exercise "+ exerciseName + " already exist in the current pas");
+            }else {
+                if (realmPas.get(i).getName().equals(pasName)) {
+                    position = i;
+                    break;
+                }
             }
         }
 

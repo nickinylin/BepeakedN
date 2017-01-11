@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import dk.bepeaked.bodybook.R;
 
@@ -63,7 +64,12 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
         if (v == btnOK) {
             try {
                 String newPasName = "" + et.getText();
-                wc.updatePasName(currentPlan, pasName, newPasName);
+                //TODO Nicki lav snackbar eller noget her0
+                try {
+                    wc.updatePasName(currentPlan, pasName, newPasName);
+                } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
+                    exceptionNameAlreadyExist.printStackTrace();
+                }
             } catch (ExceptionPasDoesntExist e) {
                 e.printStackTrace();
                 tv.setText("Der skete en fejl!");

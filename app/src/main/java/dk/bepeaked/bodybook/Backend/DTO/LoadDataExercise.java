@@ -5,6 +5,7 @@ import android.util.Log;
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DAO.ExerciseDAO;
 import dk.bepeaked.bodybook.Backend.DAO.WorkoutDAO;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -42,10 +43,18 @@ public class LoadDataExercise {
         dataCreateAllExercises();
 
         for (int i = 0; i < exercises.size(); i++) {
-            exerciseDAO.newExercise(exercises.get(i));
+            try {
+                exerciseDAO.newExercise(exercises.get(i));
+            } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
+                exceptionNameAlreadyExist.printStackTrace();
+            }
         }
 
-        wc.addPlan(newPlanName);
+        try {
+            wc.addPlan(newPlanName);
+        } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
+            exceptionNameAlreadyExist.printStackTrace();
+        }
     }
 
     public RealmList<ExerciseDTO> dataCreateAllExercises() {

@@ -18,6 +18,7 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import dk.bepeaked.bodybook.R;
 
@@ -82,7 +83,12 @@ public class DialogAddExerciseGoals_frag extends DialogFragment implements View.
 
             try {
                 Log.d("Nicki", "planName:" + planName + "pasName:" + pasName + "exerciseName:" + exerciseName);
-                wc.addExerciseToPas(planName, pasName, exerciseName, npSets.getValue(), npReps.getValue());
+                //TODO Nicki lav det her NU! Tilføj snackbarmeddellles
+                try {
+                    wc.addExerciseToPas(planName, pasName, exerciseName, npSets.getValue(), npReps.getValue());
+                } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
+                    exceptionNameAlreadyExist.printStackTrace();
+                }
                 Snackbar.make(getView(), "Den er tilføjet!", Snackbar.LENGTH_LONG).show();
                 dismiss();
             } catch (ExceptionPasDoesntExist e) {
