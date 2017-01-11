@@ -28,10 +28,7 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
     private ArrayList<String[]> files = new ArrayList<>();
     private DietDAO dao;
 
-    public ActivationCode_frag() {
-        // Required empty public constructor
-    }
-
+    public ActivationCode_frag() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +53,7 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
         for(int i = 0; i < files.size(); i++){
             if(field.getText().toString().equals(files.get(i)[0])){
                 if(files.get(i)[1].equals("csv")){
-                    dao.getDishes(getActivity());
+                    dao.getDishes(getActivity(), files.get(i)[0] + "." + files.get(i)[1]);
                 }
             }
         }

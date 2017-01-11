@@ -21,9 +21,9 @@ public class DietDAO implements Serializable {
         return savedDTO;
     }
 
-    public void getDishes(Activity act){
+    public void getDishes(Activity act, String file){
         ArrayList<DishDTO> dtos = new ArrayList<>();
-        ArrayList<String[]> data = dao.readCsv(act);
+        ArrayList<String[]> data = dao.readCsv(act, file);
         ArrayList<String[]> cleanData = new ArrayList<>();
         ArrayList<ArrayList<String>> cleanData2 = new ArrayList<>();
         for(int i = 0; i < data.size(); i++){
