@@ -81,9 +81,15 @@ public class WorkoutPasDAO {
             for(int i = 0; i < exercises.size(); i++){
                 updatedRealmPas.setExerciseGoal(oldRealmPlan.getWorkoutPasses().get(i).getExercises());
             }
+            WorkoutPasDTO oldRealmPas = realm.where(WorkoutPasDTO.class).equalTo("name", oldPasName).findFirst();
+            RealmList<ExerciseGoals> goals = oldRealmPas.getExercises();
 
             realm.beginTransaction();
             oldRealmPlan.getWorkoutPasses().set(position, updatedRealmPas);
+            for(int i = 0; i < goals.size(); i++){
+                goals.get(i).deleteFromRealm();
+            }
+            oldRealmPas.deleteFromRealm();
             realm.commitTransaction();
         }
     }
@@ -113,8 +119,12 @@ public class WorkoutPasDAO {
             throw new ExceptionPasDoesntExist("The pas "+pasName+" in " + planName + " doesnt exist");
         } else {
             WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("name", pasName).findFirst();
+            RealmList<ExerciseGoals> goals = pas.getExercises();
 
             realm.beginTransaction();
+            for(int i = 0; i < goals.size(); i++){
+                goals.get(i).deleteFromRealm();
+            }
             realmPlan.getWorkoutPasses().remove(position);
             pas.deleteFromRealm();
             realm.commitTransaction();
@@ -183,12 +193,12 @@ public class WorkoutPasDAO {
             RealmList<ExerciseGoals> exercises = realmPlan.getWorkoutPasses().get(position).getExercises();
             for (int i = 0; i < exercises.size(); i++) {
                 if (exercises.get(i).getName().equals(exerciseName)) {
-                    exercises.remove(i);
+                    realmPlan.getWorkoutPasses().get(position).getExercises().remove(i);
+                    exercises.deleteFromRealm(i);
                     break;
                 }
             }
             realm.commitTransaction();
         }
     }
-
 }

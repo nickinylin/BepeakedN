@@ -15,6 +15,7 @@ import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
 import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionCantDelete;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionExerciseDoesntExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNullPointer;
@@ -71,7 +72,7 @@ public class WorkoutController {
      * @param oldPlan old name
      * @param newPlan new name
      */
-    public void updatePlanName(String oldPlan, String newPlan){
+    public void updatePlanName(String oldPlan, String newPlan) throws ExceptionPasDoesntExist {
         workoutDAO.updatePlanName(oldPlan, newPlan);
     }
 
@@ -80,7 +81,7 @@ public class WorkoutController {
      * Deletes a plan from the database (THIS IS PERMANENT)
      * @param planName the plan to be deleted
      */
-    public void deletePlan(String planName){
+    public void deletePlan(String planName) throws ExceptionPasDoesntExist {
         workoutDAO.deletePlan(planName);
     }
 
@@ -111,7 +112,6 @@ public class WorkoutController {
      * @throws ExceptionNameAlreadyExist if a pas of that name already exist (anywhere)
      */
     public void addNewPasToPlan(String planName, String pasName)throws ExceptionNameAlreadyExist {
-
 
             realmListWorkoutDTO = workoutDAO.getPlans();
             for (int i = 0; i < realmListWorkoutDTO.size(); i++) {
@@ -249,16 +249,16 @@ public class WorkoutController {
      * @param oldName
      * @param newName
      */
-    public void updateExercise(String oldName, String newName){
-        exerciseDAO.updateExerciseName(oldName, newName);
-    }
+//    public void updateExercise(String oldName, String newName){
+//        exerciseDAO.updateExerciseName(oldName, newName);
+//    }
 
     //DELETE
     /**
      * Deletes an exercise (PERMANENTLY)
      * @param name
      */
-    public void deleteExercise(String name){
+    public void deleteExercise(String name) throws ExceptionPasDoesntExist, ExceptionCantDelete {
         exerciseDAO.deleteExercise(name);
     }
 
