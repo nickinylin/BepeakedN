@@ -24,7 +24,7 @@ public class DialogDeletePas_frag extends DialogFragment implements View.OnClick
     Button btnOK, btnCancel;
     TextView tv;
     Bundle argumens;
-    String pasToDelete, currentPlan;
+    String pasName, currentPlan;
 
 
     public DialogDeletePas_frag() {
@@ -39,8 +39,8 @@ public class DialogDeletePas_frag extends DialogFragment implements View.OnClick
 
         View view = inflater.inflate(R.layout.fragment_dialog_delete_pas_frag, container, false);
 
-        pasToDelete = getArguments().getString("pasName", "Empty");
-        currentPlan = getArguments().getString("planCurrent", "Empty");
+        pasName = getArguments().getString("pasName", "Empty");
+        currentPlan = getArguments().getString("planName", "Empty");
 
         btnOK = (Button) view.findViewById(R.id.button_dialog_delete_pas_OK);
         btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_pas_Cancel);
@@ -59,7 +59,7 @@ public class DialogDeletePas_frag extends DialogFragment implements View.OnClick
     public void onClick(View v) {
         if (v == btnOK) {
             try {
-                wc.deletePas(currentPlan, pasToDelete);
+                wc.deletePas(currentPlan, pasName);
             } catch (ExceptionPasDoesntExist e) {
                 e.printStackTrace();
                 tv.setText("Der skete en fejl!");

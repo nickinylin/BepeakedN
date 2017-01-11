@@ -42,7 +42,7 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
         View view = inflater.inflate(R.layout.fragment_dialog_edit_pas_frag, container, false);
 
         pasName = getArguments().getString("pasName", "Empty");
-        currentPlan = getArguments().getString("planCurrent", "Empty");
+        currentPlan = getArguments().getString("planName", "Empty");
 
         btnOK = (Button) view.findViewById(R.id.button_dialog_delete_pas_OK);
         btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_pas_Cancel);

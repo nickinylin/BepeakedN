@@ -1,15 +1,12 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
-import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -31,9 +27,7 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
-import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.R;
-import io.realm.RealmList;
 
 
 /**
@@ -43,10 +37,8 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     //WorkoutDAO wdao = new WorkoutDAO();
 
     WorkoutController wc = new WorkoutController();
-    String[] workoutPases = {"Mandag", "Tirsdag", "Torsdag", "Lørdag", "Søndag", "Nicki"};
-    String nameTrainingplan;
-    RealmList<WorkoutPasDTO> realmListString = new RealmList<WorkoutPasDTO>();
-    public ArrayList<String> arrayListPasNames = new ArrayList<String>();
+    String namePlan;
+    ArrayList<String> arrayListPasNames = new ArrayList<String>();
     SharedPreferences prefs;
     Bundle bundleArgs;
     private SwipeMenuListView listView;
@@ -64,20 +56,17 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        nameTrainingplan = prefs.getString("lastUsedPlan", "empty");
+        namePlan = prefs.getString("lastUsedPlan", "empty");
 
         bundleArgs = new Bundle();
 
-        getActivity().setTitle(nameTrainingplan);
+        getActivity().setTitle(namePlan);
 
-        arrayListPasNames = wc.getPasNamesFromPlan(nameTrainingplan);
-
-        Log.d("Nicki", "Før " + wc.getPasNamesFromPlan(nameTrainingplan).size() );
+        arrayListPasNames = wc.getPasNamesFromPlan(namePlan);
 
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
 
         listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id);
-
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
 
@@ -127,7 +116,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                 switch (index) {
                     case 0:
                         // open
-                        bundleArgs.putString("planCurrent", nameTrainingplan);
+                        bundleArgs.putString("planName", namePlan);
                         bundleArgs.putString("pasName", arrayListPasNames.get(position));
 
                         DialogEditPas_frag dialog = new DialogEditPas_frag();
@@ -143,7 +132,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                         break;
                     case 1:
                         // delete
-                        bundleArgs.putString("planCurrent", nameTrainingplan);
+                        bundleArgs.putString("planName", namePlan);
                         bundleArgs.putString("pasName", arrayListPasNames.get(position));
 
                         DialogDeletePas_frag dialog2 = new DialogDeletePas_frag();
@@ -164,7 +153,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
         });
 
 
-//        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, wc.getPasNamesFromPlan(nameTrainingplan));
+//        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, wc.getPasNamesFromPlan(namePlan));
 //
 //        ListView listView = (ListView) view.findViewById(R.id.ListView_id);
 //        System.out.println("NICKI ID: " + listView.getId());
@@ -202,10 +191,10 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        Toast.makeText(getActivity(), nameTrainingplan ,Toast.LENGTH_LONG).show();
+//        Toast.makeText(getActivity(), namePlan ,Toast.LENGTH_LONG).show();
 
         Bundle bundleArgs = new Bundle();
-        bundleArgs.putString("TræningspasNavn", workoutPases[position]);
+        bundleArgs.putString("TræningspasNavn", arrayListPasNames.get(position));
 
         Exercise_frag fragment = new Exercise_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -217,7 +206,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
     private void showDialogAlert() {
         bundleArgs = new Bundle();
-        bundleArgs.putString("planCurrent", nameTrainingplan);
+        bundleArgs.putString("planName", namePlan);
         DialogAddPas_frag dialog = new DialogAddPas_frag();
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
@@ -230,7 +219,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     }
 
     private void adapterReload() {
-        arrayListPasNames = wc.getPasNamesFromPlan(nameTrainingplan);
+        arrayListPasNames = wc.getPasNamesFromPlan(namePlan);
         // TODO skriv i rapporten at vi prøvede at bruge "adapter.notifyDataSetChanged(); men at det ikke virkede, derfor opretter vi en ny adapter, som er lidt mindre arbejde, end at loade hele fragmentet igen..
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
         listView.setAdapter(adapter);

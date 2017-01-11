@@ -33,19 +33,9 @@
     </LinearLayout>
 
 
-    <ListView
-        android:id="@+id/ListView_id1"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:divider="@android:color/darker_gray"
-        android:dividerHeight="0.5dp"
-        android:layout_marginTop="31dp"
-        android:layout_alignTop="@+id/ListView_id"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <com.baoyz.swipemenulistview.SwipeMenuListView
-        android:id="@+id/ListView_id"
+        android:id="@+id/ListView_id_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"

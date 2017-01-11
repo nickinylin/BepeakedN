@@ -1,15 +1,12 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
-import android.app.Activity;
 import android.app.DialogFragment;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +41,7 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_pas, container, false);
+        View view = inflater.inflate(R.layout.fragment_dialog_add_pas, container, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
