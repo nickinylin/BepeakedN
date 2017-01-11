@@ -350,6 +350,9 @@ public class WorkoutController {
      * @param exerciseName
      * @param position the position in the array (get this from the list in the gui)
      * @throws ExceptionExerciseDoesntExist if the exception doesn't exist
+     *
+     * +
+     *
      */
     public void deleteSet(String exerciseName, int position) throws ExceptionExerciseDoesntExist {
 
