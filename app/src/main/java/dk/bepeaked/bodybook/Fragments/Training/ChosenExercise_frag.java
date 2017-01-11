@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,7 +26,11 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
+import dk.bepeaked.bodybook.Backend.DTO.LoadDataExercise;
 import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
 import dk.bepeaked.bodybook.R;
 import io.realm.RealmList;
@@ -39,13 +44,15 @@ import static android.graphics.Color.WHITE;
 public class ChosenExercise_frag extends Fragment implements View.OnClickListener {
 
     RealmList<SetDTO> exercises = new RealmList<>();
-    Button fab;
+    FloatingActionButton fab;
     NumberPicker npWeight1, npWeight2, npReps;
     Button btnOK, btnCancel;
     SharedPreferences prefs;
     ExerciseDTO dto;
     Bundle bundleArgs;
     String argument;
+    LoadDataExercise loadDataExercise = new LoadDataExercise();
+    RealmList<ExerciseDTO> realmListOfExerciseDTOs = new RealmList<ExerciseDTO>();
 
     //skal slettes. til test
     boolean boo = true;
@@ -65,6 +72,15 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
 //        argument = getArguments().getString("chosenExerciseName");
 
+        realmListOfExerciseDTOs = loadDataExercise.dataCreateAllExercises();
+        Map<String,ExerciseDTO> map =  new HashMap<String,ExerciseDTO>();
+        for(ExerciseDTO ovelseNavn : realmListOfExerciseDTOs)
+        {
+            map.put(ovelseNavn.getName(), ovelseNavn);
+        }
+        //Vi skal have fatte i den øvelse brugeren vælger først.
+
+        //Så skal vi slår den op på baggrund af dens id
 
         getActivity().setTitle(argument);
 
@@ -130,7 +146,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         listView.setAdapter(exerciseListAdapter);
 
-        fab = (Button) view.findViewById(R.id.Button_add_new_set);
+        fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
 
         fab.setOnClickListener(this);
 
@@ -176,7 +192,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
             ExerciseHelp_frag fragment = new ExerciseHelp_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("traeningsOevelser");
             fragment.setArguments(i);
             fragmentTransaction.commit();
 
