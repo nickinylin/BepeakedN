@@ -75,17 +75,15 @@ public class WorkoutPasDAO {
             throw new ExceptionPasDoesntExist("The pas doesnt exist");
         } else {
             WorkoutPasDTO updatedRealmPas = new WorkoutPasDTO();
-            String pasName = oldRealmPlan.getWorkoutPasses().get(position).getName();
             RealmList<ExerciseGoals> exercises = oldRealmPlan.getWorkoutPasses().get(position).getExercises();
 
-            updatedRealmPas.setName(pasName);
+            updatedRealmPas.setName(newPasName);
             for(int i = 0; i < exercises.size(); i++){
                 updatedRealmPas.setExerciseGoal(oldRealmPlan.getWorkoutPasses().get(i).getExercises());
             }
 
             realm.beginTransaction();
-            oldRealmPlan.getWorkoutPasses().get(position).deleteFromRealm();
-            oldRealmPlan.getWorkoutPasses().add(updatedRealmPas) ;
+            oldRealmPlan.getWorkoutPasses().set(position, updatedRealmPas);
             realm.commitTransaction();
         }
     }
