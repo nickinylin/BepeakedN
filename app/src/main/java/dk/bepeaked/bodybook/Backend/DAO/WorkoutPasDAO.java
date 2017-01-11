@@ -84,7 +84,8 @@ public class WorkoutPasDAO {
             }
 
             realm.beginTransaction();
-            oldRealmPlan.getWorkoutPasses().set(position, updatedRealmPas);
+            oldRealmPlan.getWorkoutPasses().get(position).deleteFromRealm();
+            oldRealmPlan.getWorkoutPasses().add(updatedRealmPas) ;
             realm.commitTransaction();
         }
     }
