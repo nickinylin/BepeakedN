@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
@@ -18,16 +19,17 @@ import dk.bepeaked.bodybook.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DialogDeletePas_frag extends DialogFragment implements View.OnClickListener {
+public class DialogEditPas_frag extends DialogFragment implements View.OnClickListener {
 
     WorkoutController wc = new WorkoutController();
     Button btnOK, btnCancel;
     TextView tv;
+    EditText et;
     Bundle argumens;
-    String pasToDelete, currentPlan;
+    String pasName, currentPlan;
 
 
-    public DialogDeletePas_frag() {
+    public DialogEditPas_frag() {
         // Required empty public constructor
     }
 
@@ -37,16 +39,17 @@ public class DialogDeletePas_frag extends DialogFragment implements View.OnClick
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_dialog_delete_pas_frag, container, false);
+        View view = inflater.inflate(R.layout.fragment_dialog_edit_pas_frag, container, false);
 
-        pasToDelete = getArguments().getString("pasName", "Empty");
+        pasName = getArguments().getString("pasName", "Empty");
         currentPlan = getArguments().getString("planCurrent", "Empty");
 
         btnOK = (Button) view.findViewById(R.id.button_dialog_delete_pas_OK);
         btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_pas_Cancel);
-        tv = (TextView) view.findViewById(R.id.TV_dialog_delete_pas);
+        tv = (TextView) view.findViewById(R.id.TV_dialog_edit_pas_info);
+        et = (EditText) view.findViewById(R.id.ET_dialog_edit_pas);
 
-        tv.setText("Er du sikker på passet skal slettes?");
+        tv.setText("Skriv det nye navn på passet");
 
 
         btnOK.setOnClickListener(this);
@@ -59,13 +62,13 @@ public class DialogDeletePas_frag extends DialogFragment implements View.OnClick
     public void onClick(View v) {
         if (v == btnOK) {
             try {
-                wc.deletePas(currentPlan, pasToDelete);
+                String newPasName = "" + et.getText();
+                wc.updatePasName(currentPlan, pasName, newPasName);
             } catch (ExceptionPasDoesntExist e) {
                 e.printStackTrace();
                 tv.setText("Der skete en fejl!");
             }
             dismiss();
-
         } else if (v == btnCancel) {
             dismiss();
         }

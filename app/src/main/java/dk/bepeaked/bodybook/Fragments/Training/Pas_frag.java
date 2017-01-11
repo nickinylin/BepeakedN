@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -45,10 +46,11 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     String[] workoutPases = {"Mandag", "Tirsdag", "Torsdag", "Lørdag", "Søndag", "Nicki"};
     String nameTrainingplan;
     RealmList<WorkoutPasDTO> realmListString = new RealmList<WorkoutPasDTO>();
-    ArrayList<String> arrayListPasNames = new ArrayList<String>();
+    public ArrayList<String> arrayListPasNames = new ArrayList<String>();
     SharedPreferences prefs;
     Bundle bundleArgs;
     private SwipeMenuListView listView;
+    ArrayAdapter adapter;
 
     public Pas_frag() {
         // Required empty public constructor
@@ -64,11 +66,15 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
         nameTrainingplan = prefs.getString("lastUsedPlan", "empty");
 
+        bundleArgs = new Bundle();
+
         getActivity().setTitle(nameTrainingplan);
 
         arrayListPasNames = wc.getPasNamesFromPlan(nameTrainingplan);
 
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
+        Log.d("Nicki", "Før " + wc.getPasNamesFromPlan(nameTrainingplan).size() );
+
+        adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
 
         listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id);
 
@@ -105,7 +111,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                 // set item width
                 deleteItem.setWidth(300);
                 // set a icon
-                deleteItem.setIcon(R.drawable.ic_action_bepeaked_logo);
+//                deleteItem.setIcon(R.drawable.);
                 // add to menu
                 menu.addMenuItem(deleteItem);
             }
@@ -121,29 +127,34 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                 switch (index) {
                     case 0:
                         // open
-                        Snackbar.make(getView(), "Open!", Snackbar.LENGTH_LONG).show();
-
-
-                        break;
-                    case 1:
-                        // delete
-                        bundleArgs = new Bundle();
                         bundleArgs.putString("planCurrent", nameTrainingplan);
-                        bundleArgs.putString("pasToDelete", arrayListPasNames.get(position));
+                        bundleArgs.putString("pasName", arrayListPasNames.get(position));
 
-                        DialogDeletePas_frag dialog = new DialogDeletePas_frag();
+                        DialogEditPas_frag dialog = new DialogEditPas_frag();
                         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public void onDismiss(DialogInterface dialog) {
-                                Pas_frag fragment = new Pas_frag();
-                                android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                                fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
-                                fragment.setArguments(bundleArgs);
-                                fragmentTransaction.commit();
+                               adapterReload();
                             }
                         });
                         dialog.setArguments(bundleArgs);
                         dialog.show(getFragmentManager(), "Empty_pas");
+
+                        break;
+                    case 1:
+                        // delete
+                        bundleArgs.putString("planCurrent", nameTrainingplan);
+                        bundleArgs.putString("pasName", arrayListPasNames.get(position));
+
+                        DialogDeletePas_frag dialog2 = new DialogDeletePas_frag();
+                        dialog2.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                               adapterReload();
+                            }
+                        });
+                        dialog2.setArguments(bundleArgs);
+                        dialog2.show(getFragmentManager(), "Empty_pas");
 
                         break;
                 }
@@ -211,14 +222,17 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                Pas_frag fragment = new Pas_frag();
-                android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
-                fragment.setArguments(bundleArgs);
-                fragmentTransaction.commit();
+                adapterReload();
             }
         });
         dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "Empty_pas");
+    }
+
+    private void adapterReload() {
+        arrayListPasNames = wc.getPasNamesFromPlan(nameTrainingplan);
+        // TODO skriv i rapporten at vi prøvede at bruge "adapter.notifyDataSetChanged(); men at det ikke virkede, derfor opretter vi en ny adapter, som er lidt mindre arbejde, end at loade hele fragmentet igen..
+        adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
+        listView.setAdapter(adapter);
     }
 }

@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="dk.bepeaked.bodybook.Fragments.Training.DialogDeletePas_frag">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Er du sikker?"
+        android:layout_gravity="center"
+        android:id="@+id/TV_dialog_edit_pas_info"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ET_dialog_edit_pas"
+        android:text="navn på pas"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_dialog_delete_pas_OK"
+            android:text="OK"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_dialog_delete_pas_Cancel"
+            android:text="Cancel"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
