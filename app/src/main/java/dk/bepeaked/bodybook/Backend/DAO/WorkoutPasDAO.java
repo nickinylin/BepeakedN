@@ -113,8 +113,11 @@ public class WorkoutPasDAO {
         if (position == -1) {
             throw new ExceptionPasDoesntExist("The pas "+pasName+" in " + planName + " doesnt exist");
         } else {
+            WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("name", pasName).findFirst();
+
             realm.beginTransaction();
             realmPlan.getWorkoutPasses().remove(position);
+            pas.deleteFromRealm();
             realm.commitTransaction();
         }
     }

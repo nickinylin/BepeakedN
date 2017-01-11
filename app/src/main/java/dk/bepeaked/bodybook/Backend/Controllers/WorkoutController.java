@@ -170,7 +170,6 @@ public class WorkoutController {
      * @throws ExceptionPasDoesntExist if the pas doenst exist
      */
     public void deletePas(String planName, String pasName) throws ExceptionPasDoesntExist {
-
         workoutPasDAO.deletePas(planName, pasName);
     }
 
