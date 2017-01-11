@@ -74,13 +74,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:text="Tilføj"
+        <android.support.design.widget.FloatingActionButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/Button_add_new_set"
-            android:backgroundTint="@android:color/holo_blue_dark" />
+            android:clickable="true"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_add"
+            android:layout_gravity="end"
+            android:id="@+id/floatingActionButton"
+            app:backgroundTint="@android:color/holo_blue_dark" />
+
+
     </LinearLayout>
+
+
 
 
 </LinearLayout>
