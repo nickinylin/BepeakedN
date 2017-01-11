@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DAO.DietDAO;
 import dk.bepeaked.bodybook.Backend.DAO.JsonDAO;
+import dk.bepeaked.bodybook.Backend.DAO.PlanDAO;
 import dk.bepeaked.bodybook.R;
 
 /**
@@ -27,6 +28,7 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
     private JsonDAO json = new JsonDAO();
     private ArrayList<String[]> files = new ArrayList<>();
     private DietDAO dao;
+    private PlanDAO pdao = new PlanDAO();
 
     public ActivationCode_frag() {}
 
