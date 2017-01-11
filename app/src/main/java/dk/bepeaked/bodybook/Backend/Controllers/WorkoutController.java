@@ -339,6 +339,11 @@ public class WorkoutController {
         return realmListSetDTO;
     }
 
+    public void deleteExerciseFromPas(String planName, String pasName, String exerciseName) throws ExceptionPasDoesntExist {
+
+        workoutPasDAO.removeExerciseFromPas(planName, pasName, exerciseName);
+    }
+
     //****************************SETS*********************************
     /**
      * Adds a new set

@@ -38,13 +38,13 @@ public class ExerciseDAO {
     public void newExercise(ExerciseDTO exerciseDTO) throws ExceptionNameAlreadyExist {
 
         RealmList<ExerciseDTO> exercises = getExercises();
-        for(int i = 0; i<exercises.size(); i++){
-            if(exercises.get(i).getName().equals(exerciseDTO.getName())){
+
+            if(checkExerciseNameInPas(exerciseDTO.getName())){
                 throw new ExceptionNameAlreadyExist("An exercise by the name "+ exerciseDTO.getName() + " already exist");
             }
-        }
+
         realm.beginTransaction();
-        ExerciseDTO realmExerciseDTO = realm.copyToRealm(exerciseDTO);
+        realm.copyToRealm(exerciseDTO);
         realm.commitTransaction();
     }
 
@@ -190,6 +190,27 @@ public class ExerciseDAO {
             }
             realm.commitTransaction();
         }
+    }
+
+    public boolean checkExerciseNameInPas(String name) throws ExceptionNameAlreadyExist {
+        boolean exist = true;
+        WorkoutDAO workoutDAO = new WorkoutDAO();
+        RealmList<WorkoutDTO> planer = workoutDAO.getPlans();
+        RealmList<WorkoutPasDTO> pas = new RealmList<>();
+        RealmList<ExerciseGoals> goals = new RealmList<>();
+        for (int i = 0; i < planer.size(); i++) {
+            pas = planer.get(i).getWorkoutPasses();
+            for (int l = 0; l < pas.size(); l++) {
+                goals = pas.get(l).getExercises();
+                for(int j = 0; j<goals.size(); j++) {
+                    if (goals.get(j).getName().equals(name)) {
+                        exist = false;
+                    }
+
+                }
+            }
+        }
+        return exist;
     }
 
 }
