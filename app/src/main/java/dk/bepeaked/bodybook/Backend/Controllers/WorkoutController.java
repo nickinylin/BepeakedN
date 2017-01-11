@@ -51,7 +51,7 @@ public class WorkoutController {
      * Adds a new plan with an empty pas list
      * @param planName the name of the new plan
      */
-    public void addPlan(String planName) {
+    public void addPlan(String planName) throws ExceptionNameAlreadyExist {
         workoutDAO.newPlan(new WorkoutDTO(planName, new RealmList<WorkoutPasDTO>()));
     }
 
@@ -71,7 +71,7 @@ public class WorkoutController {
      * @param oldPlan old name
      * @param newPlan new name
      */
-    public void updatePlanName(String oldPlan, String newPlan) throws ExceptionPasDoesntExist {
+    public void updatePlanName(String oldPlan, String newPlan) throws ExceptionPasDoesntExist, ExceptionNameAlreadyExist {
         workoutDAO.updatePlanName(oldPlan, newPlan);
     }
 
@@ -156,7 +156,7 @@ public class WorkoutController {
      * @param newPasName
      * @throws ExceptionPasDoesntExist if the pas doesnt exist
      */
-    public void updatePasName(String planName, String oldPasName, String newPasName) throws ExceptionPasDoesntExist {
+    public void updatePasName(String planName, String oldPasName, String newPasName) throws ExceptionPasDoesntExist, ExceptionNameAlreadyExist {
 
         workoutPasDAO.updatePasName(planName, oldPasName, newPasName);
     }

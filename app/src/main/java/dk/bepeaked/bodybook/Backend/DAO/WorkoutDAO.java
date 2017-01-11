@@ -4,6 +4,7 @@ import android.util.Log;
 
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -27,7 +28,13 @@ public class WorkoutDAO {
      * Adds a new workoutplan
      * @param workoutDTO (String name, RealmList<WorkoutPasDTO>)
      */
-    public void newPlan(WorkoutDTO workoutDTO){
+    public void newPlan(WorkoutDTO workoutDTO) throws ExceptionNameAlreadyExist {
+        RealmList<WorkoutDTO> plans = getPlans();
+        for(int i = 0; i<plans.size(); i++){
+            if(plans.get(i).getName().equals(workoutDTO.getName())){
+                throw new ExceptionNameAlreadyExist("A plan by the name "+workoutDTO.getName() +" already exist");
+            }
+        }
         realm.beginTransaction();
         WorkoutDTO realmPlan = realm.copyToRealm(workoutDTO);
         realm.commitTransaction();
@@ -49,7 +56,7 @@ public class WorkoutDAO {
      * @param oldname
      * @param newname
      */
-    public void updatePlanName(String oldname, String newname) throws ExceptionPasDoesntExist {
+    public void updatePlanName(String oldname, String newname) throws ExceptionPasDoesntExist, ExceptionNameAlreadyExist {
 
         WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", oldname).findFirst();
         WorkoutDTO newPlan = new WorkoutDTO();
@@ -61,9 +68,13 @@ public class WorkoutDAO {
 
         int position = -1;
         for(int i = 0; i<planer.size(); i++){
-            if(planer.get(i).getName().equals(oldname)){
-                position = i;
-                break;
+            if(planer.get(i).getName().equals(newname)){
+                throw new ExceptionNameAlreadyExist("A plan by the name "+ newname + " already exist");
+            }else {
+                if (planer.get(i).getName().equals(oldname)) {
+                    position = i;
+                    break;
+                }
             }
         }
         realm.commitTransaction();

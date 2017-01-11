@@ -19,12 +19,12 @@ import jxl.read.biff.BiffException;
 
 public class ExcelDAO {
 
-    public final ArrayList<String[]> readCsv(Context context) {
+    public final ArrayList<String[]> readCsv(Context context, String file) {
         ArrayList<String[]> questionList = new ArrayList<String[]>();
         AssetManager assetManager = context.getAssets();
 
         try {
-            InputStream csvStream = assetManager.open("kostplan.csv");
+            InputStream csvStream = assetManager.open(file);
             InputStreamReader csvStreamReader = new InputStreamReader(csvStream);
             CSVReader csvReader = new CSVReader(csvStreamReader);
             String[] line;

@@ -13,11 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
-
 import com.crashlytics.android.Crashlytics;
 
-import java.io.File;
-
+import dk.bepeaked.bodybook.Backend.DAO.DietDAO;
 import dk.bepeaked.bodybook.Backend.DTO.LoadDataExercise;
 import dk.bepeaked.bodybook.Fragments.Diet.Diet_frag;
 import dk.bepeaked.bodybook.Fragments.Profile_frag;
@@ -35,8 +33,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar = null;
     boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
     SharedPreferences prefs;
-
-
+    public DietDAO diDAO = new DietDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,18 +134,26 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_diet) {
+            Bundle bundle = new Bundle();
+
+            bundle.putSerializable("DietDAO", diDAO);
 
             Diet_frag fragment = new Diet_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("stack");
+            fragment.setArguments(bundle);
             fragmentTransaction.commit();
 
 
         } else if (id == R.id.nav_settings) {
+            Bundle bundle = new Bundle();
+
+            bundle.putSerializable("DietDAO", diDAO);
 
             Settings_frag fragment = new Settings_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("stack");
+            fragment.setArguments(bundle);
             fragmentTransaction.commit();
 
         }
