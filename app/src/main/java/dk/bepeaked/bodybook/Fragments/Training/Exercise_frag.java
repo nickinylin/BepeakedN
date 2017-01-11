@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -26,6 +29,7 @@ import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
+import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
 import dk.bepeaked.bodybook.R;
 import io.realm.RealmList;
 
@@ -36,15 +40,13 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
 
     String namePas, namePlan;
-    RealmList<ExerciseDTO> realmExercise2 = new RealmList<ExerciseDTO>();
+    RealmList<ExerciseGoals> realmListExercises = new RealmList<ExerciseGoals>();
     ArrayList<String> arrayListExerciseNames = new ArrayList<String>();
-    Bundle bundleArgs;
-    ArrayAdapter adapter;
+    Bundle bundleArgs = new Bundle();
     private SwipeMenuListView listView;
     View view;
     WorkoutController wc = new WorkoutController();
     SharedPreferences prefs;
-
 
 
     public Exercise_frag() {
@@ -74,13 +76,13 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
         getActivity().setTitle(namePas);
 
-        arrayListExerciseNames = wc.getExercisesFromPasToArray(namePlan, namePas);
-
-        adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListExerciseNames);
+//        arrayListExerciseNames = wc.getExercisesFromPasToArray(namePlan, namePas);
+        realmListExercises = wc.getSpecificPas(namePlan, namePas).getExercises();
 
         listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id);
+        ExerciseListAdapterRepsSets exerciseListAdapter = new ExerciseListAdapterRepsSets();
         listView.setOnItemClickListener(this);
-        listView.setAdapter(adapter);
+        listView.setAdapter(exerciseListAdapter);
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
@@ -110,7 +112,10 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
-                        // open
+                        Snackbar.make(getView(), "fejl..", Snackbar.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        //delete
                         bundleArgs.putString("planName", namePlan);
                         bundleArgs.putString("pasName", arrayListExerciseNames.get(position));
 
@@ -118,27 +123,11 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
                         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public void onDismiss(DialogInterface dialog) {
-                                adapterReload();
+//                                adapterReload();
                             }
                         });
                         dialog.setArguments(bundleArgs);
                         dialog.show(getFragmentManager(), "Empty_pas");
-
-                        break;
-                    case 1:
-                        // delete
-                        bundleArgs.putString("planName", namePlan);
-                        bundleArgs.putString("pasName", arrayListExerciseNames.get(position));
-
-                        DialogDeletePas_frag dialog2 = new DialogDeletePas_frag();
-                        dialog2.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                adapterReload();
-                            }
-                        });
-                        dialog2.setArguments(bundleArgs);
-                        dialog2.show(getFragmentManager(), "Empty_pas");
 
                         break;
                 }
@@ -199,10 +188,52 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
     }
 
-    private void adapterReload() {
-        arrayListExerciseNames = wc.getExercisesFromPasToArray(namePlan, namePas);
-        // TODO skriv i rapporten at vi prøvede at bruge "adapter.notifyDataSetChanged(); men at det ikke virkede, derfor opretter vi en ny adapter, som er lidt mindre arbejde, end at loade hele fragmentet igen..
-        adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListExerciseNames);
-        listView.setAdapter(adapter);
+//    private void adapterReload() {
+//        arrayListExerciseNames = wc.getExercisesFromPasToArray(namePlan, namePas);
+//        // TODO skriv i rapporten at vi prøvede at bruge "adapter.notifyDataSetChanged(); men at det ikke virkede, derfor opretter vi en ny adapter, som er lidt mindre arbejde, end at loade hele fragmentet igen..
+//        adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListExerciseNames);
+//        listView.setAdapter(adapter);
+//    }
+
+    public class ExerciseListAdapterRepsSets extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return realmListExercises.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return position;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.exercise_list_element_with_name_reps_sets, parent, false);
+
+
+            TextView tvExerciseName = (TextView) convertView.findViewById(R.id.TV_exercise_frag_exercisename);
+            TextView tvGoals = (TextView) convertView.findViewById(R.id.TV_exercise_frag_reps_sets);
+
+            tvExerciseName.setText(realmListExercises.get(position).getName());
+            tvGoals.setText(realmListExercises.get(position).getSet() + " x " + realmListExercises.get(position).getReps());
+
+            return convertView;
+        }
     }
+
+    private void adapterReload() {
+        realmListExercises = wc.getSpecificPas(namePlan, namePas).getExercises();
+        ExerciseListAdapterRepsSets exerciseListAdapter = new ExerciseListAdapterRepsSets();
+        listView.setOnItemClickListener(this);
+        listView.setAdapter(exerciseListAdapter);
+    }
+
 }

@@ -18,11 +18,9 @@ import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionCantDelete;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionExerciseDoesntExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
-import dk.bepeaked.bodybook.Backend.Exception.ExceptionNullPointer;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionWrongInput;
-import io.realm.ExerciseDTORealmProxy;
-import io.realm.Realm;
+
 import io.realm.RealmList;
 
 

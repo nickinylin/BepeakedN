@@ -146,7 +146,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         listView.setAdapter(exerciseListAdapter);
 
-        fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
+//        fab = (FloatingActionButton) view.findViewById(R.id.floatingactionbutton);
 
         fab.setOnClickListener(this);
 
