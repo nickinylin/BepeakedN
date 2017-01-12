@@ -78,12 +78,12 @@ public class TabLayoutExercise_frag extends Fragment {
 
             switch (position) {
                 case 0:
-                    bundleArgs.putString("chosenExerciseName", getArguments().getString("chosenExerciseName"));
+                    bundleArgs.putInt("chosenExerciseID", getArguments().getInt("chosenExerciseID"));
                     ChosenExercise_frag frag1 = new ChosenExercise_frag();
                     frag1.setArguments(bundleArgs);
                     return frag1;
                 case 1:
-                    bundleArgs.putString("chosenExerciseName", getArguments().getString("chosenExerciseName"));
+                    bundleArgs.putInt("chosenExerciseID", getArguments().getInt("chosenExerciseID"));
                     ExerciseHelp_frag frag2 = new ExerciseHelp_frag();
                     frag2.setArguments(bundleArgs);
                     return frag2;

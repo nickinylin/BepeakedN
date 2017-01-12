@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -74,6 +75,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
 
         exerciseID = getArguments().getInt("chosenExerciseID", 99999);
+        Log.d("LUKAS", "onCreateView: exerciseID"+ exerciseID);
         exerciseName = wc.getExercise(exerciseID).getName();
 
         getActivity().setTitle(exerciseName);
