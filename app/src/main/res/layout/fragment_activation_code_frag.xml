@@ -29,7 +29,7 @@
         android:id="@+id/button_dialog_OK"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:color="colorPrimaryDark"
         android:text="OK"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/TextView_dialog_reps"
