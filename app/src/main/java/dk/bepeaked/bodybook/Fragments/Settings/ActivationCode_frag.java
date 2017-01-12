@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
     private ArrayList<String[]> files = new ArrayList<>();
     private DietDAO dao;
     private PlanDAO pdao = new PlanDAO();
+    TextView confirm;
 
     public ActivationCode_frag() {}
 
@@ -42,6 +44,7 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
 
         field = (EditText) view.findViewById(R.id.editText2);
         Button button = (Button) view.findViewById(R.id.button_dialog_OK);
+        confirm = (TextView) view.findViewById(R.id.textView4);
 
         this.dao = (DietDAO) getArguments().getSerializable("DietDAO");
 
@@ -54,12 +57,19 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+        boolean success = false;
         for(int i = 0; i < files.size(); i++){
             if(field.getText().toString().equals(files.get(i)[0])){
                 if(files.get(i)[1].equals("csv")){
                     dao.getDishes(getActivity(), files.get(i)[0] + "." + files.get(i)[1]);
+                    success = true;
                 }
             }
+        }
+        if(success){
+            confirm.setText("Success!!");
+        }else{
+            confirm.setText("Could not find any matches. Check for wrong code, and try again!");
         }
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
