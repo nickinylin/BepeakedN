@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +47,7 @@ public class DialogAddSet_frag extends DialogFragment {
 //        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.MyAlertDialogStyle);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         exerciseID = getArguments().getInt("chosenExerciseID", 9999);
+        Log.d("LUKAS", "exerciseID: " + exerciseID);
         exerciseName = wc.getExercise(exerciseID).getName();
 
 
