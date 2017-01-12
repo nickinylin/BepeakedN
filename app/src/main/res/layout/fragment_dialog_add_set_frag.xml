@@ -1,92 +1,87 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimaryDark1"
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tilføj sæt"
         android:id="@+id/TV_dialogAddSet_info"
-        android:textSize="25sp"
-        android:gravity="center"
-        android:textColor="@android:color/black" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="Info"
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/TextView_dialog_reps"
-                android:layout_width="match_parent"
+                android:id="@+id/TV_dialogAddSet_reps"
+                android:layout_width="wrap_content"
+                android:textColor="#000000"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
+                android:layout_gravity="center"
                 android:text="Reps"
-                android:textSize="20sp"
-                android:textColor="@android:color/black" />
+                android:textSize="18sp" />
+
 
             <NumberPicker
                 android:id="@+id/NumberPickerReps"
-                android:layout_width="match_parent"
-                android:theme="@style/AppTheme.Picker"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:layout_below="@+id/TextView_dialog_reps">
-
+                android:theme="@style/AppTheme.Picker"
+                >
             </NumberPicker>
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/TextView_dialog_weight1"
+                android:id="@+id/TV_dialogAddSet_weight"
+                android:layout_width="wrap_content"
+                android:textColor="#000000"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Vægt"
+                android:textSize="18sp" />
+
+            <NumberPicker
+                android:id="@+id/NumberPickerWeight1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/NumberPickerReps"
-                android:paddingLeft="10dp"
-                android:text="Weight"
-                android:textSize="20sp"
-                android:textColor="@android:color/black" />
+                android:theme="@style/AppTheme.Picker"
+                android:divider="@color/colorPrimaryDark">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <NumberPicker
-                    android:id="@+id/NumberPickerWeight1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/AppTheme.Picker"
-                    android:layout_below="@+id/TextView_dialog_reps"
-                    android:layout_toRightOf="@+id/NumberPickerReps"
-                   >
+            </NumberPicker>
 
-                </NumberPicker>
-            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
-        <Button
-            android:id="@+id/button_dialog_OK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/NumberPickerWeight1"
-            android:text="OK"
-            android:textColor="@android:color/black"
-            android:background="@color/colorPrimaryDark" />
+    <Button
+        android:id="@+id/button_dialog_OK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:layout_marginTop="35dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:text="Tilføj"
 
-
+        />
 
 
 </LinearLayout>

@@ -83,7 +83,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:id="@+id/floatingActionButton_add_set"
-            app:backgroundTint="@android:color/holo_blue_dark" />
+            app:backgroundTint="@color/colorPrimaryDark" />
 
 
     </RelativeLayout>

@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.NumberPicker;
@@ -27,6 +26,10 @@ import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Date;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
@@ -52,7 +55,10 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     Bundle bundleArgs;
     String exerciseName;
     int exerciseID;
-    WorkoutController wc = new WorkoutController();
+    WorkoutController wc;
+    Date dateLast, dateCurrent;
+    SimpleDateFormat dateFormatter;
+    String stringDateLast;
 
 
     //skal slettes. til test
@@ -71,7 +77,9 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         View view = inflater.inflate(R.layout.fragment_chosen_exercise_frag, container, false);
 
-
+        wc = new WorkoutController();
+        dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        stringDateLast = dateFormatter.format(new Date(2015,10,12));
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         exerciseID = getArguments().getInt("chosenExerciseID", 99999);
         Log.d("LUKAS", "onCreateView: exerciseID"+ exerciseID);
@@ -125,6 +133,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         } catch (ExceptionExerciseDoesntExist e) {
             e.printStackTrace();
         }
+//        Collections.reverse(realmListSets);
 
         listView = (SwipeMenuListView) view.findViewById(R.id.SwipeListView_chosen_exercise);
         ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter();
@@ -231,14 +240,22 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            if (boo) {
+
+            dateCurrent = realmListSets.get(position).getDate();
+            String stringDateCurrent = dateFormatter.format(dateCurrent);
+//            String stringDateLast = dateFormatter.format()
+
+
+            if (stringDateCurrent.equals(stringDateLast)) {
+                stringDateLast = stringDateCurrent;
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(R.layout.exercise_list_element, parent, false);
-                boo = false;
-            } else if (!boo) {
+            } else {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(R.layout.exercise_list_element_with_date, parent, false);
-                boo = true;
+                TextView tvDate = (TextView) convertView.findViewById(R.id.tv_exercise_date);
+                tvDate.setText(stringDateCurrent);
+                stringDateLast = stringDateCurrent;
             }
             TextView weight = (TextView) convertView.findViewById(R.id.tv_exercise_weight);
             TextView reps = (TextView) convertView.findViewById(R.id.tv_exercise_reps);

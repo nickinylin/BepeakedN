@@ -27,7 +27,7 @@ public class DialogAddSet_frag extends DialogFragment {
 
     NumberPicker npWeight1, npReps;
     Button btnOK, btnCancel;
-    TextView tvInfo;
+    TextView tvInfo, tvReps, tvWeight;
     SharedPreferences prefs;
     ExerciseDTO dto;
     String exerciseName;
@@ -53,6 +53,8 @@ public class DialogAddSet_frag extends DialogFragment {
         npWeight1 = (NumberPicker) view.findViewById(R.id.NumberPickerWeight1);
         btnOK = (Button) view.findViewById(R.id.button_dialog_OK);
         tvInfo = (TextView) view.findViewById(R.id.TV_dialogAddSet_info);
+        tvReps = (TextView) view.findViewById(R.id.TV_dialogAddSet_reps);
+        tvWeight = (TextView) view.findViewById(R.id.TV_dialogAddSet_weight);
 
 
         //TODO skal sættes til den sidst benyttede, så der skal bruges den der sharedpreferences
@@ -66,20 +68,24 @@ public class DialogAddSet_frag extends DialogFragment {
             npWeight1.setMaxValue(200);
         }
         npWeight1.setValue(10);
-        tvInfo.setText("Tilføj sæt");
+        tvInfo.setText("Tilføj sæt - repetitioner og vægt");
 
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                try {
-                    wc.addSet(exerciseName, npWeight1.getValue(), npReps.getValue());
-                } catch (ExceptionWrongInput e) {
-                    e.printStackTrace();
-                    tvInfo.setText(e.getMessage());
-
+                if (v == btnOK) {
+                    try {
+                        wc.addSet(exerciseName, npWeight1.getValue(), npReps.getValue());
+                        dismiss();
+                    } catch (ExceptionWrongInput e) {
+                        e.printStackTrace();
+                        tvInfo.setText(e.getMessage());
+                    }
+                } else if (v == btnCancel) {
+                    dismiss();
                 }
+
             }
         });
         return view;
