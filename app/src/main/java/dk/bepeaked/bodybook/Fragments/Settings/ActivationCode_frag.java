@@ -62,6 +62,7 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
             if(field.getText().toString().equals(files.get(i)[0])){
                 if(files.get(i)[1].equals("csv")){
                     dao.getDishes(getActivity(), files.get(i)[0] + "." + files.get(i)[1]);
+                    pdao.getWorkouts(getActivity(), files.get(i)[0] + "W." + files.get(i)[1]);
                     success = true;
                 }
             }

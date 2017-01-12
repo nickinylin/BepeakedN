@@ -86,7 +86,7 @@ public class DietDAO implements Serializable {
             savedDTO = dtos;
     }
 
-//    public ArrayList<DishDTO> getDishes(Activity act) throws IOException, JSONException {
+//    public ArrayList<DishDTO> getWorkouts(Activity act) throws IOException, JSONException {
 //        ArrayList<DishDTO> result = new ArrayList<DishDTO>();
 //        InputStream is = act.getResources().openRawResource(R.raw.abc123);
 //        byte b[] = new byte[is.available()]; // kun små filer

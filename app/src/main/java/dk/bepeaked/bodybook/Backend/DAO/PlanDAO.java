@@ -10,7 +10,6 @@ import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
-import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import io.realm.RealmList;
 
 public class PlanDAO {
@@ -18,7 +17,7 @@ public class PlanDAO {
     WorkoutController wc = new WorkoutController();
     private ArrayList<WorkoutDTO> savedDTO = new ArrayList<>();
 
-    public void getDishes(Activity act, String file){
+    public void getWorkouts(Activity act, String file){
         ArrayList<WorkoutDTO> dtos = new ArrayList<>();
         ArrayList<String[]> data = dao.readCsv(act, file);
         ArrayList<String[]> cleanData = new ArrayList<>();
