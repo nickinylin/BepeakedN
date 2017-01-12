@@ -7,11 +7,6 @@ import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
 import dk.bepeaked.bodybook.Backend.DTO.Ingredient;
-import io.realm.RealmList;
-
-/**
- * Created by sebho on 14-11-2016.
- */
 
 public class DietDAO implements Serializable {
     CsvDAO dao = new CsvDAO();
@@ -46,7 +41,7 @@ public class DietDAO implements Serializable {
             int indexStart;
             int indexEnd = 0;
             String[] nameSplit;
-            RealmList<Ingredient> ingredients = new RealmList<>();
+            ArrayList<Ingredient> ingredients = new ArrayList<>();
             String name;
             if(cleanData2.get(i).get(0).contains("Morgenmad") || cleanData2.get(i).get(0).contains("Frokost")
                     || cleanData2.get(i).get(0).contains("Aftensmad") || cleanData2.get(i).get(0).contains("Snack")){

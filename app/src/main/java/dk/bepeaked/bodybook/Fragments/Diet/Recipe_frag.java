@@ -49,7 +49,7 @@ public class Recipe_frag extends Fragment {
             carbonhydrate = carbonhydrate + dish.getIngredients().get(i).getCarbohydrate();
             calories = calories + dish.getIngredients().get(i).getCalories();
         }
-        text = text + "\n\n\n\nThis recipe contains the following:\n\n" + protein + "grams of protein.\n" + fat + "grams of fat.\n" + carbonhydrate + "grams of carbonhydrates.\n" + calories + " calories.";
+        text = text + "\n\n\n\nThis recipe contains the following:\n\n" + protein + " grams of protein.\n" + fat + " grams of fat.\n" + carbonhydrate + " grams of carbonhydrates.\n" + calories + " calories.";
         ingredients.setText(text);
         description.setText(dish.getDeskLong());
 
