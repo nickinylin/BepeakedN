@@ -25,7 +25,6 @@ import dk.bepeaked.bodybook.Fragments.Training.Pas_frag;
 import dk.bepeaked.bodybook.R;
 import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
-import io.realm.RealmList;
 
 
 public class Main_act extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -60,6 +59,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
             prefs.edit().putString("lastUsedPlanName", newPlanName).commit();
             prefs.edit().putInt("lastUsedPlan", 1).commit();
             prefs.edit().putBoolean("firstAppRun", false).commit();
+            prefs.edit().putBoolean("measurement", false).commit();
         }
 
 

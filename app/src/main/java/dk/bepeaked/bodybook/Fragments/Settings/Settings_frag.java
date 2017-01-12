@@ -1,7 +1,9 @@
 package dk.bepeaked.bodybook.Fragments.Settings;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,8 @@ import dk.bepeaked.bodybook.R;
  */
 public class Settings_frag extends Fragment implements AdapterView.OnItemClickListener {
 
+    SharedPreferences prefs;
+
 
     public Settings_frag() {
         // Required empty public constructor
@@ -32,6 +36,7 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
         String[] settings = {getActivity().getResources().getString(R.string.activationcode), "Om os"};
 
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, settings);
+        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         ToggleButton measure = (ToggleButton) view.findViewById(R.id.switch1);
 
@@ -44,8 +49,10 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     //Sæt lbs til
+                    prefs.edit().putBoolean("measurement", true);
                 }else{
                     //Sæt kg til
+                    prefs.edit().putBoolean("measurement", false);
                 }
             }
         });
