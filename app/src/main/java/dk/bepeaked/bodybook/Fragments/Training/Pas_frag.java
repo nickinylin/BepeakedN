@@ -61,21 +61,19 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         planID = prefs.getInt("lastUsedPlan", 9999);
+        Log.d("LUKAS", "planid: "+planID);
         planName = wc.getSpecificPlan(planID).getName();
-
+        Log.d("LUKAS", "plan: "+ planName);
 
         bundleArgs = new Bundle();
 
         getActivity().setTitle(planName);
 
-        try {
-            arrayListPasNames = wc.getPasNamesFromPlan(planID);
 
-            realmListPas = wc.getPasses(planID);
-        }catch(NullPointerException e){
-            arrayListPasNames = new ArrayList<>();
-            realmListPas = new RealmList<>();
-        }
+        arrayListPasNames = wc.getPasNamesFromPlan(planID);
+
+        realmListPas = wc.getPasses(planID);
+
 
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
 

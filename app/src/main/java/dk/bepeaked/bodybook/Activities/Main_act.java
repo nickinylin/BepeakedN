@@ -58,7 +58,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
             LoadDataExercise ld = new LoadDataExercise();
             ld.dataCreateAllNeededData(newPlanName);
             prefs.edit().putString("lastUsedPlanName", newPlanName).commit();
-            prefs.edit().putInt("lastUsedPlan", 1);
+            prefs.edit().putInt("lastUsedPlan", 1).commit();
             prefs.edit().putBoolean("firstAppRun", false).commit();
         }
 
