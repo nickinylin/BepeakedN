@@ -1,14 +1,11 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +23,7 @@ import dk.bepeaked.bodybook.R;
  */
 public class DialogAddSet_frag extends DialogFragment {
 
-    NumberPicker npWeight1, npWeight2, npReps;
+    NumberPicker npWeight1, npReps;
     Button btnOK, btnCancel;
     SharedPreferences prefs;
     ExerciseDTO dto;
@@ -44,6 +41,7 @@ public class DialogAddSet_frag extends DialogFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_add_set_frag, container, false);
 //        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.MyAlertDialogStyle);
+        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         exerciseID = getArguments().getInt("chosenExerciseID", 9999);
         exerciseName = wc.getExercise(exerciseID).getName();
 
@@ -52,7 +50,6 @@ public class DialogAddSet_frag extends DialogFragment {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         npReps = (NumberPicker) view.findViewById(R.id.NumberPickerReps);
         npWeight1 = (NumberPicker) view.findViewById(R.id.NumberPickerWeight1);
-        npWeight2 = (NumberPicker) view.findViewById(R.id.NumberPickerWeight2);
         btnOK = (Button) view.findViewById(R.id.button_dialog_OK);
 
         //TODO skal sættes til den sidst benyttede, så der skal bruges den der sharedpreferences
@@ -60,12 +57,12 @@ public class DialogAddSet_frag extends DialogFragment {
         npReps.setMaxValue(50);
 //        npReps.setValue();
         npWeight1.setMinValue(0);
-        npWeight1.setMaxValue(200);
+        if(prefs.getBoolean("measurement", false)){
+            npWeight1.setMaxValue(convertKilo(200));
+        }else{
+            npWeight1.setMaxValue(200);
+        }
         npWeight1.setValue(10);
-        npWeight2.setMinValue(0);
-        npWeight2.setMaxValue(3);
-        npWeight2.setDisplayedValues(new String[]{"0", "25", "50", "75"});
-
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,10 +75,11 @@ public class DialogAddSet_frag extends DialogFragment {
                 }
             }
         });
-
-
         return view;
     }
-
-
+    private int convertKilo(int kilo) {
+        double d = kilo * 2.2046;
+        int pounds = (int) d;
+        return pounds;
+    }
 }

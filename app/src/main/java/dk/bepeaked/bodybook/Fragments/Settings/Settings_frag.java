@@ -39,7 +39,9 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         ToggleButton measure = (ToggleButton) view.findViewById(R.id.switch1);
-
+        if(prefs.getBoolean("measurement", false)){
+            measure.setChecked(true);
+        }
         ListView listView = (ListView) view.findViewById(R.id.settings);
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
@@ -49,10 +51,10 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     //Sæt lbs til
-                    prefs.edit().putBoolean("measurement", true);
+                    prefs.edit().putBoolean("measurement", true).commit();
                 }else{
                     //Sæt kg til
-                    prefs.edit().putBoolean("measurement", false);
+                    prefs.edit().putBoolean("measurement", false).commit();
                 }
             }
         });
