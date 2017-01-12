@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +32,7 @@ public class DialogAddSet_frag extends DialogFragment {
     ExerciseDTO dto;
     String exerciseName;
     int exerciseID;
-    WorkoutController wc;
+    WorkoutController wc = new WorkoutController();
 
 
     public DialogAddSet_frag() {
@@ -47,16 +46,13 @@ public class DialogAddSet_frag extends DialogFragment {
 //        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.MyAlertDialogStyle);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         exerciseID = getArguments().getInt("chosenExerciseID", 9999);
-        Log.d("LUKAS", "exerciseID: " + exerciseID);
         exerciseName = wc.getExercise(exerciseID).getName();
-
-
 
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         npReps = (NumberPicker) view.findViewById(R.id.NumberPickerReps);
         npWeight1 = (NumberPicker) view.findViewById(R.id.NumberPickerWeight1);
         btnOK = (Button) view.findViewById(R.id.button_dialog_OK);
-        tvInfo = (TextView) view.findViewById(R.id.TV_addExerciseDialog_info);
+        tvInfo = (TextView) view.findViewById(R.id.TV_dialogAddSet_info);
 
 
         //TODO skal sættes til den sidst benyttede, så der skal bruges den der sharedpreferences
