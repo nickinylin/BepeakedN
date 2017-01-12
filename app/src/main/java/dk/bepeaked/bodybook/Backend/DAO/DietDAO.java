@@ -14,7 +14,7 @@ import io.realm.RealmList;
  */
 
 public class DietDAO implements Serializable {
-    ExcelDAO dao = new ExcelDAO();
+    CsvDAO dao = new CsvDAO();
     private ArrayList<DishDTO> savedDTO = new ArrayList<>();
 
     public ArrayList<DishDTO> getDTOS(){
@@ -85,45 +85,4 @@ public class DietDAO implements Serializable {
         }
             savedDTO = dtos;
     }
-
-//    public ArrayList<DishDTO> getWorkouts(Activity act) throws IOException, JSONException {
-//        ArrayList<DishDTO> result = new ArrayList<DishDTO>();
-//        InputStream is = act.getResources().openRawResource(R.raw.abc123);
-//        byte b[] = new byte[is.available()]; // kun små filer
-//        is.read(b);
-//        String str = new String(b, "UTF-8");
-//        JSONObject json = new JSONObject();
-//        JSONObject jA = new JSONObject(str);
-//        JSONArray category;
-//        JSONObject dish;
-//
-//        for (int i = 0; i < jA.length(); i++){
-//            category = jA.getJSONArray("Morgenmad");
-//            switch (i){
-//                case 0: category = jA.getJSONArray("Morgenmad");
-//                    break;
-//                case 1: category = jA.getJSONArray("Frokost");
-//                    break;
-//                case 2: category = jA.getJSONArray("Aftensmad");
-//                    break;
-//                case 3: category = jA.getJSONArray("Snack");
-//                    break;
-//            }
-//            for (int j = 0; j < category.length(); j++) {
-//                dish = category.getJSONObject(j);
-//                String name = dish.getString("name");
-//                String imagePath = dish.getString("image");
-//                String deskShort = dish.getString("desk_short");
-//                String deskFull = dish.getString("desk_full");
-//                JSONArray ingredientList = dish.getJSONArray("Ingredients");
-////                RealmList<String[]> ingredients = new RealmList<String[]>();
-////                for (int k = 0; k < ingredientList.length(); k++){
-////                    JSONObject ingredient = ingredientList.getJSONObject(k);
-////                    ingredients.add(new String[]{ingredient.getString("name"), ingredient.getString("stats")});
-////                }
-////                result.add(new DishDTO(i, name, imagePath, deskShort, deskFull, ingredients));
-//            }
-//        }
-//        return result;
-//    }
 }

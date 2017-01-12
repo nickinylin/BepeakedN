@@ -28,11 +28,7 @@ public class Diet_frag extends Fragment{
     DietDAO ddao;
     ArrayList<DishDTO> dishList;
 
-    public Diet_frag() {
-        // Required empty public constructor
-    }
-
-
+    public Diet_frag() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -13,7 +13,7 @@ import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import io.realm.RealmList;
 
 public class PlanDAO {
-    ExcelDAO dao = new ExcelDAO();
+    CsvDAO dao = new CsvDAO();
     WorkoutController wc = new WorkoutController();
     private ArrayList<WorkoutDTO> savedDTO = new ArrayList<>();
 
@@ -66,13 +66,13 @@ public class PlanDAO {
                         for (int m = 0; m < exes.size(); m++) {
                             if (exes.get(m).getName().equals(cleanData2.get(k).get(l).split("\\.")[0])) {
                                 exercises.add(exes.get(m));
+                                String goalName = cleanData2.get(k).get(l).split("\\.")[0];
+                                int set = Integer.parseInt(cleanData2.get(k).get(l).split("\\.")[1].split("x")[0]);
+                                int reps = Integer.parseInt(cleanData2.get(k).get(l).split("\\.")[1].split("x")[1]);
+                                //        goals.add(new ExerciseGoals(goalName, set, reps));
                             } else {
                                 //TODO fejlmeddelelse hvis øvelsen ikke findes
                             }
-                            String goalName = cleanData2.get(k).get(l).split("\\.")[0];
-                            int set = Integer.parseInt(cleanData2.get(k).get(l).split("\\.")[1].split("x")[0]);
-                            int reps = Integer.parseInt(cleanData2.get(k).get(l).split("\\.")[1].split("x")[1]);
-                    //        goals.add(new ExerciseGoals(goalName, set, reps));
                         }
                     }
                     pas.setExerciseGoal(goals);

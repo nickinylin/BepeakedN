@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DAO.DietDAO;
-import dk.bepeaked.bodybook.Backend.DAO.JsonDAO;
 import dk.bepeaked.bodybook.Backend.DAO.PlanDAO;
 import dk.bepeaked.bodybook.R;
 
@@ -28,7 +27,6 @@ import dk.bepeaked.bodybook.R;
 public class ActivationCode_frag extends Fragment implements View.OnClickListener{
 
     private EditText field;
-    private JsonDAO json = new JsonDAO();
     private ArrayList<String[]> files = new ArrayList<>();
     private DietDAO dao;
     private PlanDAO pdao = new PlanDAO();
@@ -42,9 +40,9 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
 
         View view = inflater.inflate(R.layout.fragment_activation_code_frag, container, false);
 
-        field = (EditText) view.findViewById(R.id.editText2);
+        this.field = (EditText) view.findViewById(R.id.editText2);
         Button button = (Button) view.findViewById(R.id.button_dialog_OK);
-        confirm = (TextView) view.findViewById(R.id.textView4);
+        this.confirm = (TextView) view.findViewById(R.id.textView4);
 
         this.dao = (DietDAO) getArguments().getSerializable("DietDAO");
 
@@ -62,7 +60,7 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
             if(field.getText().toString().equals(files.get(i)[0])){
                 if(files.get(i)[1].equals("csv")){
                     dao.getDishes(getActivity(), files.get(i)[0] + "." + files.get(i)[1]);
-                    pdao.getWorkouts(getActivity(), files.get(i)[0] + "W." + files.get(i)[1]);
+                    //pdao.getWorkouts(getActivity(), files.get(i)[0] + "W." + files.get(i)[1]);
                     success = true;
                 }
             }

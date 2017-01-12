@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
-public class ExcelDAO {
+public class CsvDAO implements Serializable{
 
     public final ArrayList<String[]> readCsv(Context context, String file) {
         ArrayList<String[]> questionList = new ArrayList<String[]>();
@@ -67,9 +68,7 @@ public class ExcelDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else
-        {
+        }else{
             resultSet.add("File not found..!");
         }
         if(resultSet.size()==0){
