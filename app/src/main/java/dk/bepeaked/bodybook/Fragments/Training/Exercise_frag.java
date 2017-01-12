@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -68,7 +69,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         //View view = inflater.inflate(R.layout.listview, container, false);
         view = inflater.inflate(R.layout.listview, container, false);
 
-        pasID = getArguments().getInt("TræningspasNavn", 99999);
+        pasID = getArguments().getInt("TræningspasID", 99999);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
@@ -76,7 +77,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
 
         getActivity().setTitle(namePas);
-
+        Log.d("LUKAS", "pasid: " + pasID);
         realmListExercises = wc.getSpecificPas(pasID).getExercises();
 
         listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id);

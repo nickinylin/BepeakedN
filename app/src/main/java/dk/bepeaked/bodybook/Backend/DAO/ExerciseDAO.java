@@ -51,7 +51,7 @@ public class ExerciseDAO {
      * Gets a RealmList of all the exercises in database (in every plan, in every pas)
      * @return RealmList<ExerciseDTO>
      */
-    public RealmList<ExerciseDTO> getExercises() throws NullPointerException {
+    public RealmList<ExerciseDTO> getExercises() throws IndexOutOfBoundsException {
         RealmResults<ExerciseDTO> resultExercise = realm.where(ExerciseDTO.class).findAll();
         RealmList<ExerciseDTO> exercisePlans = new RealmList<ExerciseDTO>();
         exercisePlans.addAll(resultExercise.subList(0, resultExercise.size()));
@@ -79,7 +79,7 @@ public class ExerciseDAO {
      * @return RealmList<ExerciseDTO>
      * @throws Exception if the pas doesnt exist either in the plan
      */
-    public RealmList<ExerciseDTO> getExercisesInPas(int pasID) throws NullPointerException {
+    public RealmList<ExerciseDTO> getExercisesInPas(int pasID) throws IndexOutOfBoundsException {
 
 //        int position = -1;
 //

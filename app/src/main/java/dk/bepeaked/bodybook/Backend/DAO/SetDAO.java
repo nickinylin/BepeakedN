@@ -53,7 +53,7 @@ public class SetDAO {
         return listSets;
     }
 
-    public RealmList<SetDTO> getAllSets() throws NullPointerException{
+    public RealmList<SetDTO> getAllSets() throws IndexOutOfBoundsException{
         RealmResults<SetDTO> resultSets = realm.where(SetDTO.class).findAll();
         RealmList<SetDTO> listSets = new RealmList<>();
         listSets.addAll(resultSets.subList(0, resultSets.size()));

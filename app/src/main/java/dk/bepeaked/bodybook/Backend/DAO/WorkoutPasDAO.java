@@ -49,7 +49,7 @@ public class WorkoutPasDAO {
      * @param planID
      * @return RealmList<WorkoutPasDTO>
      */
-    public RealmList<WorkoutPasDTO> getPasses(int planID) throws NullPointerException {
+    public RealmList<WorkoutPasDTO> getPasses(int planID) throws IndexOutOfBoundsException, NullPointerException {
 
         WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("id", planID).findFirst();
 
@@ -171,7 +171,7 @@ public class WorkoutPasDAO {
         try {
             ExerciseGoals goal = realm.where(ExerciseGoals.class).findAll().last();
             id = goal.getID() + 1;
-        }catch (NullPointerException e){
+        }catch (IndexOutOfBoundsException e){
             id = 1;
         }
         for (int i = 0; i < realmPas.getExercises().size(); i++) {
@@ -194,7 +194,7 @@ public class WorkoutPasDAO {
 //            try {
 //                ExerciseGoals goal = realm.where(ExerciseGoals.class).findAll().last();
 //                id = goal.getID() + 1;
-//            }catch (NullPointerException e){
+//            }catch (IndexOutOfBoundsException e){
 //                id = 1;
 //            }
         ExerciseGoals newExercise = new ExerciseGoals(id, exerciseName, sets, reps);
@@ -241,7 +241,7 @@ public class WorkoutPasDAO {
 
     }
 
-    public RealmList<WorkoutPasDTO> getAllPasses() throws NullPointerException{
+    public RealmList<WorkoutPasDTO> getAllPasses() throws IndexOutOfBoundsException{
         RealmResults<WorkoutPasDTO> passes = realm.where(WorkoutPasDTO.class).findAll();
         RealmList<WorkoutPasDTO> listPasses = new RealmList<>();
         listPasses.addAll(passes.subList(0, passes.size()));

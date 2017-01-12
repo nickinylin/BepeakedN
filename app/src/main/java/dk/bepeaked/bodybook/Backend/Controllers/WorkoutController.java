@@ -124,7 +124,7 @@ public class WorkoutController {
         int id;
         try{
             id = workoutPasDAO.getAllPasses().last().getID();
-        }catch (NullPointerException e){
+        }catch (IndexOutOfBoundsException e){
             id = 1;
         }
 
@@ -138,7 +138,8 @@ public class WorkoutController {
      * @param planID the plan name you want the list of passes from
      * @return RealmList<WorkoutDTO>
      */
-    public RealmList<WorkoutPasDTO> getPasses(int planID) throws NullPointerException {
+    public RealmList<WorkoutPasDTO> getPasses(int planID) throws IndexOutOfBoundsException {
+
         RealmList<WorkoutPasDTO> passes = new RealmList<>();
         passes = workoutPasDAO.getPasses(planID);
 
@@ -172,7 +173,7 @@ public class WorkoutController {
      * @param planID the plans id
      * @return ArrayList<String>
      */
-    public ArrayList<String> getPasNamesFromPlan (int planID) throws NullPointerException {
+    public ArrayList<String> getPasNamesFromPlan (int planID) throws IndexOutOfBoundsException {
         RealmList<WorkoutPasDTO> newList;
         newList = getPasses(planID);
         ArrayList<String> pasNames = new ArrayList<>();
@@ -207,7 +208,7 @@ public class WorkoutController {
      * @param pasID
      * @return RealmList<ExerciseDTO>
      */
-    public RealmList<ExerciseDTO> getExercisesFromPas(int pasID) throws NullPointerException {
+    public RealmList<ExerciseDTO> getExercisesFromPas(int pasID) throws IndexOutOfBoundsException {
         realmListExerciseDTO = exerciseDAO.getExercisesInPas(pasID);
         return realmListExerciseDTO;
     }
@@ -226,11 +227,11 @@ public class WorkoutController {
      * Gets a list of all the exercises in the exercise library
      * @return RealmList<ExerciseDTO>
      */
-    public RealmList<ExerciseDTO> getAllExercises() throws NullPointerException{
+    public RealmList<ExerciseDTO> getAllExercises() throws IndexOutOfBoundsException{
         return exerciseDAO.getExercises();
     }
 
-    public ArrayList<String> getExercisesFromPasToArray(int pasID) throws NullPointerException {
+    public ArrayList<String> getExercisesFromPasToArray(int pasID) throws IndexOutOfBoundsException {
         ArrayList<String> exerciseNames = new ArrayList<>();
         RealmList<ExerciseDTO> newList;
         newList = getExercisesFromPas(pasID);
@@ -244,7 +245,7 @@ public class WorkoutController {
         return exerciseNames;
     }
 
-    public ArrayList<String> getAllExerciseNamesToArray() throws NullPointerException{
+    public ArrayList<String> getAllExerciseNamesToArray() throws IndexOutOfBoundsException{
         RealmList<ExerciseDTO> newList;
 
         newList = getAllExercises();
@@ -340,7 +341,7 @@ public class WorkoutController {
         int id;
         try{
             id = setDAO.getAllSets().last().getId()+1;
-        }catch (NullPointerException e){
+        }catch (IndexOutOfBoundsException e){
             id = 1;
         }
         SetDTO newSet;
