@@ -6,22 +6,41 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by sebho on 04-01-2017.
  */
 public class SetDTO extends RealmObject {
+
+    @PrimaryKey
+    private int id;
     private int reps;
     private double weight, rm;
     private Date date;
+    private String exerciseName;
 
     public SetDTO(){}
 
-    public SetDTO(String exerciseName, double weight, int reps, Date date, double rm) {
+    public SetDTO(int id, String exerciseName, double weight, int reps, Date date, double rm) {
         this.weight = weight;
         this.reps = reps;
         this.date = date;
         this.rm = rm;
+        this.id = id;
+        this.exerciseName = exerciseName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getExerciseName() {
+        return exerciseName;
+    }
+
+    public void setExerciseName(String exerciseName) {
+        this.exerciseName = exerciseName;
     }
 
     public double getWeight() {

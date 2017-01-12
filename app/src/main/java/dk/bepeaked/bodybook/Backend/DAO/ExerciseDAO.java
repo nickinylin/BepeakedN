@@ -52,7 +52,7 @@ public class ExerciseDAO {
      * Gets a RealmList of all the exercises in database (in every plan, in every pas)
      * @return RealmList<ExerciseDTO>
      */
-    public RealmList<ExerciseDTO> getExercises() {
+    public RealmList<ExerciseDTO> getExercises() throws NullPointerException {
         RealmResults<ExerciseDTO> resultExercise = realm.where(ExerciseDTO.class).findAll();
         RealmList<ExerciseDTO> exercisePlans = new RealmList<ExerciseDTO>();
         exercisePlans.addAll(resultExercise.subList(0, resultExercise.size()));
@@ -61,13 +61,13 @@ public class ExerciseDAO {
 
     /**
      * Gets a single exercise
-     * @param name
+     * @param id
      * @return ExerciseDTO
      */
-    public ExerciseDTO getExercise(String name){
+    public ExerciseDTO getExercise(int id){
         RealmList<ExerciseDTO> exercises = getExercises();
         for(int i = 0; i < exercises.size(); i++){
-            if(exercises.get(i).getName().equals(name)){
+            if(exercises.get(i).getID()==id){
                 return exercises.get(i);
             }
         }
@@ -75,64 +75,76 @@ public class ExerciseDAO {
     }
 
     /**
-     * Gets a RealmList of all exercises in a specific pas, in a specific plan
-     * @param planName
-     * @param pasName
+     * Gets a RealmList of all exercises in a specific pas
+     * @param pasID
      * @return RealmList<ExerciseDTO>
      * @throws Exception if the pas doesnt exist either in the plan
      */
-    public RealmList<ExerciseDTO> getExercisesInPas(String planName, String pasName) throws Exception {
+    public RealmList<ExerciseDTO> getExercisesInPas(int pasID) throws NullPointerException {
 
-        int position = -1;
-
-        WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
-
-        RealmList<WorkoutPasDTO> realmPas = realmPlan.getWorkoutPasses();
-        for(int i = 0; i < realmPas.size(); i++){
-            if(realmPas.get(i).getName().equals(pasName)){
-                position = i;
-                break;
-            }
-        }
-
-        if(position == -1){
-            throw new Exception();
-        }else {
-
+//        int position = -1;
+//
+//        WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
+//
+//        RealmList<WorkoutPasDTO> realmPas = realmPlan.getWorkoutPasses();
+//        for(int i = 0; i < realmPas.size(); i++){
+//            if(realmPas.get(i).getName().equals(pasName)){
+//                position = i;
+//                break;
+//            }
+//        }
+//
+//        if(position == -1){
+//            throw new Exception();
+//        }else {
+//
+//            RealmList<ExerciseDTO> allExercises = getExercises();
+//            RealmList<ExerciseDTO> pasExercises = new RealmList<ExerciseDTO>();
+//
+//            ArrayList<String> exerciseNamesPas = null;
+//
+//            for(int i = 0; i < allExercises.size(); i++){
+//                String exerciseName = allExercises.get(i).getName();
+//                for(int k = 0; k < exerciseNamesPas.size(); k++){
+//                    String exerciseNamePas = pasExercises.get(k).getName();
+//                    if(exerciseName.equals(exerciseNamePas)){
+//                        pasExercises.add(allExercises.get(i));
+//                    }
+//                }
+//
+//            }
+            WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("id", pasID).findFirst();
             RealmList<ExerciseDTO> allExercises = getExercises();
-            RealmList<ExerciseDTO> pasExercises = new RealmList<ExerciseDTO>();
-
-            ArrayList<String> exerciseNamesPas = null;
-
-            for(int i = 0; i < allExercises.size(); i++){
-                String exerciseName = allExercises.get(i).getName();
-                for(int k = 0; k < exerciseNamesPas.size(); k++){
-                    String exerciseNamePas = pasExercises.get(k).getName();
-                    if(exerciseName.equals(exerciseNamePas)){
-                        pasExercises.add(allExercises.get(i));
+            RealmList<ExerciseDTO> pasExercises = new RealmList<>();
+            for(int i = 0; i<pas.getExercises().size(); i++){
+                int id = pas.getExercises().get(i).getID();
+                for(int j = 0; j<allExercises.size(); j++){
+                    if(allExercises.get(j).getID()==id){
+                        pasExercises.add(allExercises.get(j));
                     }
                 }
-
             }
 
             return pasExercises;
-        }
+//        }
 
     }
 
-//    /**
-//     * Updates an exercise's name everywhere
-//     * @param oldname
-//     * @param newName
-//     */
-//    public void updateExerciseName(String oldname, String newName){
-//        ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("name", oldname).findFirst();
-//
-//        realm.beginTransaction();
-//        //Updates the name in the exercise library
-//        realmExercise.setName(newName);
-//
-//        //Updates the name in all the passes in all the plans
+    /**
+     * Updates an exercise's name everywhere
+     * @param id
+     * @param newName
+     */
+    public void updateExerciseName(int id, String newName) throws ExceptionCantDelete {
+        ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("id", id).findFirst();
+        if(realmExercise.getImagePath2() != null){
+            throw new ExceptionCantDelete("Cant delete this app's precreated exercises");
+        }else {
+            realm.beginTransaction();
+            //Updates the name in the exercise library
+            realmExercise.setName(newName);
+
+            //Updates the name in all the passes in all the plans
 //        WorkoutDAO planDAO = new WorkoutDAO();
 //        RealmList<WorkoutDTO> planer;
 //        planer = planDAO.getPlans();
@@ -149,19 +161,20 @@ public class ExerciseDAO {
 //                }
 //            }
 //        }
-//        realm.commitTransaction();
-//
-//
-//    }
+            realm.commitTransaction();
+        }
+
+
+    }
 
     /**
      * Delete an exercise from the database
      * (This deletes it from existence)
-     * @param name The exercise name
+     * @param id The exercise id
      */
-    public void deleteExercise(String name) throws ExceptionPasDoesntExist, ExceptionCantDelete {
+    public void deleteExercise(int id) throws ExceptionCantDelete {
 
-        ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("name", name).findFirst();
+        ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("id", id).findFirst();
 
         if(realmExercise.getImagePath2() != null){
             throw new ExceptionCantDelete("Cant delete this app's exercises");
@@ -181,8 +194,8 @@ public class ExerciseDAO {
                 for (int k = 0; k < pas.size(); k++) {
                     RealmList<ExerciseGoals> exercises = pas.get(k).getExercises();
                     for (int j = 0; j < exercises.size(); j++) {
-                        if (exercises.get(j).getName().equals(name)) {
-                            pasDAO.removeExerciseFromPas(planer.get(i).getName(), pas.get(k).getName(), exercises.get(j).getName());
+                        if (exercises.get(j).getID()==id) {
+                            pasDAO.removeExerciseFromPas(exercises.get(j).getID());
                             break;
                         }
                     }
@@ -193,7 +206,7 @@ public class ExerciseDAO {
     }
 
     public boolean checkExerciseNameInPas(String name) throws ExceptionNameAlreadyExist {
-        boolean exist = true;
+        boolean exist = false;
         WorkoutDAO workoutDAO = new WorkoutDAO();
         RealmList<WorkoutDTO> planer = workoutDAO.getPlans();
         RealmList<WorkoutPasDTO> pas = new RealmList<>();
@@ -204,7 +217,7 @@ public class ExerciseDAO {
                 goals = pas.get(l).getExercises();
                 for(int j = 0; j<goals.size(); j++) {
                     if (goals.get(j).getName().equals(name)) {
-                        exist = false;
+                        exist = true;
                     }
 
                 }
