@@ -1,13 +1,10 @@
 package dk.bepeaked.bodybook.Backend.DTO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
-
-/**
- * Created by sebho on 14-11-2016.
- */
 
 public class DishDTO extends RealmObject implements Serializable{
     //Type: 0 = Morgenmad, 1 = Frokost, 2 = Aftensmad, 3 = Snack.
@@ -78,7 +75,11 @@ public class DishDTO extends RealmObject implements Serializable{
         return ingredients;
     }
 
-    public void setIngredients(RealmList<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredients(ArrayList<Ingredient> ingredients) {
+        RealmList<Ingredient> result = new RealmList<>();
+        for(int i = 0; i < ingredients.size(); i++){
+            result.add(ingredients.get(i));
+        }
+        this.ingredients = result;
     }
 }

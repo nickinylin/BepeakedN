@@ -6,14 +6,11 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -74,6 +71,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_chosen_exercise_frag, container, false);
 
 
+        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         exerciseID = getArguments().getInt("chosenExerciseID", 99999);
         Log.d("LUKAS", "onCreateView: exerciseID"+ exerciseID);
         exerciseName = wc.getExercise(exerciseID).getName();
@@ -240,9 +238,16 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             TextView rm = (TextView) convertView.findViewById(R.id.tv_exercise_rm);
             TextView date = (TextView) convertView.findViewById(R.id.tv_exercise_date);
 
-            weight.setText(realmListSets.get(position).getWeight() + "kg");
+            boolean measurement = prefs.getBoolean("measurement", false);
+            int weightInt = (int) realmListSets.get(position).getWeight();
+            int rmInt = (int) realmListSets.get(position).getRm();
+            if(measurement){
+                weightInt = convertKilo(weightInt);
+                rmInt = convertKilo(rmInt);
+            }
+            weight.setText(weightInt + "kg");
             reps.setText(Integer.toString(realmListSets.get(position).getReps()));
-            rm.setText(realmListSets.get(position).getRm() + "kg");
+            rm.setText(rmInt + "kg");
 
 
             return convertView;
