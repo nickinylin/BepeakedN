@@ -13,6 +13,7 @@ import io.realm.annotations.PrimaryKey;
 public class ExerciseDTO extends RealmObject{
 
     @PrimaryKey
+    int id;
     private String name;
     private String desc1;
     private String desc2;
@@ -23,13 +24,14 @@ public class ExerciseDTO extends RealmObject{
 
     public ExerciseDTO(){}
 
-    public ExerciseDTO(String name, String desc1, String desc2, String imagePath1, String imagePath2, RealmList<SetDTO> set){
+    public ExerciseDTO(int id, String name, String desc1, String desc2, String imagePath1, String imagePath2, RealmList<SetDTO> set){
         this.name = name;
         this.desc1 = desc1;
         this.desc2 = desc2;
         this.imagePath1 = imagePath1;
         this.imagePath2 = imagePath2;
         this.set = set;
+        this.id = id;
     }
 
     public String getName() {
@@ -79,4 +81,13 @@ public class ExerciseDTO extends RealmObject{
     public void setImagePath2(String imagePath) {
         this.imagePath2 = imagePath;
     }
+
+    public int getID(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
 }

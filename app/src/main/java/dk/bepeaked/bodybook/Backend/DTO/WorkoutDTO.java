@@ -15,14 +15,16 @@ import io.realm.annotations.PrimaryKey;
 public class WorkoutDTO extends RealmObject {
 
     @PrimaryKey
+    int id;
     String name;
     RealmList<WorkoutPasDTO> workoutPas;
 
     public WorkoutDTO(){}
 
-    public WorkoutDTO(String name, RealmList<WorkoutPasDTO> workouts) {
+    public WorkoutDTO(int id, String name, RealmList<WorkoutPasDTO> workouts) {
         this.name = name;
         this.workoutPas = workouts;
+        this.id = id;
     }
 
     public RealmList<WorkoutPasDTO> getWorkoutPasses() {
@@ -39,6 +41,14 @@ public class WorkoutDTO extends RealmObject {
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public int getID(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
 }

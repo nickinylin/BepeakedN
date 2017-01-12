@@ -17,7 +17,7 @@ public class SetDTO extends RealmObject {
 
     public SetDTO(){}
 
-    public SetDTO(double weight, int reps, Date date, double rm) {
+    public SetDTO(String exerciseName, double weight, int reps, Date date, double rm) {
         this.weight = weight;
         this.reps = reps;
         this.date = date;

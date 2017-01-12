@@ -2,6 +2,8 @@ package dk.bepeaked.bodybook.Backend.Controllers;
 
 import android.util.Log;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,6 +46,7 @@ public class WorkoutController {
     RealmList<WorkoutPasDTO> realmListWorkoutPasDTO;
     RealmList<ExerciseDTO> realmListExerciseDTO;
     RealmList<SetDTO> realmListSetDTO;
+    int id;
 
     //*******************Planer**************************
     //Create
@@ -52,7 +55,13 @@ public class WorkoutController {
      * @param planName the name of the new plan
      */
     public void addPlan(String planName) throws ExceptionNameAlreadyExist {
-        workoutDAO.newPlan(new WorkoutDTO(planName, new RealmList<WorkoutPasDTO>()));
+        try {
+            workoutDTO = getPlans().last();
+            id = workoutDTO.getID();
+        }catch (NullPointerException e){
+            id = 1;
+        }
+        workoutDAO.newPlan(new WorkoutDTO(id, planName, new RealmList<WorkoutPasDTO>()));
     }
 
     //READ
@@ -71,18 +80,18 @@ public class WorkoutController {
      * @param oldPlan old name
      * @param newPlan new name
      */
-    public void updatePlanName(String oldPlan, String newPlan) throws ExceptionPasDoesntExist, ExceptionNameAlreadyExist {
-        workoutDAO.updatePlanName(oldPlan, newPlan);
-    }
+//    public void updatePlanName(String oldPlan, String newPlan) throws ExceptionPasDoesntExist, ExceptionNameAlreadyExist {
+//        workoutDAO.updatePlanName(oldPlan, newPlan);
+//    }
 
     //DELETE
     /**
      * Deletes a plan from the database (THIS IS PERMANENT)
      * @param planName the plan to be deleted
      */
-    public void deletePlan(String planName) throws ExceptionPasDoesntExist {
-        workoutDAO.deletePlan(planName);
-    }
+//    public void deletePlan(String planName) throws ExceptionPasDoesntExist {
+//        workoutDAO.deletePlan(planName);
+//    }
 
     /**
      * Gets a specific plan from the database
@@ -110,21 +119,21 @@ public class WorkoutController {
      * @param pasName
      * @throws ExceptionNameAlreadyExist if a pas of that name already exist (anywhere)
      */
-    public void addNewPasToPlan(String planName, String pasName) throws ExceptionNameAlreadyExist {
-
-            realmListWorkoutDTO = workoutDAO.getPlans();
-            for (int i = 0; i < realmListWorkoutDTO.size(); i++) {
-                realmListWorkoutPasDTO = realmListWorkoutDTO.get(i).getWorkoutPasses();
-                for (int l = 0; l < realmListWorkoutPasDTO.size(); l++) {
-                    if (realmListWorkoutPasDTO.get(l).getName().equals(pasName)) {
-                        throw new ExceptionNameAlreadyExist("The name already exists in another pas");
-                    }
-                }
-            }
-
-        workoutPasDTO = new WorkoutPasDTO(pasName, new RealmList<ExerciseGoals>());
-        workoutPasDAO.newPas(planName, workoutPasDTO);
-    }
+//    public void addNewPasToPlan(String planName, String pasName) throws ExceptionNameAlreadyExist {
+//
+//            realmListWorkoutDTO = workoutDAO.getPlans();
+//            for (int i = 0; i < realmListWorkoutDTO.size(); i++) {
+//                realmListWorkoutPasDTO = realmListWorkoutDTO.get(i).getWorkoutPasses();
+//                for (int l = 0; l < realmListWorkoutPasDTO.size(); l++) {
+//                    if (realmListWorkoutPasDTO.get(l).getName().equals(pasName)) {
+//                        throw new ExceptionNameAlreadyExist("The name already exists in another pas");
+//                    }
+//                }
+//            }
+//
+//        workoutPasDTO = new WorkoutPasDTO(pasName, new RealmList<ExerciseGoals>());
+//        workoutPasDAO.newPas(planName, workoutPasDTO);
+//    }
 
     //READ
     /**
@@ -168,9 +177,9 @@ public class WorkoutController {
      * @param pasName
      * @throws ExceptionPasDoesntExist if the pas doenst exist
      */
-    public void deletePas(String planName, String pasName) throws ExceptionPasDoesntExist {
-        workoutPasDAO.deletePas(planName, pasName);
-    }
+//    public void deletePas(String planName, String pasName) throws ExceptionPasDoesntExist {
+//        workoutPasDAO.deletePas(planName, pasName);
+//    }
 
     /**
      * Gets a list of the names of passes from a plan
@@ -243,11 +252,11 @@ public class WorkoutController {
     //************Exercises*************
 
     //CREATE
-    public void createNewExercise(String exerciseName) throws ExceptionNameAlreadyExist {
-
-        ExerciseDTO newExercise = new ExerciseDTO(exerciseName, null, null, null, null, new RealmList<SetDTO>());
-        exerciseDAO.newExercise(newExercise);
-    }
+//    public void createNewExercise(String exerciseName) throws ExceptionNameAlreadyExist {
+//
+//        ExerciseDTO newExercise = new ExerciseDTO(exerciseName, null, null, null, null, new RealmList<SetDTO>());
+//        exerciseDAO.newExercise(newExercise);
+//    }
 
     //READ
     /**
@@ -298,8 +307,6 @@ public class WorkoutController {
      * @param reps the amount of reps (unique for the pas)
      */
     public void addExerciseToPas(String planName, String pasName, String exerciseName, int sets, int reps) throws ExceptionPasDoesntExist, ExceptionNameAlreadyExist {
-
-        ExerciseGoals newExercise = new ExerciseGoals(exerciseName, sets, reps);
 
         workoutPasDAO.addExerciseToPas(planName, pasName, exerciseName, sets, reps);
 
@@ -357,7 +364,7 @@ public class WorkoutController {
         Date date = c.getTime();
         SetDTO newSet;
         if (kg == 0) {
-            newSet = new SetDTO(0, reps, date, 0);
+            newSet = new SetDTO(exerciseName, 0, reps, date, 0);
             setDAO.addSet(exerciseName, newSet);
         } else if (kg > 0) {
 
@@ -367,7 +374,7 @@ public class WorkoutController {
             //Brzycki 1RM formula
             Double RM = kg / ((37 / 36) - ((1 / 36) * reps));
 
-            newSet = new SetDTO(kg, reps, date, RM);
+            newSet = new SetDTO(exerciseName, kg, reps, date, RM);
             setDAO.addSet(exerciseName, newSet);
         } else {
             throw new ExceptionWrongInput("Weight input can't be less than 0");

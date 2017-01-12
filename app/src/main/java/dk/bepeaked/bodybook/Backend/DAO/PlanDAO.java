@@ -73,7 +73,7 @@ public class PlanDAO {
                             String goalName = cleanData2.get(k).get(l).split("\\.")[0];
                             int set = Integer.parseInt(cleanData2.get(k).get(l).split("\\.")[1].split("x")[0]);
                             int reps = Integer.parseInt(cleanData2.get(k).get(l).split("\\.")[1].split("x")[1]);
-                            goals.add(new ExerciseGoals(goalName, set, reps));
+                    //        goals.add(new ExerciseGoals(goalName, set, reps));
                         }
                     }
                     pas.setExerciseGoal(goals);
@@ -92,20 +92,22 @@ public class PlanDAO {
             }
             RealmList<WorkoutPasDTO> workoutPasDTOs = dtos.get(i).getWorkoutPasses();
             for (int j = 0; j < workoutPasDTOs.size(); j++) {
-                try {
-                    wc.addNewPasToPlan(dtos.get(i).getName(), workoutPasDTOs.get(j).getName());
-                } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
-                    exceptionNameAlreadyExist.printStackTrace();
+//                try {
+//                    wc.addNewPasToPlan(dtos.get(i).getName(), workoutPasDTOs.get(j).getName());
+//                } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
+//                    exceptionNameAlreadyExist.printStackTrace();
                 }
-                RealmList<ExerciseGoals> exerciseDTOs = workoutPasDTOs.get(j).getExercises();
-                for(int k = 0; k < exerciseDTOs.size(); k++) {
-                    try {
-                        wc.addExerciseToPas(dtos.get(i).getName(), workoutPasDTOs.get(j).getName(), exerciseDTOs.get(k).getName(), exerciseDTOs.get(k).getSet(), exerciseDTOs.get(k).getReps());
-                    } catch (ExceptionPasDoesntExist exceptionPasDoesntExist) {
-                        exceptionPasDoesntExist.printStackTrace();
-                    }
-                }
-            }
+//                RealmList<ExerciseGoals> exerciseDTOs = workoutPasDTOs.get(j).getExercises();
+//                for(int k = 0; k < exerciseDTOs.size(); k++) {
+//                    try {
+//                        wc.addExerciseToPas(dtos.get(i).getName(), workoutPasDTOs.get(j).getName(), exerciseDTOs.get(k).getName(), exerciseDTOs.get(k).getSet(), exerciseDTOs.get(k).getReps());
+//                    } catch (ExceptionPasDoesntExist exceptionPasDoesntExist) {
+//                        exceptionPasDoesntExist.printStackTrace();
+//                    } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
+//                        exceptionNameAlreadyExist.printStackTrace();
+//                    }
+//                }
+//            }
         }
     }
 }

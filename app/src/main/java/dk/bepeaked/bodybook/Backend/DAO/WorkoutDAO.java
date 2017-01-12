@@ -53,56 +53,56 @@ public class WorkoutDAO {
 
     /**
      * Updates a plan name
-     * @param oldname
+     * @param id
      * @param newname
      */
-    public void updatePlanName(String oldname, String newname) throws ExceptionPasDoesntExist, ExceptionNameAlreadyExist {
+    public void updatePlanName(int id, String newname) throws ExceptionPasDoesntExist, ExceptionNameAlreadyExist {
 
-        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", oldname).findFirst();
-        WorkoutDTO newPlan = new WorkoutDTO();
-        newPlan.setName(newname);
-        newPlan.setWorkoutPas(plan.getWorkoutPasses());
-
-        RealmList<WorkoutDTO> planer = new RealmList<>();
-        planer = getPlans();
-
-        int position = -1;
-        for(int i = 0; i<planer.size(); i++){
-            if(planer.get(i).getName().equals(newname)){
-                throw new ExceptionNameAlreadyExist("A plan by the name "+ newname + " already exist");
-            }else {
-                if (planer.get(i).getName().equals(oldname)) {
-                    position = i;
-                    break;
-                }
-            }
-        }
+//        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", oldname).findFirst();
+//        WorkoutDTO newPlan = new WorkoutDTO();
+//        newPlan.setName(newname);
+//        newPlan.setWorkoutPas(plan.getWorkoutPasses());
+//
+//        RealmList<WorkoutDTO> planer = new RealmList<>();
+//        planer = getPlans();
+//
+//        int position = -1;
+//        for(int i = 0; i<planer.size(); i++){
+//            if(planer.get(i).getName().equals(newname)){
+//                throw new ExceptionNameAlreadyExist("A plan by the name "+ newname + " already exist");
+//            }else {
+//                if (planer.get(i).getName().equals(oldname)) {
+//                    position = i;
+//                    break;
+//                }
+//            }
+//        }
         realm.commitTransaction();
-        cleanPlan(oldname);
-        planer.set(position, newPlan);
+        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("id", id).findFirst();
+        plan.setName(newname);
         realm.commitTransaction();
     }
 
     /**
      * Deletes a plan
-     * @param name The name of the plan
+     * @param id The id of the plan
      */
-    public void deletePlan(String name) throws ExceptionPasDoesntExist {
+//    public void deletePlan(int id) throws ExceptionPasDoesntExist {
+//
+//        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("id", id).findFirst();
+//
+//        realm.beginTransaction();
+//        cleanPlan(id);
+//        plan.deleteFromRealm();
+//        realm.commitTransaction();
+//    }
 
-        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("name", name).findFirst();
-
-        realm.beginTransaction();
-        cleanPlan(name);
-        plan.deleteFromRealm();
-        realm.commitTransaction();
-    }
-
-    public void cleanPlan(String planName) throws ExceptionPasDoesntExist {
-        WorkoutDTO workoutDTO = new WorkoutDTO();
-        workoutDTO = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
-        for(int i = 0; i < workoutDTO.getWorkoutPasses().size(); i++){
-            workoutPasDAO.deletePas(planName, workoutDTO.getWorkoutPasses().get(i).getName());
-
-        }
-    }
+//    public void cleanPlan(int id) throws ExceptionPasDoesntExist {
+//        WorkoutDTO workoutDTO = workoutDTO = realm.where(WorkoutDTO.class).equalTo("id", id).findFirst();
+//
+//        for(int i = 0; i < workoutDTO.getWorkoutPasses().size(); i++){
+//            workoutPasDAO.deletePas(id, workoutDTO.getWorkoutPasses().get(i).getName());
+//
+//        }
+//    }
 }
