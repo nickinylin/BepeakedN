@@ -123,11 +123,11 @@ public class WorkoutController {
 
         int id;
         try{
-            id = workoutPasDAO.getAllPasses().last().getID();
+            id = workoutPasDAO.getAllPasses().last().getID()+1;
         }catch (IndexOutOfBoundsException e){
             id = 1;
         }
-
+        Log.d("LUKAS", "addNewPasToPlan: id "+ id);
         workoutPasDTO = new WorkoutPasDTO(id, pasName, new RealmList<ExerciseGoals>());
         workoutPasDAO.newPas(planId, workoutPasDTO);
     }
@@ -193,13 +193,8 @@ public class WorkoutController {
      * @return WorkoutPasDTO
      */
     public WorkoutPasDTO getSpecificPas(int pasID) {
-        realmListWorkoutPasDTO = getPasses(pasID);
 
-        for (int i = 0; i < realmListWorkoutPasDTO.size(); i++) {
-            if (realmListWorkoutPasDTO.get(i).getID()==(pasID)) {
-                workoutPasDTO = realmListWorkoutPasDTO.get(i);
-            }
-        }
+        WorkoutPasDTO workoutPasDTO = workoutPasDAO.getPas(pasID);
         return workoutPasDTO;
     }
 

@@ -248,4 +248,9 @@ public class WorkoutPasDAO {
         return listPasses;
     }
 
+    public WorkoutPasDTO getPas(int id){
+        WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("id", id).findFirst();
+        return pas;
+    }
+
 }
