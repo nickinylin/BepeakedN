@@ -317,7 +317,7 @@ public class LoadDataExercise {
                 "Unlatch the bar and slowly lower the bar to your chest.\n" +
                 "Extend your arms fully and raise the bar to the starting position.\n" +
                 "Repeat.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO(59, "Push Ups with feet on exercise ball", "This is similar to the standard Push Up except using an Exercise Ball forces you to engage the muscle of your core (Rectus Abdominis, Transverse Abdominis, and the Obliques).", "Place your feet and shins flat on an Exercise Ball.\n" +
+        exercises.add(new ExerciseDTO(304, "Push Ups with feet on exercise ball", "This is similar to the standard Push Up except using an Exercise Ball forces you to engage the muscle of your core (Rectus Abdominis, Transverse Abdominis, and the Obliques).", "Place your feet and shins flat on an Exercise Ball.\n" +
                 "Place your arms in front of you at shoulder width apart, place your hands under your arms and press up from the ground until your arms are fully extended.\n" +
                 "Pause at the top for a moment and steady your balance.\n" +
                 "Slowly return to the starting position with your chest lowered towards the ground.", "", "", new RealmList<SetDTO>()));
@@ -424,7 +424,7 @@ public class LoadDataExercise {
                 "Slowly return the dumbbells to the starting position at the sides of your chest.", "", "", new RealmList<SetDTO>()));
 
         //##### page 7 #####
-        exercises.add(new ExerciseDTO(79, "Smith Machine Rear Deltoid Row", "This is an exercise for rear deltoid,shoulder, biceps and back strengthening.", "Set the bar to the lowest setting.\n" +
+        exercises.add(new ExerciseDTO(305, "Smith Machine Rear Deltoid Row", "This is an exercise for rear deltoid,shoulder, biceps and back strengthening.", "Set the bar to the lowest setting.\n" +
                 "Place your feet shoulder width apart with a slight bend in the knees.\n" +
                 "Bend at the waist while keeping your back straight and chest parallel to the floor.\n" +
                 "Grasp the bar slightly wider than your shoulders with an overhand grasp and your arms straight with a slight bend in the elbows.\n" +

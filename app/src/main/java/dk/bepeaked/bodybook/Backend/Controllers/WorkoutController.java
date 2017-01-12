@@ -58,7 +58,7 @@ public class WorkoutController {
         try {
             workoutDTO = getPlans().last();
             id = workoutDTO.getID();
-        }catch (NullPointerException e){
+        }catch (IndexOutOfBoundsException e){
             id = 1;
         }
         workoutDAO.newPlan(new WorkoutDTO(id, planName, new RealmList<WorkoutPasDTO>()));
@@ -69,7 +69,7 @@ public class WorkoutController {
      * Gets a list of all the plans
      * @return RealmList<WorkoutDTO>
      */
-    public RealmList<WorkoutDTO> getPlans() {
+    public RealmList<WorkoutDTO> getPlans() throws IndexOutOfBoundsException{
         realmListWorkoutDTO = new RealmList<WorkoutDTO>();
         realmListWorkoutDTO = workoutDAO.getPlans();
         return realmListWorkoutDTO;

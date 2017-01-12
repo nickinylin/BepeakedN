@@ -43,7 +43,7 @@ public class WorkoutDAO {
      * Gets a list of all the plans
      * @return RealmList<WorkoutDTO>
      */
-    public RealmList<WorkoutDTO> getPlans(){
+    public RealmList<WorkoutDTO> getPlans()throws IndexOutOfBoundsException{
         RealmResults<WorkoutDTO> resultPlans = realm.where(WorkoutDTO.class).findAll();
         RealmList<WorkoutDTO> workoutPlans = new RealmList<WorkoutDTO>();
         workoutPlans.addAll(resultPlans.subList(0, resultPlans.size()));

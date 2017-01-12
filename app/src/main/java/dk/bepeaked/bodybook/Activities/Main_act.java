@@ -35,8 +35,8 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar = null;
     boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
     SharedPreferences prefs;
-    public DietDAO diDAO = new DietDAO();
-    WorkoutController wc = new WorkoutController();
+    public DietDAO diDAO;
+    WorkoutController wc;
 
 
     @Override
@@ -48,6 +48,8 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 //        }
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        wc = new WorkoutController();
+        diDAO = new DietDAO();
 
 
         if (prefs.getBoolean("firstAppRun", true)) {
@@ -55,7 +57,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
             String newPlanName = "My plan";
             LoadDataExercise ld = new LoadDataExercise();
             ld.dataCreateAllNeededData(newPlanName);
-            prefs.edit().putString("lastUsedPlan", newPlanName).commit();
+            prefs.edit().putString("lastUsedPlanName", newPlanName).commit();
             prefs.edit().putInt("lastUsedPlan", 1);
             prefs.edit().putBoolean("firstAppRun", false).commit();
         }
