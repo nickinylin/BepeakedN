@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tilføj sæt"
+        android:id="@+id/TV_dialogAddSet_info"
         android:textSize="25sp"
         android:gravity="center" />
 

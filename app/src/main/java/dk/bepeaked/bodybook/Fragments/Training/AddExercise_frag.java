@@ -35,7 +35,7 @@ import io.realm.RealmList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddExercise_frag extends Fragment implements AdapterView.OnItemClickListener{
+public class AddExercise_frag extends Fragment implements AdapterView.OnItemClickListener {
 
 
     String pasName, planName;
@@ -49,8 +49,6 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     WorkoutController wc = new WorkoutController();
     private SwipeMenuListView listView;
     Bundle bundleArgs = new Bundle();
-
-
 
 
     public AddExercise_frag() {
@@ -73,7 +71,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
 
         pasID = getArguments().getInt("TræningspasID", 99999);
         pasName = wc.getSpecificPas(pasID).getName();
-        getActivity().setTitle("Tilføj til "+ pasName);
+        getActivity().setTitle("Tilføj til " + pasName);
 
         traeningsOevelser = wc.getAllExerciseNamesToArray();
         realmListExerciseDTO = wc.getAllExercises();
@@ -197,16 +195,16 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
         return view;
     }
 
-    public void searchItem(){
+    public void searchItem() {
 
-        for (int j = 0 ; j < traeningsOevelser.size(); j++) {
+        for (int j = 0; j < traeningsOevelser.size(); j++) {
 
             String exerciseName = traeningsOevelser.get(j).toLowerCase();
             System.out.println(exerciseName);
 
-            if(!exerciseName.contains(editTextLocal.getText())){
+            if (!exerciseName.contains(editTextLocal.getText())) {
                 traeningsOevelser.remove(j);
-                j=j-1;
+                j = j - 1;
 
             }
         }
@@ -233,7 +231,6 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     }
 
 
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -246,10 +243,15 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                String exercise = prefs.getString("addGoalsName", "Empty");
-                int reps = prefs.getInt("addGoalsReps", 9999);
-                int sets = prefs.getInt("addGoalsSets", 9999);
-                Snackbar.make(getView(), exercise + " er tilføjet med " + sets + " x " + reps  , Snackbar.LENGTH_LONG).show();
+
+//                if (prefs.getBoolean("exerciseAdded", false)) {
+//                    prefs.edit().putBoolean("exerciseAdded", false);
+//                    String exercise = prefs.getString("addGoalsName", "Empty");
+//                    int reps = prefs.getInt("addGoalsReps", 9999);
+//                    int sets = prefs.getInt("addGoalsSets", 9999);
+//                    Snackbar.make(getView(), exercise + " er tilføjet med " + sets + " x " + reps, Snackbar.LENGTH_LONG).show();
+//                }
+                Snackbar.make(getView(), "Exercise er tilføjet!", Snackbar.LENGTH_LONG).show();
 
             }
         });
@@ -264,7 +266,6 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
 //        fragmentTransaction.commit();
 
     }
-
 
 
 }

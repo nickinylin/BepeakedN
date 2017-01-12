@@ -16,7 +16,9 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.NumberPicker;
 
+import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionWrongInput;
 import dk.bepeaked.bodybook.R;
 
 /**
@@ -28,7 +30,9 @@ public class DialogAddSet_frag extends DialogFragment {
     Button btnOK, btnCancel;
     SharedPreferences prefs;
     ExerciseDTO dto;
-    String argumentString;
+    String exerciseName;
+    int exerciseID;
+    WorkoutController wc;
 
 
     public DialogAddSet_frag() {
@@ -40,7 +44,10 @@ public class DialogAddSet_frag extends DialogFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_add_set_frag, container, false);
 //        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.MyAlertDialogStyle);
-        argumentString = getArguments().getString("chosenExerciseName", "empty");
+        exerciseID = getArguments().getInt("chosenExerciseID", 9999);
+        exerciseName = wc.getExercise(exerciseID).getName();
+
+
 
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         npReps = (NumberPicker) view.findViewById(R.id.NumberPickerReps);
@@ -64,6 +71,11 @@ public class DialogAddSet_frag extends DialogFragment {
             @Override
             public void onClick(View v) {
 
+                try {
+                    wc.addSet(exerciseName, npWeight1.getValue(), npReps.getValue());
+                } catch (ExceptionWrongInput exceptionWrongInput) {
+                    exceptionWrongInput.printStackTrace();
+                }
             }
         });
 
