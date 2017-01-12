@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
@@ -25,6 +26,7 @@ public class DialogAddSet_frag extends DialogFragment {
 
     NumberPicker npWeight1, npReps;
     Button btnOK, btnCancel;
+    TextView tvInfo;
     SharedPreferences prefs;
     ExerciseDTO dto;
     String exerciseName;
@@ -51,6 +53,8 @@ public class DialogAddSet_frag extends DialogFragment {
         npReps = (NumberPicker) view.findViewById(R.id.NumberPickerReps);
         npWeight1 = (NumberPicker) view.findViewById(R.id.NumberPickerWeight1);
         btnOK = (Button) view.findViewById(R.id.button_dialog_OK);
+        tvInfo = (TextView) view.findViewById(R.id.TV_addExerciseDialog_info);
+
 
         //TODO skal sættes til den sidst benyttede, så der skal bruges den der sharedpreferences
         npReps.setMinValue(1);
@@ -63,6 +67,11 @@ public class DialogAddSet_frag extends DialogFragment {
             npWeight1.setMaxValue(200);
         }
         npWeight1.setValue(10);
+        npWeight2.setMinValue(0);
+        npWeight2.setMaxValue(3);
+        npWeight2.setDisplayedValues(new String[]{"0", "25", "50", "75"});
+        tvInfo.setText("Tilføj sæt");
+
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,8 +79,10 @@ public class DialogAddSet_frag extends DialogFragment {
 
                 try {
                     wc.addSet(exerciseName, npWeight1.getValue(), npReps.getValue());
-                } catch (ExceptionWrongInput exceptionWrongInput) {
-                    exceptionWrongInput.printStackTrace();
+                } catch (ExceptionWrongInput e) {
+                    e.printStackTrace();
+                    tvInfo.setText(e.getMessage());
+
                 }
             }
         });
@@ -82,4 +93,20 @@ public class DialogAddSet_frag extends DialogFragment {
         int pounds = (int) d;
         return pounds;
     }
+
+    private DialogInterface.OnDismissListener onDismissListener;
+
+    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(dialog);
+        }
+    }
+
+
 }

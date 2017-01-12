@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.NumberPicker;
@@ -42,7 +43,7 @@ import static android.graphics.Color.WHITE;
  */
 public class ChosenExercise_frag extends Fragment implements View.OnClickListener {
 
-    RealmList<SetDTO> realmListSets = new RealmList<>();
+    RealmList<SetDTO> realmListSets;
     FloatingActionButton fab;
     NumberPicker npWeight1, npWeight2, npReps;
     Button btnOK, btnCancel;
@@ -201,6 +202,12 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         bundleArgs = new Bundle();
         bundleArgs.putInt("chosenExerciseID", exerciseID);
         DialogAddSet_frag dialog = new DialogAddSet_frag();
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                adapterReload();
+            }
+        });
         dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "empty");
 
@@ -252,5 +259,14 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
             return convertView;
         }
+    }
+    private void adapterReload() {
+        try {
+            realmListSets = wc.getSetsFromExercise(exerciseID);
+        } catch (ExceptionExerciseDoesntExist e) {
+            e.printStackTrace();
+        }
+        ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter();
+        listView.setAdapter(exerciseListAdapter);
     }
 }
