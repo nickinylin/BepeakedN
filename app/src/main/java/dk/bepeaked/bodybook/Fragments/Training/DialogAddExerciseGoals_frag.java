@@ -84,8 +84,13 @@ public class DialogAddExerciseGoals_frag extends DialogFragment implements View.
 
             //TODO Nicki lav det her NU! Tilføj snackbarmeddellles
             try {
-                wc.addExerciseToPas(pasID, exerciseName, npSets.getValue(), npReps.getValue());
+                int npSetsValue = npSets.getValue();
+                int npRepsValue = npReps.getValue();
+                wc.addExerciseToPas(pasID, exerciseName, npSetsValue , npRepsValue);
                 Snackbar.make(getView(), "Den er tilføjet!", Snackbar.LENGTH_LONG).show();
+                prefs.edit().putString("addGoalsName", exerciseName).commit();
+                prefs.edit().putInt("addGoalsSets", npSetsValue).commit();
+                prefs.edit().putInt("addGoalsReps", npRepsValue).commit();
                 dismiss();
             } catch (ExceptionNameAlreadyExist e) {
                 e.printStackTrace();

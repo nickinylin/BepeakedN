@@ -246,7 +246,10 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-//                Snackbar.make(getView(), "", Snackbar.LENGTH_LONG).show();
+                String exercise = prefs.getString("addGoalsName", "Empty");
+                int reps = prefs.getInt("addGoalsReps", 9999);
+                int sets = prefs.getInt("addGoalsSets", 9999);
+                Snackbar.make(getView(), exercise + " er tilføjet med " + sets + " x " + reps  , Snackbar.LENGTH_LONG).show();
 
             }
         });

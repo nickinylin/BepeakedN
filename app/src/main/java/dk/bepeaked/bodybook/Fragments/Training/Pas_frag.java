@@ -89,16 +89,17 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                 SwipeMenuItem openItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
                 // set item background
-                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                        0xCE)));
+//                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
+//                        0xCE)));
                 // set item width
                 openItem.setWidth(300);
                 // set item title
-                openItem.setTitle("Rediger");
+//                openItem.setTitle("Rediger");
                 // set item title fontsize
                 openItem.setTitleSize(18);
                 // set item title font color
                 openItem.setTitleColor(Color.WHITE);
+                openItem.setIcon(R.drawable.ic_edit_white_24dp);
                 // add to menu
                 menu.addMenuItem(openItem);
 
@@ -106,12 +107,12 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                 SwipeMenuItem deleteItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
                 // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
+//                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+//                        0x3F, 0x25)));
                 // set item width
                 deleteItem.setWidth(300);
                 // set a icon
-//                deleteItem.setIcon(R.drawable.);
+                deleteItem.setIcon(R.drawable.ic_delete_forever_white_24dp);
                 // add to menu
                 menu.addMenuItem(deleteItem);
             }
