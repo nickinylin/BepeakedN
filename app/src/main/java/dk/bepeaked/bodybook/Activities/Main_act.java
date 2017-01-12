@@ -42,7 +42,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Realm.getDefaultInstance();
+        Realm.init(this);
 //        if (!EMULATOR) {
             Fabric.with(this, new Crashlytics());
 //        }
