@@ -9,29 +9,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
-import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import dk.bepeaked.bodybook.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DialogEditPas_frag extends DialogFragment implements View.OnClickListener {
+public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements View.OnClickListener {
 
     WorkoutController wc = new WorkoutController();
     Button btnOK, btnCancel;
     TextView tv;
-    EditText et;
     Bundle argumens;
-    String pasName;
-    int pasID;
+    String pasName, namePlan, nameExercise;
+    int pasID, planID, exerciseGoalsID;
 
 
-    public DialogEditPas_frag() {
+    public DialogDeleteExerciseFromPas_frag() {
         // Required empty public constructor
     }
 
@@ -41,17 +38,19 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_dialog_edit_pas_frag, container, false);
+        View view = inflater.inflate(R.layout.fragment_dialog_delete_pas_frag, container, false);
 
-        pasID = getArguments().getInt("pasID", 9999);
-//        planName = getArguments().getString("planName", "Empty");
+        pasID = getArguments().getInt("pasID", 99999);
+        planID = getArguments().getInt("planID", 99999);
+        exerciseGoalsID = getArguments().getInt("exerciseGoalsID", 99999);
+
+
 
         btnOK = (Button) view.findViewById(R.id.button_dialog_delete_pas_OK);
         btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_pas_Cancel);
-        tv = (TextView) view.findViewById(R.id.TV_dialog_edit_pas_info);
-        et = (EditText) view.findViewById(R.id.ET_dialog_edit_pas);
+        tv = (TextView) view.findViewById(R.id.TV_dialog_delete_pas);
 
-        tv.setText("Skriv det nye navn på passet");
+        tv.setText("Er du sikker på passet skal slettes?");
 
 
         btnOK.setOnClickListener(this);
@@ -63,15 +62,13 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if (v == btnOK) {
-            String newPasName = "" + et.getText();
-            //TODO Nicki lav snackbar eller noget her0
             try {
-                wc.updatePasName(pasID, newPasName);
-            } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
-                exceptionNameAlreadyExist.printStackTrace();
-                tv.setText("Der skete en fejl!");
+                wc.deleteExerciseFromPas(exerciseGoalsID);
+                dismiss();
+            } catch (ExceptionPasDoesntExist e) {
+                e.printStackTrace();
+                //TODO her skal skrives en fejlme.....
             }
-            dismiss();
         } else if (v == btnCancel) {
             dismiss();
         }

@@ -61,31 +61,32 @@
     </LinearLayout>
 
 
-    <ListView
-        android:id="@+id/listView_exercise"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
 
-    </ListView>
 
-    <LinearLayout
+
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.FloatingActionButton
+        <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/SwipeListView_chosen_exercise"
             android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            app:fabSize="mini"
+            app:fabSize="normal"
             app:srcCompat="@drawable/ic_add"
-            android:layout_gravity="end"
-            android:id="@+id/floatingActionButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/floatingActionButton_add_set"
             app:backgroundTint="@android:color/holo_blue_dark" />
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 

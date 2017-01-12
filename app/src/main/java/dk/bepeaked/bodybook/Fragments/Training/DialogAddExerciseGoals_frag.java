@@ -29,6 +29,7 @@ public class DialogAddExerciseGoals_frag extends DialogFragment implements View.
 
     WorkoutController wc = new WorkoutController();
     String planName, pasName, exerciseName;
+    int planID, pasID, exerciseID;
     NumberPicker npReps, npSets;
     TextView tvReps, tvSets, tvInfo;
 
@@ -49,10 +50,10 @@ public class DialogAddExerciseGoals_frag extends DialogFragment implements View.
 
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
-        planName = prefs.getString("lastUsedPlan", "Empty_plan");
-        pasName = getArguments().getString("TræningspasNavn", "Empty_pas");
-        exerciseName = getArguments().getString("chosenExerciseName", "Empty_exercise");
-
+        planID = prefs.getInt("lastUsedPlan", 99999);
+        pasID = getArguments().getInt("TræningspasID", 99999);
+        exerciseID = getArguments().getInt("chosenExerciseID", 99999);
+        exerciseName= getArguments().getString("exerciseName", "Empty_exercise_name");
 
         npReps = (NumberPicker) view.findViewById(R.id.NumberPickerAddExerciseAddReps);
         npSets = (NumberPicker) view.findViewById(R.id.NumberPickerAddExerciseAddSets);
@@ -81,20 +82,17 @@ public class DialogAddExerciseGoals_frag extends DialogFragment implements View.
     public void onClick(View v) {
         if (v == btn) {
 
+            //TODO Nicki lav det her NU! Tilføj snackbarmeddellles
             try {
-                Log.d("Nicki", "planName:" + planName + "pasName:" + pasName + "exerciseName:" + exerciseName);
-                //TODO Nicki lav det her NU! Tilføj snackbarmeddellles
-                try {
-                    wc.addExerciseToPas(planName, pasName, exerciseName, npSets.getValue(), npReps.getValue());
-                } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
-                    exceptionNameAlreadyExist.printStackTrace();
-                }
+                wc.addExerciseToPas(pasID, exerciseName, npSets.getValue(), npReps.getValue());
                 Snackbar.make(getView(), "Den er tilføjet!", Snackbar.LENGTH_LONG).show();
                 dismiss();
-            } catch (ExceptionPasDoesntExist e) {
+            } catch (ExceptionNameAlreadyExist e) {
                 e.printStackTrace();
                 tvInfo.setText(e.getMessage());
             }
+
+
         }
     }
 

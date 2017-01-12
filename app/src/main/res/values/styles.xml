@@ -23,7 +23,7 @@
     <!-- This is all for styling alertDialog // Nicki -->
 
     <style name="NumberPickerTextColorStyle">
-        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorPrimary">#f51616</item>
     </style>
 
     <!--<style name="MyTitleTextStyle">-->

@@ -25,7 +25,7 @@ import dk.bepeaked.bodybook.R;
 public class DialogAddPas_frag extends DialogFragment implements View.OnClickListener {
 
     WorkoutController wc = new WorkoutController();
-    String planCurrent;
+    int planID;
     String pasNew;
     TextView tv;
     EditText et;
@@ -54,7 +54,7 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
         et.setText("");
         btn.setOnClickListener(this);
 
-        planCurrent = prefs.getString("lastUsedPlan", "Luuukassddd");
+        planID = prefs.getInt("lastUsedPlan", 99999);
 
         return view;
     }
@@ -64,7 +64,7 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
         if (v == btn) {
             pasNew = "" + et.getText();
             try {
-                wc.addNewPasToPlan(planCurrent, pasNew);
+                wc.addNewPasToPlan(planID, pasNew);
                 dismiss();
             } catch (ExceptionNameAlreadyExist e) {
                 e.printStackTrace();

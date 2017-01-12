@@ -39,12 +39,11 @@ public class LoadDataExercise {
         realm.beginTransaction();
         realm.deleteAll();
         realm.commitTransaction();
-
-        dataCreateAllExercises();
-
-        for (int i = 0; i < exercises.size(); i++) {
+        RealmList<ExerciseDTO> newList;
+       newList = dataCreateAllExercises();
+        for (int i = 0; i < newList.size(); i++) {
             try {
-                exerciseDAO.newExercise(exercises.get(i));
+                exerciseDAO.newExercise(newList.get(i));
             } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
                 exceptionNameAlreadyExist.printStackTrace();
             }

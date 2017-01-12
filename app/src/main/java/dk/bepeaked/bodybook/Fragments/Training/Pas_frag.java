@@ -27,7 +27,9 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
+import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.R;
+import io.realm.RealmList;
 
 
 /**
@@ -37,12 +39,14 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     //WorkoutDAO wdao = new WorkoutDAO();
 
     WorkoutController wc = new WorkoutController();
-    String namePlan;
+    String planName;
+    int planID;
     ArrayList<String> arrayListPasNames = new ArrayList<String>();
     SharedPreferences prefs;
     Bundle bundleArgs;
     private SwipeMenuListView listView;
     ArrayAdapter adapter;
+    RealmList<WorkoutPasDTO> realmListPas;
 
     public Pas_frag() {
         // Required empty public constructor
@@ -56,13 +60,17 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        namePlan = prefs.getString("lastUsedPlan", "empty");
+        planID = prefs.getInt("lastUsedPlan", 9999);
+        planName = wc.getSpecificPlan(planID).getName();
+
 
         bundleArgs = new Bundle();
 
-        getActivity().setTitle(namePlan);
+        getActivity().setTitle(planName);
 
-        arrayListPasNames = wc.getPasNamesFromPlan(namePlan);
+        arrayListPasNames = wc.getPasNamesFromPlan(planID);
+        realmListPas = wc.getPasses(planID);
+
 
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
 
@@ -116,8 +124,8 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                 switch (index) {
                     case 0:
                         // open
-                        bundleArgs.putString("planName", namePlan);
-                        bundleArgs.putString("pasName", arrayListPasNames.get(position));
+                        bundleArgs.putInt("planID", planID);
+                        bundleArgs.putInt("pasID", realmListPas.get(position).getID());
 
                         DialogEditPas_frag dialog = new DialogEditPas_frag();
                         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -132,8 +140,8 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                         break;
                     case 1:
                         // delete
-                        bundleArgs.putString("planName", namePlan);
-                        bundleArgs.putString("pasName", arrayListPasNames.get(position));
+                        bundleArgs.putInt("planID", planID);
+                        bundleArgs.putInt("pasID", realmListPas.get(position).getID());;
 
                         DialogDeletePas_frag dialog2 = new DialogDeletePas_frag();
                         dialog2.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -152,14 +160,6 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
             }
         });
 
-
-//        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, wc.getPasNamesFromPlan(namePlan));
-//
-//        ListView listView = (ListView) view.findViewById(R.id.ListView_id);
-//        System.out.println("NICKI ID: " + listView.getId());
-//        listView.setOnItemClickListener(this);
-//        listView.setAdapter(adapter);
-
         setHasOptionsMenu(true);
 
         return view;
@@ -177,24 +177,18 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.workoutMenu_add_pas) {
             showDialogAlert();
-        } else if (item.getItemId() == R.id.workoutMenu_edit) {
-            // TODO Hvad der skal ske for at ændre bundleArgs en træningsplan
         } else if (item.getItemId() == R.id.workoutMenu_change_plan) {
             // TODO Hvad der skal ske for at skifte aktuel træningsplan
-        } else if (item.getItemId() == R.id.workoutMenu_add_workoutplan) {
-            DialogAddPas_frag dialog = new DialogAddPas_frag();
-            dialog.show(getActivity().getFragmentManager(), "empty");
-
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        Toast.makeText(getActivity(), namePlan ,Toast.LENGTH_LONG).show();
+//        Toast.makeText(getActivity(), planName ,Toast.LENGTH_LONG).show();
 
         Bundle bundleArgs = new Bundle();
-        bundleArgs.putString("TræningspasNavn", arrayListPasNames.get(position));
+        bundleArgs.putInt("TræningspasID", realmListPas.get(position).getID());
 
         Exercise_frag fragment = new Exercise_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -206,7 +200,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
     private void showDialogAlert() {
         bundleArgs = new Bundle();
-        bundleArgs.putString("planName", namePlan);
+        bundleArgs.putInt("planID", planID);
         DialogAddPas_frag dialog = new DialogAddPas_frag();
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
@@ -219,7 +213,8 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     }
 
     private void adapterReload() {
-        arrayListPasNames = wc.getPasNamesFromPlan(namePlan);
+        arrayListPasNames = wc.getPasNamesFromPlan(planID);
+        realmListPas = wc.getPasses(planID);
         // TODO skriv i rapporten at vi prøvede at bruge "adapter.notifyDataSetChanged(); men at det ikke virkede, derfor opretter vi en ny adapter, som er lidt mindre arbejde, end at loade hele fragmentet igen..
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
         listView.setAdapter(adapter);

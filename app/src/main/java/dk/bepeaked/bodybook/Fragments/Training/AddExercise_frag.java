@@ -3,12 +3,13 @@ package dk.bepeaked.bodybook.Fragments.Training;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 
 import java.util.ArrayList;
@@ -28,22 +32,24 @@ import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.R;
 import io.realm.RealmList;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * A simple {@link Fragment} subclass.
  */
 public class AddExercise_frag extends Fragment implements AdapterView.OnItemClickListener{
 
 
-    String namePas, namePlan;
-    RealmList<ExerciseDTO> realmExercise2 = new RealmList<ExerciseDTO>();
+    String pasName, planName;
+    int pasID, exerciseID, planID;
+    RealmList<ExerciseDTO> realmListExerciseDTO = new RealmList<ExerciseDTO>();
     ArrayList<String> traeningsOevelser = new ArrayList<String>();
     SharedPreferences prefs;
     EditText editTextLocal;
+    ArrayAdapter adapter;
     View view;
     WorkoutController wc = new WorkoutController();
     private SwipeMenuListView listView;
+    Bundle bundleArgs = new Bundle();
+
 
 
 
@@ -52,7 +58,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     }
 
     //@Override
-    public void onSearch()//Vi skal få det brugeren har indtastet.
+    public void onSearch() //Vi skal få det brugeren har indtastet.
     {
 
     }
@@ -65,19 +71,102 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
         //View view = inflater.inflate(R.layout.listview, container, false);
         view = inflater.inflate(R.layout.listviewsearch, container, false);
 
-        namePas = getArguments().getString("TræningspasNavn", "Empty");
-
-        getActivity().setTitle("Tilføj til "+ namePas);
+        pasID = getArguments().getInt("TræningspasID", 99999);
+        pasName = wc.getSpecificPas(pasID).getName();
+        getActivity().setTitle("Tilføj til "+ pasName);
 
         traeningsOevelser = wc.getAllExerciseNamesToArray();
+        realmListExerciseDTO = wc.getAllExercises();
 
-        final ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, traeningsOevelser);
+
+        adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, traeningsOevelser);
 
         listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id_search);
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
 
-        Log.d("workoutpass", "BUNDLE NICKI 3: " + namePas);
+        SwipeMenuCreator creator = new SwipeMenuCreator() {
+
+            @Override
+            public void create(SwipeMenu menu) {
+                // create "open" item
+                SwipeMenuItem openItem = new SwipeMenuItem(
+                        getActivity().getApplicationContext());
+                // set item background
+                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
+                        0xCE)));
+                // set item width
+                openItem.setWidth(300);
+                // set item title
+                openItem.setTitle("Rediger");
+                // set item title fontsize
+                openItem.setTitleSize(18);
+                // set item title font color
+                openItem.setTitleColor(Color.WHITE);
+                // add to menu
+                menu.addMenuItem(openItem);
+
+                // create "delete" item
+                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                        getActivity().getApplicationContext());
+                // set item background
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                        0x3F, 0x25)));
+                // set item width
+                deleteItem.setWidth(300);
+                // set a icon
+//                deleteItem.setIcon(R.drawable.);
+                // add to menu
+                menu.addMenuItem(deleteItem);
+            }
+        };
+
+// set creator
+
+        listView.setMenuCreator(creator);
+
+        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                switch (index) {
+                    case 0:
+                        // open
+//                        bundleArgs.putString("planName", planName);
+//                        bundleArgs.putString("pasName", arrayListPasNames.get(position));
+
+                        DialogEditPas_frag dialog = new DialogEditPas_frag();
+                        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+//                                adapterReload();
+                            }
+                        });
+                        dialog.setArguments(bundleArgs);
+                        dialog.show(getFragmentManager(), "Empty_pas");
+
+                        break;
+                    case 1:
+                        // delete
+//                        bundleArgs.putString("planName", planName);
+//                        bundleArgs.putString("pasName", arrayListPasNames.get(position));
+
+                        DialogDeletePas_frag dialog2 = new DialogDeletePas_frag();
+                        dialog2.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+//                                adapterReload();
+                            }
+                        });
+                        dialog2.setArguments(bundleArgs);
+                        dialog2.show(getFragmentManager(), "Empty_pas");
+
+                        break;
+                }
+                // false : close the menu; true : not close the menu
+                return false;
+            }
+        });
+
 
         setHasOptionsMenu(true);
 
@@ -139,8 +228,6 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.pasMenu_add_exercise) {
             Snackbar.make(getView(), "Der skal tilføjes en ny øvelse!", Snackbar.LENGTH_LONG).show();
-        } else if (item.getItemId() == R.id.pasMenu_edit) {
-            // TODO Hvad der skal ske for at ændre bundleArgs en træningsplan
         }
         return super.onOptionsItemSelected(item);
     }
@@ -152,9 +239,9 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
 
 
         Bundle bundleArgs = new Bundle();
-        bundleArgs.putString("chosenExerciseName", traeningsOevelser.get(position));
-        Log.d("Nicki", "pasName; " + namePas);
-        bundleArgs.putString("TræningspasNavn", namePas);
+        bundleArgs.putInt("chosenExerciseID", realmListExerciseDTO.get(position).getID());
+        bundleArgs.putInt("TræningspasID", pasID);
+        bundleArgs.putString("exerciseName", realmListExerciseDTO.get(position).getName());
         DialogAddExerciseGoals_frag dialog = new DialogAddExerciseGoals_frag();
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override

@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import com.crashlytics.android.Crashlytics;
 
+import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DAO.DietDAO;
 import dk.bepeaked.bodybook.Backend.DTO.LoadDataExercise;
 import dk.bepeaked.bodybook.Fragments.Diet.Diet_frag;
@@ -24,6 +25,7 @@ import dk.bepeaked.bodybook.Fragments.Training.Pas_frag;
 import dk.bepeaked.bodybook.R;
 import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
+import io.realm.RealmList;
 
 
 public class Main_act extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,11 +36,13 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
     boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
     SharedPreferences prefs;
     public DietDAO diDAO = new DietDAO();
+    WorkoutController wc = new WorkoutController();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Realm.init(this);
+        Realm.getDefaultInstance();
 //        if (!EMULATOR) {
             Fabric.with(this, new Crashlytics());
 //        }
@@ -52,6 +56,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
             LoadDataExercise ld = new LoadDataExercise();
             ld.dataCreateAllNeededData(newPlanName);
             prefs.edit().putString("lastUsedPlan", newPlanName).commit();
+            prefs.edit().putInt("lastUsedPlan", 1);
             prefs.edit().putBoolean("firstAppRun", false).commit();
         }
 

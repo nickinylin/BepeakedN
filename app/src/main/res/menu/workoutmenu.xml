@@ -9,26 +9,9 @@
         app:showAsAction="withText" />
 
     <item
-        android:id="@+id/workoutMenu_edit"
-        android:orderInCategory="2"
-        android:title="Rediger"
-        app:showAsAction="withText" />
-
-
-    <item
         android:id="@+id/workoutMenu_change_plan"
         android:orderInCategory="3"
         android:title="Skift træningsplan"
         app:showAsAction="withText" />
-
-
-    <item
-        android:id="@+id/workoutMenu_add_workoutplan"
-        android:orderInCategory="4"
-        android:title="tilføj træningsplan"
-        app:showAsAction="withText" />
-
-
-
 
 </menu>

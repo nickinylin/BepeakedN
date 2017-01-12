@@ -40,6 +40,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
 
     String namePas, namePlan;
+    int pasID, planID;
     RealmList<ExerciseGoals> realmListExercises = new RealmList<ExerciseGoals>();
     ArrayList<String> arrayListExerciseNames = new ArrayList<String>();
     Bundle bundleArgs = new Bundle();
@@ -67,17 +68,16 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         //View view = inflater.inflate(R.layout.listview, container, false);
         view = inflater.inflate(R.layout.listview, container, false);
 
-        namePas = getArguments().getString("TræningspasNavn", "Empty");
+        pasID = getArguments().getInt("TræningspasNavn", 99999);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        namePlan = prefs.getString("lastUsedPlan", "empty");
+        planID = prefs.getInt("lastUsedPlan", 99999);
 
 
         getActivity().setTitle(namePas);
 
-//        arrayListExerciseNames = wc.getExercisesFromPasToArray(namePlan, namePas);
-        realmListExercises = wc.getSpecificPas(namePlan, namePas).getExercises();
+        realmListExercises = wc.getSpecificPas(pasID).getExercises();
 
         listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id);
         ExerciseListAdapterRepsSets exerciseListAdapter = new ExerciseListAdapterRepsSets();
@@ -112,18 +112,16 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
-                        Snackbar.make(getView(), "fejl..", Snackbar.LENGTH_LONG).show();
-                        break;
-                    case 1:
                         //delete
-                        bundleArgs.putString("planName", namePlan);
-                        bundleArgs.putString("pasName", arrayListExerciseNames.get(position));
+                        bundleArgs.putInt("planID", planID);
+                        bundleArgs.putInt("pasID", pasID);
+                        bundleArgs.putInt("exerciseGoalsID", realmListExercises.get(position).getID());
 
-                        DialogEditPas_frag dialog = new DialogEditPas_frag();
+                        DialogDeleteExerciseFromPas_frag dialog = new DialogDeleteExerciseFromPas_frag();
                         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public void onDismiss(DialogInterface dialog) {
-//                                adapterReload();
+                                adapterReload();
                             }
                         });
                         dialog.setArguments(bundleArgs);
@@ -156,16 +154,13 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         if (item.getItemId() == R.id.pasMenu_add_exercise) {
 
             Bundle bundleArgs = new Bundle();
-            bundleArgs.putString("TræningspasNavn", namePas);
+            bundleArgs.putInt("TræningspasID", pasID);
 
             AddExercise_frag fragment = new AddExercise_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("AddExercise_frag");
             fragment.setArguments(bundleArgs);
             fragmentTransaction.commit();
-
-        } else if (item.getItemId() == R.id.pasMenu_edit) {
-            // TODO Hvad der skal ske for at ændre bundleArgs en træningsplan
         }
         return super.onOptionsItemSelected(item);
     }
@@ -173,11 +168,9 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        Toast.makeText(getActivity(), position ,Toast.LENGTH_LONG).show();
-
 
         Bundle bundleArgs = new Bundle();
-        bundleArgs.putString("chosenExerciseName", arrayListExerciseNames.get(position));
+        bundleArgs.putInt("chosenExerciseID", realmListExercises.get(position).getID());
 
 
         TabLayoutExercise_frag fragment = new TabLayoutExercise_frag();
@@ -189,7 +182,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
     }
 
 //    private void adapterReload() {
-//        arrayListExerciseNames = wc.getExercisesFromPasToArray(namePlan, namePas);
+//        arrayListExerciseNames = wc.getExercisesFromPasToArray(planName, pasName);
 //        // TODO skriv i rapporten at vi prøvede at bruge "adapter.notifyDataSetChanged(); men at det ikke virkede, derfor opretter vi en ny adapter, som er lidt mindre arbejde, end at loade hele fragmentet igen..
 //        adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListExerciseNames);
 //        listView.setAdapter(adapter);
@@ -230,7 +223,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
     }
 
     private void adapterReload() {
-        realmListExercises = wc.getSpecificPas(namePlan, namePas).getExercises();
+        realmListExercises = wc.getSpecificPas(pasID).getExercises();
         ExerciseListAdapterRepsSets exerciseListAdapter = new ExerciseListAdapterRepsSets();
         listView.setOnItemClickListener(this);
         listView.setAdapter(exerciseListAdapter);

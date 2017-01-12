@@ -18,7 +18,6 @@ import io.realm.internal.Context;
 public class WorkoutDAO {
 
     public WorkoutDAO (){
-        Log.d("Nicki", "path: " + realm.getPath());
     }
 
     Realm realm = Realm.getDefaultInstance();

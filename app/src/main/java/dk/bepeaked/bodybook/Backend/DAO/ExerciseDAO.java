@@ -1,6 +1,7 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
 import android.app.Activity;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,11 +39,9 @@ public class ExerciseDAO {
     public void newExercise(ExerciseDTO exerciseDTO) throws ExceptionNameAlreadyExist {
 
         RealmList<ExerciseDTO> exercises = getExercises();
-
             if(checkExerciseNameInPas(exerciseDTO.getName())){
                 throw new ExceptionNameAlreadyExist("An exercise by the name "+ exerciseDTO.getName() + " already exist");
             }
-
         realm.beginTransaction();
         realm.copyToRealm(exerciseDTO);
         realm.commitTransaction();
@@ -209,8 +208,8 @@ public class ExerciseDAO {
         boolean exist = false;
         WorkoutDAO workoutDAO = new WorkoutDAO();
         RealmList<WorkoutDTO> planer = workoutDAO.getPlans();
-        RealmList<WorkoutPasDTO> pas = new RealmList<>();
-        RealmList<ExerciseGoals> goals = new RealmList<>();
+        RealmList<WorkoutPasDTO> pas;
+        RealmList<ExerciseGoals> goals;
         for (int i = 0; i < planer.size(); i++) {
             pas = planer.get(i).getWorkoutPasses();
             for (int l = 0; l < pas.size(); l++) {
