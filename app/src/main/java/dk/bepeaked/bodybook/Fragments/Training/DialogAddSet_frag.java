@@ -2,11 +2,11 @@ package dk.bepeaked.bodybook.Fragments.Training;
 
 
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,9 +70,6 @@ public class DialogAddSet_frag extends DialogFragment {
             npWeight1.setMaxValue(200);
         }
         npWeight1.setValue(10);
-        npWeight2.setMinValue(0);
-        npWeight2.setMaxValue(3);
-        npWeight2.setDisplayedValues(new String[]{"0", "25", "50", "75"});
         tvInfo.setText("Tilføj sæt");
 
 

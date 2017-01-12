@@ -73,17 +73,6 @@
                    >
 
                 </NumberPicker>
-
-                <NumberPicker
-                    android:id="@+id/NumberPickerWeight2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/AppTheme.Picker"
-                    android:layout_below="@+id/TextView_dialog_reps"
-                    android:layout_toRightOf="@+id/NumberPickerWeight1"
-                    >
-
-                </NumberPicker>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
