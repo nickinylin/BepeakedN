@@ -3,8 +3,6 @@ package dk.bepeaked.bodybook.Fragments.Training;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.DashPathEffect;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -127,7 +125,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
 //        Listen af sæt laves herunder. Den skal blot have en arrayliste af ExerciseDTO'er.
 
-        dto = new ExerciseDTO("Chestpress", "Skub med bryst", "", "", "", exercises);
 //        dto.addSet(new SetDTO(29, 10, "12-12-2016", 30));
 //        dto.addSet(new SetDTO(2, 10, "12-12-2016", 30));
 //        dto.addSet(new SetDTO(20, 10, "12-12-2016", 30));

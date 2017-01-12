@@ -1,6 +1,7 @@
 package dk.bepeaked.bodybook.Fragments.Settings;
 
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -59,9 +61,11 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
                 }
             }
         }
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
     private void listFiles(String dirFrom) {
-        Resources res = getResources(); //if you are in an activity
+        Resources res = getResources();
         AssetManager am = res.getAssets();
         String fileList[] = new String[0];
         try {
