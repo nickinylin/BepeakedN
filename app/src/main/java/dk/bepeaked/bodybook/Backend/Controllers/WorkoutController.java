@@ -172,7 +172,7 @@ public class WorkoutController {
      * @param planID the plans id
      * @return ArrayList<String>
      */
-    public ArrayList<String> getPasNamesFromPlan (int planID) {
+    public ArrayList<String> getPasNamesFromPlan (int planID) throws NullPointerException {
         RealmList<WorkoutPasDTO> newList;
         newList = getPasses(planID);
         ArrayList<String> pasNames = new ArrayList<>();

@@ -49,7 +49,7 @@ public class WorkoutPasDAO {
      * @param planID
      * @return RealmList<WorkoutPasDTO>
      */
-    public RealmList<WorkoutPasDTO> getPasses(int planID) {
+    public RealmList<WorkoutPasDTO> getPasses(int planID) throws NullPointerException {
 
         WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("id", planID).findFirst();
 

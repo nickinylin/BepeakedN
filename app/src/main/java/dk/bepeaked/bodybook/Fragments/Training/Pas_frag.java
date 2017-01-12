@@ -68,9 +68,14 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
         getActivity().setTitle(planName);
 
-        arrayListPasNames = wc.getPasNamesFromPlan(planID);
-        realmListPas = wc.getPasses(planID);
+        try {
+            arrayListPasNames = wc.getPasNamesFromPlan(planID);
 
+            realmListPas = wc.getPasses(planID);
+        }catch(NullPointerException e){
+            arrayListPasNames = new ArrayList<>();
+            realmListPas = new RealmList<>();
+        }
 
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
 
@@ -131,7 +136,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public void onDismiss(DialogInterface dialog) {
-                               adapterReload();
+                                adapterReload();
                             }
                         });
                         dialog.setArguments(bundleArgs);
@@ -147,7 +152,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                         dialog2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public void onDismiss(DialogInterface dialog) {
-                               adapterReload();
+                                adapterReload();
                             }
                         });
                         dialog2.setArguments(bundleArgs);
