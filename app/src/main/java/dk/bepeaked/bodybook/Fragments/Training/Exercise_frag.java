@@ -29,13 +29,14 @@ import java.util.ArrayList;
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
+import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 import io.realm.RealmList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Exercise_frag extends Fragment implements AdapterView.OnItemClickListener {
+public class Exercise_frag extends Fragment implements AdapterView.OnItemClickListener, Runnable {
 
 
     String pasName, namePlan;
@@ -47,6 +48,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
     View view;
     WorkoutController wc = new WorkoutController();
     SharedPreferences prefs;
+    Singleton singleton;
 
 
     public Exercise_frag() {
@@ -66,7 +68,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
         //View view = inflater.inflate(R.layout.listview, container, false);
         view = inflater.inflate(R.layout.listview, container, false);
-
+singleton = Singleton.singleton;
         pasID = getArguments().getInt("TræningspasID", 99999);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -118,12 +120,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
                         bundleArgs.putInt("exerciseGoalsID", realmListExercises.get(position).getID());
 
                         DialogDeleteExerciseFromPas_frag dialog = new DialogDeleteExerciseFromPas_frag();
-                        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                adapterReload();
-                            }
-                        });
+
                         dialog.setArguments(bundleArgs);
                         dialog.show(getFragmentManager(), "Empty_pas");
 
@@ -187,6 +184,8 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
     }
 
+
+
 //    private void adapterReload() {
 //        arrayListExerciseNames = wc.getExercisesFromPasToArray(planName, pasName);
 //        // TODO skriv i rapporten at vi prøvede at bruge "adapter.notifyDataSetChanged(); men at det ikke virkede, derfor opretter vi en ny adapter, som er lidt mindre arbejde, end at loade hele fragmentet igen..
@@ -233,6 +232,10 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         ExerciseListAdapterRepsSets exerciseListAdapter = new ExerciseListAdapterRepsSets();
         listView.setOnItemClickListener(this);
         listView.setAdapter(exerciseListAdapter);
+    }
+    @Override
+    public void run() {
+        adapterReload();
     }
 
 }

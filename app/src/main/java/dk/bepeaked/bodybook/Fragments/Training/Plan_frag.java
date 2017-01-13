@@ -123,12 +123,6 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
                         bundleArgs.putInt("pasID", realmListPas.get(position).getID());
 
                         DialogEditPas_frag dialog = new DialogEditPas_frag();
-                        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                adapterReload();
-                            }
-                        });
                         dialog.setArguments(bundleArgs);
                         dialog.show(getFragmentManager(), "Empty_pas");
 
@@ -139,12 +133,6 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
                         bundleArgs.putInt("pasID", realmListPas.get(position).getID());;
 
                         DialogDeletePas_frag dialog2 = new DialogDeletePas_frag();
-                        dialog2.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                adapterReload();
-                            }
-                        });
                         dialog2.setArguments(bundleArgs);
                         dialog2.show(getFragmentManager(), "Empty_pas");
 
@@ -202,12 +190,6 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
         bundleArgs = new Bundle();
         bundleArgs.putInt("planID", planID);
         DialogAddPas_frag dialog = new DialogAddPas_frag();
-//        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-//            @Override
-//            public void onDismiss(DialogInterface dialog) {
-//                adapterReload();
-//            }
-//        });
         dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "Empty_pas");
     }

@@ -13,7 +13,10 @@ import android.widget.TextView;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
+import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
+
+import static dk.bepeaked.bodybook.Backend.Singleton.singleton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +29,7 @@ public class DialogDeletePas_frag extends DialogFragment implements View.OnClick
     Bundle argumens;
     String pasName, planName;
     int pasID, planID;
+    Singleton singleton;
 
 
     public DialogDeletePas_frag() {
@@ -39,7 +43,7 @@ public class DialogDeletePas_frag extends DialogFragment implements View.OnClick
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_dialog_delete_pas_frag, container, false);
-
+        singleton = Singleton.singleton;
         pasID = getArguments().getInt("pasID", 9999);
         planID = getArguments().getInt("planID", 9999);
 
@@ -72,19 +76,9 @@ public class DialogDeletePas_frag extends DialogFragment implements View.OnClick
         }
     }
 
-    private DialogInterface.OnDismissListener onDismissListener;
-
-    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
-    }
-
     @Override
     public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss(dialog);
-        }
+        singleton.notifyObservers();
     }
-
 }
 

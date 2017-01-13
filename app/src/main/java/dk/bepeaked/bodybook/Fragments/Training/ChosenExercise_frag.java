@@ -177,12 +177,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 //                        bundleArgs.putString("exerciseName", realmListExercises.get(position).getName());
 
                         DialogDeleteExerciseFromPas_frag dialog = new DialogDeleteExerciseFromPas_frag();
-                        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-//                                adapterReload();
-                            }
-                        });
                         dialog.setArguments(bundleArgs);
                         dialog.show(getFragmentManager(), "Empty_pas");
 

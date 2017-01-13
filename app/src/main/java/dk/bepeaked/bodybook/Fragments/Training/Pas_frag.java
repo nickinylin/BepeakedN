@@ -144,12 +144,6 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                         bundleArgs.putInt("pasID", realmListPas.get(position).getID());
 
                         DialogEditPas_frag dialog = new DialogEditPas_frag();
-                        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                adapterReload();
-                            }
-                        });
                         dialog.setArguments(bundleArgs);
                         dialog.show(getFragmentManager(), "Empty_pas");
 
@@ -158,15 +152,8 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                         // delete
                         bundleArgs.putInt("planID", planID);
                         bundleArgs.putInt("pasID", realmListPas.get(position).getID());
-                        ;
 
                         DialogDeletePas_frag dialog2 = new DialogDeletePas_frag();
-                        dialog2.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                adapterReload();
-                            }
-                        });
                         dialog2.setArguments(bundleArgs);
                         dialog2.show(getFragmentManager(), "Empty_pas");
 
@@ -222,19 +209,11 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
     }
 
-    Context context;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        this.context = context;
-    }
 
     private void showDialogAlert() {
         bundleArgs = new Bundle();
         bundleArgs.putInt("planID", planID);
         DialogAddPas_frag dialog = new DialogAddPas_frag();
-        Log.d("Nicki", "showDialogAlert kaldt");
         dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "DialogAddPas_frag");
     }
@@ -245,14 +224,11 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
         realmListPas = wc.getPasses(planID);
         // TODO skriv i rapporten at vi prøvede at bruge "adapter.notifyDataSetChanged(); men at det ikke virkede, derfor opretter vi en ny adapter, som er lidt mindre arbejde, end at loade hele fragmentet igen..
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
-        //if(screenRotation)
         listView.setAdapter(adapter);
-        //adapter.notifyDataSetChanged();
     }
 
     @Override
     public void run() {
         adapterReload();
-
     }
 }

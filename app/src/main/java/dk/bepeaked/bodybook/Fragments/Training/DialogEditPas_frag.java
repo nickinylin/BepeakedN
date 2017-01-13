@@ -15,6 +15,7 @@ import android.widget.TextView;
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
+import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 
 /**
@@ -29,6 +30,7 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
     Bundle argumens;
     String pasName;
     int pasID;
+    Singleton singleton;
 
 
     public DialogEditPas_frag() {
@@ -42,7 +44,7 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_dialog_edit_pas_frag, container, false);
-
+        singleton = Singleton.singleton;
         pasID = getArguments().getInt("pasID", 9999);
 //        planName = getArguments().getString("planName", "Empty");
 
@@ -77,19 +79,9 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
         }
     }
 
-    private DialogInterface.OnDismissListener onDismissListener;
-
-    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
-    }
-
     @Override
     public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss(dialog);
-        }
+        singleton.notifyObservers();
     }
-
 }
 

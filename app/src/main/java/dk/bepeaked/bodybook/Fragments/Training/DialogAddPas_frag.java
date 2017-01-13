@@ -82,25 +82,9 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
         }
     }
 
-    @Override
-    public void onDestroyView() {
-//        Dialog dialog = getDialog();
-//        // handles https://code.google.com/p/android/issues/detail?id=17423
-//        if (dialog != null && getRetainInstance()) {
-//            dialog.setDismissMessage(null);
-//        }
-        super.onDestroyView();
-        Log.d("Nicki", "onDestroyView: DIALOG:  "+pasNew);
-    }
-//
-//    private DialogInterface.OnDismissListener onDismissListener;
-//
-//    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-//        this.onDismissListener = onDismissListener;
 
     @Override
     public void onDismiss(DialogInterface dialog) {
-        Log.d("Nicki", "onDismiss i dialogfragment: ");
         singleton.notifyObservers();
     }
 }

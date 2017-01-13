@@ -6,11 +6,13 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,13 +32,14 @@ import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
+import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 import io.realm.RealmList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddExercise_frag extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class AddExercise_frag extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener, Runnable {
 
 
     String pasName, planName;
@@ -51,6 +54,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     private SwipeMenuListView listView;
     Bundle bundleArgs = new Bundle();
     FloatingActionButton fab;
+    Singleton singleton;
 
 
     public AddExercise_frag() {
@@ -68,8 +72,12 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        //View view = inflater.inflate(R.layout.listview, container, false);
         view = inflater.inflate(R.layout.listviewsearch, container, false);
+
+        singleton = Singleton.singleton;
+
+        singleton.listen(this);
+        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         pasID = getArguments().getInt("TræningspasID", 99999);
         pasName = wc.getSpecificPas(pasID).getName();
@@ -138,12 +146,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
 //                        bundleArgs.putString("pasName", arrayListPlanNames.get(position));
 
                         DialogEditPas_frag dialog = new DialogEditPas_frag();
-                        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-//                                adapterReload();
-                            }
-                        });
+
                         dialog.setArguments(bundleArgs);
                         dialog.show(getFragmentManager(), "Empty_pas");
 
@@ -154,12 +157,6 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
 //                        bundleArgs.putString("pasName", arrayListPlanNames.get(position));
 
                         DialogDeletePas_frag dialog2 = new DialogDeletePas_frag();
-                        dialog2.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-//                                adapterReload();
-                            }
-                        });
                         dialog2.setArguments(bundleArgs);
                         dialog2.show(getFragmentManager(), "Empty_pas");
 
@@ -221,6 +218,12 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        singleton.unRegistrer(this);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         inflater.inflate(R.menu.pasmenu, menu);
@@ -245,21 +248,6 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
         bundleArgs.putInt("TræningspasID", pasID);
         bundleArgs.putString("exerciseName", realmListExerciseDTO.get(position).getName());
         DialogAddExerciseGoals_frag dialog = new DialogAddExerciseGoals_frag();
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-
-//                if (prefs.getBoolean("exerciseAdded", false)) {
-//                    prefs.edit().putBoolean("exerciseAdded", false);
-//                    String exercise = prefs.getString("addGoalsName", "Empty");
-//                    int reps = prefs.getInt("addGoalsReps", 9999);
-//                    int sets = prefs.getInt("addGoalsSets", 9999);
-//                    Snackbar.make(getView(), exercise + " er tilføjet med " + sets + " x " + reps, Snackbar.LENGTH_LONG).show();
-//                }
-                Snackbar.make(getView(), "Exercise er tilføjet!", Snackbar.LENGTH_LONG).show();
-
-            }
-        });
         dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "Empty_pas");
 
@@ -284,6 +272,19 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
             fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
             fragment.setArguments(bundleArgs);
             fragmentTransaction.commit();
+        }
+    }
+
+    @Override
+    public void run() {
+        boolean addedExercise = prefs.getBoolean("exerciseAdded", false);
+        Log.d("Nicki", "run i addxercise_frag: " + addedExercise);
+        if (prefs.getBoolean("exerciseAdded", false)) {
+            prefs.edit().putBoolean("exerciseAdded", false);
+            String exercise = prefs.getString("addGoalsName", "Empty");
+            int reps = prefs.getInt("addGoalsReps", 9999);
+            int sets = prefs.getInt("addGoalsSets", 9999);
+            Snackbar.make(getView(), exercise + " er tilføjet med " + sets + "sæt og " + reps + " reps", Snackbar.LENGTH_LONG).show();
         }
     }
 }

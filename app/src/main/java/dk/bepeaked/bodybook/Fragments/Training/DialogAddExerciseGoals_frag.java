@@ -20,6 +20,7 @@ import android.widget.TextView;
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
+import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 
 /**
@@ -32,6 +33,7 @@ public class DialogAddExerciseGoals_frag extends DialogFragment implements View.
     int planID, pasID, exerciseID;
     NumberPicker npReps, npSets;
     TextView tvReps, tvSets, tvInfo;
+    Singleton singleton;
 
     Button btn;
     SharedPreferences prefs;
@@ -47,6 +49,8 @@ public class DialogAddExerciseGoals_frag extends DialogFragment implements View.
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_add_exercise_goals, container, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        singleton = Singleton.singleton;
 
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
@@ -87,12 +91,10 @@ public class DialogAddExerciseGoals_frag extends DialogFragment implements View.
                 int npSetsValue = npSets.getValue();
                 int npRepsValue = npReps.getValue();
                 wc.addExerciseToPas(pasID, exerciseName, npSetsValue , npRepsValue);
-                Log.d("Nicki", "Efter addExerciseTopas");
                 prefs.edit().putString("addGoalsName", exerciseName).commit();
-                Log.d("Nicki", "Efter addExerciseTopas 2");
                 prefs.edit().putInt("addGoalsSets", npSetsValue).commit();
                 prefs.edit().putInt("addGoalsReps", npRepsValue).commit();
-                prefs.edit().putBoolean("exerciseAdded", true);
+                prefs.edit().putBoolean("exerciseAdded", true).commit();
                 dismiss();
             } catch (ExceptionNameAlreadyExist e) {
                 e.printStackTrace();
@@ -103,17 +105,8 @@ public class DialogAddExerciseGoals_frag extends DialogFragment implements View.
         }
     }
 
-    private DialogInterface.OnDismissListener onDismissListener;
-
-    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
-    }
-
     @Override
     public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss(dialog);
-        }
+        singleton.notifyObservers();
     }
 }
