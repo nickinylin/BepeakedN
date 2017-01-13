@@ -10,7 +10,7 @@
 
     <item
         android:id="@+id/workoutMenu_change_plan"
-        android:orderInCategory="3"
+        android:orderInCategory="2"
         android:title="Skift træningsplan"
         app:showAsAction="withText" />
 

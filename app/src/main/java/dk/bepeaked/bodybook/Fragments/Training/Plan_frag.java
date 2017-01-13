@@ -23,8 +23,6 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 
-import java.util.ArrayList;
-
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.R;
@@ -50,8 +48,6 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
     public Plan_frag() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,7 +60,6 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
         bundleArgs = new Bundle();
 
         getActivity().setTitle("Alle planer");
-
 
 //        arrayListPlanNames = wc.getPlans();
 
@@ -175,13 +170,15 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d("Sebby", "onOptionsItemSelected: 2kola");
         if (item.getItemId() == R.id.workoutMenu_add_pas) {
             showDialogAlert();
         } else if (item.getItemId() == R.id.workoutMenu_change_plan) {
-            // TODO Hvad der skal ske for at skifte aktuel træningsplan
-
-
-
+            Log.d("Sebby", "onOptionsItemSelected: testintgg");
+            NewPlanFragment planFragment = new NewPlanFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, planFragment).addToBackStack("hej");
+            fragmentTransaction.commit();
         }
         return super.onOptionsItemSelected(item);
     }
