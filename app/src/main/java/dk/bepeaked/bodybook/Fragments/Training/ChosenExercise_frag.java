@@ -59,6 +59,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     Date dateLast, dateCurrent;
     SimpleDateFormat dateFormatter;
     String stringDateLast;
+    int counter = 0;
 
 
     //skal slettes. til test
@@ -79,7 +80,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         wc = new WorkoutController();
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-        stringDateLast = dateFormatter.format(new Date(2015,10,12));
+        Date date = new Date(2015, 10, 12);
+        stringDateLast = dateFormatter.format(date);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         exerciseID = getArguments().getInt("chosenExerciseID", 99999);
 
@@ -239,15 +241,22 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
+
             dateCurrent = realmListSets.get(position).getDate();
             String stringDateCurrent = dateFormatter.format(dateCurrent);
 //            String stringDateLast = dateFormatter.format()
 
+            Log.d("LUKAS", "datecounter start: " + counter);
+            counter++;
+            Log.d("LUKAS", "dateCurrent: " + stringDateCurrent);
+            Log.d("LUKAS", "dateLatest: " + stringDateLast);
 
             if (stringDateCurrent.equals(stringDateLast)) {
-                stringDateLast = stringDateCurrent;
+//                stringDateLast = stringDateCurrent;
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(R.layout.exercise_list_element, parent, false);
+
+
             } else {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(R.layout.exercise_list_element_with_date, parent, false);
@@ -277,6 +286,9 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     }
     private void adapterReload() {
         try {
+            Date date = new Date(9999, 12, 10);
+            stringDateLast = dateFormatter.format(date);
+            Log.d("LUKAS", "latest date er nu: " +stringDateLast);
             realmListSets = wc.getSetsFromExercise(exerciseID);
         } catch (ExceptionExerciseDoesntExist e) {
             e.printStackTrace();

@@ -353,7 +353,7 @@ public class WorkoutController {
         Calendar c = Calendar.getInstance();
         Date date = c.getTime();
         int id;
-        int repsudregning;
+        double repsudregning;
         try{
             id = setDAO.getAllSets().last().getId()+1;
         }catch (IndexOutOfBoundsException e){
@@ -365,13 +365,17 @@ public class WorkoutController {
             newSet = new SetDTO(id, exerciseName, 0, reps, date, 0);
             setDAO.addSet(exerciseName, newSet);
         } else if (kg > 0) {
-            repsudregning = reps;
+            repsudregning = (double) reps;
 
             if (reps == 37) {
                 repsudregning++;
             }
             //Brzycki 1RM formula
-            Double RM = kg / ((37 / 36) - ((1 / 36) * repsudregning));
+
+            Log.d("LUKAS", "repsudregning: " + repsudregning);
+            Double RM = kg*Math.pow(repsudregning, 0.10);
+
+            Log.d("LUKAS", "RM: "+RM);
 
             newSet = new SetDTO(id, exerciseName, kg, reps, date, RM);
             setDAO.addSet(exerciseName, newSet);
