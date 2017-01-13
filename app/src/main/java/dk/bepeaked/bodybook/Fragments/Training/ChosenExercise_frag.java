@@ -124,11 +124,11 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         graph.getViewport().setScalable(true);
 
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
-                new DataPoint(0, 0.25),
-                new DataPoint(0.3, 0.22),
-                new DataPoint(0.4, 0.12),
-                new DataPoint(0.6, 0.79),
-                new DataPoint(2, 1.3)
+                new DataPoint(1, 0.25),
+                new DataPoint(2, 0.22),
+                new DataPoint(3, 0.12),
+                new DataPoint(4, 0.79),
+                new DataPoint(5, 1.3)
         });
         // styling series
         series.setColor(Color.BLACK);
