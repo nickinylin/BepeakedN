@@ -11,6 +11,7 @@
 
     <application
         android:allowBackup="true"
+        android:name=".Backend.Singleton"
         android:icon="@drawable/body_book"
         android:label="@string/app_name"
         android:supportsRtl="true"

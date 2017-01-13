@@ -1,12 +1,14 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
+import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 
 /**
@@ -31,6 +34,7 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
     EditText et;
     Button btn;
     SharedPreferences prefs;
+    Singleton singleton;
 
 
     public DialogAddPas_frag() {
@@ -42,6 +46,9 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_add_pas, container, false);
+
+        setRetainInstance(true);
+        Log.d("NIcki", "onCreateView: " + getParentFragment());
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -73,17 +80,24 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
         }
     }
 
-    private DialogInterface.OnDismissListener onDismissListener;
-
-    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
+    @Override
+    public void onDestroyView() {
+        Dialog dialog = getDialog();
+        // handles https://code.google.com/p/android/issues/detail?id=17423
+        if (dialog != null && getRetainInstance()) {
+            dialog.setDismissMessage(null);
+        }
+        super.onDestroyView();
     }
+//
+//    private DialogInterface.OnDismissListener onDismissListener;
+//
+//    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+//        this.onDismissListener = onDismissListener;
 
     @Override
     public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss(dialog);
-        }
+        Log.d("Nicki", "onDismiss i dialogfragment: ");
+        singleton.notifyObservers();
     }
 }

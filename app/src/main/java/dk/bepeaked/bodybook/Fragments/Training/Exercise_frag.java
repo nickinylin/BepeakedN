@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -29,7 +27,6 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
-import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
 import dk.bepeaked.bodybook.R;
 import io.realm.RealmList;
@@ -40,7 +37,7 @@ import io.realm.RealmList;
 public class Exercise_frag extends Fragment implements AdapterView.OnItemClickListener {
 
 
-    String namePas, namePlan;
+    String pasName, namePlan;
     int pasID, planID;
     RealmList<ExerciseGoals> realmListExercises = new RealmList<ExerciseGoals>();
     ArrayList<String> arrayListExerciseNames = new ArrayList<String>();
@@ -74,10 +71,10 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         planID = prefs.getInt("lastUsedPlan", 99999);
+        pasName = wc.getSpecificPas(pasID).getName();
 
+        getActivity().setTitle(pasName);
 
-        getActivity().setTitle(namePas);
-        Log.d("LUKAS", "pasid: " + pasID);
         realmListExercises = wc.getSpecificPas(pasID).getExercises();
 
         listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id);
@@ -172,6 +169,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
         Bundle bundleArgs = new Bundle();
         bundleArgs.putInt("chosenExerciseID", realmListExercises.get(position).getID());
+        Log.d("Nicki", "1 = " + realmListExercises.get(position).getID() + " navn " + realmListExercises.get(position).getName());
 
 
         TabLayoutExercise_frag fragment = new TabLayoutExercise_frag();

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -35,7 +36,7 @@ import io.realm.RealmList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddExercise_frag extends Fragment implements AdapterView.OnItemClickListener {
+public class AddExercise_frag extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
 
     String pasName, planName;
@@ -49,6 +50,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     WorkoutController wc = new WorkoutController();
     private SwipeMenuListView listView;
     Bundle bundleArgs = new Bundle();
+    FloatingActionButton fab;
 
 
     public AddExercise_frag() {
@@ -75,6 +77,9 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
 
         traeningsOevelser = wc.getAllExerciseNamesToArray();
         realmListExerciseDTO = wc.getAllExercises();
+
+        fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton_addExercise_done);
+        fab.setOnClickListener(this);
 
 
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, traeningsOevelser);
@@ -130,7 +135,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
                     case 0:
                         // open
 //                        bundleArgs.putString("planName", planName);
-//                        bundleArgs.putString("pasName", arrayListPasNames.get(position));
+//                        bundleArgs.putString("pasName", arrayListPlanNames.get(position));
 
                         DialogEditPas_frag dialog = new DialogEditPas_frag();
                         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -146,7 +151,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
                     case 1:
                         // delete
 //                        bundleArgs.putString("planName", planName);
-//                        bundleArgs.putString("pasName", arrayListPasNames.get(position));
+//                        bundleArgs.putString("pasName", arrayListPlanNames.get(position));
 
                         DialogDeletePas_frag dialog2 = new DialogDeletePas_frag();
                         dialog2.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -268,4 +273,17 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     }
 
 
+    @Override
+    public void onClick(View v) {
+        if (v == fab) {
+            Bundle bundleArgs = new Bundle();
+            bundleArgs.putInt("TræningspasID", pasID);
+
+            Exercise_frag fragment = new Exercise_frag();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
+            fragment.setArguments(bundleArgs);
+            fragmentTransaction.commit();
+        }
+    }
 }

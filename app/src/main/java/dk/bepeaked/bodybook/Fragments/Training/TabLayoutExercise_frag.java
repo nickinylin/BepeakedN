@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,6 +80,7 @@ public class TabLayoutExercise_frag extends Fragment {
             switch (position) {
                 case 0:
                     bundleArgs.putInt("chosenExerciseID", getArguments().getInt("chosenExerciseID"));
+                    Log.d("Nicki", "1 = " + getArguments().getInt("chosenExerciseID"));
                     ChosenExercise_frag frag1 = new ChosenExercise_frag();
                     frag1.setArguments(bundleArgs);
                     return frag1;

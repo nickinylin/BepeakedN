@@ -1,12 +1,14 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
+import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 import io.realm.RealmList;
 
@@ -35,7 +38,7 @@ import io.realm.RealmList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Pas_frag extends Fragment implements AdapterView.OnItemClickListener {
+public class Pas_frag extends Fragment implements AdapterView.OnItemClickListener, Runnable{
     //WorkoutDAO wdao = new WorkoutDAO();
 
     WorkoutController wc = new WorkoutController();
@@ -44,9 +47,12 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     ArrayList<String> arrayListPasNames = new ArrayList<String>();
     SharedPreferences prefs;
     Bundle bundleArgs;
-    private SwipeMenuListView listView;
+    SwipeMenuListView listView;
     ArrayAdapter adapter;
     RealmList<WorkoutPasDTO> realmListPas;
+    boolean screenRotation = false;
+    Singleton singleton;
+
 
     public Pas_frag() {
         // Required empty public constructor
@@ -58,12 +64,17 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listview, container, false);
 
+        if (savedInstanceState != null) {
+            screenRotation = true;
+        }
+        singleton = Singleton.singleton;
+        singleton.listen(this);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         planID = prefs.getInt("lastUsedPlan", 9999);
-        Log.d("LUKAS", "planid: "+planID);
+        Log.d("LUKAS", "planid: " + planID);
         planName = wc.getSpecificPlan(planID).getName();
-        Log.d("LUKAS", "plan: "+ planName);
+        Log.d("LUKAS", "plan: " + planName);
 
         bundleArgs = new Bundle();
 
@@ -76,8 +87,8 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
 
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
-
         listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id);
+        System.out.println("listview id: " + listView.getId());
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
 
@@ -115,6 +126,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                 deleteItem.setIcon(R.drawable.ic_delete_forever_white_24dp);
                 // add to menu
                 menu.addMenuItem(deleteItem);
+
             }
         };
 
@@ -145,7 +157,8 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                     case 1:
                         // delete
                         bundleArgs.putInt("planID", planID);
-                        bundleArgs.putInt("pasID", realmListPas.get(position).getID());;
+                        bundleArgs.putInt("pasID", realmListPas.get(position).getID());
+                        ;
 
                         DialogDeletePas_frag dialog2 = new DialogDeletePas_frag();
                         dialog2.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -170,10 +183,16 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d("Nicki", "onDestroyView: ");
+        singleton.unRegistrer(this);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         inflater.inflate(R.menu.workoutmenu, menu);
-        Log.d("Nicki", "onCreateOptionsMenu: " + "Her bliver workoutmenut kaldt");
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -183,6 +202,8 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
             showDialogAlert();
         } else if (item.getItemId() == R.id.workoutMenu_change_plan) {
             // TODO Hvad der skal ske for at skifte aktuel træningsplan
+
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -202,25 +223,39 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
     }
 
+    Context context;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
     private void showDialogAlert() {
         bundleArgs = new Bundle();
         bundleArgs.putInt("planID", planID);
         DialogAddPas_frag dialog = new DialogAddPas_frag();
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                adapterReload();
-            }
-        });
+        Log.d("Nicki", "Før");
         dialog.setArguments(bundleArgs);
-        dialog.show(getActivity().getFragmentManager(), "Empty_pas");
+        dialog.show(getActivity().getFragmentManager(), "DialogAddPas_frag");
     }
 
+
     private void adapterReload() {
+        Log.d("Nicki", "adapterReload: ");
         arrayListPasNames = wc.getPasNamesFromPlan(planID);
         realmListPas = wc.getPasses(planID);
         // TODO skriv i rapporten at vi prøvede at bruge "adapter.notifyDataSetChanged(); men at det ikke virkede, derfor opretter vi en ny adapter, som er lidt mindre arbejde, end at loade hele fragmentet igen..
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
+        //if(screenRotation)
         listView.setAdapter(adapter);
+        //adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void run() {
+        adapterReload();
+            Log.d("Nicki", "pas_frag her bliver dismissed kaldt!");
+
     }
 }

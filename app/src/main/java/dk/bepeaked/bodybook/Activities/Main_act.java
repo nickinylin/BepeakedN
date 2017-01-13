@@ -18,6 +18,7 @@ import com.crashlytics.android.Crashlytics;
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DAO.DietDAO;
 import dk.bepeaked.bodybook.Backend.DTO.LoadDataExercise;
+import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.Fragments.Diet.Diet_frag;
 import dk.bepeaked.bodybook.Fragments.Profile_frag;
 import dk.bepeaked.bodybook.Fragments.Settings.Settings_frag;
@@ -36,6 +37,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
     SharedPreferences prefs;
     public DietDAO diDAO;
     WorkoutController wc;
+    Singleton singleton;
 
 
     @Override
