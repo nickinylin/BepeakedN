@@ -17,21 +17,21 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="210dp">
+                android:layout_height="150dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     app:srcCompat="@android:color/background_light"
                     android:id="@+id/ex_imagebefore"
                     android:layout_weight="50"
-                    android:layout_height="210dp"/>
+                    android:layout_height="150dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     app:srcCompat="@android:color/background_light"
                     android:id="@+id/ex_imageafter"
                     android:layout_weight="50"
-                    android:layout_height="210dp" />
+                    android:layout_height="150dp" />
 
             </LinearLayout>
 

@@ -1,12 +1,11 @@
 package dk.bepeaked.bodybook.Backend.DTO;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
-public class DishDTO extends RealmObject implements Serializable{
+public class DishDTO extends RealmObject{
     //Type: 0 = Morgenmad, 1 = Frokost, 2 = Aftensmad, 3 = Snack.
     private int type, imagePath;
     private String name, deskShort, deskLong;

@@ -18,6 +18,7 @@ import java.util.List;
 import dk.bepeaked.bodybook.Backend.DAO.DietDAO;
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
 import dk.bepeaked.bodybook.R;
+import io.realm.RealmList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +27,7 @@ public class Diet_frag extends Fragment{
 
     ExpandableListView expandableListView;
     DietDAO ddao;
-    ArrayList<DishDTO> dishList;
+    RealmList<DishDTO> dishList;
 
     public Diet_frag() {}
 
@@ -35,7 +36,7 @@ public class Diet_frag extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_diet, container, false);
 
-        getActivity().setTitle("kostplan");
+        getActivity().setTitle("Kostplan");
 
 
         expandableListView = (ExpandableListView)  view.findViewById(R.id.expandA_listview);
@@ -59,9 +60,9 @@ public class Diet_frag extends Fragment{
         Headings.add("Aftensmad");
         Headings.add("Snacks");
 
-        dishList = new ArrayList<DishDTO>();
-        ddao = (DietDAO) getArguments().getSerializable("DietDAO");
-        dishList = ddao.getDTOS();
+        dishList = new RealmList<DishDTO>();
+        ddao = new DietDAO();
+        dishList = ddao.getDishesFromRealms();
 
         for (int i = 0; i < dishList.size(); i++){
             DishDTO dish = dishList.get(i);
@@ -101,12 +102,7 @@ public class Diet_frag extends Fragment{
                 Object desc = myAdapter.getDesk(groupPosition, childPosition);
 
                 Bundle bundle = new Bundle();
-
-                for(int i = 0; i < dishList.size(); i++){
-                    if(dishList.get(i).getName().equals((child.toString()))){
-                        bundle.putSerializable("Dish", dishList.get(i));
-                    }
-                }
+                bundle.putString("name", child.toString());
 
                 Recipe_frag fragment = new Recipe_frag();
                 android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
