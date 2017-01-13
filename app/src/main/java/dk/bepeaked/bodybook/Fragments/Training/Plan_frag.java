@@ -54,7 +54,7 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.listviewplan, container, false);
+        View view = inflater.inflate(R.layout.listview_plan, container, false);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
