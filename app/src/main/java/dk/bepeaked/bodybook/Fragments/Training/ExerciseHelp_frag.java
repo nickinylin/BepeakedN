@@ -31,8 +31,8 @@ public class ExerciseHelp_frag extends Fragment {
         ImageView before = (ImageView) rod.findViewById(R.id.ex_imagebefore);
         ImageView after = (ImageView) rod.findViewById(R.id.ex_imageafter);
 
-        before.setImageResource(R.drawable.bench_press_small_1);
-        after.setImageResource(R.drawable.bench_press_small_2);
+        before.setImageResource(R.drawable.coming_soon1);
+        after.setImageResource(R.drawable.coming_soon1);
 
         return rod;
 
