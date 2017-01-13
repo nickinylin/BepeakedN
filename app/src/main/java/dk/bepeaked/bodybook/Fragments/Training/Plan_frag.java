@@ -6,8 +6,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,8 +23,10 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 
+import java.util.ArrayList;
+
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
-import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
+import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.R;
 import io.realm.RealmList;
 
@@ -35,15 +37,16 @@ import io.realm.RealmList;
 public class Plan_frag extends Fragment implements AdapterView.OnItemClickListener {
     //WorkoutDAO wdao = new WorkoutDAO();
 
-    WorkoutController wc = new WorkoutController();
-    String planName;
-    int planID;
-//    RealmList<String> arrayListPlanNames = new ArrayList<String>();
-    SharedPreferences prefs;
-    Bundle bundleArgs;
+    private WorkoutController wc = new WorkoutController();
+    private String planName;
+    private int planID;
+    //    private RealmList<String> arrayListPlanNames = new ArrayList<String>();
+    private SharedPreferences prefs;
+    private Bundle bundleArgs;
     private SwipeMenuListView listView;
-    ArrayAdapter adapter;
-    RealmList<WorkoutPasDTO> realmListPas;
+    private FloatingActionButton fab;
+    private ArrayAdapter adapter;
+    private RealmList<WorkoutDTO> realmListPlans;
 
     public Plan_frag() {
         // Required empty public constructor
@@ -51,24 +54,23 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.listview, container, false);
+        View view = inflater.inflate(R.layout.listviewplan, container, false);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-//        planID = prefs.getInt("lastUsedPlan", 9999);
 
         bundleArgs = new Bundle();
 
         getActivity().setTitle("Alle planer");
 
-//        arrayListPlanNames = wc.getPlans();
+        realmListPlans = wc.getPlans();
+        ArrayList<String> names = new ArrayList<>();
+        for(int i = 0; i < realmListPlans.size(); i++){
+            names.add(realmListPlans.get(i).getName());
+        }
 
-        realmListPas = wc.getPasses(planID);
+        adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, names);
 
-
-//        adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPlanNames);
-
-        listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id);
+        listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id2);
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
 
@@ -119,8 +121,7 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
                 switch (index) {
                     case 0:
                         // open
-                        bundleArgs.putInt("planID", planID);
-                        bundleArgs.putInt("pasID", realmListPas.get(position).getID());
+                        bundleArgs.putInt("planID", realmListPlans.get(position).getID());
 
                         DialogEditPas_frag dialog = new DialogEditPas_frag();
                         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -135,8 +136,7 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
                         break;
                     case 1:
                         // delete
-                        bundleArgs.putInt("planID", planID);
-                        bundleArgs.putInt("pasID", realmListPas.get(position).getID());;
+                        bundleArgs.putInt("planID", realmListPlans.get(position).getID());
 
                         DialogDeletePas_frag dialog2 = new DialogDeletePas_frag();
                         dialog2.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -154,8 +154,15 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
                 return false;
             }
         });
+        fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
 
-        setHasOptionsMenu(true);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogAddPlan_frag dialog2 = new DialogAddPlan_frag();
+                dialog2.show(getActivity().getFragmentManager(), "DialogAddPlan_frag");
+            }
+        });
 
         return view;
     }
@@ -164,38 +171,24 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         inflater.inflate(R.menu.workoutmenu, menu);
-        Log.d("Nicki", "onCreateOptionsMenu: " + "Her bliver workoutmenut kaldt");
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d("Sebby", "onOptionsItemSelected: 2kola");
         if (item.getItemId() == R.id.workoutMenu_add_pas) {
-            showDialogAlert();
-        } else if (item.getItemId() == R.id.workoutMenu_change_plan) {
-            Log.d("Sebby", "onOptionsItemSelected: testintgg");
-            NewPlanFragment planFragment = new NewPlanFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, planFragment).addToBackStack("hej");
-            fragmentTransaction.commit();
+
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        Toast.makeText(getActivity(), planName ,Toast.LENGTH_LONG).show();
-
-        Bundle bundleArgs = new Bundle();
-        bundleArgs.putInt("TræningspasID", realmListPas.get(position).getID());
-
-        Exercise_frag fragment = new Exercise_frag();
+        prefs.edit().putInt("lastUsedPlan", realmListPlans.get(position).getID()).commit();
+        Pas_frag fragment = new Pas_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("hej");
-        fragment.setArguments(bundleArgs);
         fragmentTransaction.commit();
-
     }
 
     private void showDialogAlert() {
@@ -214,7 +207,7 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
 
     private void adapterReload() {
 //        arrayListPlanNames = wc.getPasNamesFromPlan(planID);
-        realmListPas = wc.getPasses(planID);
+        realmListPlans = wc.getPlans();
         // TODO skriv i rapporten at vi prøvede at bruge "adapter.notifyDataSetChanged(); men at det ikke virkede, derfor opretter vi en ny adapter, som er lidt mindre arbejde, end at loade hele fragmentet igen..
 //        adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPlanNames);
         listView.setAdapter(adapter);

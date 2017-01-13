@@ -5,10 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -200,9 +197,10 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
         if (item.getItemId() == R.id.workoutMenu_add_pas) {
             showDialogAlert();
         } else if (item.getItemId() == R.id.workoutMenu_change_plan) {
-            // TODO Hvad der skal ske for at skifte aktuel træningsplan
-
-
+            Plan_frag planFragment = new Plan_frag();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, planFragment).addToBackStack("hej");
+            fragmentTransaction.commit();
         }
         return super.onOptionsItemSelected(item);
     }
