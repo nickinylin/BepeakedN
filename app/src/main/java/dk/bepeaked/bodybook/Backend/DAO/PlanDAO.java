@@ -89,8 +89,46 @@ public class PlanDAO {
             } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
                 exceptionNameAlreadyExist.printStackTrace();
             }
+            int planID = 0;
+            for(int l=0; l<wc.getPlans().size(); l++){
+                if(wc.getPlans().get(l).equals(dtos.get(i).getName())){
+                    planID = wc.getPlans().get(l).getID();
+                }
+            }
+
             RealmList<WorkoutPasDTO> workoutPasDTOs = dtos.get(i).getWorkoutPasses();
             for (int j = 0; j < workoutPasDTOs.size(); j++) {
+                try {
+                    wc.addNewPasToPlan(planID, workoutPasDTOs.get(i).getName());
+                } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
+                    exceptionNameAlreadyExist.printStackTrace();
+                }
+                for(int l = 0; l<workoutPasDTOs.get(j).getExercises().size(); l++){
+
+                    RealmList<ExerciseGoals> goals = workoutPasDTOs.get(j).getExercises();
+                    RealmList<ExerciseDTO> exercises = wc.getAllExercises();
+                    boolean exist = false;
+                    for(int k = 0; k< exercises.size(); k++) {
+                        if (goals.get(l).getName().equals(exercises.get(k))){
+                           exist = true;
+                        }
+                        if(exist){
+                            exist = false;
+                            try {
+                                wc.createNewExercise(goals.get(l).getName());
+                            } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
+                                exceptionNameAlreadyExist.printStackTrace();
+                            }
+                            break;
+                        }
+                    }
+
+                    try {
+                        wc.addExerciseToPas(workoutPasDTOs.get(j).getID(), goals.get(l).getName(), goals.get(l).getSet(), goals.get(l).getReps());
+                    } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
+                        exceptionNameAlreadyExist.printStackTrace();
+                    }
+                }
 //                try {
 //                    wc.addNewPasToPlan(dtos.get(i).getName(), workoutPasDTOs.get(j).getName());
 //                } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
