@@ -51,9 +51,9 @@ public class ExerciseDAO {
      * Gets a RealmList of all the exercises in database (in every plan, in every pas)
      * @return RealmList<ExerciseDTO>
      */
-    public RealmList<ExerciseDTO> getExercises() throws IndexOutOfBoundsException {
+    public RealmList<ExerciseDTO> getExercises() throws IndexOutOfBoundsException, NullPointerException {
         RealmResults<ExerciseDTO> resultExercise = realm.where(ExerciseDTO.class).findAll();
-        RealmList<ExerciseDTO> exercisePlans = new RealmList<ExerciseDTO>();
+        RealmList<ExerciseDTO> exercisePlans = new RealmList<>();
         exercisePlans.addAll(resultExercise.subList(0, resultExercise.size()));
         return exercisePlans;
     }

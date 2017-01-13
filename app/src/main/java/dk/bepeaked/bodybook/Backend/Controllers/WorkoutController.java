@@ -211,11 +211,24 @@ public class WorkoutController {
     //************Exercises*************
 
     //CREATE
-//    public void createNewExercise(String exerciseName) throws ExceptionNameAlreadyExist {
-//
-//        ExerciseDTO newExercise = new ExerciseDTO(exerciseName, null, null, null, null, new RealmList<SetDTO>());
-//        exerciseDAO.newExercise(newExercise);
-//    }
+    public void createNewExercise(String exerciseName) throws ExceptionNameAlreadyExist {
+
+        int id;
+        RealmList<ExerciseDTO> exercise = getAllExercises();
+        try {
+            id = exercise.last().getID() + 1;
+        }catch(IndexOutOfBoundsException e){
+            id = 1;
+        }
+
+        for(int i = 0; i<exercise.size(); i++){
+            if(exerciseName.equals(exercise.get(i).getName())){
+                throw new ExceptionNameAlreadyExist("An exercise with the name "+ exerciseName +" already exist");
+            }
+        }
+        ExerciseDTO newExercise = new ExerciseDTO(id, exerciseName, null, null, null, null, new RealmList<SetDTO>());
+        exerciseDAO.newExercise(newExercise);
+    }
 
     //READ
     /**
