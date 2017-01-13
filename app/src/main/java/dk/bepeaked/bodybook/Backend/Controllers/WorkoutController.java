@@ -318,10 +318,10 @@ public class WorkoutController {
     }
 
     public ExerciseDTO getExercise(String exerciseName){
-        ExerciseDTO exercise = null;
+        ExerciseDTO exercise = new ExerciseDTO();
         realmListExerciseDTO = getAllExercises();
         for (int i = 0; i < realmListExerciseDTO.size(); i++) {
-            if (realmListExerciseDTO.get(i).getName()==exerciseName) {
+            if (realmListExerciseDTO.get(i).getName().equals(exerciseName)) {
                 exercise = realmListExerciseDTO.get(i);
             }
         }
