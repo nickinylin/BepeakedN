@@ -68,7 +68,8 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
         //View view = inflater.inflate(R.layout.listview, container, false);
         view = inflater.inflate(R.layout.listview, container, false);
-singleton = Singleton.singleton;
+        singleton = Singleton.singleton;
+        singleton.listen(this);
         pasID = getArguments().getInt("TræningspasID", 99999);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -92,13 +93,10 @@ singleton = Singleton.singleton;
                 // create "delete" item
                 SwipeMenuItem deleteItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
-                // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
                 // set item width
                 deleteItem.setWidth(300);
                 // set a icon
-//                deleteItem.setIcon(R.drawable.);
+                deleteItem.setIcon(R.drawable.ic_delete_forever_white_24dp);
                 // add to menu
                 menu.addMenuItem(deleteItem);
             }
@@ -120,7 +118,6 @@ singleton = Singleton.singleton;
                         bundleArgs.putInt("exerciseGoalsID", realmListExercises.get(position).getID());
 
                         DialogDeleteExerciseFromPas_frag dialog = new DialogDeleteExerciseFromPas_frag();
-
                         dialog.setArguments(bundleArgs);
                         dialog.show(getFragmentManager(), "Empty_pas");
 
@@ -136,6 +133,12 @@ singleton = Singleton.singleton;
 
 
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        singleton.unRegistrer(this);
     }
 
 
@@ -168,12 +171,8 @@ singleton = Singleton.singleton;
 
         Bundle bundleArgs = new Bundle();
         String name = realmListExercises.get(position).getName();
-        Log.d("Nicki", "exercise_frag: " + name);
         ExerciseDTO exerciseDTO = wc.getExercise(name);
-        Log.d("Nicki", "exercise_frag: " + exerciseDTO);
-        Log.d("Nicki", "exercise_frag: " + exerciseDTO.getName() + " " + exerciseDTO.getID());
         bundleArgs.putInt("chosenExerciseID", exerciseDTO.getID());
-
 
 
         TabLayoutExercise_frag fragment = new TabLayoutExercise_frag();
@@ -183,7 +182,6 @@ singleton = Singleton.singleton;
         fragmentTransaction.commit();
 
     }
-
 
 
 //    private void adapterReload() {
@@ -233,8 +231,10 @@ singleton = Singleton.singleton;
         listView.setOnItemClickListener(this);
         listView.setAdapter(exerciseListAdapter);
     }
+
     @Override
     public void run() {
+        Log.d("Nicki", "Exercise Run metode: ");
         adapterReload();
     }
 

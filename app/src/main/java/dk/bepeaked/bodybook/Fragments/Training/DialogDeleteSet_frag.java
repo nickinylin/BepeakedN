@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,18 +20,18 @@ import dk.bepeaked.bodybook.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements View.OnClickListener {
+public class DialogDeleteSet_frag extends DialogFragment implements View.OnClickListener {
 
     WorkoutController wc = new WorkoutController();
     Button btnOK, btnCancel;
     TextView tv;
     Bundle argumens;
-    String pasName, namePlan, nameExercise;
-    int pasID, planID, exerciseGoalsID;
+    String pasName, planName;
+    int setID;
     Singleton singleton;
 
 
-    public DialogDeleteExerciseFromPas_frag() {
+    public DialogDeleteSet_frag() {
         // Required empty public constructor
     }
 
@@ -41,11 +42,8 @@ public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements 
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_dialog_delete_pas_frag, container, false);
-
         singleton = Singleton.singleton;
-        pasID = getArguments().getInt("pasID", 99999);
-        planID = getArguments().getInt("planID", 99999);
-        exerciseGoalsID = getArguments().getInt("exerciseGoalsID", 99999);
+        setID = getArguments().getInt("setID", 9999);
 
 
         btnOK = (Button) view.findViewById(R.id.button_dialog_delete_pas_OK);
@@ -64,13 +62,9 @@ public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements 
     @Override
     public void onClick(View v) {
         if (v == btnOK) {
-            try {
-                wc.deleteExerciseFromPas(exerciseGoalsID);
-                dismiss();
-            } catch (ExceptionPasDoesntExist e) {
-                e.printStackTrace();
-                //TODO her skal skrives en fejlme.....
-            }
+            Log.d("Nicki", "setID " + setID);
+            wc.deleteSet(setID);
+            dismiss();
         } else if (v == btnCancel) {
             dismiss();
         }
@@ -80,6 +74,5 @@ public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements 
     public void onDismiss(DialogInterface dialog) {
         singleton.notifyObservers();
     }
-
 }
 

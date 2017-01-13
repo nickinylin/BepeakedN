@@ -1,7 +1,6 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -277,14 +276,12 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
 
     @Override
     public void run() {
-        boolean addedExercise = prefs.getBoolean("exerciseAdded", false);
-        Log.d("Nicki", "run i addxercise_frag: " + addedExercise);
         if (prefs.getBoolean("exerciseAdded", false)) {
-            prefs.edit().putBoolean("exerciseAdded", false);
+            prefs.edit().putBoolean("exerciseAdded", false).commit();
             String exercise = prefs.getString("addGoalsName", "Empty");
             int reps = prefs.getInt("addGoalsReps", 9999);
             int sets = prefs.getInt("addGoalsSets", 9999);
-            Snackbar.make(getView(), exercise + " er tilføjet med " + sets + "sæt og " + reps + " reps", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(getView(), exercise + " er tilføjet med " + sets + " x " + reps, Snackbar.LENGTH_LONG).show();
         }
     }
 }

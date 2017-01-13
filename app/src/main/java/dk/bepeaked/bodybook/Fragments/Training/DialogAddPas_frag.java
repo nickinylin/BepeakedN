@@ -50,7 +50,7 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
         singleton = Singleton.singleton;
 
 //        setRetainInstance(true);
-        Log.d("NIcki", "onCreateView hos dialogfragmentet" + ++singleton.antalDialoger);
+//        Log.d("NIcki", "onCreateView hos dialogfragmentet" + ++singleton.antalDialoger);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);

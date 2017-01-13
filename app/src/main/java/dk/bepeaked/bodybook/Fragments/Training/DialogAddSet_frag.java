@@ -77,7 +77,7 @@ public class DialogAddSet_frag extends DialogFragment {
                 if (v == btnOK) {
                     try {
                         wc.addSet(exerciseName, npWeight1.getValue(), npReps.getValue());
-                        dismiss();
+//                        dismiss();
                     } catch (ExceptionWrongInput e) {
                         e.printStackTrace();
                         tvInfo.setText(e.getMessage());
