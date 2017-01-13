@@ -2,8 +2,6 @@ package dk.bepeaked.bodybook.Backend.Controllers;
 
 import android.util.Log;
 
-import org.apache.commons.lang3.ObjectUtils;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,11 +20,7 @@ import dk.bepeaked.bodybook.Backend.Exception.ExceptionExerciseDoesntExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionWrongInput;
-
 import io.realm.RealmList;
-
-
-import static dk.bepeaked.bodybook.R.string.set;
 
 /**
  * Created by Nicki on 05/01/17.
@@ -57,7 +51,7 @@ public class WorkoutController {
     public void addPlan(String planName) throws ExceptionNameAlreadyExist {
         try {
             workoutDTO = getPlans().last();
-            id = workoutDTO.getID();
+            id = workoutDTO.getID()+1;
         }catch (IndexOutOfBoundsException e){
             id = 1;
         }
@@ -359,7 +353,7 @@ public class WorkoutController {
         Calendar c = Calendar.getInstance();
         Date date = c.getTime();
         int id;
-        int repsudregning;
+        double repsudregning;
         try{
             id = setDAO.getAllSets().last().getId()+1;
         }catch (IndexOutOfBoundsException e){
@@ -371,13 +365,17 @@ public class WorkoutController {
             newSet = new SetDTO(id, exerciseName, 0, reps, date, 0);
             setDAO.addSet(exerciseName, newSet);
         } else if (kg > 0) {
-            repsudregning = reps;
+            repsudregning = (double) reps;
 
             if (reps == 37) {
                 repsudregning++;
             }
             //Brzycki 1RM formula
-            Double RM = kg / ((37 / 36) - ((1 / 36) * repsudregning));
+
+            Log.d("LUKAS", "repsudregning: " + repsudregning);
+            Double RM = kg*Math.pow(repsudregning, 0.10);
+
+            Log.d("LUKAS", "RM: "+RM);
 
             newSet = new SetDTO(id, exerciseName, kg, reps, date, RM);
             setDAO.addSet(exerciseName, newSet);
