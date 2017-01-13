@@ -47,8 +47,10 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_add_pas, container, false);
 
-        setRetainInstance(true);
-        Log.d("NIcki", "onCreateView: " + getParentFragment());
+        singleton = Singleton.singleton;
+
+//        setRetainInstance(true);
+        Log.d("NIcki", "onCreateView hos dialogfragmentet" + ++singleton.antalDialoger);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -82,12 +84,13 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
 
     @Override
     public void onDestroyView() {
-        Dialog dialog = getDialog();
-        // handles https://code.google.com/p/android/issues/detail?id=17423
-        if (dialog != null && getRetainInstance()) {
-            dialog.setDismissMessage(null);
-        }
+//        Dialog dialog = getDialog();
+//        // handles https://code.google.com/p/android/issues/detail?id=17423
+//        if (dialog != null && getRetainInstance()) {
+//            dialog.setDismissMessage(null);
+//        }
         super.onDestroyView();
+        Log.d("Nicki", "onDestroyView: DIALOG:  "+pasNew);
     }
 //
 //    private DialogInterface.OnDismissListener onDismissListener;

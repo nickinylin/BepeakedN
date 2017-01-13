@@ -185,7 +185,6 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.d("Nicki", "onDestroyView: ");
         singleton.unRegistrer(this);
     }
 
@@ -235,14 +234,13 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
         bundleArgs = new Bundle();
         bundleArgs.putInt("planID", planID);
         DialogAddPas_frag dialog = new DialogAddPas_frag();
-        Log.d("Nicki", "Før");
+        Log.d("Nicki", "showDialogAlert kaldt");
         dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "DialogAddPas_frag");
     }
 
 
     private void adapterReload() {
-        Log.d("Nicki", "adapterReload: ");
         arrayListPasNames = wc.getPasNamesFromPlan(planID);
         realmListPas = wc.getPasses(planID);
         // TODO skriv i rapporten at vi prøvede at bruge "adapter.notifyDataSetChanged(); men at det ikke virkede, derfor opretter vi en ny adapter, som er lidt mindre arbejde, end at loade hele fragmentet igen..
@@ -255,7 +253,6 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     @Override
     public void run() {
         adapterReload();
-            Log.d("Nicki", "pas_frag her bliver dismissed kaldt!");
 
     }
 }

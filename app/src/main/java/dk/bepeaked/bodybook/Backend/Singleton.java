@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class Singleton extends Application {
 
    public static Singleton singleton;
+
+    public int antalDialoger = 0;
     @Override
     public void onCreate() {
         super.onCreate();

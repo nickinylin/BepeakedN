@@ -82,9 +82,9 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         stringDateLast = dateFormatter.format(new Date(2015,10,12));
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         exerciseID = getArguments().getInt("chosenExerciseID", 99999);
-        Log.d("Nicki", "onCreateView: exerciseID"+ exerciseID);
-        exerciseName = wc.getExercise(exerciseID).getName();
 
+        exerciseName = wc.getExercise(exerciseID).getName();
+        Log.d("Nicki", "CHOSENE - exerciseID"+ exerciseID +" NAVN " + exerciseName);
 
 
         getActivity().setTitle(exerciseName);

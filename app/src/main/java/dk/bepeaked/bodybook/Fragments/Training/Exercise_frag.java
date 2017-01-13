@@ -27,6 +27,7 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
+import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
 import dk.bepeaked.bodybook.R;
 import io.realm.RealmList;
@@ -113,6 +114,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
                         //delete
                         bundleArgs.putInt("planID", planID);
                         bundleArgs.putInt("pasID", pasID);
+
                         bundleArgs.putInt("exerciseGoalsID", realmListExercises.get(position).getID());
 
                         DialogDeleteExerciseFromPas_frag dialog = new DialogDeleteExerciseFromPas_frag();
@@ -168,8 +170,13 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         Bundle bundleArgs = new Bundle();
-        bundleArgs.putInt("chosenExerciseID", realmListExercises.get(position).getID());
-        Log.d("Nicki", "1 = " + realmListExercises.get(position).getID() + " navn " + realmListExercises.get(position).getName());
+        String name = realmListExercises.get(position).getName();
+        Log.d("Nicki", "exercise_frag: " + name);
+        ExerciseDTO exerciseDTO = wc.getExercise(name);
+        Log.d("Nicki", "exercise_frag: " + exerciseDTO);
+        Log.d("Nicki", "exercise_frag: " + exerciseDTO.getName() + " " + exerciseDTO.getID());
+        bundleArgs.putInt("chosenExerciseID", exerciseDTO.getID());
+
 
 
         TabLayoutExercise_frag fragment = new TabLayoutExercise_frag();
