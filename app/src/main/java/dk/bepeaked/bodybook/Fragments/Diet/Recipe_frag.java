@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import dk.bepeaked.bodybook.Backend.DAO.DietDAO;
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
 import dk.bepeaked.bodybook.R;
 
@@ -18,6 +19,7 @@ import dk.bepeaked.bodybook.R;
  * A simple {@link Fragment} subclass.
  */
 public class Recipe_frag extends Fragment {
+    DietDAO dao = new DietDAO();
 
     public Recipe_frag() {
         // Required empty public constructor
@@ -28,7 +30,8 @@ public class Recipe_frag extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_recipe_frag, container, false);
-        DishDTO dish = (DishDTO) getArguments().getSerializable("Dish");
+        String dishName = getArguments().getString("name");
+        DishDTO dish = dao.getDishFromRealms(dishName);
 
         TextView name = (TextView) view.findViewById(R.id.textView5);
         ImageView image = (ImageView) view.findViewById(R.id.imageView4);

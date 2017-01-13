@@ -2,19 +2,19 @@ package dk.bepeaked.bodybook.Backend.DAO;
 
 import android.app.Activity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
 import dk.bepeaked.bodybook.Backend.DTO.Ingredient;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
+import io.realm.Realm;
+import io.realm.RealmList;
+import io.realm.RealmResults;
 
-public class DietDAO implements Serializable {
+public class DietDAO{
     CsvDAO dao = new CsvDAO();
     private ArrayList<DishDTO> savedDTO = new ArrayList<>();
-
-    public ArrayList<DishDTO> getDTOS(){
-        return savedDTO;
-    }
+    Realm realm = Realm.getDefaultInstance();
 
     public void getDishes(Activity act, String file){
         ArrayList<DishDTO> dtos = new ArrayList<>();
@@ -78,6 +78,40 @@ public class DietDAO implements Serializable {
                 dtos.add(dto);
             }
         }
-            savedDTO = dtos;
+        savedDTO = dtos;
+        try {
+            pushToRealm();
+        } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
+            exceptionNameAlreadyExist.printStackTrace();
+        }
+    }
+    private void pushToRealm()throws ExceptionNameAlreadyExist {
+        RealmList<DishDTO> dishes = getDishesFromRealms();
+        for(int i = 0; i < savedDTO.size(); i++) {
+            for(int j = 0; j < dishes.size(); j++){
+                if(dishes.get(j).getName().equals(savedDTO.get(i).getName())){
+                    throw new ExceptionNameAlreadyExist("A plan by the name " + savedDTO.get(i).getName() + " already exist");
+                }
+            }
+            realm.beginTransaction();
+            DishDTO realmPlan = realm.copyToRealm(savedDTO.get(i));
+            realm.commitTransaction();
+        }
+    }
+    public RealmList<DishDTO> getDishesFromRealms()throws IndexOutOfBoundsException{
+        RealmResults<DishDTO> resultPlans = realm.where(DishDTO.class).findAll();
+        RealmList<DishDTO> dishes = new RealmList<DishDTO>();
+        dishes.addAll(resultPlans.subList(0, resultPlans.size()));
+        return dishes;
+    }
+    public DishDTO getDishFromRealms(String name)throws IndexOutOfBoundsException{
+        RealmResults<DishDTO> resultPlans = realm.where(DishDTO.class).findAll();
+        DishDTO dto = new DishDTO();
+        for(int i = 0; i < resultPlans.size(); i++){
+            if (resultPlans.get(i).getName().equals(name)){
+                dto = resultPlans.get(i);
+            }
+        }
+        return dto;
     }
 }

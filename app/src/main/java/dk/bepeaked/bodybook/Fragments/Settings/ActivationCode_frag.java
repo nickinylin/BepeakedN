@@ -44,7 +44,7 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
         Button button = (Button) view.findViewById(R.id.button_dialog_OK);
         this.confirm = (TextView) view.findViewById(R.id.textView4);
 
-        this.dao = (DietDAO) getArguments().getSerializable("DietDAO");
+        this.dao = new DietDAO();
 
         button.setOnClickListener(this);
 
