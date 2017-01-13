@@ -39,6 +39,7 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_activation_code_frag, container, false);
+        getActivity().setTitle("Aktiveringskode");
 
         this.field = (EditText) view.findViewById(R.id.editText2);
         Button button = (Button) view.findViewById(R.id.button_dialog_OK);
