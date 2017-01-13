@@ -317,6 +317,17 @@ public class WorkoutController {
         return exercise;
     }
 
+    public ExerciseDTO getExercise(String exerciseName){
+        ExerciseDTO exercise = null;
+        realmListExerciseDTO = getAllExercises();
+        for (int i = 0; i < realmListExerciseDTO.size(); i++) {
+            if (realmListExerciseDTO.get(i).getName()==exerciseName) {
+                exercise = realmListExerciseDTO.get(i);
+            }
+        }
+        return exercise;
+    }
+
 
     /**
      * Get's a list of all the sets added to an exercise
@@ -348,22 +359,25 @@ public class WorkoutController {
         Calendar c = Calendar.getInstance();
         Date date = c.getTime();
         int id;
+        int repsudregning;
         try{
             id = setDAO.getAllSets().last().getId()+1;
         }catch (IndexOutOfBoundsException e){
             id = 1;
         }
         SetDTO newSet;
+
         if (kg == 0) {
             newSet = new SetDTO(id, exerciseName, 0, reps, date, 0);
             setDAO.addSet(exerciseName, newSet);
         } else if (kg > 0) {
+            repsudregning = reps;
 
             if (reps == 37) {
-                reps++;
+                repsudregning++;
             }
             //Brzycki 1RM formula
-            Double RM = kg / ((37 / 36) - ((1 / 36) * reps));
+            Double RM = kg / ((37 / 36) - ((1 / 36) * repsudregning));
 
             newSet = new SetDTO(id, exerciseName, kg, reps, date, RM);
             setDAO.addSet(exerciseName, newSet);
