@@ -154,7 +154,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
                         // delete
 //                        bundleArgs.putString("planName", planName);
 //                        bundleArgs.putString("pasName", arrayListPlanNames.get(position));
-
+//TODO her skal der en toast som siger man kan må slette egne øvelser, og nyt dialogFragment skal oprettes.
                         DialogDeletePas_frag dialog2 = new DialogDeletePas_frag();
                         dialog2.setArguments(bundleArgs);
                         dialog2.show(getFragmentManager(), "Empty_pas");
