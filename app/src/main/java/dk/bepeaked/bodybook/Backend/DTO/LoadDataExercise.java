@@ -64,18 +64,18 @@ public class LoadDataExercise {
                 "Raise the barbell above your body and move it over the middle of your chest, this is your starting position.\n" +
                 "Lower the bar down so it just touches your chest.\n" +
                 "Raise the bar till your arms are fully extended and your elbows are locked.\n" +
-                "Return to starting position.", "", "", new RealmList<SetDTO>()));
+                "Return to starting position.", "http://img.everkinetic.com/?action=image&id=19&number=0&key=69cadbdd2&version=cf619212&size=280,420", "http://img.everkinetic.com/?action=image&id=19&number=1&key=69cadbdd2&version=5c40b61d&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(2, "Supermans", "This is an excellent exercise and a stretch for the lower back and core muscles.", "Lie flat on your stomach with your arms stretched out in front of you.\n" +
                 "Raise your arms and legs off the floor and hold this position for 2 seconds.\n" +
                 "Return to the starting position on the floor.\n" +
-                "Repeat.", "", "", new RealmList<SetDTO>()));
+                "Repeat.", "http://img.everkinetic.com/?action=image&id=436&number=0&key=69cadbdd2&version=5b45371b&size=280,420", "http://img.everkinetic.com/?action=image&id=436&number=1&key=69cadbdd2&version=7a1d6486&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(3, "Push Ups", "This exercise is the main strengthening exercise when wanting to strengthen ones chest, biceps and triceps as well as core muscles.", "Start with a basic push up, lay face down on the floor, or a mat; with your feet together curled slightly so you rise onto the ball of your feet.\n" +
                 "Place you hands shoulder width apart on the either side of your chest.\n" +
                 "Draw your abs in.\n" +
                 "Inhale as you raise your body up till your arms are straight.\n" +
                 "Keep your head and neck level with your body (don’t look up or down) and don’t allow your back to rise or fall.\n" +
                 "Exhale out as you lower your body back to the ground.\n" +
-                "Repeat.", "", "", new RealmList<SetDTO>()));
+                "Repeat.", "http://img.everkinetic.com/?action=image&id=340&number=0&key=69cadbdd2&version=52850b73&size=280,420", "http://img.everkinetic.com/?action=image&id=340&number=1&key=69cadbdd2&version=b3f29a67&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(4, "Pull Ups", "This is an exercise in lats, biceps and middle back strengthening.", "Grab the pull-up bar with the palms facing forward using the prescribed grip.\n" +
                 "As you have both arms extended in front of you holding the bar at the chosen grip width, bring your torso back around 30 degrees or so while creating a curvature on your lower back and sticking your chest out. This is your starting position.\n" +
                 "Pull your torso up until the bar touches your upper chest by drawing the shoulders and the upper arms down and back. Exhale as you perform this portion of the movement.\n" +

@@ -1,8 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="dk.bepeaked.bodybook.Fragments.Training.ExerciseHelp_frag">
 
     <ScrollView
@@ -12,35 +12,37 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="150dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    app:srcCompat="@android:color/background_light"
-                    android:id="@+id/ex_imagebefore"
-                    android:layout_weight="50"
-                    android:layout_height="150dp" />
+            <ImageView
+                android:id="@+id/exercise_image1"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_weight="50"
+                 />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    app:srcCompat="@android:color/background_light"
-                    android:id="@+id/ex_imageafter"
-                    android:layout_weight="50"
-                    android:layout_height="150dp" />
+            <ImageView
+                android:id="@+id/exercise_image2"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_weight="50"
+                />
 
-            </LinearLayout>
+        </LinearLayout>
+
+
 
             <TextView
-                android:text="@string/hello_blank_fragment"
+                android:id="@+id/ex_descriptiontext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/ex_descriptiontext"
                 android:layout_weight="1"
+                android:text="@string/hello_blank_fragment"
                 android:textSize="16sp" />
 
         </LinearLayout>

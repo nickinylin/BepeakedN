@@ -1,7 +1,10 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +12,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.NetworkImageView;
+
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
+import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
+import dk.bepeaked.bodybook.Backend.VolleyImageHelper;
+import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 
 /**
@@ -22,6 +35,9 @@ public class ExerciseHelp_frag extends Fragment {
     String exerciseName;
     String exerciseDesc1;
     String exerciseDesc2;
+    ExerciseDTO exerciseDTO;
+    ImageView imageView1, imageView2;
+    Bitmap response1, response2;
 
     public ExerciseHelp_frag() {
         // Required empty public constructor
@@ -37,24 +53,56 @@ public class ExerciseHelp_frag extends Fragment {
 
         exerciseID = getArguments().getInt("chosenExerciseID", 99999);
 
-        exerciseName = wc.getExercise(exerciseID).getName();
-        exerciseDesc1 = wc.getExercise(exerciseID).getDesc1();
-        exerciseDesc2= wc.getExercise(exerciseID).getDesc2();
+        exerciseDTO = wc.getExercise(exerciseID);
+        exerciseName = exerciseDTO.getName();
+        exerciseDesc1 = exerciseDTO.getDesc1();
+        exerciseDesc2 = exerciseDTO.getDesc2();
+        final String imagePath1 = exerciseDTO.getImagePath1();
+        final String imagePath2 = exerciseDTO.getImagePath2();
+
+        imageView1 = (ImageView) rod.findViewById(R.id.exercise_image1);
+        imageView2 = (ImageView) rod.findViewById(R.id.exercise_image2);
+
 
         TextView description = (TextView) rod.findViewById(R.id.ex_descriptiontext);
-        description.setText(exerciseName + " \n " +  " \n" + exerciseDesc1 +" \n " +  " \n" + exerciseDesc2);
+        description.setText(exerciseName + " \n " + " \n" + exerciseDesc1 + " \n " + " \n" + exerciseDesc2);
 
 
-        ImageView before = (ImageView) rod.findViewById(R.id.ex_imagebefore);
-        ImageView after = (ImageView) rod.findViewById(R.id.ex_imageafter);
+        // Her anvendes baggrundstråde, implementeret med en ekstern pakke Volley.
 
-        before.setImageResource(R.drawable.coming_soon2);
-        after.setImageResource(R.drawable.coming_soon2);
+        //ImageView 1 loades
+        ImageRequest imageRequest1 = new ImageRequest(imagePath1,
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap response) {
+                        imageView1.setImageBitmap(response);
+                    }
+                }, 0, 0, ImageView.ScaleType.FIT_CENTER, null, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Snackbar.make(getView(), "Fejl - billedet kunne ikke hentes", Snackbar.LENGTH_LONG).show();
+            }
 
+        });
+        VolleyImageHelper.getInstance(getActivity()).addToRequestQue(imageRequest1);
 
+        //ImageView 2 loades
+        ImageRequest imageRequest2 = new ImageRequest(imagePath2,
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap response) {
+                        imageView2.setImageBitmap(response);
+                    }
+                }, 0, 0, ImageView.ScaleType.FIT_CENTER, null, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Snackbar.make(getView(), "Fejl - billedet kunne ikke hentes", Snackbar.LENGTH_LONG).show();
+            }
+
+        });
+        VolleyImageHelper.getInstance(getActivity()).addToRequestQue(imageRequest2);
 
         return rod;
-
     }
 
 }
