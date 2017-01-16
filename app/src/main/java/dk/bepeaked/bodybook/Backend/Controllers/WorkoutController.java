@@ -301,7 +301,13 @@ public class WorkoutController {
      * @param exerciseID
      * @param newName
      */
-    public void updateExercise(int exerciseID, String newName) throws ExceptionCantDelete {
+    public void updateExercise(int exerciseID, String newName) throws ExceptionCantDelete, ExceptionNameAlreadyExist {
+        RealmList<ExerciseDTO> exercise = getAllExercises();
+        for (int i = 0; i < exercise.size(); i++) {
+            if (newName.equals(exercise.get(i).getName())) {
+                throw new ExceptionNameAlreadyExist("An exercise with the name " + newName + " already exist");
+            }
+        }
         exerciseDAO.updateExerciseName(exerciseID, newName);
     }
 
