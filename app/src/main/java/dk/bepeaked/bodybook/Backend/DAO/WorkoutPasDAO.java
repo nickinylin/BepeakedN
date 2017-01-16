@@ -1,5 +1,7 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
+import android.util.Log;
+
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
@@ -112,25 +114,7 @@ public class WorkoutPasDAO {
      * @throws Exception if it doesn't exist in the plan
      */
     public void deletePas(int pasId) throws ExceptionPasDoesntExist {
-
-//        int position = -1;
-//
-//        WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("id", planId).findFirst();
-//
-//        RealmList<WorkoutPasDTO> realmPas = realmPlan.getWorkoutPasses();
-//        for (int i = 0; i < realmPas.size(); i++) {
-//            if (realmPas.get(i).getID()==(pasId)) {
-//                position = i;
-//                break;
-//            }
-//        }
-//
-//        if (position == -1) {
-//            throw new ExceptionPasDoesntExist("The pas "+getPasses()+" in " + planId + " doesnt exist");
-//        } else {
-//            RealmList<ExerciseGoals> goals = pas.getExercises();
-
-
+        Log.d("Nicki", "deletePas: " + pasId);
         WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("id", pasId).findFirst();
         RealmList<ExerciseGoals> goals = new RealmList<ExerciseGoals>();
         try {
@@ -139,15 +123,12 @@ public class WorkoutPasDAO {
 
         }
 
-
-
         realm.beginTransaction();
         for (int i = 0; i < goals.size(); i++) {
             goals.get(i).deleteFromRealm();
         }
         pas.deleteFromRealm();
         realm.commitTransaction();
-
     }
 
     /**
