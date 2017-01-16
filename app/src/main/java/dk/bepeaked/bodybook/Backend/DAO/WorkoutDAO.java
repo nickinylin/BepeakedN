@@ -102,7 +102,7 @@ public class WorkoutDAO {
         WorkoutDTO workoutDTO = workoutDTO = realm.where(WorkoutDTO.class).equalTo("id", id).findFirst();
 
         for(int i = 0; i < workoutDTO.getWorkoutPasses().size(); i++){
-            workoutPasDAO.deletePas(id);
+            workoutPasDAO.deletePas(i);
 
         }
     }

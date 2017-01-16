@@ -56,7 +56,7 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.listview_plan, container, false);
+        View view = inflater.inflate(R.layout.listview, container, false);
         singleton = Singleton.singleton;
         singleton.listen(this);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -70,7 +70,7 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
 
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPlanNames);
 
-        listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id2);
+        listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id);
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
 

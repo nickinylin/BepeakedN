@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionCantDelete;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
@@ -65,6 +66,9 @@ public class DialogDeletePlan_frag extends DialogFragment implements View.OnClic
             } catch (ExceptionPasDoesntExist e) {
                 e.printStackTrace();
                 tv.setText("Der opstod en fejl ved sletning");
+            } catch (ExceptionCantDelete e) {
+                e.printStackTrace();
+                tv.setText(e.getMessage());
             }
         } else if (v == btnCancel) {
             dismiss();

@@ -138,7 +138,14 @@ public class WorkoutPasDAO {
 
 
         WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("id", pasId).findFirst();
-        RealmList<ExerciseGoals> goals = pas.getExercises();
+        RealmList<ExerciseGoals> goals = new RealmList<ExerciseGoals>();
+        try {
+            goals = pas.getExercises();
+        } catch (NullPointerException e) {
+
+        }
+
+
 
         realm.beginTransaction();
         for (int i = 0; i < goals.size(); i++) {
