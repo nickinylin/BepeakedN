@@ -16,7 +16,6 @@ import io.realm.RealmList;
 public class PlanDAO {
     CsvDAO dao = new CsvDAO();
     WorkoutController wc = new WorkoutController();
-    private ArrayList<WorkoutDTO> savedDTO = new ArrayList<>();
 
     public void getWorkouts(Activity act, String file){
         ArrayList<WorkoutDTO> dtos = new ArrayList<>();
@@ -56,22 +55,18 @@ public class PlanDAO {
                         break;
                     }
                 }
-                for (int l = 0; l < cleanData2.get(indexStart).size(); l++) {
+                for (int l = 0; l < cleanData2.get(indexStart+1).size(); l++) {
                     WorkoutPasDTO pas = new WorkoutPasDTO();
-                    RealmList<ExerciseDTO> exercises = new RealmList<>();
                     RealmList<ExerciseGoals> goals = new RealmList<>();
-                    Log.d("sebby", "getWorkouts: " + cleanData2.get(indexStart + 1).get(1));
                     String pasName = cleanData2.get(indexStart + 1).get(l);
                     pas.setName(pasName);
 
                     for (int k = indexStart + 2; k < indexEnd - 1; k++) {
                         for (int m = 0; m < exes.size(); m++) {
-                            Log.d("sebby", "getWorkouts exer: " + cleanData2.get(k).get(l).split("\\.")[0]);
-                            if (exes.get(m).getName().equals(cleanData2.get(k).get(l).split("\\.")[0])) {
-                                exercises.add(exes.get(m));
-                                String goalName = cleanData2.get(k).get(l).split("\\.")[0];
-                                int set = Integer.parseInt(cleanData2.get(k).get(l).split("\\.")[1].split("x")[0]);
-                                int reps = Integer.parseInt(cleanData2.get(k).get(l).split("\\.")[1].split("x")[1]);
+                            if (exes.get(m).getName().equals(cleanData2.get(k).get(l).split(":")[0])) {
+                                String goalName = cleanData2.get(k).get(l).split(":")[0];
+                                int set = Integer.parseInt(cleanData2.get(k).get(l).split(":")[1].split("x")[0].replaceAll("\\D+",""));
+                                int reps = Integer.parseInt(cleanData2.get(k).get(l).split(":")[1].split("x")[1].replaceAll("\\D+",""));
                                 ExerciseGoals goal = new ExerciseGoals();
                                 goal.setName(goalName);
                                 goal.setSet(set);
@@ -106,7 +101,7 @@ public class PlanDAO {
             RealmList<WorkoutPasDTO> workoutPasDTOs = dtos.get(i).getWorkoutPasses();
             for (int j = 0; j < workoutPasDTOs.size(); j++) {
                 try {
-                    wc.addNewPasToPlan(planID, workoutPasDTOs.get(i).getName());
+                    wc.addNewPasToPlan(planID, workoutPasDTOs.get(j).getName());
                 } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
                     exceptionNameAlreadyExist.printStackTrace();
                 }
@@ -116,11 +111,10 @@ public class PlanDAO {
                     RealmList<ExerciseDTO> exercises = wc.getAllExercises();
                     boolean exist = false;
                     for(int k = 0; k< exercises.size(); k++) {
-                        if (goals.get(l).getName().equals(exercises.get(k))){
+                        if (goals.get(l).getName().equals(exercises.get(k).getName())){
                            exist = true;
                         }
                         if(exist){
-                            exist = false;
                             try {
                                 wc.createNewExercise(goals.get(l).getName());
                             } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
@@ -130,8 +124,14 @@ public class PlanDAO {
                         }
                     }
 
+                    Log.d("sebby", "getWorkouts: " + workoutPasDTOs.get(j).getID());
+                    Log.d("sebby", "getWorkouts: " + goals.get(l).getName());
+                    Log.d("sebby", "getWorkouts: " + goals.get(l).getSet());
+                    Log.d("sebby", "getWorkouts: " + goals.get(l).getReps());
+
                     try {
-                        wc.addExerciseToPas(workoutPasDTOs.get(j).getID(), goals.get(l).getName(), goals.get(l).getSet(), goals.get(l).getReps());
+                        int id = wc.getPasses(planID).get(j).getID();
+                        wc.addExerciseToPas(id, goals.get(l).getName(), goals.get(l).getSet(), goals.get(l).getReps());
                     } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
                         exceptionNameAlreadyExist.printStackTrace();
                     }

@@ -1,15 +1,9 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
-import android.util.Log;
-
-import org.apache.commons.lang3.ObjectUtils;
-
-import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
-import dk.bepeaked.bodybook.Backend.Exception.ExceptionNullPointer;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -171,14 +165,17 @@ public class WorkoutPasDAO {
         try {
             ExerciseGoals goal = realm.where(ExerciseGoals.class).findAll().last();
             id = goal.getID() + 1;
+            for (int i = 0; i < realmPas.getExercises().size(); i++) {
+                if (realmPas.getExercises().get(i).getName().equals(exerciseName)) {
+                    throw new ExceptionNameAlreadyExist("The exercise " + exerciseName + " already exist in a pas");
+                }
+            }
         }catch (IndexOutOfBoundsException e){
             id = 1;
+        }catch (NullPointerException e){
+            id = 1;
         }
-        for (int i = 0; i < realmPas.getExercises().size(); i++) {
-            if (realmPas.getExercises().get(i).getName().equals(exerciseName)) {
-                throw new ExceptionNameAlreadyExist("The exercise " + exerciseName + " already exist in a pas");
-            }
-        }
+
 //              else {
 //                if (realmPas.get(i).getName().equals(pasName)) {
 //                    position = i;
