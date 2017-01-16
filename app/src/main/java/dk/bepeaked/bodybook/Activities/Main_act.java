@@ -123,15 +123,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_profile) {
-            Profile_frag fragment = new Profile_frag();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("stack");
-//            fragmentTransaction.addToBackStack("hej");
-            fragmentTransaction.commit();
-
-
-        } else if (id == R.id.nav_trainingplan) {
+        if (id == R.id.nav_trainingplan) {
             Pas_frag fragment = new Pas_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("stack");
