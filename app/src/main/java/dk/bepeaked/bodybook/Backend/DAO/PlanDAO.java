@@ -1,6 +1,7 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
 import android.app.Activity;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -55,21 +56,27 @@ public class PlanDAO {
                         break;
                     }
                 }
-                for (int l = 0; l < 2; l++) {
+                for (int l = 0; l < cleanData2.get(indexStart).size(); l++) {
                     WorkoutPasDTO pas = new WorkoutPasDTO();
                     RealmList<ExerciseDTO> exercises = new RealmList<>();
                     RealmList<ExerciseGoals> goals = new RealmList<>();
+                    Log.d("sebby", "getWorkouts: " + cleanData2.get(indexStart + 1).get(1));
                     String pasName = cleanData2.get(indexStart + 1).get(l);
                     pas.setName(pasName);
 
                     for (int k = indexStart + 2; k < indexEnd - 1; k++) {
                         for (int m = 0; m < exes.size(); m++) {
+                            Log.d("sebby", "getWorkouts exer: " + cleanData2.get(k).get(l).split("\\.")[0]);
                             if (exes.get(m).getName().equals(cleanData2.get(k).get(l).split("\\.")[0])) {
                                 exercises.add(exes.get(m));
                                 String goalName = cleanData2.get(k).get(l).split("\\.")[0];
                                 int set = Integer.parseInt(cleanData2.get(k).get(l).split("\\.")[1].split("x")[0]);
                                 int reps = Integer.parseInt(cleanData2.get(k).get(l).split("\\.")[1].split("x")[1]);
-                                //        goals.add(new ExerciseGoals(goalName, set, reps));
+                                ExerciseGoals goal = new ExerciseGoals();
+                                goal.setName(goalName);
+                                goal.setSet(set);
+                                goal.setReps(reps);
+                                goals.add(goal);
                             } else {
                                 //TODO fejlmeddelelse hvis øvelsen ikke findes
                             }
@@ -91,7 +98,7 @@ public class PlanDAO {
             }
             int planID = 0;
             for(int l=0; l<wc.getPlans().size(); l++){
-                if(wc.getPlans().get(l).equals(dtos.get(i).getName())){
+                if(wc.getPlans().get(l).getName().equals(dtos.get(i).getName())){
                     planID = wc.getPlans().get(l).getID();
                 }
             }
