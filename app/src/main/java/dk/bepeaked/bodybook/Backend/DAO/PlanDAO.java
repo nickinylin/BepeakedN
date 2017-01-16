@@ -55,13 +55,18 @@ public class PlanDAO {
                         break;
                     }
                 }
+                if (indexEnd < indexStart){
+                    indexEnd = cleanData2.size();
+                }
                 for (int l = 0; l < cleanData2.get(indexStart+1).size(); l++) {
                     WorkoutPasDTO pas = new WorkoutPasDTO();
                     RealmList<ExerciseGoals> goals = new RealmList<>();
                     String pasName = cleanData2.get(indexStart + 1).get(l);
                     pas.setName(pasName);
 
-                    for (int k = indexStart + 2; k < indexEnd - 1; k++) {
+                    for (int k = indexStart + 2; k < indexEnd; k++) {
+                        Log.d("sebby", "getWorkouts: " + k);
+                        Log.d("sebby", "getWorkouts2: " + cleanData2.get(k).get(l).split(":")[0]);
                         for (int m = 0; m < exes.size(); m++) {
                             if (exes.get(m).getName().equals(cleanData2.get(k).get(l).split(":")[0])) {
                                 String goalName = cleanData2.get(k).get(l).split(":")[0];
@@ -72,6 +77,7 @@ public class PlanDAO {
                                 goal.setSet(set);
                                 goal.setReps(reps);
                                 goals.add(goal);
+                                break;
                             } else {
                                 //TODO fejlmeddelelse hvis øvelsen ikke findes
                             }
@@ -92,7 +98,7 @@ public class PlanDAO {
                 exceptionNameAlreadyExist.printStackTrace();
             }
             int planID = 0;
-            for(int l=0; l<wc.getPlans().size(); l++){
+            for(int l = 0; l < wc.getPlans().size(); l++){
                 if(wc.getPlans().get(l).getName().equals(dtos.get(i).getName())){
                     planID = wc.getPlans().get(l).getID();
                 }
@@ -105,7 +111,8 @@ public class PlanDAO {
                 } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
                     exceptionNameAlreadyExist.printStackTrace();
                 }
-                for(int l = 0; l<workoutPasDTOs.get(j).getExercises().size(); l++){
+                Log.d("sebby", "getWorkouts: " + workoutPasDTOs.get(j).getExercises().size());
+                for(int l = 0; l < workoutPasDTOs.get(j).getExercises().size(); l++){
 
                     RealmList<ExerciseGoals> goals = workoutPasDTOs.get(j).getExercises();
                     RealmList<ExerciseDTO> exercises = wc.getAllExercises();
@@ -123,11 +130,6 @@ public class PlanDAO {
                             break;
                         }
                     }
-
-                    Log.d("sebby", "getWorkouts: " + workoutPasDTOs.get(j).getID());
-                    Log.d("sebby", "getWorkouts: " + goals.get(l).getName());
-                    Log.d("sebby", "getWorkouts: " + goals.get(l).getSet());
-                    Log.d("sebby", "getWorkouts: " + goals.get(l).getReps());
 
                     try {
                         int id = wc.getPasses(planID).get(j).getID();
