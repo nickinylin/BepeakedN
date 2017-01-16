@@ -101,8 +101,12 @@ public class WorkoutController {
      *
      * @param planID the plan to be deleted
      */
-    public void deletePlan(int planID) throws ExceptionPasDoesntExist {
-        workoutDAO.deletePlan(planID);
+    public void deletePlan(int planID) throws ExceptionPasDoesntExist, ExceptionCantDelete {
+        if(getPlans().size()<1) {
+            workoutDAO.deletePlan(planID);
+        }else{
+            throw new ExceptionCantDelete("You can't delete the last plan");
+        }
     }
 
     /**

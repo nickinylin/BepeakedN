@@ -91,8 +91,8 @@ public class WorkoutDAO {
 
         WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("id", id).findFirst();
 
-        realm.beginTransaction();
         cleanPlan(id);
+        realm.beginTransaction();
         plan.deleteFromRealm();
         realm.commitTransaction();
     }
