@@ -77,7 +77,8 @@ public class WorkoutDAO {
 //                }
 //            }
         }
-        realm.commitTransaction();
+
+        realm.beginTransaction();
         WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("id", id).findFirst();
         plan.setName(newname);
         realm.commitTransaction();

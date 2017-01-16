@@ -69,6 +69,7 @@ public class DialogEditPlan_frag extends DialogFragment implements View.OnClickL
 
             try {
                 wc.updatePlanName(planID, newPlanName);
+                dismiss();
             } catch (ExceptionPasDoesntExist e) {
                 e.printStackTrace();
                 tv.setText("Der skete en fejl");
@@ -76,7 +77,7 @@ public class DialogEditPlan_frag extends DialogFragment implements View.OnClickL
                 e.printStackTrace();
                 tv.setText("Navnet eksisterer allerede");
             }
-            dismiss();
+
 
         } else if (v == btnCancel) {
             dismiss();
