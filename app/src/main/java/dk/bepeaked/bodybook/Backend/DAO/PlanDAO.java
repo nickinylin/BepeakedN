@@ -46,19 +46,22 @@ public class PlanDAO {
             RealmList<WorkoutPasDTO> passes = new RealmList<>();
             String name;
             boolean exist = false;
-            if (cleanData2.get(i).get(0).contains("Plan")) {
+            if (cleanData2.get(i).get(0).contains("Plan:")) {
                 indexStart = i;
                 nameSplit = cleanData2.get(i).get(0).split(":");
                 name = nameSplit[1];
+                Log.d("sebby", "getWorkoutsName: " + cleanData2.size());
                 RealmList<WorkoutDTO> plans = wc.getPlans();
                 for (int j = 0; j < plans.size(); j++) {
+                    Log.d("sebby", "JAJAJAJA " + name + " " + plans.get(j).getName());
                     if (name.equals(plans.get(j).getName())) {
                         exist = true;
+                        break;
                     }
                 }
                 if (!(exist)) {
                     for (int j = i + 1; j < cleanData2.size(); j++) {
-                        if (cleanData2.get(j).get(0).contains("Plan")) {
+                        if (cleanData2.get(j).get(0).contains("Plan:")) {
                             indexEnd = j;
                             break;
                         }
@@ -96,21 +99,26 @@ public class PlanDAO {
                     dto.setName(name);
                     dtos.add(dto);
                 }
+                Log.d("sebby", "getWorkouts: " + exist);
             }
-            if(!(exist)){
+        }
+        if (dtos.size() > 0) {
+            for (int m = 0; m < dtos.size(); m++) {
                 try {
-                    wc.addPlan(dtos.get(i).getName());
+                    wc.addPlan(dtos.get(m).getName());
                 } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
                     exceptionNameAlreadyExist.printStackTrace();
                 }
+
                 int planID = 0;
                 for (int l = 0; l < wc.getPlans().size(); l++) {
-                    if (wc.getPlans().get(l).getName().equals(dtos.get(i).getName())) {
+                    if (wc.getPlans().get(l).getName().equals(dtos.get(m).getName())) {
                         planID = wc.getPlans().get(l).getID();
+                        break;
                     }
                 }
 
-                RealmList<WorkoutPasDTO> workoutPasDTOs = dtos.get(i).getWorkoutPasses();
+                RealmList<WorkoutPasDTO> workoutPasDTOs = dtos.get(m).getWorkoutPasses();
                 for (int j = 0; j < workoutPasDTOs.size(); j++) {
                     try {
                         wc.addNewPasToPlan(planID, workoutPasDTOs.get(j).getName());
@@ -126,6 +134,7 @@ public class PlanDAO {
                         for (int k = 0; k < exercises.size(); k++) {
                             if (goals.get(l).getName().equals(exercises.get(k).getName())) {
                                 exists = true;
+                                break;
                             }
                             if (exists) {
                                 try {
