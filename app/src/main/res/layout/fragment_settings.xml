@@ -32,7 +32,8 @@
             android:textOn="Pounds"
             android:textColor="@color/F5ABC73"
             android:textSize="18sp"
-            android:layout_weight=".30" />
+            android:layout_weight=".30"
+            android:backgroundTint="@color/colorPrimaryDark"/>
 
     </LinearLayout>
     <ListView
