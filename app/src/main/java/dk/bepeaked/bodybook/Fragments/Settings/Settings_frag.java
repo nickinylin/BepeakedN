@@ -65,7 +65,7 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == 1) {
-            MeasureUnit_frag fragment = new MeasureUnit_frag();
+            About_frag fragment = new About_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("stack");
             fragmentTransaction.commit();

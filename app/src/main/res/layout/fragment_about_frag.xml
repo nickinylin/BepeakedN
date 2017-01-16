@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="dk.bepeaked.bodybook.Fragments.Settings.MeasureUnit_frag"
+    tools:context="dk.bepeaked.bodybook.Fragments.Settings.About_frag"
     android:padding="10dp">
 
     <LinearLayout
@@ -14,18 +14,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/about"
+            android:textSize="17dp"
             android:text="Denne mobile applikation tilhører bepeaked. Bepeaked er en virksomhed, som skaber træningsprogrammer og kostplaner til deres kunder." />
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/linkView"
-                android:layout_weight="0.50" />
+                android:textSize="19dp"
+                android:textColorLink="@android:color/white"
+                android:id="@+id/linkView" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:textSize="17dp"
+                android:text="Øvelsesbiblioteket bliver hentet fra Everkinetic."/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19dp"
+                android:textColorLink="@android:color/white"
+                android:id="@+id/linkView2" />
+
+
         </LinearLayout>
 
     </LinearLayout>

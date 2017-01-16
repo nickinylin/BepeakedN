@@ -416,12 +416,8 @@ public class WorkoutController {
             if (reps == 37) {
                 repsudregning++;
             }
-            //Brzycki 1RM formula
 
-            Log.d("LUKAS", "repsudregning: " + repsudregning);
             Double RM = kg * Math.pow(repsudregning, 0.10);
-
-            Log.d("LUKAS", "RM: " + RM);
 
             newSet = new SetDTO(id, exerciseName, kg, reps, date, RM);
             setDAO.addSet(exerciseName, newSet);

@@ -4,7 +4,6 @@ package dk.bepeaked.bodybook.Fragments.Training;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -13,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.BounceInterpolator;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -21,18 +19,12 @@ import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
-import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
-import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Date;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
@@ -51,6 +43,7 @@ import static android.graphics.Color.WHITE;
  */
 public class ChosenExercise_frag extends Fragment implements View.OnClickListener, View.OnLongClickListener, AdapterView.OnItemLongClickListener, Runnable {
 
+    RealmList<SetDTO> realmList;
     RealmList<SetDTO> realmListSets;
     FloatingActionButton fab;
     NumberPicker npWeight1, npWeight2, npReps;
@@ -139,63 +132,19 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         graph.addSeries(series);
 
         try {
-            realmListSets = wc.getSetsFromExercise(exerciseID);
+            realmList = wc.getSetsFromExercise(exerciseID);
         } catch (ExceptionExerciseDoesntExist e) {
             e.printStackTrace();
         }
-//        Collections.reverse(realmListSets);
-
-//        listView = (SwipeMenuListView) view.findViewById(R.id.SwipeListView_chosen_exercise);
+        realmListSets = new RealmList<>();
+        for (int i = realmList.size()-1; i > 0; i--){
+            realmListSets.add(realmList.get(i));
+        }
 
         listView = (ListView) view.findViewById(R.id.LW_chosenExercise);
         ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter();
         listView.setOnItemLongClickListener(this);
         listView.setAdapter(exerciseListAdapter);
-
-//        SwipeMenuCreator creator = new SwipeMenuCreator() {
-//
-//            @Override
-//            public void create(SwipeMenu menu) {
-//                // create "delete" item
-//                SwipeMenuItem deleteItem = new SwipeMenuItem(
-//                        getActivity().getApplicationContext());
-//                // set item width
-//                deleteItem.setWidth(900);
-//                deleteItem.setTitle("SLET");
-//                // set a icon
-//                deleteItem.setIcon(R.drawable.ic_delete_forever_white_24dp);
-//                // add to menu
-//                menu.addMenuItem(deleteItem);
-//            }
-//        };
-//
-//// set creator
-//
-//        listView.setMenuCreator(creator);
-//
-//        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-//                switch (index) {
-//                    case 0:
-//                        //delete
-////                        bundleArgs.putString("planName", planName);
-////                        bundleArgs.putString("pasName", pasName);
-////                        bundleArgs.putString("exerciseName", realmListExercises.get(position).getName());
-//
-//                        DialogDeleteExerciseFromPas_frag dialog = new DialogDeleteExerciseFromPas_frag();
-//                        dialog.setArguments(bundleArgs);
-//                        dialog.show(getFragmentManager(), "Empty_pas");
-//
-//                        break;
-//                }
-//                // false : close the menu; true : not close the menu
-//                return false;
-//            }
-//        });
-//
-//        listView.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
-//        listView.setCloseInterpolator(new BounceInterpolator());
 
         fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton_add_set);
 
@@ -303,7 +252,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
             boolean measurement = prefs.getBoolean("measurement", false);
             int weightInt = (int) realmListSets.get(position).getWeight();
-            int rmInt = (int) realmListSets.get(position).getRm();
+            int rmInt = (int) Math.round(realmListSets.get(position).getRm());
             if (measurement) {
                 weightInt = convertKilo(weightInt);
                 rmInt = convertKilo(rmInt);
@@ -322,7 +271,11 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             Date date = new Date(9999, 12, 10);
             stringDateLast = dateFormatter.format(date);
             Log.d("LUKAS", "latest date er nu: " +stringDateLast);
-            realmListSets = wc.getSetsFromExercise(exerciseID);
+            realmList = wc.getSetsFromExercise(exerciseID);
+            realmListSets.clear();
+            for (int i = realmList.size()-1; i > 0; i--){
+                realmListSets.add(realmList.get(i));
+            }
         } catch (ExceptionExerciseDoesntExist e) {
             e.printStackTrace();
         }

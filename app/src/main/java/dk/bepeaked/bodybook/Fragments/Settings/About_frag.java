@@ -15,10 +15,10 @@ import dk.bepeaked.bodybook.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MeasureUnit_frag extends Fragment {
+public class About_frag extends Fragment {
 
 
-    public MeasureUnit_frag() {
+    public About_frag() {
         // Required empty public constructor
     }
 
@@ -28,11 +28,17 @@ public class MeasureUnit_frag extends Fragment {
                              Bundle savedInstanceState) {
        View view = inflater.inflate(R.layout.fragment_about_frag, container, false);
 
-        TextView link = (TextView) view.findViewById(R.id.linkView);
-        link.setText(
+        TextView bepeakedHomepage = (TextView) view.findViewById(R.id.linkView);
+        bepeakedHomepage.setText(
                 Html.fromHtml(
-                        "<a href=\"http://bepeaked.com\">Link til hjemmeside</a> "));
-        link.setMovementMethod(LinkMovementMethod.getInstance());
+                        "<a href=\"http://bepeaked.com\">Link til bepeakeds hjemmeside</a> "));
+        bepeakedHomepage.setMovementMethod(LinkMovementMethod.getInstance());
+
+        TextView everkineticHomepage = (TextView) view.findViewById(R.id.linkView2);
+        everkineticHomepage.setText(
+                Html.fromHtml(
+                        "<a href=\"http://db.everkinetic.com/\">Link til Everkinetics hjemmeside</a> "));
+        everkineticHomepage.setMovementMethod(LinkMovementMethod.getInstance());
 
         return view;
     }
