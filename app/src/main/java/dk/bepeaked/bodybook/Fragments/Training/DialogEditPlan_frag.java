@@ -27,8 +27,6 @@ public class DialogEditPlan_frag extends DialogFragment implements View.OnClickL
     Button btnOK, btnCancel;
     TextView tv;
     EditText et;
-    Bundle argumens;
-    String pasName;
     int planID;
     Singleton singleton;
 
@@ -46,7 +44,6 @@ public class DialogEditPlan_frag extends DialogFragment implements View.OnClickL
         View view = inflater.inflate(R.layout.fragment_dialog_edit_frag, container, false);
         singleton = Singleton.singleton;
         planID = getArguments().getInt("planID", 9999);
-//        planName = getArguments().getString("planName", "Empty");
 
         btnOK = (Button) view.findViewById(R.id.button_dialog_delete_OK);
         btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_Cancel);

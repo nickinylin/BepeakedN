@@ -26,7 +26,6 @@ public class DialogDeleteExercisePermanently_frag extends DialogFragment impleme
     WorkoutController wc = new WorkoutController();
     Button btnOK, btnCancel;
     TextView tv;
-    String pasName, planName;
     int exerciseID;
     Singleton singleton;
 

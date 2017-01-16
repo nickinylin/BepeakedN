@@ -28,7 +28,6 @@ public class DialogEditExercise_frag extends DialogFragment implements View.OnCl
     Button btnOK, btnCancel;
     TextView tv;
     EditText et;
-    String pasName;
     int exerciseID;
     Singleton singleton;
 

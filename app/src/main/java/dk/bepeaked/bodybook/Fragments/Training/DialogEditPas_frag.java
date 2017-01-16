@@ -27,7 +27,6 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
     Button btnOK, btnCancel;
     TextView tv;
     EditText et;
-    String pasName;
     int pasID;
     Singleton singleton;
 

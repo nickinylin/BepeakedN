@@ -28,9 +28,7 @@ public class DialogDescription_frag extends android.support.v4.app.DialogFragmen
 
     WorkoutController wc;
     int exerciseID;
-    String pasNew;
     TextView tvTitle, tvDesc1, tvDesc2;
-    EditText et;
     Button btn;
     SharedPreferences prefs;
     Singleton singleton;

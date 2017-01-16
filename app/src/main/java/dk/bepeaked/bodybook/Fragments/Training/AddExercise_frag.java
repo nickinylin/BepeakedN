@@ -118,7 +118,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
                 SwipeMenuItem descriptionItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
                 descriptionItem.setWidth(300);
-                descriptionItem.setIcon(R.drawable.ic_done_white_24dp);
+                descriptionItem.setIcon(R.drawable.ic_info_outline_white_24dp);
                 menu.addMenuItem(descriptionItem);
             }
         };

@@ -6,15 +6,14 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.R;
 
 /**
@@ -22,9 +21,8 @@ import dk.bepeaked.bodybook.R;
  */
 public class TabLayoutExercise_frag extends Fragment {
 
-    TabLayout tabLayout;
-    ViewPager viewPager;
     Bundle bundleArgs = new Bundle();
+    WorkoutController wc;
 
     public TabLayoutExercise_frag() {
         // Required empty public constructor
@@ -36,6 +34,11 @@ public class TabLayoutExercise_frag extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.tablayout_exercise, container, false);
+        wc = new WorkoutController();
+
+        getActivity().setTitle(wc.getExercise(getArguments().getInt("chosenExerciseID", 9999)).getName());
+
+        ;
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Exercise"));

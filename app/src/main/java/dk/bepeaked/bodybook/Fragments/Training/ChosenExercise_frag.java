@@ -46,8 +46,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     RealmList<SetDTO> realmList;
     RealmList<SetDTO> realmListSets;
     FloatingActionButton fab;
-    NumberPicker npWeight1, npWeight2, npReps;
-    Button btnOK, btnCancel;
     SharedPreferences prefs;
     ExerciseDTO dto;
     Bundle bundleArgs;
@@ -86,9 +84,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         exerciseID = getArguments().getInt("chosenExerciseID", 99999);
 
         exerciseName = wc.getExercise(exerciseID).getName();
-        Log.d("Nicki", "CHOSENE - exerciseID" + exerciseID + " NAVN " + exerciseName);
 
-        getActivity().setTitle(exerciseName);
+
 
 
         GraphView graph = (GraphView) view.findViewById(R.id.graph);

@@ -24,7 +24,6 @@ public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements 
     WorkoutController wc = new WorkoutController();
     Button btnOK, btnCancel;
     TextView tv;
-    String pasName;
     int pasID, planID, exerciseGoalsID;
     Singleton singleton;
 

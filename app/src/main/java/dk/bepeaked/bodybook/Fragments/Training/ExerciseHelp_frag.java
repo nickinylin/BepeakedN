@@ -37,7 +37,6 @@ public class ExerciseHelp_frag extends Fragment {
     String exerciseDesc2;
     ExerciseDTO exerciseDTO;
     ImageView imageView1, imageView2;
-    Bitmap response1, response2;
 
     public ExerciseHelp_frag() {
         // Required empty public constructor
@@ -48,7 +47,7 @@ public class ExerciseHelp_frag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rod = inflater.inflate(R.layout.fragment_exercise_help_frag, container, false);
+        View view = inflater.inflate(R.layout.fragment_exercise_help_frag, container, false);
         wc = new WorkoutController();
 
         exerciseID = getArguments().getInt("chosenExerciseID", 99999);
@@ -60,11 +59,11 @@ public class ExerciseHelp_frag extends Fragment {
         final String imagePath1 = exerciseDTO.getImagePath1();
         final String imagePath2 = exerciseDTO.getImagePath2();
 
-        imageView1 = (ImageView) rod.findViewById(R.id.exercise_image1);
-        imageView2 = (ImageView) rod.findViewById(R.id.exercise_image2);
+        imageView1 = (ImageView) view.findViewById(R.id.exercise_image1);
+        imageView2 = (ImageView) view.findViewById(R.id.exercise_image2);
 
 
-        TextView description = (TextView) rod.findViewById(R.id.ex_descriptiontext);
+        TextView description = (TextView) view.findViewById(R.id.ex_descriptiontext);
         description.setText(exerciseName + " \n " + " \n" + exerciseDesc1 + " \n " + " \n" + exerciseDesc2);
 
 
@@ -102,7 +101,7 @@ public class ExerciseHelp_frag extends Fragment {
         });
         VolleyImageHelper.getInstance(getActivity()).addToRequestQue(imageRequest2);
 
-        return rod;
+        return view;
     }
 
 }

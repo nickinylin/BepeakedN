@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -45,7 +46,6 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     SwipeMenuListView listView;
     ArrayAdapter adapter;
     RealmList<WorkoutPasDTO> realmListPas;
-    boolean screenRotation = false;
     Singleton singleton;
 
 
@@ -59,9 +59,8 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listview, container, false);
 
-        if (savedInstanceState != null) {
-            screenRotation = true;
-        }
+
+
         singleton = Singleton.singleton;
         singleton.listen(this);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());

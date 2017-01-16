@@ -26,7 +26,6 @@ public class DialogDeletePlan_frag extends DialogFragment implements View.OnClic
     WorkoutController wc = new WorkoutController();
     Button btnOK, btnCancel;
     TextView tv;
-    String planName;
     int pasID, planID;
     Singleton singleton;
 
