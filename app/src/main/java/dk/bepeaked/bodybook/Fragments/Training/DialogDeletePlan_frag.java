@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -42,6 +43,7 @@ public class DialogDeletePlan_frag extends DialogFragment implements View.OnClic
 
         View view = inflater.inflate(R.layout.fragment_dialog_delete_frag, container, false);
         singleton = Singleton.singleton;
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         pasID = getArguments().getInt("pasID", 9999);
         planID = getArguments().getInt("planID", 9999);
 

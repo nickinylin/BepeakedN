@@ -3,6 +3,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:padding="15dp"
+    android:background="@color/colorPrimaryDark1"
     tools:context="dk.bepeaked.bodybook.Fragments.Training.DialogDeletePas_frag">
 
     <!-- TODO: Update blank fragment layout -->
@@ -10,24 +12,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Er du sikker?"
-        android:layout_gravity="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:paddingBottom="20dp"
         android:id="@+id/TV_dialog_delete_pas"/>
+
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight=""
             android:id="@+id/button_dialog_delete_OK"
+            android:textColor="#000000"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:text="OK"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             android:id="@+id/button_dialog_delete_Cancel"
+            android:backgroundTint="@android:color/darker_gray"
             android:text="Cancel"/>
 
     </LinearLayout>

@@ -27,10 +27,6 @@
         <item name="android:textColorPrimary">@android:color/black</item>
     </style>
 
-    <style name="NumberPickerTextColorStyle">
-        <item name="android:textColorPrimary">#f51616</item>
-    </style>
-
     <!--<style name="MyTitleTextStyle">-->
         <!--<item name="android:textColor">#FFEB3B</item>-->
         <!--<item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>-->

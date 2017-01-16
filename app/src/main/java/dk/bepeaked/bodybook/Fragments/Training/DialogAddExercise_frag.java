@@ -23,11 +23,11 @@ import dk.bepeaked.bodybook.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DialogAddPas_frag extends DialogFragment implements View.OnClickListener {
+public class DialogAddExercise_frag extends DialogFragment implements View.OnClickListener {
 
     WorkoutController wc = new WorkoutController();
     int planID;
-    String pasNew;
+    String exerciseNameNew;
     TextView tv;
     EditText et;
     Button btn;
@@ -35,7 +35,7 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
     Singleton singleton;
 
 
-    public DialogAddPas_frag() {
+    public DialogAddExercise_frag() {
         // Required empty public constructor
     }
 
@@ -56,11 +56,9 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
         et = (EditText) view.findViewById(R.id.ET_add_name);
         btn = (Button) view.findViewById(R.id.button_add_ok);
 
-        tv.setText("Indtast navn på det nye pas");
+        tv.setText("Indtast navn på den nye øvelse");
         et.setText("");
         btn.setOnClickListener(this);
-
-        planID = prefs.getInt("lastUsedPlan", 99999);
 
         return view;
     }
@@ -68,9 +66,9 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if (v == btn) {
-            pasNew = "" + et.getText();
+            exerciseNameNew = "" + et.getText();
             try {
-                wc.addNewPasToPlan(planID, pasNew);
+                wc.createNewExercise(exerciseNameNew);
                 dismiss();
             } catch (ExceptionNameAlreadyExist e) {
                 e.printStackTrace();

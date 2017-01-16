@@ -1410,7 +1410,7 @@ public class LoadDataExercise {
                 "Place your feet and shins over an exercise or stability ball.\n" +
                 "Keeping your back straight and supporting your weight on your hands, pull your knees towards your chest, so the ball rolls forward under your ankles.\n" +
                 "Crunch your abs and then roll the ball back to starting position straighten your legs.", "", "", new RealmList<SetDTO>()));
-        exercises.add(new ExerciseDTO(303, "Bent Over Row with Barbell", "This exercise focuses on the middle back.", "Place your feet shoulder width apart.\n" +
+        exercises.add(new ExerciseDTO(340, "Bent Over Row with Barbell", "This exercise focuses on the middle back.", "Place your feet shoulder width apart.\n" +
                 "Bend over the bar so your back is flat and parallel to the floor.\n" +
                 "Grasp the bar a bit wider than shoulder width apart with an overhand grip.\n" +
                 "Hold the bar at arms length, this is starting position.\n" +

@@ -87,8 +87,8 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
         fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton_addExercise_done);
         fab.setOnClickListener(this);
 
-
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, traeningsOevelser);
+
 
         listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id_search);
         listView.setOnItemClickListener(this);
@@ -140,21 +140,16 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
                 switch (index) {
                     case 0:
                         // open
-//                        bundleArgs.putString("planName", planName);
-//                        bundleArgs.putString("pasName", arrayListPlanNames.get(position));
-
-                        DialogEditPas_frag dialog = new DialogEditPas_frag();
-
+                        bundleArgs.putInt("exerciseID", wc.getExercise(traeningsOevelser.get(position)).getID());
+                        DialogEditExercise_frag dialog = new DialogEditExercise_frag();
                         dialog.setArguments(bundleArgs);
                         dialog.show(getFragmentManager(), "Empty_pas");
 
                         break;
                     case 1:
                         // delete
-//                        bundleArgs.putString("planName", planName);
-//                        bundleArgs.putString("pasName", arrayListPlanNames.get(position));
-//TODO her skal der en toast som siger man kan må slette egne øvelser, og nyt dialogFragment skal oprettes.
-                        DialogDeletePas_frag dialog2 = new DialogDeletePas_frag();
+                        bundleArgs.putInt("exerciseID", wc.getExercise(traeningsOevelser.get(position)).getID());
+                        DialogDeleteExercisePermanently_frag dialog2 = new DialogDeleteExercisePermanently_frag();
                         dialog2.setArguments(bundleArgs);
                         dialog2.show(getFragmentManager(), "Empty_pas");
 
@@ -164,7 +159,6 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
                 return false;
             }
         });
-
 
         setHasOptionsMenu(true);
 
@@ -180,7 +174,6 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 traeningsOevelser.clear();
-
                 traeningsOevelser = wc.getAllExerciseNamesToArray();
 
                 searchItem();
@@ -231,7 +224,8 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.pasMenu_add_exercise) {
-            Snackbar.make(getView(), "Der skal tilføjes en ny øvelse!", Snackbar.LENGTH_LONG).show();
+            DialogAddExercise_frag dialog = new DialogAddExercise_frag();
+            dialog.show(getActivity().getFragmentManager(), "DialogAddExercise_frag");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -240,7 +234,6 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
         Bundle bundleArgs = new Bundle();
         bundleArgs.putInt("chosenExerciseID", realmListExerciseDTO.get(position).getID());
         bundleArgs.putInt("TræningspasID", pasID);
@@ -248,14 +241,6 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
         DialogAddExerciseGoals_frag dialog = new DialogAddExerciseGoals_frag();
         dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "Empty_pas");
-
-//
-//        Exercise_frag fragment = new Exercise_frag();
-//        android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//        fragmentTransaction.replace(R.id.fragment_container, fragment);
-//        fragment.setArguments(bundleArgs);
-//        fragmentTransaction.commit();
-
     }
 
 
@@ -282,5 +267,10 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
             int sets = prefs.getInt("addGoalsSets", 9999);
             Snackbar.make(getView(), exercise + " er tilføjet med " + sets + " x " + reps, Snackbar.LENGTH_LONG).show();
         }
+
+        traeningsOevelser = wc.getAllExerciseNamesToArray();
+        realmListExerciseDTO = wc.getAllExercises();
+        adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, traeningsOevelser);
+        listView.setAdapter(adapter);
     }
 }

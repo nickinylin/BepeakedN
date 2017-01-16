@@ -43,7 +43,6 @@ public class DialogAddSet_frag extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_add_set_frag, container, false);
-//        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.MyAlertDialogStyle);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         exerciseID = getArguments().getInt("chosenExerciseID", 9999);
         exerciseName = wc.getExercise(exerciseID).getName();

@@ -43,7 +43,7 @@ public class DialogAddPlan_frag extends DialogFragment implements View.OnClickLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dialog_add_pas, container, false);
+        View view = inflater.inflate(R.layout.fragment_dialog_add, container, false);
 
         singleton = Singleton.singleton;
 
@@ -51,9 +51,9 @@ public class DialogAddPlan_frag extends DialogFragment implements View.OnClickLi
 
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
-        tv = (TextView) view.findViewById(R.id.TV_addPlan_info);
-        et = (EditText) view.findViewById(R.id.ET_addPlan_name);
-        btn = (Button) view.findViewById(R.id.button_add_plan_ok);
+        tv = (TextView) view.findViewById(R.id.TV_add_info);
+        et = (EditText) view.findViewById(R.id.ET_add_name);
+        btn = (Button) view.findViewById(R.id.button_add_ok);
 
         tv.setText("Indtast navn på træningsplan");
         et.setText("");
