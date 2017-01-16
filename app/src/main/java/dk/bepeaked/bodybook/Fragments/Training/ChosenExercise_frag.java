@@ -261,7 +261,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             reps.setText(Integer.toString(realmListSets.get(position).getReps()));
             rm.setText(rmInt + "kg");
 
-
             return convertView;
         }
     }
