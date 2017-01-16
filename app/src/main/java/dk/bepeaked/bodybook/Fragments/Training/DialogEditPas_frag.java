@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -43,6 +44,7 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
 
         View view = inflater.inflate(R.layout.fragment_dialog_edit_frag, container, false);
         singleton = Singleton.singleton;
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         pasID = getArguments().getInt("pasID", 9999);
 
         btnOK = (Button) view.findViewById(R.id.button_dialog_delete_OK);
@@ -50,7 +52,7 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
         tv = (TextView) view.findViewById(R.id.TV_dialog_edit_info);
         et = (EditText) view.findViewById(R.id.ET_dialog_edit);
 
-        tv.setText("Skriv det nye navn på passet");
+        tv.setText("Skriv nyt navn til passet");
 
 
         btnOK.setOnClickListener(this);
