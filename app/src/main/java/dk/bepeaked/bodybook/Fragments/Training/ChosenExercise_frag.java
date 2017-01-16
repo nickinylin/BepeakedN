@@ -1,7 +1,6 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -78,7 +77,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         singleton.listen(this);
         wc = new WorkoutController();
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date(2015, 10, 12);
+        Date date = new Date(0,0,0);
         stringDateLast = dateFormatter.format(date);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         exerciseID = getArguments().getInt("chosenExerciseID", 99999);
@@ -227,7 +226,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 //                stringDateLast = stringDateCurrent;
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(R.layout.exercise_list_element, parent, false);
-
+                Log.d("sebby", "noDate " + getViewTypeCount());
 
             } else {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -235,11 +234,11 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
                 TextView tvDate = (TextView) convertView.findViewById(R.id.tv_exercise_date);
                 tvDate.setText(stringDateCurrent);
                 stringDateLast = stringDateCurrent;
+                Log.d("sebby", "Date " + realmListSets.get(position).getReps());
             }
             TextView weight = (TextView) convertView.findViewById(R.id.tv_exercise_weight);
             TextView reps = (TextView) convertView.findViewById(R.id.tv_exercise_reps);
             TextView rm = (TextView) convertView.findViewById(R.id.tv_exercise_rm);
-            TextView date = (TextView) convertView.findViewById(R.id.tv_exercise_date);
 
             boolean measurement = prefs.getBoolean("measurement", false);
             int weightInt = (int) realmListSets.get(position).getWeight();
