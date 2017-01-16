@@ -18,8 +18,6 @@
         android:paddingBottom="20dp"
         android:id="@+id/TV_dialog_delete_pas"/>
 
-
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +43,5 @@
             android:text="Cancel"/>
 
     </LinearLayout>
-
-
 
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -99,34 +100,26 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
             @Override
             public void create(SwipeMenu menu) {
                 // create "open" item
-                SwipeMenuItem openItem = new SwipeMenuItem(
+                SwipeMenuItem editItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
-                // set item background
-                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                        0xCE)));
-                // set item width
-                openItem.setWidth(300);
-                // set item title
-                openItem.setTitle("Rediger");
-                // set item title fontsize
-                openItem.setTitleSize(18);
-                // set item title font color
-                openItem.setTitleColor(Color.WHITE);
-                // add to menu
-                menu.addMenuItem(openItem);
+                editItem.setWidth(300);
+                editItem.setTitleSize(18);
+                editItem.setIcon(R.drawable.ic_edit_white_24dp);
+                menu.addMenuItem(editItem);
 
                 // create "delete" item
                 SwipeMenuItem deleteItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
-                // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
-                // set item width
                 deleteItem.setWidth(300);
-                // set a icon
-//                deleteItem.setIcon(R.drawable.);
-                // add to menu
+                deleteItem.setIcon(R.drawable.ic_delete_forever_white_24dp);
                 menu.addMenuItem(deleteItem);
+
+                // create "description" item
+                SwipeMenuItem descriptionItem = new SwipeMenuItem(
+                        getActivity().getApplicationContext());
+                descriptionItem.setWidth(300);
+                descriptionItem.setIcon(R.drawable.ic_done_white_24dp);
+                menu.addMenuItem(descriptionItem);
             }
         };
 
@@ -137,10 +130,10 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
         listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                bundleArgs.putInt("exerciseID", wc.getExercise(traeningsOevelser.get(position)).getID());
                 switch (index) {
                     case 0:
                         // open
-                        bundleArgs.putInt("exerciseID", wc.getExercise(traeningsOevelser.get(position)).getID());
                         DialogEditExercise_frag dialog = new DialogEditExercise_frag();
                         dialog.setArguments(bundleArgs);
                         dialog.show(getFragmentManager(), "Empty_pas");
@@ -148,10 +141,16 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
                         break;
                     case 1:
                         // delete
-                        bundleArgs.putInt("exerciseID", wc.getExercise(traeningsOevelser.get(position)).getID());
                         DialogDeleteExercisePermanently_frag dialog2 = new DialogDeleteExercisePermanently_frag();
                         dialog2.setArguments(bundleArgs);
                         dialog2.show(getFragmentManager(), "Empty_pas");
+
+                        break;
+                    case 2:
+                        // description
+                        DialogDescription_frag dialog3 = new DialogDescription_frag();
+                        dialog3.setArguments(bundleArgs);
+                        dialog3.show(getFragmentManager(), "hej");
 
                         break;
                 }

@@ -168,12 +168,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         bundleArgs = new Bundle();
         bundleArgs.putInt("chosenExerciseID", exerciseID);
         DialogAddSet_frag dialog = new DialogAddSet_frag();
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                adapterReload();
-            }
-        });
         dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "empty");
 

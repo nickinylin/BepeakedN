@@ -18,6 +18,7 @@ import android.widget.TextView;
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionWrongInput;
+import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 
 /**
@@ -32,7 +33,8 @@ public class DialogAddSet_frag extends DialogFragment {
     ExerciseDTO dto;
     String exerciseName;
     int exerciseID;
-    WorkoutController wc = new WorkoutController();
+    WorkoutController wc;
+    Singleton singleton;
 
 
     public DialogAddSet_frag() {
@@ -43,9 +45,12 @@ public class DialogAddSet_frag extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_add_set_frag, container, false);
+        singleton = Singleton.singleton;
+        wc = new WorkoutController();
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         exerciseID = getArguments().getInt("chosenExerciseID", 9999);
         exerciseName = wc.getExercise(exerciseID).getName();
+
 
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         npReps = (NumberPicker) view.findViewById(R.id.NumberPickerReps);
@@ -59,12 +64,15 @@ public class DialogAddSet_frag extends DialogFragment {
         //TODO skal sættes til den sidst benyttede, så der skal bruges den der sharedpreferences
         npReps.setMinValue(1);
         npReps.setMaxValue(50);
-//        npReps.setValue();
+        npReps.setValue(prefs.getInt("1 " + exerciseID, 0));
+
         npWeight1.setMinValue(0);
         if(prefs.getBoolean("measurement", false)){
             npWeight1.setMaxValue(convertKilo(200));
+            npWeight1.setValue(convertKilo(prefs.getInt("2 " + exerciseID, 0)));
         }else{
             npWeight1.setMaxValue(200);
+            npWeight1.setValue(prefs.getInt("2 " + exerciseID, 0));
         }
         npWeight1.setValue(10);
         tvInfo.setText("Tilføj sæt - repetitioner og vægt");
@@ -76,6 +84,8 @@ public class DialogAddSet_frag extends DialogFragment {
                 if (v == btnOK) {
                     try {
                         wc.addSet(exerciseName, npWeight1.getValue(), npReps.getValue());
+                        prefs.edit().putInt("1 " + exerciseID, npReps.getValue()).commit();
+                        prefs.edit().putInt("2 " + exerciseID, npWeight1.getValue()).commit();
                         dismiss();
                     } catch (ExceptionWrongInput e) {
                         e.printStackTrace();
@@ -95,19 +105,9 @@ public class DialogAddSet_frag extends DialogFragment {
         return pounds;
     }
 
-    private DialogInterface.OnDismissListener onDismissListener;
-
-    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
-    }
-
     @Override
     public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss(dialog);
-        }
+        singleton.notifyObservers();
     }
-
 
 }
