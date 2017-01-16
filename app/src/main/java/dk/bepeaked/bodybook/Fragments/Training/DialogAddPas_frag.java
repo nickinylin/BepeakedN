@@ -59,7 +59,7 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
         et = (EditText) view.findViewById(R.id.ET_addPlan_name);
         btn = (Button) view.findViewById(R.id.button_add_plan_ok);
 
-        tv.setText("Indtast navn på træningsplan");
+        tv.setText("Indtast navn på det nye pas");
         et.setText("");
         btn.setOnClickListener(this);
 

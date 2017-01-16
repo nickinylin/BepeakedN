@@ -3,16 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/pasMenu_add_pas"
+        android:id="@+id/planMenu_add_plan"
         android:orderInCategory="1"
         android:title="Tilføj pas"
         android:icon="@drawable/ic_add_white_24dp"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/pasMenu_change_plan"
-        android:orderInCategory="2"
-        android:title="Skift træningsplan"
-        app:showAsAction="withText" />
 
 </menu>

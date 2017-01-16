@@ -11,7 +11,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -225,7 +224,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.pasmenu, menu);
+        inflater.inflate(R.menu.chosenexercisemenu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 

@@ -80,7 +80,7 @@ public class ExerciseHelp_frag extends Fragment {
                 }, 0, 0, ImageView.ScaleType.FIT_CENTER, null, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Snackbar.make(getView(), "Fejl - billedet kunne ikke hentes", Snackbar.LENGTH_LONG).show();
+//                Snackbar.make(getView(), "Fejl - billedet kunne ikke hentes", Snackbar.LENGTH_LONG).show();
             }
 
         });
@@ -96,7 +96,7 @@ public class ExerciseHelp_frag extends Fragment {
                 }, 0, 0, ImageView.ScaleType.FIT_CENTER, null, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Snackbar.make(getView(), "Fejl - billedet kunne ikke hentes", Snackbar.LENGTH_LONG).show();
+//                Snackbar.make(getView(), "Fejl - billedet kunne ikke hentes", Snackbar.LENGTH_LONG).show();
             }
 
         });

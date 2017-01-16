@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
-import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 
@@ -43,15 +42,15 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_dialog_edit_pas_frag, container, false);
+        View view = inflater.inflate(R.layout.fragment_dialog_edit_frag, container, false);
         singleton = Singleton.singleton;
         pasID = getArguments().getInt("pasID", 9999);
 //        planName = getArguments().getString("planName", "Empty");
 
-        btnOK = (Button) view.findViewById(R.id.button_dialog_delete_pas_OK);
-        btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_pas_Cancel);
-        tv = (TextView) view.findViewById(R.id.TV_dialog_edit_pas_info);
-        et = (EditText) view.findViewById(R.id.ET_dialog_edit_pas);
+        btnOK = (Button) view.findViewById(R.id.button_dialog_delete_OK);
+        btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_Cancel);
+        tv = (TextView) view.findViewById(R.id.TV_dialog_edit_info);
+        et = (EditText) view.findViewById(R.id.ET_dialog_edit);
 
         tv.setText("Skriv det nye navn på passet");
 

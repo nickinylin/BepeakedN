@@ -16,8 +16,6 @@ import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 
-import static dk.bepeaked.bodybook.Backend.Singleton.singleton;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -42,13 +40,13 @@ public class DialogDeletePas_frag extends DialogFragment implements View.OnClick
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_dialog_delete_pas_frag, container, false);
+        View view = inflater.inflate(R.layout.fragment_dialog_delete_frag, container, false);
         singleton = Singleton.singleton;
         pasID = getArguments().getInt("pasID", 9999);
         planID = getArguments().getInt("planID", 9999);
 
-        btnOK = (Button) view.findViewById(R.id.button_dialog_delete_pas_OK);
-        btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_pas_Cancel);
+        btnOK = (Button) view.findViewById(R.id.button_dialog_delete_OK);
+        btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_Cancel);
         tv = (TextView) view.findViewById(R.id.TV_dialog_delete_pas);
 
         tv.setText("Er du sikker på passet skal slettes?");

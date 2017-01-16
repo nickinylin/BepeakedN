@@ -44,34 +44,50 @@ public class WorkoutController {
 
     //*******************Planer**************************
     //Create
+
     /**
      * Adds a new plan with an empty pas list
+     *
      * @param planName the name of the new plan
      */
     public void addPlan(String planName) throws ExceptionNameAlreadyExist {
         try {
             workoutDTO = getPlans().last();
-            id = workoutDTO.getID()+1;
-        }catch (IndexOutOfBoundsException e){
+            id = workoutDTO.getID() + 1;
+        } catch (IndexOutOfBoundsException e) {
             id = 1;
         }
         workoutDAO.newPlan(new WorkoutDTO(id, planName, new RealmList<WorkoutPasDTO>()));
     }
 
     //READ
+
     /**
      * Gets a list of all the plans
+     *
      * @return RealmList<WorkoutDTO>
      */
-    public RealmList<WorkoutDTO> getPlans() throws IndexOutOfBoundsException{
+    public RealmList<WorkoutDTO> getPlans() throws IndexOutOfBoundsException {
         realmListWorkoutDTO = new RealmList<WorkoutDTO>();
         realmListWorkoutDTO = workoutDAO.getPlans();
         return realmListWorkoutDTO;
     }
+
+    public ArrayList<String> getPlanNamesToArray() {
+        RealmList<WorkoutDTO> newList;
+        newList = getPlans();
+        ArrayList<String> planNames = new ArrayList<>();
+        for (int i = 0; i < newList.size(); i++) {
+            planNames.add(newList.get(i).getName());
+        }
+        return planNames;
+    }
     //UPDATE
+
     /**
      * Updates a plans name
-     * @param planID old name
+     *
+     * @param planID  old name
      * @param newName new name
      */
     public void updatePlanName(int planID, String newName) throws ExceptionPasDoesntExist, ExceptionNameAlreadyExist {
@@ -79,8 +95,10 @@ public class WorkoutController {
     }
 
     //DELETE
+
     /**
      * Deletes a plan from the database (THIS IS PERMANENT)
+     *
      * @param planID the plan to be deleted
      */
     public void deletePlan(int planID) throws ExceptionPasDoesntExist {
@@ -89,6 +107,7 @@ public class WorkoutController {
 
     /**
      * Gets a specific plan from the database
+     *
      * @param planID the name of the plan
      * @return WorkoutDTO (plan object)
      */
@@ -96,7 +115,7 @@ public class WorkoutController {
         realmListWorkoutDTO = getPlans();
 
         for (int i = 0; i < realmListWorkoutDTO.size(); i++) {
-            if (realmListWorkoutDTO.get(i).getID()==planID) {
+            if (realmListWorkoutDTO.get(i).getID() == planID) {
                 workoutDTO = realmListWorkoutDTO.get(i);
                 break;
             }
@@ -107,8 +126,10 @@ public class WorkoutController {
     //********************Pas***************************
 
     //CREATE
+
     /**
      * Adds a new pas to a plan
+     *
      * @param planId
      * @param pasName
      * @throws ExceptionNameAlreadyExist if a pas of that name already exist (anywhere)
@@ -116,19 +137,21 @@ public class WorkoutController {
     public void addNewPasToPlan(int planId, String pasName) throws ExceptionNameAlreadyExist {
 
         int id;
-        try{
-            id = workoutPasDAO.getAllPasses().last().getID()+1;
-        }catch (IndexOutOfBoundsException e){
+        try {
+            id = workoutPasDAO.getAllPasses().last().getID() + 1;
+        } catch (IndexOutOfBoundsException e) {
             id = 1;
         }
-        Log.d("LUKAS", "addNewPasToPlan: id "+ id);
+        Log.d("LUKAS", "addNewPasToPlan: id " + id);
         workoutPasDTO = new WorkoutPasDTO(id, pasName, new RealmList<ExerciseGoals>());
         workoutPasDAO.newPas(planId, workoutPasDTO);
     }
 
     //READ
+
     /**
      * Gets a list of all the passes in a workoutplan
+     *
      * @param planID the plan name you want the list of passes from
      * @return RealmList<WorkoutDTO>
      */
@@ -141,8 +164,10 @@ public class WorkoutController {
     }
 
     //UPDATE
+
     /**
      * Updates a pas name
+     *
      * @param pasID
      * @param newPasName
      * @throws ExceptionNameAlreadyExist if the pas doesnt exist
@@ -153,8 +178,10 @@ public class WorkoutController {
     }
 
     //DELETE
+
     /**
      * Deletes a pas from a plan (PERMANENTLY)
+     *
      * @param pasID
      * @throws ExceptionPasDoesntExist if the pas doenst exist
      */
@@ -165,25 +192,23 @@ public class WorkoutController {
 
     /**
      * Gets a list of the names of passes from a plan
+     *
      * @param planID the plans id
      * @return ArrayList<String>
      */
-    public ArrayList<String> getPasNamesFromPlan (int planID) throws IndexOutOfBoundsException {
+    public ArrayList<String> getPasNamesFromPlan(int planID) throws IndexOutOfBoundsException {
         RealmList<WorkoutPasDTO> newList;
         newList = getPasses(planID);
         ArrayList<String> pasNames = new ArrayList<>();
-        try {
-            for (int i = 0; i < newList.size(); i++) {
-                pasNames.add(newList.get(i).getName());
-            }
-        }catch(Exception e){
-
+        for (int i = 0; i < newList.size(); i++) {
+            pasNames.add(newList.get(i).getName());
         }
         return pasNames;
     }
 
     /**
      * Gets a specifik pas object from a plan
+     *
      * @param pasID
      * @return WorkoutPasDTO
      */
@@ -195,6 +220,7 @@ public class WorkoutController {
 
     /**
      * gets all the exercises added to a pass
+     *
      * @param pasID
      * @return RealmList<ExerciseDTO>
      */
@@ -212,13 +238,13 @@ public class WorkoutController {
         RealmList<ExerciseDTO> exercise = getAllExercises();
         try {
             id = exercise.last().getID() + 1;
-        }catch(IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             id = 1;
         }
 
-        for(int i = 0; i<exercise.size(); i++){
-            if(exerciseName.equals(exercise.get(i).getName())){
-                throw new ExceptionNameAlreadyExist("An exercise with the name "+ exerciseName +" already exist");
+        for (int i = 0; i < exercise.size(); i++) {
+            if (exerciseName.equals(exercise.get(i).getName())) {
+                throw new ExceptionNameAlreadyExist("An exercise with the name " + exerciseName + " already exist");
             }
         }
         ExerciseDTO newExercise = new ExerciseDTO(id, exerciseName, null, null, null, null, new RealmList<SetDTO>());
@@ -226,11 +252,13 @@ public class WorkoutController {
     }
 
     //READ
+
     /**
      * Gets a list of all the exercises in the exercise library
+     *
      * @return RealmList<ExerciseDTO>
      */
-    public RealmList<ExerciseDTO> getAllExercises() throws IndexOutOfBoundsException{
+    public RealmList<ExerciseDTO> getAllExercises() throws IndexOutOfBoundsException {
         return exerciseDAO.getExercises();
     }
 
@@ -248,7 +276,7 @@ public class WorkoutController {
         return exerciseNames;
     }
 
-    public ArrayList<String> getAllExerciseNamesToArray() throws IndexOutOfBoundsException{
+    public ArrayList<String> getAllExerciseNamesToArray() throws IndexOutOfBoundsException {
         RealmList<ExerciseDTO> newList;
 
         newList = getAllExercises();
@@ -265,6 +293,7 @@ public class WorkoutController {
 
     /**
      * Updates an exercise' name
+     *
      * @param exerciseID
      * @param newName
      */
@@ -273,8 +302,10 @@ public class WorkoutController {
     }
 
     //DELETE
+
     /**
      * Deletes an exercise (PERMANENTLY)
+     *
      * @param exerciseID
      */
     public void deleteExercise(int exerciseID) throws ExceptionCantDelete {
@@ -283,10 +314,11 @@ public class WorkoutController {
 
     /**
      * Adds an existing exercise to a pas
-     * @param pasID The plan it's in
+     *
+     * @param pasID        The plan it's in
      * @param exerciseName the name of the exercise in the exercise library
-     * @param sets the amount of sets (unique for the pas)
-     * @param reps the amount of reps (unique for the pas)
+     * @param sets         the amount of sets (unique for the pas)
+     * @param reps         the amount of reps (unique for the pas)
      */
     public void addExerciseToPas(int pasID, String exerciseName, int sets, int reps) throws ExceptionNameAlreadyExist {
 
@@ -296,22 +328,23 @@ public class WorkoutController {
 
     /**
      * Gets a specific exercise
+     *
      * @param exerciseID the name of the exercise
      * @return ExerciseDTO object
      * @throws ExceptionExerciseDoesntExist If the exercise doesn't exist
      */
-    public ExerciseDTO getExercise(int exerciseID){
+    public ExerciseDTO getExercise(int exerciseID) {
         ExerciseDTO exercise = null;
         realmListExerciseDTO = getAllExercises();
         for (int i = 0; i < realmListExerciseDTO.size(); i++) {
-            if (realmListExerciseDTO.get(i).getID()==exerciseID) {
+            if (realmListExerciseDTO.get(i).getID() == exerciseID) {
                 exercise = realmListExerciseDTO.get(i);
             }
         }
         return exercise;
     }
 
-    public ExerciseDTO getExercise(String exerciseName){
+    public ExerciseDTO getExercise(String exerciseName) {
         ExerciseDTO exercise = new ExerciseDTO();
         realmListExerciseDTO = getAllExercises();
         for (int i = 0; i < realmListExerciseDTO.size(); i++) {
@@ -325,6 +358,7 @@ public class WorkoutController {
 
     /**
      * Get's a list of all the sets added to an exercise
+     *
      * @param exerciseID
      * @return RealmList<SetDTO>
      * @throws ExceptionExerciseDoesntExist if named exercise doesn't exist
@@ -342,10 +376,12 @@ public class WorkoutController {
     }
 
     //****************************SETS*********************************
+
     /**
      * Adds a new set
+     *
      * @param exerciseName The exercise name
-     * @param kg NOTE: if exercise requires
+     * @param kg           NOTE: if exercise requires
      * @param reps
      * @throws ExceptionWrongInput
      */
@@ -354,9 +390,9 @@ public class WorkoutController {
         Date date = c.getTime();
         int id;
         double repsudregning;
-        try{
-            id = setDAO.getAllSets().last().getId()+1;
-        }catch (IndexOutOfBoundsException e){
+        try {
+            id = setDAO.getAllSets().last().getId() + 1;
+        } catch (IndexOutOfBoundsException e) {
             id = 1;
         }
         SetDTO newSet;
@@ -373,9 +409,9 @@ public class WorkoutController {
             //Brzycki 1RM formula
 
             Log.d("LUKAS", "repsudregning: " + repsudregning);
-            Double RM = kg*Math.pow(repsudregning, 0.10);
+            Double RM = kg * Math.pow(repsudregning, 0.10);
 
-            Log.d("LUKAS", "RM: "+RM);
+            Log.d("LUKAS", "RM: " + RM);
 
             newSet = new SetDTO(id, exerciseName, kg, reps, date, RM);
             setDAO.addSet(exerciseName, newSet);
@@ -386,11 +422,11 @@ public class WorkoutController {
 
     /**
      * Deletes a set from an exercise
+     *
      * @param setID
      * @throws ExceptionExerciseDoesntExist if the exception doesn't exist
-     *
-     * +
-     *
+     *                                      <p>
+     *                                      +
      */
     public void deleteSet(int setID) {
         setDAO.deleteSet(setID);

@@ -42,7 +42,7 @@ public class DialogAddExerciseGoals_frag extends DialogFragment implements View.
     public DialogAddExerciseGoals_frag() {
         // Required empty public constructor
     }
-
+//TODO NICKI! der skal tilføjes en beskrivelse af øvelsen!!
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

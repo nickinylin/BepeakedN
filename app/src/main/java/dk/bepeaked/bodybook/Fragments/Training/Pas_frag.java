@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -176,15 +175,15 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.workoutmenu, menu);
+        inflater.inflate(R.menu.pasmenu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.workoutMenu_add_pas) {
+        if (item.getItemId() == R.id.pasMenu_add_pas) {
             showDialogAlert();
-        } else if (item.getItemId() == R.id.workoutMenu_change_plan) {
+        } else if (item.getItemId() == R.id.pasMenu_change_plan) {
             Plan_frag planFragment = new Plan_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, planFragment).addToBackStack("hej");

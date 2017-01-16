@@ -40,7 +40,7 @@ public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements 
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_dialog_delete_pas_frag, container, false);
+        View view = inflater.inflate(R.layout.fragment_dialog_delete_frag, container, false);
 
         singleton = Singleton.singleton;
         pasID = getArguments().getInt("pasID", 99999);
@@ -48,8 +48,8 @@ public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements 
         exerciseGoalsID = getArguments().getInt("exerciseGoalsID", 99999);
 
 
-        btnOK = (Button) view.findViewById(R.id.button_dialog_delete_pas_OK);
-        btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_pas_Cancel);
+        btnOK = (Button) view.findViewById(R.id.button_dialog_delete_OK);
+        btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_Cancel);
         tv = (TextView) view.findViewById(R.id.TV_dialog_delete_pas);
 
         tv.setText("Er du sikker på passet skal slettes?");

@@ -1,10 +1,7 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -145,7 +142,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.pasmenu, menu);
+        inflater.inflate(R.menu.chosenexercisemenu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 

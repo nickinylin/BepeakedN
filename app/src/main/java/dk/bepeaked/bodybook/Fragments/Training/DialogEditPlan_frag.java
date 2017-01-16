@@ -5,32 +5,35 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
+import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DialogDeleteSet_frag extends DialogFragment implements View.OnClickListener {
+public class DialogEditPlan_frag extends DialogFragment implements View.OnClickListener {
 
     WorkoutController wc = new WorkoutController();
     Button btnOK, btnCancel;
     TextView tv;
+    EditText et;
     Bundle argumens;
-    String pasName, planName;
-    int setID;
+    String pasName;
+    int planID;
     Singleton singleton;
 
 
-    public DialogDeleteSet_frag() {
+    public DialogEditPlan_frag() {
         // Required empty public constructor
     }
 
@@ -40,16 +43,17 @@ public class DialogDeleteSet_frag extends DialogFragment implements View.OnClick
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_dialog_delete_frag, container, false);
+        View view = inflater.inflate(R.layout.fragment_dialog_edit_frag, container, false);
         singleton = Singleton.singleton;
-        setID = getArguments().getInt("setID", 9999);
-
+        planID = getArguments().getInt("planID", 9999);
+//        planName = getArguments().getString("planName", "Empty");
 
         btnOK = (Button) view.findViewById(R.id.button_dialog_delete_OK);
         btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_Cancel);
-        tv = (TextView) view.findViewById(R.id.TV_dialog_delete_pas);
+        tv = (TextView) view.findViewById(R.id.TV_dialog_edit_info);
+        et = (EditText) view.findViewById(R.id.ET_dialog_edit);
 
-        tv.setText("Er du sikker på passet skal slettes?");
+        tv.setText("Skriv det nye navn på planen");
 
 
         btnOK.setOnClickListener(this);
@@ -61,9 +65,19 @@ public class DialogDeleteSet_frag extends DialogFragment implements View.OnClick
     @Override
     public void onClick(View v) {
         if (v == btnOK) {
-            Log.d("Nicki", "setID " + setID);
-            wc.deleteSet(setID);
+            String newPlanName = "" + et.getText();
+
+            try {
+                wc.updatePlanName(planID, newPlanName);
+            } catch (ExceptionPasDoesntExist e) {
+                e.printStackTrace();
+                tv.setText("Der skete en fejl");
+            } catch (ExceptionNameAlreadyExist e) {
+                e.printStackTrace();
+                tv.setText("Navnet eksisterer allerede");
+            }
             dismiss();
+
         } else if (v == btnCancel) {
             dismiss();
         }
