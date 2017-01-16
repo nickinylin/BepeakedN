@@ -65,7 +65,6 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
     public void onClick(View v) {
         if (v == btnOK) {
             String newPasName = "" + et.getText();
-            //TODO Nicki lav snackbar eller noget her0
             try {
                 wc.updatePasName(pasID, newPasName);
             } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {

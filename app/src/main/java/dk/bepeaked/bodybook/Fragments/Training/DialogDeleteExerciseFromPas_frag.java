@@ -68,7 +68,7 @@ public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements 
                 dismiss();
             } catch (ExceptionPasDoesntExist e) {
                 e.printStackTrace();
-                //TODO her skal skrives en fejlme.....
+                tv.setText(e.getMessage());
             }
         } else if (v == btnCancel) {
             dismiss();

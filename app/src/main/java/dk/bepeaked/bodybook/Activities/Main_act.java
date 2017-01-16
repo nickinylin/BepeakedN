@@ -19,7 +19,6 @@ import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.LoadDataExercise;
 import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.Fragments.Diet.Diet_frag;
-import dk.bepeaked.bodybook.Fragments.Profile_frag;
 import dk.bepeaked.bodybook.Fragments.Settings.Settings_frag;
 import dk.bepeaked.bodybook.Fragments.Training.Pas_frag;
 import dk.bepeaked.bodybook.R;
@@ -35,7 +34,6 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
     boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
     SharedPreferences prefs;
     WorkoutController wc;
-    Singleton singleton;
 
 
     @Override
@@ -63,7 +61,6 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
 
         setContentView(R.layout.activity_main);
 
-        //+ File.separator + "/userdata/plans"
 
         // SetDTO the fragment initially
         if (savedInstanceState==null) { // kun tilføje fragmenter ved en frisk start
@@ -96,27 +93,6 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main_action_settings, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

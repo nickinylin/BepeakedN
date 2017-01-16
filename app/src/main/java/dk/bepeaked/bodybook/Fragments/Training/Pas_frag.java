@@ -94,32 +94,17 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
                 // create "open" item
                 SwipeMenuItem openItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
-                // set item background
-//                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-//                        0xCE)));
-                // set item width
                 openItem.setWidth(300);
-                // set item title
-//                openItem.setTitle("Rediger");
-                // set item title fontsize
                 openItem.setTitleSize(18);
-                // set item title font color
                 openItem.setTitleColor(Color.WHITE);
                 openItem.setIcon(R.drawable.ic_edit_white_24dp);
-                // add to menu
                 menu.addMenuItem(openItem);
 
                 // create "delete" item
                 SwipeMenuItem deleteItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
-                // set item background
-//                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-//                        0x3F, 0x25)));
-                // set item width
                 deleteItem.setWidth(300);
-                // set a icon
                 deleteItem.setIcon(R.drawable.ic_delete_forever_white_24dp);
-                // add to menu
                 menu.addMenuItem(deleteItem);
 
             }
@@ -182,7 +167,11 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.pasMenu_add_pas) {
-            showDialogAlert();
+            bundleArgs = new Bundle();
+            bundleArgs.putInt("planID", planID);
+            DialogAddPas_frag dialog = new DialogAddPas_frag();
+            dialog.setArguments(bundleArgs);
+            dialog.show(getActivity().getFragmentManager(), "DialogAddPas_frag");
         } else if (item.getItemId() == R.id.pasMenu_change_plan) {
             Plan_frag planFragment = new Plan_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -207,20 +196,9 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
     }
 
-
-    private void showDialogAlert() {
-        bundleArgs = new Bundle();
-        bundleArgs.putInt("planID", planID);
-        DialogAddPas_frag dialog = new DialogAddPas_frag();
-        dialog.setArguments(bundleArgs);
-        dialog.show(getActivity().getFragmentManager(), "DialogAddPas_frag");
-    }
-
-
     private void adapterReload() {
         arrayListPasNames = wc.getPasNamesFromPlan(planID);
         realmListPas = wc.getPasses(planID);
-        // TODO skriv i rapporten at vi prøvede at bruge "adapter.notifyDataSetChanged(); men at det ikke virkede, derfor opretter vi en ny adapter, som er lidt mindre arbejde, end at loade hele fragmentet igen..
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
         listView.setAdapter(adapter);
     }
@@ -228,5 +206,6 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     @Override
     public void run() {
         adapterReload();
+        Log.d("Nicki", "pas_frag: Run");
     }
 }

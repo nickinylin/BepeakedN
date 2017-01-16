@@ -69,15 +69,20 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
     public void onClick(View v) {
         if (v == btn) {
             pasNew = "" + et.getText();
-            try {
-                wc.addNewPasToPlan(planID, pasNew);
-                dismiss();
-            } catch (ExceptionNameAlreadyExist e) {
-                e.printStackTrace();
-                tv.setText(e.getMessage());
+            if (pasNew.length() == 0 || pasNew.startsWith(" ")) {
+                tv.setText("Navnet må ikke være tomt");
+            } else {
+                try {
+                    wc.addNewPasToPlan(planID, pasNew);
+                    dismiss();
+                } catch (ExceptionNameAlreadyExist e) {
+                    e.printStackTrace();
+                    tv.setText(e.getMessage());
+                }
             }
         }
     }
+
 
 
     @Override

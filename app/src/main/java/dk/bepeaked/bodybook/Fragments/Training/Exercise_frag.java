@@ -180,14 +180,6 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
     }
 
-
-//    private void adapterReload() {
-//        arrayListExerciseNames = wc.getExercisesFromPasToArray(planName, pasName);
-//        // TODO skriv i rapporten at vi prøvede at bruge "adapter.notifyDataSetChanged(); men at det ikke virkede, derfor opretter vi en ny adapter, som er lidt mindre arbejde, end at loade hele fragmentet igen..
-//        adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListExerciseNames);
-//        listView.setAdapter(adapter);
-//    }
-
     public class ExerciseListAdapterRepsSets extends BaseAdapter {
 
         @Override

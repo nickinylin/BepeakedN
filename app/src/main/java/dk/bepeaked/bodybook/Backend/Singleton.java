@@ -30,7 +30,7 @@ public class Singleton extends Application {
     ArrayList<Runnable> observators = new ArrayList<>();
 
     public void notifyObservers() {
-//        Log.d("Nicki", "notifyObservers bliver kørt: listen er "+observators.size());
+        Log.d("Nicki", "notifyObservers bliver kørt: listen er "+observators.size());
         for (Runnable r : observators ) {
             r.run();
         }

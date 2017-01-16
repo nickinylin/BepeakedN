@@ -2,7 +2,6 @@
     <string name="app_name">Body Book</string>
     <string name="navigation_drawer_open">Åben navigations skuffe</string>
     <string name="navigation_drawer_close">Luk navigations skuffe</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hej blankt fragment</string>
     <string name="activationcode">Aktiveringskode</string>
 
