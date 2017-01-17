@@ -105,6 +105,7 @@ public class DialogAddExerciseGoals_frag extends DialogFragment implements View.
 
     @Override
     public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
         singleton.notifyObservers();
     }
 }

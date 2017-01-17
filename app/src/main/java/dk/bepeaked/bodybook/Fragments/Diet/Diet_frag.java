@@ -198,7 +198,7 @@ public class Diet_frag extends Fragment{
                 convertView = layoutInflater.inflate(R.layout.parent_layout, null);
             }
             TextView textView = (TextView) convertView.findViewById(R.id.heading_item);
-//            textView.setTypeface(null, Typeface.BOLD);
+//            textViewName.setTypeface(null, Typeface.BOLD);
             textView.setText(title);
 
 

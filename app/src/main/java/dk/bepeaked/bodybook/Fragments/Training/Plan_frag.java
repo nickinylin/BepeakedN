@@ -162,13 +162,6 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
         fragmentTransaction.commit();
     }
 
-    private void showDialogAlert() {
-        bundleArgs = new Bundle();
-        bundleArgs.putInt("planID", planID);
-        DialogAddPas_frag dialog = new DialogAddPas_frag();
-        dialog.setArguments(bundleArgs);
-        dialog.show(getActivity().getFragmentManager(), "Empty_pas");
-    }
 
     private void adapterReload() {
         realmListPlans = wc.getPlans();

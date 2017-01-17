@@ -79,6 +79,7 @@ public class DialogAddPlan_frag extends DialogFragment implements View.OnClickLi
     }
     @Override
     public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
         singleton.notifyObservers();
     }
 }

@@ -78,6 +78,7 @@ public class DialogDeletePlan_frag extends DialogFragment implements View.OnClic
 
     @Override
     public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
         singleton.notifyObservers();
     }
 }

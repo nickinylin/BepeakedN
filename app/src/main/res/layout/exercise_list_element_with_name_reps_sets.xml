@@ -25,6 +25,7 @@
         android:textColor="#FFFFFF"
         android:layout_weight="1"
         android:paddingLeft="10dp"
+        android:gravity="center"
         android:text="sets x reps"
         android:textSize="18sp"
         />

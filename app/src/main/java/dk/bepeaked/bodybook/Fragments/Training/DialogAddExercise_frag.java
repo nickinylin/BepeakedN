@@ -80,6 +80,7 @@ public class DialogAddExercise_frag extends DialogFragment implements View.OnCli
 
     @Override
     public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
         singleton.notifyObservers();
     }
 }

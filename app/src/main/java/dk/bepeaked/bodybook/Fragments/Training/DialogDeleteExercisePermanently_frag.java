@@ -77,6 +77,7 @@ public class DialogDeleteExercisePermanently_frag extends DialogFragment impleme
 
     @Override
     public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
         singleton.notifyObservers();
     }
 }

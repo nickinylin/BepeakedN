@@ -156,7 +156,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
             AddExercise_frag fragment = new AddExercise_frag();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack("AddExercise_frag");
             fragment.setArguments(bundleArgs);
             fragmentTransaction.commit();
         }
@@ -183,10 +183,10 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
     public class ExerciseListAdapterRepsSets extends BaseAdapter {
 
-//        private LayoutInflater mInflater;
-//        public ExerciseListAdapterRepsSets() {
-//            mInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        }
+        private LayoutInflater mInflater;
+        public ExerciseListAdapterRepsSets() {
+            mInflater = (LayoutInflater)getActivity().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
+        }
 
         @Override
         public int getCount() {
@@ -209,35 +209,25 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
             ViewHolderName holderName = null;
 //            ViewHolderSetsAndReps holderSetsAndReps = null;
             if (convertView == null) {
-                LayoutInflater inflater = LayoutInflater.from(getContext());
-                convertView = inflater.inflate(R.layout.exercise_list_element_with_name_reps_sets, parent, false);
+//                LayoutInflater inflater = LayoutInflater.from(getContext());
+//                convertView = inflater.inflate(R.layout.exercise_list_element_with_name_reps_sets, parent, false);
+                convertView = mInflater.inflate(R.layout.exercise_list_element_with_name_reps_sets, null);
                 holderName = new ViewHolderName();
-                holderName.textView = (TextView) convertView.findViewById(R.id.TV_exercise_frag_exercisename);
-                tvGoals = (TextView) convertView.findViewById(R.id.TV_exercise_frag_reps_sets);
-//                holderSetsAndReps.textView = (TextView) convertView.findViewById(R.id.TV_exercise_frag_reps_sets);
+                holderName.textViewName = (TextView) convertView.findViewById(R.id.TV_exercise_frag_exercisename);
+                holderName.textViewRepsSets = (TextView) convertView.findViewById(R.id.TV_exercise_frag_reps_sets);
                 convertView.setTag(holderName);
             } else {
                 holderName = (ViewHolderName) convertView.getTag();
             }
-            holderName.textView.setText(realmListExercises.get(position).getName());
-            tvGoals.setText(realmListExercises.get(position).getSet() + " x " + realmListExercises.get(position).getReps());
+            holderName.textViewName.setText(realmListExercises.get(position).getName());
+            holderName.textViewRepsSets.setText(realmListExercises.get(position).getSet() + " x " + realmListExercises.get(position).getReps());
             return convertView;
-
-
         }
-
-
-//            TextView tvExerciseName = (TextView) convertView.findViewById(R.id.TV_exercise_frag_exercisename);
-//            TextView tvGoals = (TextView) convertView.findViewById(R.id.TV_exercise_frag_reps_sets);
-//
-//            tvExerciseName.setText(realmListExercises.get(position).getName());
-//            tvGoals.setText(realmListExercises.get(position).getSet() + " x " + realmListExercises.get(position).getReps());
-//
-//            return convertView;
     }
 
     public static class ViewHolderName {
-        public TextView textView;
+        public TextView textViewName;
+        public TextView textViewRepsSets;
     }
 
     public static class ViewHolderSetsAndReps {

@@ -84,6 +84,7 @@ public class DialogDescription_frag extends android.support.v4.app.DialogFragmen
 
     @Override
     public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
         singleton.notifyObservers();
     }
 }

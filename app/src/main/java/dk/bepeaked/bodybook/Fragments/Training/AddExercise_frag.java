@@ -1,6 +1,7 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -18,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -41,9 +43,8 @@ import io.realm.RealmList;
 public class AddExercise_frag extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener, Runnable {
 
 
-    String pasName, planName;
-    int pasID, exerciseID, planID;
-    RealmList<ExerciseDTO> realmListExerciseDTO = new RealmList<ExerciseDTO>();
+    String pasName;
+    int pasID, planID;
     ArrayList<String> traeningsOevelser = new ArrayList<String>();
     SharedPreferences prefs;
     EditText editTextLocal;
@@ -83,7 +84,6 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
         getActivity().setTitle("Tilføj til " + pasName);
 
         traeningsOevelser = wc.getAllExerciseNamesToArray();
-        realmListExerciseDTO = wc.getAllExercises();
 
         fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton_addExercise_done);
         fab.setOnClickListener(this);
@@ -211,6 +211,8 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     public void onDestroyView() {
         super.onDestroyView();
         singleton.unRegistrer(this);
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     @Override
@@ -234,9 +236,9 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         Bundle bundleArgs = new Bundle();
-        bundleArgs.putInt("chosenExerciseID", realmListExerciseDTO.get(position).getID());
+        bundleArgs.putInt("chosenExerciseID", wc.getExercise(traeningsOevelser.get(position)).getID());
         bundleArgs.putInt("TræningspasID", pasID);
-        bundleArgs.putString("exerciseName", realmListExerciseDTO.get(position).getName());
+        bundleArgs.putString("exerciseName", wc.getExercise(traeningsOevelser.get(position)).getName());
         DialogAddExerciseGoals_frag dialog = new DialogAddExerciseGoals_frag();
         dialog.setArguments(bundleArgs);
         dialog.show(getActivity().getFragmentManager(), "Empty_pas");
@@ -268,7 +270,6 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
         }
 
         traeningsOevelser = wc.getAllExerciseNamesToArray();
-        realmListExerciseDTO = wc.getAllExercises();
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, traeningsOevelser);
         listView.setAdapter(adapter);
     }

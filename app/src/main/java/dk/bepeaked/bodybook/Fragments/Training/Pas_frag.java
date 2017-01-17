@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -47,6 +48,7 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     ArrayAdapter adapter;
     RealmList<WorkoutPasDTO> realmListPas;
     Singleton singleton;
+
 
 
     public Pas_frag() {

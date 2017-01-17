@@ -33,6 +33,7 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
     Button btn;
     SharedPreferences prefs;
     Singleton singleton;
+    DialogFragment dialogFragment;
 
 
     public DialogAddPas_frag() {
@@ -47,6 +48,7 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
 
         singleton = Singleton.singleton;
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        dialogFragment = this;
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
@@ -87,6 +89,7 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
 
     @Override
     public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
         singleton.notifyObservers();
     }
 }

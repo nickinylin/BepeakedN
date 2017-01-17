@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -39,6 +40,7 @@ public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements 
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_dialog_delete_frag, container, false);
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
         singleton = Singleton.singleton;
         pasID = getArguments().getInt("pasID", 99999);
@@ -76,6 +78,7 @@ public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements 
 
     @Override
     public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
         singleton.notifyObservers();
     }
 

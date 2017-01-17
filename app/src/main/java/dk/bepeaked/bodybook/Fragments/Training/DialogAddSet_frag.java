@@ -107,6 +107,7 @@ public class DialogAddSet_frag extends DialogFragment {
 
     @Override
     public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
         singleton.notifyObservers();
     }
 
