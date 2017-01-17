@@ -143,6 +143,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         listView = (ListView) view.findViewById(R.id.LW_chosenExercise);
         listView.setOnItemLongClickListener(this);
+
         reloadData();
 
 
@@ -177,7 +178,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         for (int i = 0; i < realmListSets.size(); i++) {
             dateCurrent = realmListSets.get(i).getDate();
             stringDateCurrent = dateFormatter.format(dateCurrent);
-//            stringDateLast = dateFormatter.format(dateLast);
             if (stringDateCurrent.equals(stringDateLast)) {
                 exerciseListAdapter.addItem(realmListSets.get(i));
                 stringDateLast = stringDateCurrent;
@@ -186,6 +186,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
                 stringDateLast = stringDateCurrent;
             }
         }
+        listView.setAdapter(exerciseListAdapter);
     }
 
     private int convertKilo(int kilo) {
@@ -326,7 +327,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             boolean measurement = prefs.getBoolean("measurement", false);
             int weightInt = (int) mData.get(position).getWeight();
             int reps = mData.get(position).getReps();
-//            stringDateCurrent = ;
+            stringDateCurrent = dateFormatter.format(mData.get(position).getDate());
             Log.d("Nicki", "position: " + position);
             int rmInt = (int) Math.round(mData.get(position).getRm());
             if (measurement) {
@@ -344,7 +345,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
                     holder.textViewWeight.setText(weightInt + "kg");
                     holder.textViewReps.setText(reps + "");
                     holder.textViewRM.setText(rmInt + "kg");
-                    holder.textViewDate.setText(dateFormatter.format(mData.get(position).getDate().toString()));
+                    holder.textViewDate.setText( stringDateCurrent + "");
                     break;
             }
 
