@@ -18,8 +18,8 @@ import android.widget.TextView;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -88,13 +88,17 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         exerciseID = getArguments().getInt("chosenExerciseID", 99999);
 
         exerciseName = wc.getExercise(exerciseID).getName();
-
+        try {
+            realmList = wc.getSetsFromExercise(exerciseID);
+        } catch (ExceptionExerciseDoesntExist e) {
+            e.printStackTrace();
+        }
 
         GraphView graph = (GraphView) view.findViewById(R.id.graph);
         graph.getGridLabelRenderer().setGridColor(BLACK);
         graph.getGridLabelRenderer().setVerticalAxisTitle("1RM");
         graph.getGridLabelRenderer().setVerticalAxisTitleTextSize(35);
-        graph.getGridLabelRenderer().setLabelVerticalWidth(20);
+        graph.getGridLabelRenderer().setLabelVerticalWidth(50);
         graph.getGridLabelRenderer().setVerticalLabelsColor(BLACK);
         graph.getGridLabelRenderer().setVerticalAxisTitleColor(BLACK);
         graph.getGridLabelRenderer().setHorizontalAxisTitle("Dage");
@@ -111,24 +115,31 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             }
         });
 
-        graph.getLegendRenderer().setBackgroundColor(WHITE);
+        graph.getLegendRenderer().setBackgroundColor(BLACK);
 
-
-        graph.getViewport().setBorderColor(BLACK);
+        graph.getViewport().setBorderColor(WHITE);
         graph.getViewport().setDrawBorder(true);
-        graph.getViewport().setScalable(true);
+        graph.getViewport().setScalable(false);
+        graph.getViewport().setScalableY(false);
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMaxX(10);
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(18+5);
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
-                new DataPoint(1, 0.25),
-                new DataPoint(2, 0.22),
-                new DataPoint(3, 0.12),
-                new DataPoint(4, 0.79),
-                new DataPoint(5, 1.3)
-        });
+        DataPoint[] points = new DataPoint[realmList.size()];
+        for (int i = 0; i < realmList.size(); i++){
+            points[i] = new DataPoint(i, realmList.get(i).getRm());
+        }
+
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(points);
+
         // styling series
-        series.setColor(Color.BLACK);
-        series.setThickness(4);
+        series.setColor(Color.parseColor("#059ea0"));
+        series.setAnimated(true);
+        series.setDataWidth(0.8);
         graph.addSeries(series);
+        graph.getViewport().scrollToEnd();
 
         listView = (ListView) view.findViewById(R.id.LW_chosenExercise);
         listView.setOnItemLongClickListener(this);
@@ -144,6 +155,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     }
 
     private void reloadData() {
+
+
         try {
             realmList = wc.getSetsFromExercise(exerciseID);
             Log.d("Nicki", "sets: " +realmList.size());
@@ -173,7 +186,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
                 stringDateLast = stringDateCurrent;
             }
         }
-        listView.setAdapter(exerciseListAdapter);
     }
 
     private int convertKilo(int kilo) {
