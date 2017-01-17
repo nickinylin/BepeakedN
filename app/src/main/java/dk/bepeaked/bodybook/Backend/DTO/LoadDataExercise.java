@@ -80,110 +80,110 @@ public class LoadDataExercise {
                 "As you have both arms extended in front of you holding the bar at the chosen grip width, bring your torso back around 30 degrees or so while creating a curvature on your lower back and sticking your chest out. This is your starting position.\n" +
                 "Pull your torso up until the bar touches your upper chest by drawing the shoulders and the upper arms down and back. Exhale as you perform this portion of the movement.\n" +
                 "After a second on the contracted position, start to inhale and slowly lower your torso back to the starting position when your arms are fully extended and the lats are fully stretched.\n" +
-                "Repeat this motion.", "", "", new RealmList<SetDTO>()));
+                "Repeat this motion.", "http://img.everkinetic.com/?action=image&id=374&number=0&key=69cadbdd2&version=b2fcdad0&size=280,420", "http://img.everkinetic.com/?action=image&id=374&number=1&key=69cadbdd2&version=fbe8dcfa&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(5, "Bridging", "This is an excellent exercise for strengthening and maintaining the core muscles.", "Lie on your back with your knees bent and your feet flat on the floor.\n" +
-                "Lift up hips and bum off the floor as you draw your abs in and keep your gluts tight.", "", "", new RealmList<SetDTO>()));
+                "Lift up hips and bum off the floor as you draw your abs in and keep your gluts tight.", "http://img.everkinetic.com/?action=image&id=447&number=0&key=69cadbdd2&version=8f3c61db&size=280,420", "http://img.everkinetic.com/?action=image&id=447&number=1&key=69cadbdd2&version=8d4ca279&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(6, "Chin Ups", "This is an extremely good exercise for upper arm and middle back strengthening.", "Grasp the bar with an supinated (overhand) grip.\n" +
                 "Let your body hang from the bar with your arms straight.\n" +
                 "Slowly pull yourself up so that your chin is higher than the bar.\n" +
-                "With a controlled movement lower yourself to the starting position.", "", "", new RealmList<SetDTO>()));
+                "With a controlled movement lower yourself to the starting position.", "http://img.everkinetic.com/?action=image&id=380&number=0&key=69cadbdd2&version=30f71856&size=280,420", "http://img.everkinetic.com/?action=image&id=380&number=1&key=69cadbdd2&version=6cc58063&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(7, "Seated Military Press", "An exercise for the shoulder and triceps strengthening.", "Sit on the bench with your toes pointing straight out, back straight and abs drawn in.\n" +
                 "Grip the bar with your palms facing outwards and your hands shoulder width apart\n" +
                 "With bar in front of your head, press upwards extending your arms but not locking them.\n" +
-                "Pause at the top and then in a controlled movement lower the bar to the starting position.", "", "", new RealmList<SetDTO>()));
+                "Pause at the top and then in a controlled movement lower the bar to the starting position.", "http://img.everkinetic.com/?action=image&id=42&number=0&key=69cadbdd2&version=cb370555&size=280,420", "http://img.everkinetic.com/?action=image&id=42&number=1&key=69cadbdd2&version=12732321&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(8, "Close Grip Barbell Bench Press", "This is an exercise for chest, triceps and shoulder strengthening.", "Lie on a flat bench with your feet flat on the floor, keep your back flat on the bench.\n" +
                 "Grasp the bar a close grip (approximately 14” apart).\n" +
                 "Raise the barbell above your body and move it over the middle of your chest, this is your starting position.\n" +
                 "Lower the bar down so it just touches your chest.\n" +
                 "Raise the bar till your arms are fully extended and your elbows are locked.\n" +
-                "Return to starting position.", "", "", new RealmList<SetDTO>()));
+                "Return to starting position.", "http://img.everkinetic.com/?action=image&id=238&number=0&key=69cadbdd2&version=32b3424f&size=280,420", "http://img.everkinetic.com/?action=image&id=238&number=1&key=69cadbdd2&version=d253d762&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(9, "Arnold Press", "An exercise for shoulder and triceps strengthening.", "Sit on a flat bench, feet point forward with your abs drawn in.\n" +
                 "Grasp a dumbbell in each hand with your palm facing towards your body\n" +
                 "Bend your elbows to 90 degrees and raise both your arms to the starting point in line with your shoulders.\n" +
                 "With a steady controlled motion raise your arms up while straightening your elbows while rotating your forearms so that your palms now face away from your body.\n" +
                 "Bring the dumbbells closer together but do not fully extend your elbows.\n" +
-                "With a controlled motion lower the dumbbells to the starting position at your shoulders.", "", "", new RealmList<SetDTO>()));
+                "With a controlled motion lower the dumbbells to the starting position at your shoulders.", "http://img.everkinetic.com/?action=image&id=50&number=0&key=69cadbdd2&version=ac246b9e&size=280,420", "http://img.everkinetic.com/?action=image&id=50&number=1&key=69cadbdd2&version=68a62bda&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(10, "Side Plank", "This is an exercise for core strengthening.", "Lay on one side of your body with your legs straight and your forearm perpendicular to your body in front of you.\n" +
                 "Drawing your abs in, slowly raise yourself up so you are balanced on your feet and your forearm.\n" +
                 "Hold this position and slowly return back to the starting position.\n" +
-                "Repeat on other side.", "", "", new RealmList<SetDTO>()));
+                "Repeat on other side.", "http://img.everkinetic.com/?action=image&id=456&number=0&key=69cadbdd2&version=9d379ce4&size=280,420", "http://img.everkinetic.com/?action=image&id=456&number=1&key=69cadbdd2&version=27e06d67&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(11, "Standing Leg Curls", "This is an exercise for hamstring strengthening.", "Standing at a leg curl machine adjust the rear footpad so it is just above your ankle.\n" +
                 "Grasp the handles of the machine for support and draw your abs in.\n" +
                 "Raise your foot up towards your back slowly.\n" +
-                "Return to the starting position and chance legs.", "", "", new RealmList<SetDTO>()));
+                "Return to the starting position and chance legs.", "http://img.everkinetic.com/?action=image&id=477&number=0&key=69cadbdd2&version=d2160de2&size=280,420", "http://img.everkinetic.com/?action=image&id=477&number=1&key=69cadbdd2&version=3a1cb415&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(12, "Incline Shoulder Press Dumbbell", "This is an exercise for shoulder strengthening.", "Lie down on an incline bench with your feet flat on the floor and grasp the dumbbells.\n" +
                 "With your elbows bent raise your arms up until in line with your shoulders this is your starting position.\n" +
                 "With your abs drawn in, raise the dumbbells as high as you are able above your shoulders.\n" +
-                "Lower the dumbbells in a slow controlled manner to starting position.", "", "", new RealmList<SetDTO>()));
+                "Lower the dumbbells in a slow controlled manner to starting position.", "http://img.everkinetic.com/?action=image&id=137&number=0&key=69cadbdd2&version=9953e6cc&size=280,420", "http://img.everkinetic.com/?action=image&id=137&number=1&key=69cadbdd2&version=0322b66d&size=280,420", new RealmList<SetDTO>()));
 
         //##### page 2 #####
         exercises.add(new ExerciseDTO(13,"Incline Dumbbell Press", "This exercises is for mainly chest strengthening but also strengthens your triceps and shoulders.", "Set and incline bench at a 45 degree angle.\n" +
                 "Start with the dumbbells at shoulder height, your arms wide and elbows pointing down to the floor.\n" +
                 "Raise your arms up over your chest bringing the dumbbells closer together as they meet over your chest.\n" +
                 "Slowly return the dumbbells to starting position.\n" +
-                "Repeat.", "", "", new RealmList<SetDTO>()));
+                "Repeat.", "http://img.everkinetic.com/?action=image&id=350&number=0&key=69cadbdd2&version=c9109a34&size=280,420", "http://img.everkinetic.com/?action=image&id=350&number=1&key=69cadbdd2&version=dd490d33&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(14, "Bench Press Dumbbell", "This is an exercise for chest, triceps and shoulder strengthening.", "Grasp the dumbbells in each hand and lie on a flat bench with your feet firmly on the ground.\n" +
                 "Extend your arms up over your chest with your palms facing forwards.\n" +
                 "Press the dumbbells up over your chest till your arm are fully extended this is your starting position.\n" +
                 "Bend your elbows to a 90 degree angle so your upper arms are parallel with the floor.\n" +
                 "Slowly lower the dumbbells as low as comfortable along your chest.\n" +
                 "With a controlled motion return back to your starting position.\n" +
-                "Repeat.", "", "", new RealmList<SetDTO>()));
+                "Repeat.", "http://img.everkinetic.com/?action=image&id=266&number=0&key=69cadbdd2&version=cff44542&size=280,420", "http://img.everkinetic.com/?action=image&id=266&number=1&key=69cadbdd2&version=16050569&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(15, "Upright Barbell Rows", "This is an exercise for shoulder, biceps and upper back strengthening.", "Stand with your feet shoulder width apart, your abs drawn in and back straight.\n" +
                 "Place the bar on rack in the position where your arms are fully extended in front of you with your elbows slightly bent.\n" +
                 "Place your hands shoulder width apart and raise the bar up towards your chin with a controlled motion.\n" +
                 "Pause at the top for a moment and rotate your shoulder blades together.\n" +
                 "Lower the bar to the starting position.\n" +
-                "Repeat", "", "", new RealmList<SetDTO>()));
+                "Repeat", "http://img.everkinetic.com/?action=image&id=75&number=0&key=69cadbdd2&version=0a33ff55&size=280,420", "http://img.everkinetic.com/?action=image&id=75&number=1&key=69cadbdd2&version=d43de315&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(16, "Incline Bench Press", "This is an exercise for chest and triceps strengthening.", "Lie flat on an incline bench set at a 45 degree angle, with your feet shoulder width apart.\n" +
                 "Grasp the bar a little wider than shoulder width apart.\n" +
                 "Raise the barbell above your body and move it over the middle of your chest, this is your starting position.\n" +
                 "Lower the bar down so it just touches your chest.\n" +
                 "Raise the bar straight up till your arms are fully extended and your elbows are locked.\n" +
-                "Return to starting position.", "", "", new RealmList<SetDTO>()));
+                "Return to starting position.", "http://img.everkinetic.com/?action=image&id=219&number=0&key=69cadbdd2&version=b74cfe62&size=280,420", "http://img.everkinetic.com/?action=image&id=219&number=1&key=69cadbdd2&version=7e721957&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(17, "Shoulder Shrugs", "An exercise for trapezius strengthening.", "Stand with your feet shoulder width apart and a slight bend in your knees.\n" +
                 "Hold a dumbbell in each hand and with your arms at your sides.\n" +
                 "Lower your shoulders as much as possible.\n" +
                 "With your arms straight raise both shoulders up towards your ears.\n" +
-                "Hold the upright positions for a moment and then lower in a controlled motion.", "", "", new RealmList<SetDTO>()));
+                "Hold the upright positions for a moment and then lower in a controlled motion.", "http://img.everkinetic.com/?action=image&id=46&number=0&key=69cadbdd2&version=9929c909&size=280,420", "http://img.everkinetic.com/?action=image&id=46&number=1&key=69cadbdd2&version=2d2d7b9a&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(18, "Hack Squat Machine", "This exercise is a variation of the Squat which uses a machine.  This exercise may be preferred by beginners.", "Lie face up on a Hack Squat machine with your shoulders against the pad.\n" +
                 "Place your feet facing forward at slightly less than shoulder width apart with your toes point slightly outward.\n" +
                 "Release the dock levers and place your hands on the hand grips.\n" +
                 "Drawing your abs in, extend your body standing upright.\n" +
                 "Lower your body to a squatting position so you knees are bent as if you were sitting down.\n" +
-                "Return to the starting position.", "", "", new RealmList<SetDTO>()));
+                "Return to the starting position.", "http://img.everkinetic.com/?action=image&id=870&number=0&key=69cadbdd2&version=d5d76838&size=280,420", "http://img.everkinetic.com/?action=image&id=870&number=1&key=69cadbdd2&version=6a1b3984&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(19, "Wide Grip Decline Bench Press", "This is an exercise for chest, triceps and shoulder strengthening.", "Lie on a decline bench with your head lower than your feet.\n" +
                 "Place your hands wider than shoulder width apart on the bar and lift it off the rack.\n" +
                 "Bring the bar over your chest and lower it till it is just above the lower portion of your chest, this is starting position.\n" +
                 "Extend your arms upward and raise the bar straight up.\n" +
                 "Pause for a moment and then lower the bar to starting position.\n" +
-                "Repeat.", "", "", new RealmList<SetDTO>()));
+                "Repeat.", "http://img.everkinetic.com/?action=image&id=362&number=0&key=69cadbdd2&version=c76ee40f&size=280,420", "http://img.everkinetic.com/?action=image&id=362&number=1&key=69cadbdd2&version=2f6bc9af&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(20, "T-Bar Rows", "This is an exercise for middle back, biceps and shoulder strengthening.", "Place your feet on either side of a T-Bar Machine.\n" +
                 "With your knees slightly bent and abs drawn in, grasp the handles with a narrow grip.\n" +
                 "Bend at the waist so your chest is parallel to the floor, this is starting position. Slowly pull the bar to your chest, as high as you can.\n" +
                 "Pause at the top for a moment and then lower the bar to starting position.\n" +
-                "Repeat", "", "", new RealmList<SetDTO>()));
+                "Repeat", "http://img.everkinetic.com/?action=image&id=130&number=0&key=69cadbdd2&version=ac3a0774&size=280,420", "http://img.everkinetic.com/?action=image&id=130&number=1&key=69cadbdd2&version=77d52543&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(21, "Dumbbell Shoulder Press", "An exercise for shoulder, chest and triceps strengthening.", "Sitting on a bench, with your abs drawn in grasp a dumbbell in each hand, with your palms facing forward.\n" +
                 "Begin with your arms at the height of your shoulders.\n" +
                 "Extend your arms and raise the dumbbells up above your head.\n" +
                 "At the top of the movement, bring your arms closer together.\n" +
                 "Pause for a moment and then in a controlled movement lower the dumbbells to the starting position.\n" +
-                "Repeat", "", "", new RealmList<SetDTO>()));
+                "Repeat", "http://img.everkinetic.com/?action=image&id=69&number=0&key=69cadbdd2&version=abe3e5c1&size=280,420", "http://img.everkinetic.com/?action=image&id=69&number=1&key=69cadbdd2&version=68dbb67e&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(22, "Cable Crossover", "This is an exercise for chest and shoulder strengthening.", "Attach the cable pulley to shoulder height.\n" +
                 "Grasp the pulley in both hands and stand approximately one foot in front of the weight stacks, with one foot slightly in front of the other.\n" +
                 "With a slight bend in your elbows bring your hand together in front of your chest on downward angle.\n" +
                 "When your hands meet at the midpoint of your chest, hold for a moment.\n" +
-                "With a slow controlled motion return to starting position.", "", "", new RealmList<SetDTO>()));
+                "With a slow controlled motion return to starting position.", "http://img.everkinetic.com/?action=image&id=234&number=0&key=69cadbdd2&version=700e11c7&size=280,420", "http://img.everkinetic.com/?action=image&id=234&number=1&key=69cadbdd2&version=3583777e&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(23, "Barbell Squat", "This is an exercise for leg strengthening, mainly the quadriceps.", "Lifting a barbell off of a weight rack, position it on your shoulders.\n" +
                 "Place your feet slightly wider than shoulder width apart with your knees and toes pointed slightly outward.\n" +
                 "Drawing your abs in descend slowly by bending at the knees and hips as if you are sitting down (squatting).\n" +
                 "Lower yourself as far as you can control without letting your body shift towards your toes (this will cause you to loose balance).\n" +
-                "Pause in the downward position and slowly return upright to the starting position.", "", "", new RealmList<SetDTO>()));
+                "Pause in the downward position and slowly return upright to the starting position.", "http://img.everkinetic.com/?action=image&id=485&number=0&key=69cadbdd2&version=d84bc8ac&size=280,420", "http://img.everkinetic.com/?action=image&id=485&number=1&key=69cadbdd2&version=1d39770f&size=280,420", new RealmList<SetDTO>()));
         exercises.add(new ExerciseDTO(24, "Dumbbell Flys", "This is an exercise for chest, triceps and shoulder strengthening.", "Lie on a flat bench with a dumbbell in each hand and your feet firmly on the ground.\n" +
                 "Lift the dumbbells over your chest extending your arms fully with a slight bend in your elbows, this is your starting position.\n" +
                 "Keeping a slight bend in your elbows, lower the dumbbells to the floor in an arc like motion.\n" +
                 "Slowly return the dumbbells over your chest to the starting position in a controlled motion.\n" +
-                "Repeat.", "", "", new RealmList<SetDTO>()));
+                "Repeat.", "http://img.everkinetic.com/?action=image&id=270&number=0&key=69cadbdd2&version=95988fc6&size=280,420", "http://img.everkinetic.com/?action=image&id=270&number=1&key=69cadbdd2&version=35902a60&size=280,420", new RealmList<SetDTO>()));
 
         //##### page 3 #####
         exercises.add(new ExerciseDTO(25, "Chest Dips", "This is an exercise for chest, triceps and shoulder strengthening.", "Stand in between the parallel bars.\n" +
