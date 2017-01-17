@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
 import dk.bepeaked.bodybook.Backend.DTO.Ingredient;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
+import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -17,6 +18,7 @@ public class DietDAO{
     CsvDAO dao = new CsvDAO();
     private ArrayList<DishDTO> savedDTO = new ArrayList<>();
     Realm realm = Realm.getDefaultInstance();
+    Singleton singleton = Singleton.singleton;
 
     public void getDishes(Activity act, String file){
         ArrayList<DishDTO> dtos = new ArrayList<>();
@@ -92,7 +94,7 @@ public class DietDAO{
         for(int i = 0; i < savedDTO.size(); i++) {
             for(int j = 0; j < dishes.size(); j++){
                 if(dishes.get(j).getName().equals(savedDTO.get(i).getName())){
-                    throw new ExceptionNameAlreadyExist(Resources.getSystem().getString(R.string.plan_by_the_name) + savedDTO.get(i).getName() + Resources.getSystem().getString(R.string.already_exists));
+                    throw new ExceptionNameAlreadyExist(singleton.getString(R.string.plan_by_the_name) + savedDTO.get(i).getName() + singleton.getString(R.string.already_exists));
                 }
             }
             realm.beginTransaction();

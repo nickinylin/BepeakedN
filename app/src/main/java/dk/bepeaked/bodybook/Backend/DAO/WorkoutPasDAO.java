@@ -7,6 +7,8 @@ import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
+import dk.bepeaked.bodybook.Backend.Singleton;
+import dk.bepeaked.bodybook.R;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
@@ -18,7 +20,7 @@ import io.realm.RealmResults;
 public class WorkoutPasDAO {
 
     Realm realm = Realm.getDefaultInstance();
-
+Singleton singleton = Singleton.singleton;
     /**
      * Adds a new pas to a plan
      *
@@ -74,7 +76,6 @@ public class WorkoutPasDAO {
      * @throws Exception if it doesn't exist in the plan
      */
     public void deletePas(int pasId) throws ExceptionPasDoesntExist {
-        Log.d("Nicki", "deletePas: " + pasId);
         WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("id", pasId).findFirst();
         RealmList<ExerciseGoals> goals = new RealmList<ExerciseGoals>();
         try {
@@ -103,11 +104,6 @@ public class WorkoutPasDAO {
     addExerciseToPas(int pasID, String exerciseName, int sets, int reps) throws ExceptionNameAlreadyExist {
 
         int id;
-//
-//        int position = -1;
-//
-//        ExerciseDAO exerciseDAO = new ExerciseDAO();
-//        WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
 
         WorkoutPasDTO realmPas = realm.where(WorkoutPasDTO.class).equalTo("id", pasID).findFirst();
         try {
@@ -115,7 +111,7 @@ public class WorkoutPasDAO {
             id = goal.getID() + 1;
             for (int i = 0; i < realmPas.getExercises().size(); i++) {
                 if (realmPas.getExercises().get(i).getName().equals(exerciseName)) {
-                    throw new ExceptionNameAlreadyExist("The exercise " + exerciseName + " already exist in a pas");
+                    throw new ExceptionNameAlreadyExist(singleton.getString(R.string.the_exercise) + exerciseName + singleton.getString(R.string.already_exists_in_pas));
                 }
             }
         }catch (IndexOutOfBoundsException e){
@@ -124,24 +120,6 @@ public class WorkoutPasDAO {
             id = 1;
         }
 
-//              else {
-//                if (realmPas.get(i).getName().equals(pasName)) {
-//                    position = i;
-//                    break;
-//                }
-//            }
-//
-//
-//        if (position == -1) {
-//            throw new ExceptionPasDoesntExist("The pas "+pasName+" in " + planName + " doesnt exist");
-//        } else {
-//
-//            try {
-//                ExerciseGoals goal = realm.where(ExerciseGoals.class).findAll().last();
-//                id = goal.getID() + 1;
-//            }catch (IndexOutOfBoundsException e){
-//                id = 1;
-//            }
         ExerciseGoals newExercise = new ExerciseGoals(id, exerciseName, sets, reps);
 
         realm.beginTransaction();
@@ -157,31 +135,10 @@ public class WorkoutPasDAO {
      */
     public void removeExerciseFromPas(int exerciseGoalID) {
 
-//        int position = -1;
-//
-//        WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
-//
-//        RealmList<WorkoutPasDTO> realmPas = realmPlan.getWorkoutPasses();
-//        for (int i = 0; i < realmPas.size(); i++) {
-//            if (realmPas.get(i).getName().equals(pasName)) {
-//                position = i;
-//                break;
-//            }
-//        }
-//
-//        if (position == -1) {
-//            throw new ExceptionPasDoesntExist("The pas "+pasName+" in " + planName + " doesnt exist");
-//        } else {
+
         realm.beginTransaction();
         ExerciseGoals goal = realm.where(ExerciseGoals.class).equalTo("id", exerciseGoalID).findFirst();
         goal.deleteFromRealm();
-//            for (int i = 0; i < exercises.size(); i++) {
-//                if (exercises.get(i).getName().equals(exerciseName)) {
-//                    realmPlan.getWorkoutPasses().get(position).getExercises().remove(i);
-//                    exercises.deleteFromRealm(i);
-//                    break;
-//                }
-//            }
         realm.commitTransaction();
 
     }

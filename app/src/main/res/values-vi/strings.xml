@@ -4,8 +4,24 @@
     <string name="exercise_same_name">"An exercise with the name "</string>
     <string name="already_exists">" already exist"</string>
     <string name="weight_cant_be_less_than_zero">Weight input can\'t be less than 0</string>
+    <string name="activationcode">Aktiveringskode</string>
     <string name="plan_by_the_name">"A plan by the name "</string>
     <string name="cantDeleteprecreatedExercises">Cant delete this app\'s precreated exercises</string>
     <string name="cantDeleteappsExercises">Cant delete this app\'s exercises</string>
     <string name="same_name_plan">"A plan by the name "</string>
+    <string name="the_exercise">"The exercise "</string>
+    <string name="already_exists_in_pas">" already exist in a pas"</string>
+    <string name="dietplan">Kostplan</string>
+    <string name="breakfast">Morgenmad</string>
+    <string name="lunch">Frokost</string>
+    <string name="dinner">Aftensmad</string>
+    <string name="snacks">Snacks</string>
+    <string name="ingredients_for_the_recipe">The ingredients for the recipe are as follows:\n\n</string>
+    <string name="this_recipe_contains_the_following">\n\n\n\nThis recipe contains the following:\n\n</string>
+    <string name="grams_of_protein">" grams of protein.\n"</string>
+    <string name="grams_of_fat">" grams of fat.\n"</string>
+    <string name="grams_of_carbonh">" grams of carbonhydrates.\n"</string>
+    <string name="calories">" calories."</string>
+    <string name="about_us">Om os</string>
+    <string name="settings">Indstillinger</string>
 </resources>

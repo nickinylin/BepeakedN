@@ -42,7 +42,7 @@ public class Recipe_frag extends Fragment {
         image.setImageResource(dish.getImagePath());
 
         ArrayList<String> ingredientNames = new ArrayList<String>();
-        String text = "The ingredients for the recipe are as follows:\n\n";
+        String text = getString(R.string.ingredients_for_the_recipe);
         int protein = 0, fat = 0, carbonhydrate = 0, calories = 0;
         for(int i = 0; i < dish.getIngredients().size(); i++){
             int nr = i+1;
@@ -52,7 +52,7 @@ public class Recipe_frag extends Fragment {
             carbonhydrate = carbonhydrate + dish.getIngredients().get(i).getCarbohydrate();
             calories = calories + dish.getIngredients().get(i).getCalories();
         }
-        text = text + "\n\n\n\nThis recipe contains the following:\n\n" + protein + " grams of protein.\n" + fat + " grams of fat.\n" + carbonhydrate + " grams of carbonhydrates.\n" + calories + " calories.";
+        text = text + getString(R.string.this_recipe_contains_the_following) + protein + getString(R.string.grams_of_protein) + fat + getString(R.string.grams_of_fat) + carbonhydrate + getString(R.string.grams_of_carbonh) + calories + getString(R.string.calories);
         ingredients.setText(text);
         description.setText(dish.getDeskLong());
 

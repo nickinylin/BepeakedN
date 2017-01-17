@@ -25,15 +25,16 @@
             android:id="@+id/switch1"
             android:layout_height="wrap_content"
             android:layout_width="65dp"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginRight="10dp"
             android:textOff="Kilo"
             android:textOn="Pounds"
             android:textColor="@color/F5ABC73"
             android:textSize="18sp"
             android:layout_weight=".30"
-            android:backgroundTint="@color/colorPrimaryDark"/>
+            android:background="@color/colorPrimaryDark"
+            />
 
     </LinearLayout>
     <ListView

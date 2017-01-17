@@ -32,8 +32,8 @@ public class Settings_frag extends Fragment implements AdapterView.OnItemClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
-        getActivity().setTitle("Indstillinger");
-        String[] settings = {getActivity().getResources().getString(R.string.activationcode), "Om os"};
+        getActivity().setTitle(getString(R.string.settings));
+        String[] settings = {getString(R.string.activationcode), getString(R.string.about_us)};
 
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, settings);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
