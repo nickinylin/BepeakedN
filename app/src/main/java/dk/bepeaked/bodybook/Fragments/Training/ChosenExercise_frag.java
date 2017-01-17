@@ -22,6 +22,8 @@ import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.TreeSet;
 
@@ -42,7 +44,7 @@ import static android.graphics.Color.WHITE;
 public class ChosenExercise_frag extends Fragment implements View.OnClickListener, View.OnLongClickListener, AdapterView.OnItemLongClickListener, Runnable {
 
     RealmList<SetDTO> realmList;
-    RealmList<SetDTO> realmListSets;
+    RealmList<SetDTO> realmListSets = new RealmList<>();
     FloatingActionButton fab;
     SharedPreferences prefs;
     ExerciseDTO dto;
@@ -60,6 +62,10 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     int reps;
     int rmInt;
     Date date;
+    GraphView graph;
+    ArrayList<DataPoint> points;
+    BarGraphSeries<DataPoint> series;
+    ArrayList<Integer> rms;
 //    ExerciseListAdapter exerciseListAdapter;
 
 
@@ -93,18 +99,24 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         } catch (ExceptionExerciseDoesntExist e) {
             e.printStackTrace();
         }
+        for (int i = realmList.size(); i > realmList.size()-10 ; i--) {
+            if (i > 0) {
+                realmListSets.add(realmList.get(i-1));
+            }
+        }
 
-        GraphView graph = (GraphView) view.findViewById(R.id.graph);
+        graph = (GraphView) view.findViewById(R.id.graph);
         graph.getGridLabelRenderer().setGridColor(BLACK);
+        graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         graph.getGridLabelRenderer().setVerticalAxisTitle("1RM");
-        graph.getGridLabelRenderer().setVerticalAxisTitleTextSize(35);
-        graph.getGridLabelRenderer().setLabelVerticalWidth(50);
+        graph.getGridLabelRenderer().setVerticalAxisTitleTextSize(45);
+        graph.getGridLabelRenderer().setLabelVerticalWidth(60);
         graph.getGridLabelRenderer().setVerticalLabelsColor(BLACK);
         graph.getGridLabelRenderer().setVerticalAxisTitleColor(BLACK);
-        graph.getGridLabelRenderer().setHorizontalAxisTitle("Dage");
-        graph.getGridLabelRenderer().setHorizontalAxisTitleTextSize(35);
+        graph.getGridLabelRenderer().setHorizontalAxisTitle(" ");
+        graph.getGridLabelRenderer().setHorizontalAxisTitleTextSize(55);
         graph.getGridLabelRenderer().setHorizontalAxisTitleColor(BLACK);
-        graph.getGridLabelRenderer().setHorizontalLabelsColor(BLACK);
+//        graph.getGridLabelRenderer().setHorizontalLabelsColor(BLACK);
         graph.getGridLabelRenderer().setVerticalLabelsVisible(true);
 
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
@@ -125,21 +137,32 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         graph.getViewport().setMaxX(10);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(18+5);
-
-        DataPoint[] points = new DataPoint[realmList.size()];
+        rms = new ArrayList<>();
         for (int i = 0; i < realmList.size(); i++){
-            points[i] = new DataPoint(i, realmList.get(i).getRm());
+            rms.add((int) realmList.get(i).getRm());
+        }
+        if(rms.size() > 0) {
+            graph.getViewport().setMaxY(Collections.max(rms) + 2);
+        } else{
+            graph.getViewport().setMaxY(5);
         }
 
-        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(points);
+        points = new ArrayList<>();
+        for (int i = 0; i < realmList.size(); i++){
+            points.add(new DataPoint(i, realmList.get(i).getRm()));
+        }
+
+        DataPoint[] pointsArray = points.toArray(new DataPoint[points.size()]);
+        series = new BarGraphSeries<>(pointsArray);
 
         // styling series
         series.setColor(Color.parseColor("#059ea0"));
         series.setAnimated(true);
         series.setDataWidth(0.8);
         graph.addSeries(series);
-        graph.getViewport().scrollToEnd();
+        if(realmList.size() > 10){
+            graph.getViewport().scrollToEnd();
+        }
 
         listView = (ListView) view.findViewById(R.id.LW_chosenExercise);
         listView.setOnItemLongClickListener(this);
@@ -157,16 +180,32 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
     private void reloadData() {
 
-
         try {
             realmList = wc.getSetsFromExercise(exerciseID);
-            Log.d("Nicki", "sets: " +realmList.size());
         } catch (ExceptionExerciseDoesntExist e) {
             e.printStackTrace();
         }
+        points.clear();
+        for (int i = 0; i < realmList.size(); i++){
+            points.add(new DataPoint(i, realmList.get(i).getRm()));
+        }
+        DataPoint[] pointsArray = points.toArray(new DataPoint[points.size()]);
+        if(points.size() > 0) {
+            for (int i = 0; i < realmList.size(); i++){
+                rms.add((int) realmList.get(i).getRm());
+            }
+            graph.getViewport().setMaxY(Collections.max(rms) + 2);
+        } else{
+            graph.getViewport().setMaxY(5);
+        }
+        series.resetData(pointsArray);
+        graph.removeAllSeries();
+        graph.addSeries(series);
+        if(realmList.size() > 10){
+            graph.getViewport().scrollToEnd();
+        }
 
-        realmListSets = new RealmList<>();
-
+        realmListSets.clear();
         for (int i = realmList.size(); i > realmList.size()-10 ; i--) {
             if (i > 0) {
                 realmListSets.add(realmList.get(i-1));
