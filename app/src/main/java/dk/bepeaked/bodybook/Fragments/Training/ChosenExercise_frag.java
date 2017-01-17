@@ -66,6 +66,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     ArrayList<DataPoint> points;
     BarGraphSeries<DataPoint> series;
     ArrayList<Integer> rms;
+    int numberBars = 20;
 //    ExerciseListAdapter exerciseListAdapter;
 
 
@@ -134,7 +135,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         graph.getViewport().setScalable(false);
         graph.getViewport().setScalableY(false);
         graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMaxX(10);
+        graph.getViewport().setMaxX(numberBars);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
         rms = new ArrayList<>();
@@ -160,7 +161,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         series.setAnimated(true);
         series.setDataWidth(0.8);
         graph.addSeries(series);
-        if(realmList.size() > 10){
+        if(realmList.size() > numberBars){
             graph.getViewport().scrollToEnd();
         }
 
@@ -199,9 +200,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             graph.getViewport().setMaxY(5);
         }
         series.resetData(pointsArray);
-        graph.removeAllSeries();
-        graph.addSeries(series);
-        if(realmList.size() > 10){
+
+        if(realmList.size() > numberBars){
             graph.getViewport().scrollToEnd();
         }
 
