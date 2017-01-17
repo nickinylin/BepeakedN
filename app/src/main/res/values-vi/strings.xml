@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="cantDeleteLastPlan">You can\'t delete the last plan</string>
+    <string name="exercise_same_name">"An exercise with the name "</string>
+    <string name="already_exists">" already exist"</string>
+    <string name="weight_cant_be_less_than_zero">Weight input can\'t be less than 0</string>
+    <string name="plan_by_the_name">"A plan by the name "</string>
+</resources>

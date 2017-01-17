@@ -1,5 +1,6 @@
 package dk.bepeaked.bodybook.Backend.Controllers;
 
+import android.content.res.Resources;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ import dk.bepeaked.bodybook.Backend.Exception.ExceptionExerciseDoesntExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionWrongInput;
+import dk.bepeaked.bodybook.Backend.Singleton;
+import dk.bepeaked.bodybook.R;
 import io.realm.RealmList;
 
 /**
@@ -41,6 +44,7 @@ public class WorkoutController {
     RealmList<ExerciseDTO> realmListExerciseDTO;
     RealmList<SetDTO> realmListSetDTO;
     int id;
+    Singleton singleton = Singleton.singleton;
 
     //*******************Planer**************************
     //Create
@@ -105,7 +109,7 @@ public class WorkoutController {
         if(getPlans().size()>1) {
             workoutDAO.deletePlan(planID);
         }else{
-            throw new ExceptionCantDelete("You can't delete the last plan");
+            throw new ExceptionCantDelete(singleton.getString(R.string.cantDeleteLastPlan));
         }
     }
 
@@ -146,7 +150,6 @@ public class WorkoutController {
         } catch (IndexOutOfBoundsException e) {
             id = 1;
         }
-        Log.d("LUKAS", "addNewPasToPlan: id " + id);
         workoutPasDTO = new WorkoutPasDTO(id, pasName, new RealmList<ExerciseGoals>());
         workoutPasDAO.newPas(planId, workoutPasDTO);
     }
@@ -248,7 +251,7 @@ public class WorkoutController {
 
         for (int i = 0; i < exercise.size(); i++) {
             if (exerciseName.equals(exercise.get(i).getName())) {
-                throw new ExceptionNameAlreadyExist("An exercise with the name " + exerciseName + " already exist");
+                throw new ExceptionNameAlreadyExist(Resources.getSystem().getString(R.string.exercise_same_name) + exerciseName + Resources.getSystem().getString(R.string.already_exists));
             }
         }
         ExerciseDTO newExercise = new ExerciseDTO(id, exerciseName, null, null, null, null, new RealmList<SetDTO>());
@@ -305,7 +308,7 @@ public class WorkoutController {
         RealmList<ExerciseDTO> exercise = getAllExercises();
         for (int i = 0; i < exercise.size(); i++) {
             if (newName.equals(exercise.get(i).getName())) {
-                throw new ExceptionNameAlreadyExist("An exercise with the name " + newName + " already exist");
+                throw new ExceptionNameAlreadyExist(Resources.getSystem().getString(R.string.exercise_same_name) + newName + Resources.getSystem().getString(R.string.already_exists));
             }
         }
         exerciseDAO.updateExerciseName(exerciseID, newName);
@@ -422,7 +425,7 @@ public class WorkoutController {
             newSet = new SetDTO(id, exerciseName, kg, reps, date, RM);
             setDAO.addSet(exerciseName, newSet);
         } else {
-            throw new ExceptionWrongInput("Weight input can't be less than 0");
+            throw new ExceptionWrongInput(Resources.getSystem().getString(R.string.weight_cant_be_less_than_zero));
         }
     }
 

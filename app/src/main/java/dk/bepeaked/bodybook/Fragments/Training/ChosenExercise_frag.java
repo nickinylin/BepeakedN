@@ -23,6 +23,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TreeSet;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
@@ -51,13 +52,15 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     WorkoutController wc;
     Date dateLast, dateCurrent;
     SimpleDateFormat dateFormatter;
-    String stringDateLast;
+    String stringDateLast, stringDateCurrent;
     Singleton singleton;
     int counter = 0;
     boolean measurement;
     int weightInt;
     int reps;
     int rmInt;
+    Date date;
+//    ExerciseListAdapter exerciseListAdapter;
 
 
     //skal slettes. til test
@@ -79,7 +82,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         singleton.listen(this);
         wc = new WorkoutController();
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date(0, 0, 0);
+        date = new Date(0, 0, 0);
         stringDateLast = dateFormatter.format(date);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         exerciseID = getArguments().getInt("chosenExerciseID", 99999);
@@ -127,14 +130,28 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         series.setThickness(4);
         graph.addSeries(series);
 
+        listView = (ListView) view.findViewById(R.id.LW_chosenExercise);
+        listView.setOnItemLongClickListener(this);
+        reloadData();
+
+
+
+        fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton_add_set);
+
+        fab.setOnClickListener(this);
+
+        return view;
+    }
+
+    private void reloadData() {
         try {
             realmList = wc.getSetsFromExercise(exerciseID);
             Log.d("Nicki", "sets: " +realmList.size());
         } catch (ExceptionExerciseDoesntExist e) {
             e.printStackTrace();
         }
+
         realmListSets = new RealmList<>();
-        int j = 0;
 
         for (int i = realmList.size(); i > realmList.size()-10 ; i--) {
             if (i > 0) {
@@ -142,20 +159,21 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             }
         }
 
+       ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter();
+        stringDateLast = dateFormatter.format(date);
         for (int i = 0; i < realmListSets.size(); i++) {
-            Log.d("Nicki", "realmListSets: " + realmListSets.get(i).getId());
+            dateCurrent = realmListSets.get(i).getDate();
+            stringDateCurrent = dateFormatter.format(dateCurrent);
+//            stringDateLast = dateFormatter.format(dateLast);
+            if (stringDateCurrent.equals(stringDateLast)) {
+                exerciseListAdapter.addItem(realmListSets.get(i));
+                stringDateLast = stringDateCurrent;
+            } else {
+                exerciseListAdapter.addSeparatorItem(realmListSets.get(i));
+                stringDateLast = stringDateCurrent;
+            }
         }
-
-        listView = (ListView) view.findViewById(R.id.LW_chosenExercise);
-        ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter();
-        listView.setOnItemLongClickListener(this);
         listView.setAdapter(exerciseListAdapter);
-
-        fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton_add_set);
-
-        fab.setOnClickListener(this);
-
-        return view;
     }
 
     private int convertKilo(int kilo) {
@@ -204,20 +222,49 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
     public class ExerciseListAdapter extends BaseAdapter {
 
+        private static final int TYPE_noDate = 0;
+        private static final int TYPE_Date = 1;
+        private static final int TYPE_MAX_COUNT = TYPE_Date + 1;
+
+        private RealmList<SetDTO> mData = new RealmList<SetDTO>();
         private LayoutInflater mInflater;
+
+        private TreeSet mSeparatorsSet = new TreeSet();
 
         public ExerciseListAdapter() {
             mInflater = (LayoutInflater) getActivity().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
         }
 
-        @Override
-        public int getCount() {
-            return realmListSets.size();
+        public void addItem(final SetDTO item) {
+            mData.add(item);
+            notifyDataSetChanged();
+        }
+
+        public void addSeparatorItem(final SetDTO item) {
+            mData.add(item);
+            // save separator position
+            mSeparatorsSet.add(mData.size() - 1);
+            notifyDataSetChanged();
         }
 
         @Override
-        public Object getItem(int position) {
-            return position;
+        public int getItemViewType(int position) {
+            return mSeparatorsSet.contains(position) ? TYPE_Date : TYPE_noDate;
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return TYPE_MAX_COUNT;
+        }
+
+        @Override
+        public int getCount() {
+            return mData.size();
+        }
+
+        @Override
+        public SetDTO getItem(int position) {
+            return mData.get(position);
         }
 
         @Override
@@ -225,59 +272,68 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             return position;
         }
 
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
 
-            dateCurrent = realmListSets.get(position).getDate();
+//
 //            Log.d("Nicki", "datecurrent: " + dateCurrent + "\n dateLast: " + stringDateLast);
 
-            String stringDateCurrent = dateFormatter.format(dateCurrent);
-//            String stringDateLast = dateFormatter.format(dateLast);
+//
 //            Log.d("Nicki", "stringdatecurrent: " + stringDateCurrent + "\n stringdateLast: " + stringDateLast);
 
+
             ViewHolder1 holder = null;
+            int type = getItemViewType(position);
+
+            System.out.println("getView " + position + " " + convertView + " type = " + type);
+
             if (convertView == null) {
-                if (stringDateCurrent.equals(stringDateLast)) {
-                    convertView = mInflater.inflate(R.layout.exercise_list_element, null);
-                    holder = new ViewHolder1();
-                    holder.textViewWeight = (TextView) convertView.findViewById(R.id.tv_exercise_weight);
-                    holder.textViewReps = (TextView) convertView.findViewById(R.id.tv_exercise_reps);
-                    holder.textViewRM = (TextView) convertView.findViewById(R.id.tv_exercise_rm);
-
-                } else {
-                    convertView = mInflater.inflate(R.layout.exercise_list_element_with_date, null);
-                    holder = new ViewHolder1();
-                    holder.textViewWeight = (TextView) convertView.findViewById(R.id.tv_exercise_weight);
-                    holder.textViewReps = (TextView) convertView.findViewById(R.id.tv_exercise_reps);
-                    holder.textViewRM = (TextView) convertView.findViewById(R.id.tv_exercise_rm);
-                    holder.textViewDate = (TextView) convertView.findViewById(R.id.tv_exercise_date);
-
+                holder = new ViewHolder1();
+                switch (type) {
+                    case TYPE_noDate:
+                        convertView = mInflater.inflate(R.layout.exercise_list_element, null);
+                        holder.textViewWeight = (TextView) convertView.findViewById(R.id.tv_exercise_weight);
+                        holder.textViewReps = (TextView) convertView.findViewById(R.id.tv_exercise_reps);
+                        holder.textViewRM = (TextView) convertView.findViewById(R.id.tv_exercise_rm);
+                        break;
+                    case TYPE_Date:
+                        convertView = mInflater.inflate(R.layout.exercise_list_element_with_date, null);
+                        holder.textViewWeight = (TextView) convertView.findViewById(R.id.tv_exercise_weight);
+                        holder.textViewReps = (TextView) convertView.findViewById(R.id.tv_exercise_reps);
+                        holder.textViewRM = (TextView) convertView.findViewById(R.id.tv_exercise_rm);
+                        holder.textViewDate = (TextView) convertView.findViewById(R.id.tv_exercise_date);
+                        break;
                 }
                 convertView.setTag(holder);
             } else {
-                holder = (ViewHolder1) convertView.getTag();
-
+                holder = (ViewHolder1)convertView.getTag();
             }
 
             boolean measurement = prefs.getBoolean("measurement", false);
-            int weightInt = (int) realmListSets.get(position).getWeight();
-            int reps = realmListSets.get(position).getReps();
+            int weightInt = (int) mData.get(position).getWeight();
+            int reps = mData.get(position).getReps();
+//            stringDateCurrent = ;
             Log.d("Nicki", "position: " + position);
-            int rmInt = (int) Math.round(realmListSets.get(position).getRm());
+            int rmInt = (int) Math.round(mData.get(position).getRm());
             if (measurement) {
                 weightInt = convertKilo(weightInt);
                 rmInt = convertKilo(rmInt);
             }
-            holder.textViewWeight.setText(weightInt + "kg");
-            holder.textViewReps.setText(reps + "");
-            holder.textViewRM.setText(rmInt + "kg");
-            if (!stringDateCurrent.equals(stringDateLast)) {
-                stringDateLast = stringDateCurrent;
-                Log.d("Nicki", "StringdateCurrent: " +stringDateCurrent);
-                holder.textViewDate.setText(stringDateCurrent + "");
-            } else {
-                stringDateLast = stringDateCurrent;
+
+            switch (type) {
+                case TYPE_noDate:
+                    holder.textViewWeight.setText(weightInt + "kg");
+                    holder.textViewReps.setText(reps + "");
+                    holder.textViewRM.setText(rmInt + "kg");
+                    break;
+                case TYPE_Date:
+                    holder.textViewWeight.setText(weightInt + "kg");
+                    holder.textViewReps.setText(reps + "");
+                    holder.textViewRM.setText(rmInt + "kg");
+                    holder.textViewDate.setText(dateFormatter.format(mData.get(position).getDate().toString()));
+                    break;
             }
 
 
@@ -292,25 +348,26 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         public TextView textViewDate;
     }
 
-    private void adapterReload() {
-        try {
-            Date date = new Date(9999, 12, 10);
-            stringDateLast = dateFormatter.format(date);
-//            Log.d("LUKAS", "latest date er nu: " + stringDateLast);
-            realmList = wc.getSetsFromExercise(exerciseID);
-            realmListSets.clear();
-            for (int i = realmList.size(); i > realmList.size()-10; i--) {
-                realmListSets.add(realmList.get(i-1));
-            }
-        } catch (ExceptionExerciseDoesntExist e) {
-            e.printStackTrace();
-        }
-        ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter();
-        listView.setAdapter(exerciseListAdapter);
-    }
+//    private void adapterReload() {
+//        try {
+//            Date date = new Date(9999, 12, 10);
+//            stringDateLast = dateFormatter.format(date);
+////            Log.d("LUKAS", "latest date er nu: " + stringDateLast);
+//            realmList = wc.getSetsFromExercise(exerciseID);
+//            realmListSets.clear();
+//            for (int i = realmList.size(); i > realmList.size()-10; i--) {
+//                realmListSets.add(realmList.get(i-1));
+//            }
+//        } catch (ExceptionExerciseDoesntExist e) {
+//            e.printStackTrace();
+//        }
+//        ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter();
+//        listView.setAdapter(exerciseListAdapter);
+//    }
 
     @Override
     public void run() {
-        adapterReload();
+        reloadData();
+//        adapterReload();
     }
 }

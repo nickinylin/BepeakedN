@@ -70,6 +70,12 @@ public class DialogDeletePlan_frag extends DialogFragment implements View.OnClic
             } catch (ExceptionCantDelete e) {
                 e.printStackTrace();
                 tv.setText(e.getMessage());
+                btnOK.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dismiss();
+                    }
+                });
             }
         } else if (v == btnCancel) {
             dismiss();

@@ -1,12 +1,14 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
 import android.app.Activity;
+import android.content.res.Resources;
 
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.DTO.DishDTO;
 import dk.bepeaked.bodybook.Backend.DTO.Ingredient;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
+import dk.bepeaked.bodybook.R;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
@@ -90,7 +92,7 @@ public class DietDAO{
         for(int i = 0; i < savedDTO.size(); i++) {
             for(int j = 0; j < dishes.size(); j++){
                 if(dishes.get(j).getName().equals(savedDTO.get(i).getName())){
-                    throw new ExceptionNameAlreadyExist("A plan by the name " + savedDTO.get(i).getName() + " already exist");
+                    throw new ExceptionNameAlreadyExist(Resources.getSystem().getString(R.string.plan_by_the_name) + savedDTO.get(i).getName() + Resources.getSystem().getString(R.string.already_exists));
                 }
             }
             realm.beginTransaction();
