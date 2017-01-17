@@ -9,5 +9,8 @@
     <string name="already_exists">" already exist"</string>
     <string name="weight_cant_be_less_than_zero">Weight input can\'t be less than 0</string>
     <string name="plan_by_the_name">"A plan by the name "</string>
+    <string name="cantDeleteprecreatedExercises">Cant delete this app\'s precreated exercises</string>
+    <string name="cantDeleteappsExercises">Cant delete this app\'s exercises</string>
+    <string name="same_name_plan">"A plan by the name "</string>
 
 </resources>

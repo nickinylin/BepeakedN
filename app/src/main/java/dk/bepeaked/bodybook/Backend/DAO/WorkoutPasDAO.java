@@ -30,9 +30,6 @@ public class WorkoutPasDAO {
         WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("id", planID).findFirst();
 
 
-//        if(!checkName(workoutPasDTO.getName())){
-//            throw new ExceptionNameAlreadyExist("A pas with the name "+ workoutPasDTO.getName() +" already exist");
-//        }else {
         realm.beginTransaction();
         realmPlan.getWorkoutPasses().add(workoutPasDTO);
         realm.commitTransaction();
@@ -61,50 +58,13 @@ public class WorkoutPasDAO {
      */
     public void updatePasName(int pasID, String newPasName) throws ExceptionNameAlreadyExist {
 
-//        int position = -1;
-//
-//        WorkoutDTO oldRealmPlan = realm.where(WorkoutDTO.class).equalTo("id", planID).findFirst();
-//
-//        RealmList<WorkoutPasDTO> realmPas = oldRealmPlan.getWorkoutPasses();
-//        for (int i = 0; i < realmPas.size(); i++) {
-//            if(checkName(newPasName)){
-//                throw new ExceptionNameAlreadyExist("A pas by the name "+newPasName+" already exist");
-//            }
-//            if (realmPas.get(i).getName().equals(oldPasName)) {
-//                position = i;
-//                break;
-//            }
-//        }
-//
-//        if (position == -1) {
-//            throw new ExceptionPasDoesntExist("The pas doesnt exist");
-//        } else {
-//            WorkoutPasDTO updatedRealmPas = new WorkoutPasDTO();
-//            RealmList<ExerciseGoals> exercises = oldRealmPlan.getWorkoutPasses().get(position).getExercises();
-//
-//            updatedRealmPas.setName(newPasName);
-//            for(int i = 0; i < exercises.size(); i++){
-//                updatedRealmPas.setExerciseGoal(oldRealmPlan.getWorkoutPasses().get(i).getExercises());
-//            }
-//            WorkoutPasDTO oldRealmPas = realm.where(WorkoutPasDTO.class).equalTo("name", oldPasName).findFirst();
-//            RealmList<ExerciseGoals> goals = oldRealmPas.getExercises();
-//        WorkoutPasDTO pas = new WorkoutPasDTO();
-//        RealmList<WorkoutPasDTO> passes = oldRealmPlan.getWorkoutPasses();
         WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("id", pasID).findFirst();
-//        for (int i = 0; i < passes.size(); i++) {
-//            if (passes.get(i).getID() == pasID) {
-//                pas = passes.get(i);
-//            }
-//        }
+
 
         realm.beginTransaction();
         pas.setName(newPasName);
-//            for(int i = 0; i < goals.size(); i++){
-//                goals.get(i).deleteFromRealm();
-//            }
-//            oldRealmPas.deleteFromRealm();
         realm.commitTransaction();
-//        }
+
     }
 
     /**

@@ -50,10 +50,8 @@ public class PlanDAO {
                 indexStart = i;
                 nameSplit = cleanData2.get(i).get(0).split(":");
                 name = nameSplit[1];
-                Log.d("sebby", "getWorkoutsName: " + cleanData2.size());
                 RealmList<WorkoutDTO> plans = wc.getPlans();
                 for (int j = 0; j < plans.size(); j++) {
-                    Log.d("sebby", "JAJAJAJA " + name + " " + plans.get(j).getName());
                     if (name.equals(plans.get(j).getName())) {
                         exist = true;
                         break;
@@ -99,7 +97,6 @@ public class PlanDAO {
                     dto.setName(name);
                     dtos.add(dto);
                 }
-                Log.d("sebby", "getWorkouts: " + exist);
             }
         }
         if (dtos.size() > 0) {
@@ -125,7 +122,6 @@ public class PlanDAO {
                     } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
                         exceptionNameAlreadyExist.printStackTrace();
                     }
-                    Log.d("sebby", "getWorkouts: " + workoutPasDTOs.get(j).getExercises().size());
                     for (int l = 0; l < workoutPasDTOs.get(j).getExercises().size(); l++) {
 
                         RealmList<ExerciseGoals> goals = workoutPasDTOs.get(j).getExercises();

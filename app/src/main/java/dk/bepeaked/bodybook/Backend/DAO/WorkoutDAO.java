@@ -6,6 +6,8 @@ import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
+import dk.bepeaked.bodybook.Backend.Singleton;
+import dk.bepeaked.bodybook.R;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
@@ -22,6 +24,7 @@ public class WorkoutDAO {
 
     Realm realm = Realm.getDefaultInstance();
     WorkoutPasDAO workoutPasDAO = new WorkoutPasDAO();
+    Singleton singleton  = Singleton.singleton;
 
     /**
      * Adds a new workoutplan
@@ -31,7 +34,7 @@ public class WorkoutDAO {
         RealmList<WorkoutDTO> plans = getPlans();
         for(int i = 0; i<plans.size(); i++){
             if(plans.get(i).getName().equals(workoutDTO.getName())){
-                throw new ExceptionNameAlreadyExist("A plan by the name "+workoutDTO.getName() +" already exist");
+                throw new ExceptionNameAlreadyExist(singleton.getString(R.string.same_name_plan)+workoutDTO.getName() +singleton.getString(R.string.already_exists));
             }
         }
         realm.beginTransaction();
@@ -57,25 +60,14 @@ public class WorkoutDAO {
      */
     public void updatePlanName(int id, String newname) throws ExceptionPasDoesntExist, ExceptionNameAlreadyExist {
 
-//        WorkoutDTO plan = realm.where(WorkoutDTO.class).equalTo("id", id).findFirst();
-//        WorkoutDTO newPlan = new WorkoutDTO();
-//        newPlan.setName(newname);
-//        newPlan.setWorkoutPas(plan.getWorkoutPasses());
-//
         RealmList<WorkoutDTO> planer = new RealmList<>();
         planer = getPlans();
 
         int position = -1;
         for(int i = 0; i<planer.size(); i++){
             if(planer.get(i).getName().equals(newname)){
-                throw new ExceptionNameAlreadyExist("A plan by the name "+ newname + " already exist");
+                throw new ExceptionNameAlreadyExist(singleton.getString(R.string.same_name_plan)+ newname + singleton.getString(R.string.already_exists));
             }
-//            else {
-//                if (planer.get(i).getID().equals(oldname)) {
-//                    position = i;
-//                    break;
-//                }
-//            }
         }
 
         realm.beginTransaction();

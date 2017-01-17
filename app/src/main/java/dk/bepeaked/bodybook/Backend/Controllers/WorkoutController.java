@@ -251,7 +251,7 @@ public class WorkoutController {
 
         for (int i = 0; i < exercise.size(); i++) {
             if (exerciseName.equals(exercise.get(i).getName())) {
-                throw new ExceptionNameAlreadyExist(Resources.getSystem().getString(R.string.exercise_same_name) + exerciseName + Resources.getSystem().getString(R.string.already_exists));
+                throw new ExceptionNameAlreadyExist(singleton.getString(R.string.exercise_same_name) + exerciseName + singleton.getString(R.string.already_exists));
             }
         }
         ExerciseDTO newExercise = new ExerciseDTO(id, exerciseName, null, null, null, null, new RealmList<SetDTO>());

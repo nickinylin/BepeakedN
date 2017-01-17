@@ -19,6 +19,7 @@ import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionCantDelete;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
+import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -29,7 +30,7 @@ import io.realm.RealmResults;
  */
 
 public class ExerciseDAO {
-
+Singleton singleton = Singleton.singleton;
     Realm realm = Realm.getDefaultInstance();
 
     /**
@@ -40,7 +41,7 @@ public class ExerciseDAO {
 
         RealmList<ExerciseDTO> exercises = getExercises();
             if(checkExerciseNameInPas(exerciseDTO.getName())){
-                throw new ExceptionNameAlreadyExist("An exercise by the name "+ exerciseDTO.getName() + " already exist");
+                throw new ExceptionNameAlreadyExist(singleton.getString(R.string.exercise_same_name)+ exerciseDTO.getName() + singleton.getString(R.string.already_exists));
             }
         realm.beginTransaction();
         realm.copyToRealm(exerciseDTO);
@@ -81,37 +82,6 @@ public class ExerciseDAO {
      */
     public RealmList<ExerciseDTO> getExercisesInPas(int pasID) throws IndexOutOfBoundsException {
 
-//        int position = -1;
-//
-//        WorkoutDTO realmPlan = realm.where(WorkoutDTO.class).equalTo("name", planName).findFirst();
-//
-//        RealmList<WorkoutPasDTO> realmPas = realmPlan.getWorkoutPasses();
-//        for(int i = 0; i < realmPas.size(); i++){
-//            if(realmPas.get(i).getName().equals(pasName)){
-//                position = i;
-//                break;
-//            }
-//        }
-//
-//        if(position == -1){
-//            throw new Exception();
-//        }else {
-//
-//            RealmList<ExerciseDTO> allExercises = getExercises();
-//            RealmList<ExerciseDTO> pasExercises = new RealmList<ExerciseDTO>();
-//
-//            ArrayList<String> exerciseNamesPas = null;
-//
-//            for(int i = 0; i < allExercises.size(); i++){
-//                String exerciseName = allExercises.get(i).getName();
-//                for(int k = 0; k < exerciseNamesPas.size(); k++){
-//                    String exerciseNamePas = pasExercises.get(k).getName();
-//                    if(exerciseName.equals(exerciseNamePas)){
-//                        pasExercises.add(allExercises.get(i));
-//                    }
-//                }
-//
-//            }
             WorkoutPasDTO pas = realm.where(WorkoutPasDTO.class).equalTo("id", pasID).findFirst();
             RealmList<ExerciseDTO> allExercises = getExercises();
             RealmList<ExerciseDTO> pasExercises = new RealmList<>();
@@ -125,8 +95,6 @@ public class ExerciseDAO {
             }
 
             return pasExercises;
-//        }
-
     }
 
     /**
@@ -137,29 +105,11 @@ public class ExerciseDAO {
     public void updateExerciseName(int id, String newName) throws ExceptionCantDelete {
         ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("id", id).findFirst();
         if(realmExercise.getImagePath2() != null){
-            throw new ExceptionCantDelete("Cant delete this app's precreated exercises");
+            throw new ExceptionCantDelete(singleton.getString(R.string.cantDeleteprecreatedExercises));
         }else {
             realm.beginTransaction();
             //Updates the name in the exercise library
             realmExercise.setName(newName);
-
-            //Updates the name in all the passes in all the plans
-//        WorkoutDAO planDAO = new WorkoutDAO();
-//        RealmList<WorkoutDTO> planer;
-//        planer = planDAO.getPlans();
-//
-//        for(int i = 0; i < planer.size(); i++){
-//            RealmList<WorkoutPasDTO> pas = planer.get(i).getWorkoutPasses();
-//            for(int k = 0; k < pas.size(); i++){
-//                RealmList<ExerciseGoals> exercises = pas.get(k).getExercises();
-//                for(int j = 0; j < exercises.size(); j++){
-//                    if(exercises.get(j).getName().equals(oldname)){
-//                        exercises.get(j).setName(newName);
-//                        break;
-//                    }
-//                }
-//            }
-//        }
             realm.commitTransaction();
         }
 
@@ -176,7 +126,7 @@ public class ExerciseDAO {
         ExerciseDTO realmExercise = realm.where(ExerciseDTO.class).equalTo("id", id).findFirst();
 
         if(realmExercise.getImagePath2() != null){
-            throw new ExceptionCantDelete("Cant delete this app's exercises");
+            throw new ExceptionCantDelete(singleton.getString(R.string.cantDeleteappsExercises));
         }else {
             realm.beginTransaction();
             //Deletes the exercises from the exercises library
