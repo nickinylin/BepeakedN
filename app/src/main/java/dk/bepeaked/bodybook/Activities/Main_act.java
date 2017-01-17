@@ -67,7 +67,7 @@ public class Main_act extends AppCompatActivity implements NavigationView.OnNavi
         if (savedInstanceState==null) { // kun tilføje fragmenter ved en frisk start
         Pas_frag fragment = new Pas_frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, fragment).addToBackStack("hej");
+        fragmentTransaction.add(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
         }
 

@@ -68,17 +68,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--<com.baoyz.swipemenulistview.SwipeMenuListView-->
-            <!--android:id="@+id/SwipeListView_chosen_exercise"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent" />-->
-
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/LW_chosenExercise"
-            >
-
+            android:id="@+id/LW_chosenExercise">
 
         </ListView>
 
@@ -95,8 +88,5 @@
 
 
     </RelativeLayout>
-
-
-
 
 </LinearLayout>

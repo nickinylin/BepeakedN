@@ -54,6 +54,10 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     String stringDateLast;
     Singleton singleton;
     int counter = 0;
+    boolean measurement;
+    int weightInt;
+    int reps;
+    int rmInt;
 
 
     //skal slettes. til test
@@ -125,12 +129,21 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
         try {
             realmList = wc.getSetsFromExercise(exerciseID);
+            Log.d("Nicki", "sets: " +realmList.size());
         } catch (ExceptionExerciseDoesntExist e) {
             e.printStackTrace();
         }
         realmListSets = new RealmList<>();
-        for (int i = realmList.size() - 1; i > 0; i--) {
-            realmListSets.add(realmList.get(i));
+        int j = 0;
+
+        for (int i = realmList.size(); i > realmList.size()-10 ; i--) {
+            if (i > 0) {
+                realmListSets.add(realmList.get(i-1));
+            }
+        }
+
+        for (int i = 0; i < realmListSets.size(); i++) {
+            Log.d("Nicki", "realmListSets: " + realmListSets.get(i).getId());
         }
 
         listView = (ListView) view.findViewById(R.id.LW_chosenExercise);
@@ -174,7 +187,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         bundleArgs = new Bundle();
-        Log.d("Nicki", "onItemLongClick: " + realmListSets.get(position).getId());
+//        Log.d("Nicki", "onItemLongClick: " + realmListSets.get(position).getId());
         bundleArgs.putInt("setID", realmListSets.get(position).getId());
 
         DialogDeleteSet_frag dialog = new DialogDeleteSet_frag();
@@ -197,19 +210,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             mInflater = (LayoutInflater) getActivity().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
         }
 
-//        public void addItem(final String item) {
-//            mData.add(item);
-//            notifyDataSetChanged();
-//        }
-//
-//        public void addSeparatorItem(final String item) {
-//            mData.add(item);
-//            // save separator position
-//            mSeparatorsSet.add(mData.size() - 1);
-//            notifyDataSetChanged();
-//        }
-
-
         @Override
         public int getCount() {
             return realmListSets.size();
@@ -230,8 +230,11 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
 
             dateCurrent = realmListSets.get(position).getDate();
+//            Log.d("Nicki", "datecurrent: " + dateCurrent + "\n dateLast: " + stringDateLast);
+
             String stringDateCurrent = dateFormatter.format(dateCurrent);
-//            String stringDateLast = dateFormatter.format()
+//            String stringDateLast = dateFormatter.format(dateLast);
+//            Log.d("Nicki", "stringdatecurrent: " + stringDateCurrent + "\n stringdateLast: " + stringDateLast);
 
             ViewHolder1 holder = null;
             if (convertView == null) {
@@ -241,7 +244,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
                     holder.textViewWeight = (TextView) convertView.findViewById(R.id.tv_exercise_weight);
                     holder.textViewReps = (TextView) convertView.findViewById(R.id.tv_exercise_reps);
                     holder.textViewRM = (TextView) convertView.findViewById(R.id.tv_exercise_rm);
-                    dateLast = dateCurrent;
+
                 } else {
                     convertView = mInflater.inflate(R.layout.exercise_list_element_with_date, null);
                     holder = new ViewHolder1();
@@ -249,25 +252,34 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
                     holder.textViewReps = (TextView) convertView.findViewById(R.id.tv_exercise_reps);
                     holder.textViewRM = (TextView) convertView.findViewById(R.id.tv_exercise_rm);
                     holder.textViewDate = (TextView) convertView.findViewById(R.id.tv_exercise_date);
-                    dateLast = dateCurrent;
+
                 }
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder1) convertView.getTag();
+
             }
 
             boolean measurement = prefs.getBoolean("measurement", false);
             int weightInt = (int) realmListSets.get(position).getWeight();
+            int reps = realmListSets.get(position).getReps();
+            Log.d("Nicki", "position: " + position);
             int rmInt = (int) Math.round(realmListSets.get(position).getRm());
             if (measurement) {
                 weightInt = convertKilo(weightInt);
                 rmInt = convertKilo(rmInt);
             }
-
             holder.textViewWeight.setText(weightInt + "kg");
-            holder.textViewReps.setText(realmListSets.get(position).getReps());
+            holder.textViewReps.setText(reps + "");
             holder.textViewRM.setText(rmInt + "kg");
-            holder.textViewDate.setText(dateCurrent.toString());
+            if (!stringDateCurrent.equals(stringDateLast)) {
+                stringDateLast = stringDateCurrent;
+                Log.d("Nicki", "StringdateCurrent: " +stringDateCurrent);
+                holder.textViewDate.setText(stringDateCurrent + "");
+            } else {
+                stringDateLast = stringDateCurrent;
+            }
+
 
             return convertView;
         }
@@ -284,11 +296,11 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         try {
             Date date = new Date(9999, 12, 10);
             stringDateLast = dateFormatter.format(date);
-            Log.d("LUKAS", "latest date er nu: " + stringDateLast);
+//            Log.d("LUKAS", "latest date er nu: " + stringDateLast);
             realmList = wc.getSetsFromExercise(exerciseID);
             realmListSets.clear();
-            for (int i = realmList.size() - 1; i > 0; i--) {
-                realmListSets.add(realmList.get(i));
+            for (int i = realmList.size(); i > realmList.size()-10; i--) {
+                realmListSets.add(realmList.get(i-1));
             }
         } catch (ExceptionExerciseDoesntExist e) {
             e.printStackTrace();
