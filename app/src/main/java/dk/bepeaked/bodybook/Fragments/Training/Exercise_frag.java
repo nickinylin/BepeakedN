@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -21,11 +22,15 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.DTO.ExerciseGoals;
+import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
 import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
 import io.realm.RealmList;
@@ -36,7 +41,7 @@ import io.realm.RealmList;
 public class Exercise_frag extends Fragment implements AdapterView.OnItemClickListener, Runnable {
 
 
-    String pasName;
+    String pasName, simpleDateNow, simpleDateSet;
     int pasID, planID;
     RealmList<ExerciseGoals> realmListExercises = new RealmList<ExerciseGoals>();
     ArrayList<String> arrayListExerciseNames = new ArrayList<String>();
@@ -47,6 +52,8 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
     SharedPreferences prefs;
     Singleton singleton;
     TextView tvGoals;
+    SimpleDateFormat dateFormatter;
+    Date date;
 
 
     public Exercise_frag() {
@@ -69,6 +76,11 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         singleton = Singleton.singleton;
         singleton.listen(this);
         pasID = getArguments().getInt("TræningspasID", 99999);
+        dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        Calendar c = Calendar.getInstance();
+        date = c.getTime();
+        simpleDateNow = dateFormatter.format(date);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
@@ -184,8 +196,9 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
     public class ExerciseListAdapterRepsSets extends BaseAdapter {
 
         private LayoutInflater mInflater;
+
         public ExerciseListAdapterRepsSets() {
-            mInflater = (LayoutInflater)getActivity().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
+            mInflater = (LayoutInflater) getActivity().getSystemService(getContext().LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
@@ -215,12 +228,32 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
                 holderName = new ViewHolderName();
                 holderName.textViewName = (TextView) convertView.findViewById(R.id.TV_exercise_frag_exercisename);
                 holderName.textViewRepsSets = (TextView) convertView.findViewById(R.id.TV_exercise_frag_reps_sets);
+                holderName.imageViewDone = (ImageView) convertView.findViewById(R.id.imageView_done);
                 convertView.setTag(holderName);
             } else {
                 holderName = (ViewHolderName) convertView.getTag();
             }
             holderName.textViewName.setText(realmListExercises.get(position).getName());
             holderName.textViewRepsSets.setText(realmListExercises.get(position).getSet() + " x " + realmListExercises.get(position).getReps());
+
+            String exName = realmListExercises.get(position).getName();
+            ExerciseDTO exerciseDTO = wc.getExercise(exName);
+            try {
+                SetDTO setDTO = exerciseDTO.getSets().last();
+                Date datedate = setDTO.getDate();
+                simpleDateSet =  dateFormatter.format(datedate);
+                if (simpleDateSet.equals(simpleDateNow)) {
+                    holderName.imageViewDone.setImageResource(R.drawable.ic_done_white_24dp);
+                }
+            }catch (IndexOutOfBoundsException e) {
+                e.printStackTrace();
+
+            }
+
+
+
+
+
             return convertView;
         }
     }
@@ -228,6 +261,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
     public static class ViewHolderName {
         public TextView textViewName;
         public TextView textViewRepsSets;
+        public ImageView imageViewDone;
     }
 
     public static class ViewHolderSetsAndReps {

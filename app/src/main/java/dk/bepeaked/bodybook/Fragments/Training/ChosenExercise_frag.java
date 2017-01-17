@@ -54,7 +54,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     WorkoutController wc;
     Date dateLast, dateCurrent;
     SimpleDateFormat dateFormatter;
-    String stringDateLast, stringDateCurrent;
+    String stringDateLast, stringDateCurrent, kgPunds;
     Singleton singleton;
     int counter = 0;
     boolean measurement;
@@ -100,9 +100,9 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         } catch (ExceptionExerciseDoesntExist e) {
             e.printStackTrace();
         }
-        for (int i = realmList.size(); i > realmList.size()-10 ; i--) {
+        for (int i = realmList.size(); i > realmList.size() - 10; i--) {
             if (i > 0) {
-                realmListSets.add(realmList.get(i-1));
+                realmListSets.add(realmList.get(i - 1));
             }
         }
 
@@ -139,17 +139,17 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
         rms = new ArrayList<>();
-        for (int i = 0; i < realmList.size(); i++){
+        for (int i = 0; i < realmList.size(); i++) {
             rms.add((int) realmList.get(i).getRm());
         }
-        if(rms.size() > 0) {
+        if (rms.size() > 0) {
             graph.getViewport().setMaxY(Collections.max(rms) + 2);
-        } else{
+        } else {
             graph.getViewport().setMaxY(5);
         }
 
         points = new ArrayList<>();
-        for (int i = 0; i < realmList.size(); i++){
+        for (int i = 0; i < realmList.size(); i++) {
             points.add(new DataPoint(i, realmList.get(i).getRm()));
         }
 
@@ -161,7 +161,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         series.setAnimated(true);
         series.setDataWidth(0.8);
         graph.addSeries(series);
-        if(realmList.size() > numberBars){
+        if (realmList.size() > numberBars) {
             graph.getViewport().scrollToEnd();
         }
 
@@ -169,7 +169,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         listView.setOnItemLongClickListener(this);
 
         reloadData();
-
 
 
         fab = (FloatingActionButton) view.findViewById(R.id.floatingActionButton_add_set);
@@ -187,32 +186,32 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             e.printStackTrace();
         }
         points.clear();
-        for (int i = 0; i < realmList.size(); i++){
+        for (int i = 0; i < realmList.size(); i++) {
             points.add(new DataPoint(i, realmList.get(i).getRm()));
         }
         DataPoint[] pointsArray = points.toArray(new DataPoint[points.size()]);
-        if(points.size() > 0) {
-            for (int i = 0; i < realmList.size(); i++){
+        if (points.size() > 0) {
+            for (int i = 0; i < realmList.size(); i++) {
                 rms.add((int) realmList.get(i).getRm());
             }
             graph.getViewport().setMaxY(Collections.max(rms) + 2);
-        } else{
+        } else {
             graph.getViewport().setMaxY(5);
         }
         series.resetData(pointsArray);
 
-        if(realmList.size() > numberBars){
+        if (realmList.size() > numberBars) {
             graph.getViewport().scrollToEnd();
         }
 
         realmListSets.clear();
-        for (int i = realmList.size(); i > realmList.size()-10 ; i--) {
+        for (int i = realmList.size(); i > realmList.size() - 30; i--) {
             if (i > 0) {
-                realmListSets.add(realmList.get(i-1));
+                realmListSets.add(realmList.get(i - 1));
             }
         }
 
-       ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter();
+        ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter();
         stringDateLast = dateFormatter.format(date);
         for (int i = 0; i < realmListSets.size(); i++) {
             dateCurrent = realmListSets.get(i).getDate();
@@ -360,7 +359,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
                 }
                 convertView.setTag(holder);
             } else {
-                holder = (ViewHolder1)convertView.getTag();
+                holder = (ViewHolder1) convertView.getTag();
             }
 
             boolean measurement = prefs.getBoolean("measurement", false);
@@ -372,19 +371,22 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             if (measurement) {
                 weightInt = convertKilo(weightInt);
                 rmInt = convertKilo(rmInt);
+                kgPunds = " lbs";
+            } else {
+                kgPunds = " kg";
             }
 
             switch (type) {
                 case TYPE_noDate:
-                    holder.textViewWeight.setText(weightInt + "kg");
+                    holder.textViewWeight.setText(weightInt + kgPunds);
                     holder.textViewReps.setText(reps + "");
-                    holder.textViewRM.setText(rmInt + "kg");
+                    holder.textViewRM.setText(rmInt + kgPunds);
                     break;
                 case TYPE_Date:
-                    holder.textViewWeight.setText(weightInt + "kg");
+                    holder.textViewWeight.setText(weightInt + kgPunds);
                     holder.textViewReps.setText(reps + "");
-                    holder.textViewRM.setText(rmInt + "kg");
-                    holder.textViewDate.setText( stringDateCurrent + "");
+                    holder.textViewRM.setText(rmInt + kgPunds);
+                    holder.textViewDate.setText(stringDateCurrent);
                     break;
             }
 
@@ -400,22 +402,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         public TextView textViewDate;
     }
 
-//    private void adapterReload() {
-//        try {
-//            Date date = new Date(9999, 12, 10);
-//            stringDateLast = dateFormatter.format(date);
-////            Log.d("LUKAS", "latest date er nu: " + stringDateLast);
-//            realmList = wc.getSetsFromExercise(exerciseID);
-//            realmListSets.clear();
-//            for (int i = realmList.size(); i > realmList.size()-10; i--) {
-//                realmListSets.add(realmList.get(i-1));
-//            }
-//        } catch (ExceptionExerciseDoesntExist e) {
-//            e.printStackTrace();
-//        }
-//        ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter();
-//        listView.setAdapter(exerciseListAdapter);
-//    }
 
     @Override
     public void run() {

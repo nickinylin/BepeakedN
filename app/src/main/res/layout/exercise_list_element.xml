@@ -3,39 +3,41 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="10dp"
+    android:paddingBottom="3dp"
+    android:paddingTop="3dp"
     tools:context="dk.bepeaked.bodybook.Activities.Main_act"
     >
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/tv_exercise_weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textColor="#FFFFFF"
-        android:textAlignment="center"
         android:text="weight"
+        android:textAlignment="center"
         android:textSize="18sp"
         />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
         android:id="@+id/tv_exercise_reps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="Kilos"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
+        android:textAlignment="center"
         />
+
     <TextView
+        android:id="@+id/tv_exercise_rm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textColor="#FFFFFF"
-        android:textAlignment="center"
-        android:id="@+id/tv_exercise_rm"
         android:text="1-RM"
         android:textSize="18sp"
-        />
+        android:textAlignment="center" />
 
 </LinearLayout>
