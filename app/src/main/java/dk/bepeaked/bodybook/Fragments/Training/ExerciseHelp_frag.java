@@ -84,7 +84,7 @@ public class ExerciseHelp_frag extends Fragment {
                 }, 0, 0, ImageView.ScaleType.FIT_CENTER, null, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-//                Snackbar.make(getView(), "Fejl - billedet kunne ikke hentes", Snackbar.LENGTH_LONG).show();
+                imageView1.setImageResource(R.drawable.error_advice);
             }
 
         });
@@ -100,7 +100,7 @@ public class ExerciseHelp_frag extends Fragment {
                 }, 0, 0, ImageView.ScaleType.FIT_CENTER, null, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-//                Snackbar.make(getView(), "Fejl - billedet kunne ikke hentes", Snackbar.LENGTH_LONG).show();
+                imageView2.setImageResource(R.drawable.error_advice);
             }
 
         });
