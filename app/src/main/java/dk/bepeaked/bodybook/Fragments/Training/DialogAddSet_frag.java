@@ -83,14 +83,15 @@ public class DialogAddSet_frag extends DialogFragment {
             public void onClick(View v) {
                 if (v == btnOK) {
                     try {
-                        if (prefs.getBoolean("measurement", false)) {
+                        if(prefs.getBoolean("measurement", false)) {
+                            wc.addSet(exerciseName, npWeight1.getValue()/2.2046, npReps.getValue());
+                            prefs.edit().putInt("1 " + exerciseID, npReps.getValue()).commit();
+                            prefs.edit().putInt("2 " + exerciseID, npWeight1.getValue()).commit();
+                        }else{
                             wc.addSet(exerciseName, npWeight1.getValue(), npReps.getValue());
-                        } else {
-                            wc.addSet(exerciseName, npWeight1.getValue(), npReps.getValue());
+                            prefs.edit().putInt("1 " + exerciseID, npReps.getValue()).commit();
+                            prefs.edit().putInt("2 " + exerciseID, npWeight1.getValue()).commit();
                         }
-
-                        prefs.edit().putInt("1 " + exerciseID, npReps.getValue()).commit();
-                        prefs.edit().putInt("2 " + exerciseID, npWeight1.getValue()).commit();
                         dismiss();
                     } catch (ExceptionWrongInput e) {
                         e.printStackTrace();

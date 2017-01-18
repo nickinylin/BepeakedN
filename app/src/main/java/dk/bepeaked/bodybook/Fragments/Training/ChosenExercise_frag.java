@@ -66,7 +66,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     ArrayList<DataPoint> points;
     BarGraphSeries<DataPoint> series;
     ArrayList<Integer> rms;
-    int numberBars = 20;
+    int numberBars = 5;
 //    ExerciseListAdapter exerciseListAdapter;
 
 
@@ -135,7 +135,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         graph.getViewport().setScalable(false);
         graph.getViewport().setScalableY(false);
         graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMaxX(numberBars);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
         rms = new ArrayList<>();
@@ -144,9 +143,11 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         }
         if (rms.size() > 0) {
             graph.getViewport().setMaxY(Collections.max(rms) + 2);
+            numberBars = rms.size();
         } else {
             graph.getViewport().setMaxY(5);
         }
+        graph.getViewport().setMaxX(numberBars);
 
         points = new ArrayList<>();
         for (int i = 0; i < realmList.size(); i++) {
@@ -195,9 +196,11 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
                 rms.add((int) realmList.get(i).getRm());
             }
             graph.getViewport().setMaxY(Collections.max(rms) + 2);
+            numberBars = points.size();
         } else {
             graph.getViewport().setMaxY(5);
         }
+        graph.getViewport().setMaxX(numberBars);
         series.resetData(pointsArray);
 
         if (realmList.size() > numberBars) {
@@ -227,10 +230,9 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         listView.setAdapter(exerciseListAdapter);
     }
 
-    private int convertKilo(int kilo) {
+    private double convertKilo(double kilo) {
         double d = kilo * 2.2046;
-        int pounds = (int) d;
-        return pounds;
+        return d;
     }
 
     @Override
@@ -363,11 +365,11 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             }
 
             boolean measurement = prefs.getBoolean("measurement", false);
-            int weightInt = (int) mData.get(position).getWeight();
+            double weightInt = mData.get(position).getWeight();
             int reps = mData.get(position).getReps();
             stringDateCurrent = dateFormatter.format(mData.get(position).getDate());
             Log.d("Nicki", "position: " + position);
-            int rmInt = (int) Math.round(mData.get(position).getRm());
+            double rmInt = mData.get(position).getRm();
             if (measurement) {
                 weightInt = convertKilo(weightInt);
                 rmInt = convertKilo(rmInt);
@@ -378,14 +380,14 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
             switch (type) {
                 case TYPE_noDate:
-                    holder.textViewWeight.setText(weightInt + kgPunds);
+                    holder.textViewWeight.setText((int) weightInt + kgPunds);
                     holder.textViewReps.setText(reps + "");
-                    holder.textViewRM.setText(rmInt + kgPunds);
+                    holder.textViewRM.setText(Math.round(rmInt) + kgPunds);
                     break;
                 case TYPE_Date:
-                    holder.textViewWeight.setText(weightInt + kgPunds);
+                    holder.textViewWeight.setText((int) weightInt + kgPunds);
                     holder.textViewReps.setText(reps + "");
-                    holder.textViewRM.setText(rmInt + kgPunds);
+                    holder.textViewRM.setText(Math.round(rmInt) + kgPunds);
                     holder.textViewDate.setText(stringDateCurrent);
                     break;
             }
