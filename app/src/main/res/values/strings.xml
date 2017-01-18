@@ -2,7 +2,6 @@
     <string name="app_name">Body Book</string>
     <string name="navigation_drawer_open">Åben navigations skuffe</string>
     <string name="navigation_drawer_close">Luk navigations skuffe</string>
-    <string name="hello_blank_fragment">Hej blankt fragment</string>
     <string name="activationcode">Aktiveringskode</string>
     <string name="cantDeleteLastPlan">Du kan ikke slette den sidste plan</string>
     <string name="exercise_same_name">"en øvelse med navnet "</string>
