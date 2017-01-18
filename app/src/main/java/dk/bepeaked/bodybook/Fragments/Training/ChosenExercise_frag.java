@@ -92,6 +92,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         date = new Date(0, 0, 0);
         stringDateLast = dateFormatter.format(date);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        measurement = prefs.getBoolean("measurement", false);
         exerciseID = getArguments().getInt("chosenExerciseID", 99999);
 
         exerciseName = wc.getExercise(exerciseID).getName();
@@ -135,11 +136,18 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         graph.getViewport().setScalable(false);
         graph.getViewport().setScalableY(false);
         graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMaxX(20);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
         rms = new ArrayList<>();
-        for (int i = 0; i < realmList.size(); i++) {
-            rms.add((int) realmList.get(i).getRm());
+        if(measurement) {
+            for (int i = 0; i < realmList.size(); i++) {
+                rms.add((int) convertKilo(realmList.get(i).getRm()));
+            }
+        }else{
+            for (int i = 0; i < realmList.size(); i++) {
+                rms.add((int) realmList.get(i).getRm());
+            }
         }
         if (rms.size() > 0) {
             graph.getViewport().setMaxY(Collections.max(rms) + 2);
@@ -147,12 +155,18 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         } else {
             graph.getViewport().setMaxY(5);
         }
-        graph.getViewport().setMaxX(numberBars);
 
         points = new ArrayList<>();
-        for (int i = 0; i < realmList.size(); i++) {
-            points.add(new DataPoint(i, realmList.get(i).getRm()));
+        if(measurement){
+            for (int i = 0; i < realmList.size(); i++) {
+                points.add(new DataPoint(i, convertKilo(realmList.get(i).getRm())));
+            }
+        }else{
+            for (int i = 0; i < realmList.size(); i++) {
+                points.add(new DataPoint(i, realmList.get(i).getRm()));
+            }
         }
+        points.add(new DataPoint(points.size(), 0));
 
         DataPoint[] pointsArray = points.toArray(new DataPoint[points.size()]);
         series = new BarGraphSeries<>(pointsArray);
@@ -162,7 +176,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         series.setAnimated(true);
         series.setDataWidth(0.8);
         graph.addSeries(series);
-        if (realmList.size() > numberBars) {
+        if (numberBars > 20) {
             graph.getViewport().scrollToEnd();
         }
 
@@ -187,23 +201,36 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             e.printStackTrace();
         }
         points.clear();
-        for (int i = 0; i < realmList.size(); i++) {
-            points.add(new DataPoint(i, realmList.get(i).getRm()));
+        if(measurement){
+            for (int i = 0; i < realmList.size(); i++) {
+                points.add(new DataPoint(i, convertKilo(realmList.get(i).getRm())));
+            }
+        }else{
+            for (int i = 0; i < realmList.size(); i++) {
+                points.add(new DataPoint(i, realmList.get(i).getRm()));
+            }
         }
+        points.add(new DataPoint(points.size(), 0));
         DataPoint[] pointsArray = points.toArray(new DataPoint[points.size()]);
         if (points.size() > 0) {
-            for (int i = 0; i < realmList.size(); i++) {
-                rms.add((int) realmList.get(i).getRm());
+            if(measurement) {
+                for (int i = 0; i < realmList.size(); i++) {
+                    rms.add((int) convertKilo(realmList.get(i).getRm()));
+                }
+            }else{
+                for (int i = 0; i < realmList.size(); i++) {
+                    rms.add((int) realmList.get(i).getRm());
+                }
             }
             graph.getViewport().setMaxY(Collections.max(rms) + 2);
             numberBars = points.size();
         } else {
             graph.getViewport().setMaxY(5);
         }
-        graph.getViewport().setMaxX(numberBars);
+
         series.resetData(pointsArray);
 
-        if (realmList.size() > numberBars) {
+        if (numberBars > 20) {
             graph.getViewport().scrollToEnd();
         }
 
@@ -364,7 +391,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
                 holder = (ViewHolder1) convertView.getTag();
             }
 
-            boolean measurement = prefs.getBoolean("measurement", false);
             double weightInt = mData.get(position).getWeight();
             int reps = mData.get(position).getReps();
             stringDateCurrent = dateFormatter.format(mData.get(position).getDate());
