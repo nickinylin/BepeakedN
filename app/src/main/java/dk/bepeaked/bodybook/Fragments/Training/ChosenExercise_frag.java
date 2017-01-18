@@ -199,12 +199,12 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     }
 
     private void reloadData() {
-
         try {
             realmList = wc.getSetsFromExercise(exerciseID);
         } catch (ExceptionExerciseDoesntExist e) {
             e.printStackTrace();
         }
+        Log.d("sebby", "reloadData: " + realmList.size());
         points.clear();
         if(measurement){
             for (int i = 0; i < realmList.size(); i++) {
@@ -218,7 +218,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         points.add(new DataPoint(points.size(), 0));
         DataPoint[] pointsArray = points.toArray(new DataPoint[points.size()]);
         if (points.size() > 1) {
-            Log.d("sebby", "reloadData: " + points.size());
             if(measurement) {
                 if(realmList.size() < 20) {
                     for (int i = 0; i < realmList.size(); i++) {
