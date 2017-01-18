@@ -43,7 +43,6 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
     int pasID, planID;
     RealmList<ExerciseGoals> realmListExercises = new RealmList<ExerciseGoals>();
     Bundle bundleArgs = new Bundle();
-    private SwipeMenuListView listView;
     View view;
     WorkoutController wc;
     SharedPreferences prefs;
@@ -51,6 +50,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
     TextView tvGoals;
     SimpleDateFormat dateFormatter;
     Date date;
+    private SwipeMenuListView listView;
 
 
     public Exercise_frag() {
@@ -192,6 +192,24 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
     }
 
+    private void adapterReload() {
+        realmListExercises = wc.getSpecificPas(pasID).getExercises();
+        ExerciseListAdapterRepsSets exerciseListAdapter = new ExerciseListAdapterRepsSets();
+        listView.setOnItemClickListener(this);
+        listView.setAdapter(exerciseListAdapter);
+    }
+
+    @Override
+    public void run() {
+        adapterReload();
+    }
+
+    public static class ViewHolderName {
+        public TextView textViewName;
+        public TextView textViewRepsSets;
+        public ImageView imageViewDone;
+    }
+
     public class ExerciseListAdapterRepsSets extends BaseAdapter {
 
         private LayoutInflater mInflater;
@@ -247,23 +265,5 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
             }
             return convertView;
         }
-    }
-
-    public static class ViewHolderName {
-        public TextView textViewName;
-        public TextView textViewRepsSets;
-        public ImageView imageViewDone;
-    }
-
-    private void adapterReload() {
-        realmListExercises = wc.getSpecificPas(pasID).getExercises();
-        ExerciseListAdapterRepsSets exerciseListAdapter = new ExerciseListAdapterRepsSets();
-        listView.setOnItemClickListener(this);
-        listView.setAdapter(exerciseListAdapter);
-    }
-
-    @Override
-    public void run() {
-        adapterReload();
     }
 }

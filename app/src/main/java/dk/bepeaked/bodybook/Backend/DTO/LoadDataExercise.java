@@ -1,14 +1,10 @@
 package dk.bepeaked.bodybook.Backend.DTO;
 
-import android.util.Log;
-
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DAO.ExerciseDAO;
-import dk.bepeaked.bodybook.Backend.DAO.WorkoutDAO;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import io.realm.Realm;
 import io.realm.RealmList;
-import io.realm.RealmObject;
 
 /**
  * Created by Nicki on 04/01/17.
@@ -17,12 +13,12 @@ import io.realm.RealmObject;
 public class LoadDataExercise {
 
     RealmList<ExerciseDTO> exercises = new RealmList<ExerciseDTO>();
-    private String name, desc;
     RealmList<WorkoutDTO> realmListWorkoutDTO;
     WorkoutDTO workoutDTO;
     WorkoutController wc = new WorkoutController();
     ExerciseDAO exerciseDAO = new ExerciseDAO();
     Realm realm = Realm.getDefaultInstance();
+    private String name, desc;
 
 
 

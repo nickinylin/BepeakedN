@@ -1,14 +1,12 @@
 package dk.bepeaked.bodybook.Fragments.Training;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +35,6 @@ public class TabLayoutExercise_frag extends Fragment {
         wc = new WorkoutController();
 
         getActivity().setTitle(wc.getExercise(getArguments().getInt("chosenExerciseID", 9999)).getName());
-
-        ;
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText(R.string.exercise));

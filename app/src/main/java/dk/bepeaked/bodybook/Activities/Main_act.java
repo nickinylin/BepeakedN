@@ -18,7 +18,6 @@ import com.crashlytics.android.Crashlytics;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
 import dk.bepeaked.bodybook.Backend.DTO.LoadDataExercise;
-import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.Fragments.Diet.Diet_frag;
 import dk.bepeaked.bodybook.Fragments.Settings.Settings_frag;
 import dk.bepeaked.bodybook.Fragments.Training.Pas_frag;
@@ -30,8 +29,8 @@ import io.realm.Realm;
 public class Main_act extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    NavigationView navigationView = null;
-    Toolbar toolbar = null;
+    NavigationView navigationView;
+    Toolbar toolbar;
     boolean EMULATOR = Build.PRODUCT.contains("sdk") || Build.MODEL.contains("Emulator");
     SharedPreferences prefs;
     WorkoutController wc;

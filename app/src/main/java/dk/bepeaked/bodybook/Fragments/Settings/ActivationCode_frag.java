@@ -26,13 +26,13 @@ import dk.bepeaked.bodybook.R;
  */
 public class ActivationCode_frag extends Fragment implements View.OnClickListener{
 
+    TextView confirm;
+    View view;
+    InputMethodManager imm;
     private EditText field;
     private ArrayList<String[]> files = new ArrayList<>();
     private DietDAO dao;
     private PlanDAO pdao = new PlanDAO();
-    TextView confirm;
-    View view;
-    InputMethodManager imm;
     public ActivationCode_frag() {}
 
     @Override

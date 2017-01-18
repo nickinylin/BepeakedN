@@ -8,10 +8,10 @@
         android:id="@+id/TV_dialogAddSet_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
         android:layout_gravity="center"
         android:layout_margin="20dp"
         android:text="Info"
+        android:textColor="#000000"
         android:textSize="18sp" />
 
     <LinearLayout
@@ -28,10 +28,10 @@
             <TextView
                 android:id="@+id/TV_dialogAddSet_reps"
                 android:layout_width="wrap_content"
-                android:textColor="#000000"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/reps"
+                android:textColor="#000000"
                 android:textSize="18sp" />
 
 
@@ -39,9 +39,7 @@
                 android:id="@+id/NumberPickerReps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.Picker"
-                >
-            </NumberPicker>
+                android:theme="@style/AppTheme.Picker"></NumberPicker>
 
         </LinearLayout>
 
@@ -53,18 +51,18 @@
             <TextView
                 android:id="@+id/TV_dialogAddSet_weight"
                 android:layout_width="wrap_content"
-                android:textColor="#000000"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/weight"
+                android:textColor="#000000"
                 android:textSize="18sp" />
 
             <NumberPicker
                 android:id="@+id/NumberPickerWeight1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.Picker"
-                android:divider="@color/colorPrimaryDark">
+                android:divider="@color/colorPrimaryDark"
+                android:theme="@style/AppTheme.Picker">
 
             </NumberPicker>
 
@@ -76,11 +74,10 @@
         android:id="@+id/button_dialog_OK"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
         android:layout_marginTop="35dp"
         android:backgroundTint="@color/colorPrimaryDark"
         android:text="@string/add"
-        />
+        android:textColor="#000000" />
 
 
 </LinearLayout>

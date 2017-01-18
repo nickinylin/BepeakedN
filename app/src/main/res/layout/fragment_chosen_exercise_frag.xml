@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="dk.bepeaked.bodybook.Fragments.Training.ChosenExercise_frag"
-    >
+    tools:context="dk.bepeaked.bodybook.Fragments.Training.ChosenExercise_frag">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -20,71 +19,65 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/TV_info_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/weight"
-            android:textSize="20sp"
             android:textColor="#808080"
-            android:layout_weight="1"
-            android:gravity="center"
-            />
+            android:textSize="20sp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/TV_info_reps"
-            android:text="@string/reps"
-            android:textSize="20sp"
-            android:textColor="#808080"
-            android:layout_weight="1"
-            android:gravity="center"
-            />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/TV_info_RM"
-            android:text="1-RM"
-            android:textSize="20sp"
-            android:textColor="#808080"
             android:layout_weight="1"
             android:gravity="center"
-            />
+            android:text="@string/reps"
+            android:textColor="#808080"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TV_info_RM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="1-RM"
+            android:textColor="#808080"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
 
-
-
-
     <RelativeLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ListView
+            android:id="@+id/LW_chosenExercise"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/LW_chosenExercise">
+            android:layout_height="wrap_content">
 
         </ListView>
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton_add_set"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            app:fabSize="normal"
-            app:srcCompat="@drawable/ic_add"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:id="@+id/floatingActionButton_add_set"
-            app:backgroundTint="@color/colorPrimaryDark" />
+            android:clickable="true"
+            app:backgroundTint="@color/colorPrimaryDark"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/ic_add" />
 
 
     </RelativeLayout>

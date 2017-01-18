@@ -6,9 +6,9 @@
     tools:context="dk.bepeaked.bodybook.Fragments.Settings.Settings_frag">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:paddingTop="10dp">
 
         <TextView
@@ -16,31 +16,31 @@
             android:textSize="20dp"
             android:paddingLeft="20dp"
             android:textColor="@android:color/white"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
             android:layout_weight=".70" />
 
         <ToggleButton
             android:id="@+id/switch1"
-            android:layout_height="wrap_content"
             android:layout_width="65dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:textOff="@string/kilo"
-            android:textOn="@string/pounds"
-            android:textColor="@color/F5ABC73"
-            android:textSize="18sp"
             android:layout_weight=".30"
             android:background="@color/colorPrimaryDark"
-            />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/F5ABC73"
+            android:textOff="@string/kilo"
+            android:textOn="@string/pounds"
+            android:textSize="18sp" />
 
     </LinearLayout>
+
     <ListView
+        android:id="@+id/settings"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/settings" />
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

@@ -15,19 +15,12 @@ public class VolleyImageHelper {
     //This is for the packages Volley. It's a singleton, that controlls the download que of pictures.
 
 private static VolleyImageHelper mInstance;
-    private RequestQueue requestQueue;
     private static Context mCtx;
+    private RequestQueue requestQueue;
 
     private VolleyImageHelper(Context context) {
         mCtx = context;
         requestQueue = getRequestQueue();
-    }
-
-    public RequestQueue getRequestQueue(){
-        if (requestQueue == null) {
-            requestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
-        }
-        return requestQueue;
     }
 
     public static synchronized VolleyImageHelper getInstance (Context context) {
@@ -35,6 +28,13 @@ private static VolleyImageHelper mInstance;
             mInstance = new VolleyImageHelper(context);
         }
         return mInstance;
+    }
+
+    public RequestQueue getRequestQueue(){
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
+        }
+        return requestQueue;
     }
 
     public <T> void addToRequestQue (Request<T> request) {

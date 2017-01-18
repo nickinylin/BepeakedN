@@ -15,38 +15,37 @@
             android:weightSum="1">
 
             <TextView
-                android:text="Navn på opskrift"
-                android:gravity="center"
-                android:textSize="25dp"
+                android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView5" />
+                android:gravity="center"
+                android:text="Navn på opskrift"
+                android:textSize="25dp" />
 
-            <Space
-                android:layout_height="15dp" />
+            <Space android:layout_height="15dp" />
 
 
             <ImageView
+                android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_menu_camera"
-                android:id="@+id/imageView4"
-                android:layout_weight="0.31" />
+                android:layout_weight="0.31"
+                app:srcCompat="@drawable/ic_menu_camera" />
 
             <TextView
-                android:text="Ingredienser"
-                android:textSize="17dp"
                 android:id="@+id/ingredients"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:text="Ingredienser"
+                android:textSize="17dp" />
 
             <TextView
-                android:text="Beskrivelse af opskrift"
-                android:textSize="17dp"
+                android:id="@+id/textView6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight=".70"
-                android:id="@+id/textView6"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:text="Beskrivelse af opskrift"
+                android:textSize="17dp" />
 
         </TableLayout>
     </ScrollView>

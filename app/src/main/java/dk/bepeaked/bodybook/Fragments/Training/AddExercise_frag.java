@@ -3,14 +3,11 @@ package dk.bepeaked.bodybook.Fragments.Training;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -32,10 +29,8 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 import java.util.ArrayList;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
-import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.Singleton;
 import dk.bepeaked.bodybook.R;
-import io.realm.RealmList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,10 +46,10 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
     ArrayAdapter adapter;
     View view;
     WorkoutController wc = new WorkoutController();
-    private SwipeMenuListView listView;
     Bundle bundleArgs = new Bundle();
     FloatingActionButton fab;
     Singleton singleton;
+    private SwipeMenuListView listView;
 
 
     public AddExercise_frag() {

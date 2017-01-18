@@ -1,9 +1,6 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
-import android.util.Log;
-
 import dk.bepeaked.bodybook.Backend.DTO.WorkoutDTO;
-import dk.bepeaked.bodybook.Backend.DTO.WorkoutPasDTO;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionNameAlreadyExist;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionPasDoesntExist;
 import dk.bepeaked.bodybook.Backend.Singleton;
@@ -11,7 +8,6 @@ import dk.bepeaked.bodybook.R;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
-import io.realm.internal.Context;
 
 /**
  * Created by sebho on 14-11-2016.
@@ -19,12 +15,11 @@ import io.realm.internal.Context;
 
 public class WorkoutDAO {
 
-    public WorkoutDAO (){
-    }
-
     Realm realm = Realm.getDefaultInstance();
     WorkoutPasDAO workoutPasDAO = new WorkoutPasDAO();
     Singleton singleton  = Singleton.singleton;
+    public WorkoutDAO (){
+    }
 
     /**
      * Adds a new workoutplan

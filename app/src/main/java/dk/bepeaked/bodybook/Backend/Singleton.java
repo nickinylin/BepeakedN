@@ -1,12 +1,6 @@
 package dk.bepeaked.bodybook.Backend;
 
 import android.app.Application;
-import android.content.Context;
-import android.util.Log;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
@@ -20,15 +14,15 @@ public class Singleton extends Application {
 
    public static Singleton singleton;
 
-    public int antalDialoger = 0;
+    public int antalDialoger;
+    ArrayList<Runnable> observators = new ArrayList<>();
+
     @Override
     public void onCreate() {
         super.onCreate();
-        this.singleton = this;
+        singleton = this;
 
     }
-
-    ArrayList<Runnable> observators = new ArrayList<>();
 
     public void notifyObservers() {
         for (Runnable r : observators ) {
