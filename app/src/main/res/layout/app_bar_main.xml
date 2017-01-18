@@ -21,8 +21,8 @@
 
     </android.support.design.widget.AppBarLayout>
 
-   <!-- Dette er slettet så vi anvender fragmenter i stedet.
-   <include layout="@layout/content_main" />  -->
+    <!-- Dette er slettet så vi anvender fragmenter i stedet.
+    <include layout="@layout/content_main" />  -->
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -31,7 +31,6 @@
         android:layout_marginTop="?attr/actionBarSize">
 
     </FrameLayout>
-
 
 
 </android.support.design.widget.CoordinatorLayout>

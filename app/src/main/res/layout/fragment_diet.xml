@@ -2,19 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     android:orientation="vertical"
-    tools:context="dk.bepeaked.bodybook.Fragments.Diet.Diet_frag"
-    android:background="@drawable/gradient">
+    tools:context="dk.bepeaked.bodybook.Fragments.Diet.Diet_frag">
 
 
     <ExpandableListView
         android:id="@+id/expandA_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:headerDividersEnabled="false">
-    </ExpandableListView>
-
-
+        android:headerDividersEnabled="false"></ExpandableListView>
 
 
 </LinearLayout>

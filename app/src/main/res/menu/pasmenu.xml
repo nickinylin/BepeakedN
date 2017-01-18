@@ -4,9 +4,9 @@
 
     <item
         android:id="@+id/pasMenu_add_pas"
+        android:icon="@drawable/ic_add_white_24dp"
         android:orderInCategory="1"
         android:title="@string/add_pas"
-        android:icon="@drawable/ic_add_white_24dp"
         app:showAsAction="always" />
 
     <item

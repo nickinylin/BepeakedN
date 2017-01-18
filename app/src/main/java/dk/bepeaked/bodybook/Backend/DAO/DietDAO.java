@@ -1,7 +1,6 @@
 package dk.bepeaked.bodybook.Backend.DAO;
 
 import android.app.Activity;
-import android.content.res.Resources;
 
 import java.util.ArrayList;
 
@@ -16,9 +15,9 @@ import io.realm.RealmResults;
 
 public class DietDAO{
     CsvDAO dao = new CsvDAO();
-    private ArrayList<DishDTO> savedDTO = new ArrayList<>();
     Realm realm = Realm.getDefaultInstance();
     Singleton singleton = Singleton.singleton;
+    private ArrayList<DishDTO> savedDTO = new ArrayList<>();
 
     public void getDishes(Activity act, String file){
         ArrayList<DishDTO> dtos = new ArrayList<>();

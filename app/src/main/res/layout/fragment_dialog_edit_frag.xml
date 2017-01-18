@@ -2,26 +2,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark1"
     android:orientation="vertical"
     android:padding="15dp"
-    android:background="@color/colorPrimaryDark1"
     tools:context="dk.bepeaked.bodybook.Fragments.Training.DialogDeletePas_frag">
 
     <TextView
+        android:id="@+id/TV_dialog_edit_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="slettes_tekst"
-        android:textSize="18sp"
-        android:textColor="#000000"
         android:layout_gravity="center"
-        android:id="@+id/TV_dialog_edit_info"/>
+        android:text="slettes_tekst"
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
     <EditText
+        android:id="@+id/ET_dialog_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:id="@+id/ET_dialog_edit"
-        android:text=""/>
+        android:text=""
+        android:textColor="#000000" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -30,23 +30,22 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/button_dialog_delete_OK"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:id="@+id/button_dialog_delete_OK"
-            android:text="@string/ok"/>
+            android:text="@string/ok"
+            android:textColor="#000000" />
 
         <Button
+            android:id="@+id/button_dialog_delete_Cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
             android:backgroundTint="@android:color/darker_gray"
-            android:id="@+id/button_dialog_delete_Cancel"
-            android:text="@string/cancel"/>
+            android:text="@string/cancel"
+            android:textColor="#000000" />
 
     </LinearLayout>
-
 
 
 </LinearLayout>

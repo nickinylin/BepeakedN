@@ -316,6 +316,18 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         return false;
     }
 
+    //This is to reload the listView when a dialogFragment is dismissed.
+    @Override
+    public void run() {
+        reloadData();
+    }
+
+    public static class ViewHolder1 {
+        public TextView textViewWeight;
+        public TextView textViewReps;
+        public TextView textViewRM;
+        public TextView textViewDate;
+    }
 
     public class ExerciseListAdapter extends BaseAdapter {
 
@@ -425,19 +437,5 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
 
             return convertView;
         }
-    }
-
-    public static class ViewHolder1 {
-        public TextView textViewWeight;
-        public TextView textViewReps;
-        public TextView textViewRM;
-        public TextView textViewDate;
-    }
-
-
-    //This is to reload the listView when a dialogFragment is dismissed.
-    @Override
-    public void run() {
-        reloadData();
     }
 }

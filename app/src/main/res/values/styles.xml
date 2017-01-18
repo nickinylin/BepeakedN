@@ -23,13 +23,13 @@
     <!-- This is all for styling alertDialog // Nicki -->
 
 
-    <style name="AppTheme.Picker" parent="Theme.AppCompat.Light.NoActionBar" >
+    <style name="AppTheme.Picker" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textColorPrimary">@android:color/black</item>
     </style>
 
     <!--<style name="MyTitleTextStyle">-->
-        <!--<item name="android:textColor">#FFEB3B</item>-->
-        <!--<item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>-->
+    <!--<item name="android:textColor">#FFEB3B</item>-->
+    <!--<item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>-->
     <!--</style>-->
 
     <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -40,9 +40,9 @@
         <!-- Used for the title and text -->
         <!--<item name="android:textColorPrimary">#FFFFFF</item>-->
         <!-- Used for the background -->
-    <!--<item name="android:background">#FFFFFF</item>-->
+        <!--<item name="android:background">#FFFFFF</item>-->
     </style>
 
-<!-- alertDialog styling end // Nicki -->
+    <!-- alertDialog styling end // Nicki -->
 
 </resources>

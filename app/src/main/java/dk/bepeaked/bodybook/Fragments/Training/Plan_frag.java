@@ -2,10 +2,8 @@ package dk.bepeaked.bodybook.Fragments.Training;
 
 
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -37,6 +34,7 @@ import io.realm.RealmList;
 public class Plan_frag extends Fragment implements AdapterView.OnItemClickListener, Runnable {
     //WorkoutDAO wdao = new WorkoutDAO();
 
+    Singleton singleton;
     private WorkoutController wc;
     private SharedPreferences prefs;
     private Bundle bundleArgs;
@@ -44,7 +42,6 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
     private ArrayAdapter adapter;
     private RealmList<WorkoutDTO> realmListPlans;
     private ArrayList<String> arrayListPlanNames;
-    Singleton singleton;
 
     public Plan_frag() {
         // Required empty public constructor
