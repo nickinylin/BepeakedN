@@ -30,7 +30,6 @@ public class DialogAddSet_frag extends DialogFragment {
     Button btnOK, btnCancel;
     TextView tvInfo, tvReps, tvWeight;
     SharedPreferences prefs;
-    ExerciseDTO dto;
     String exerciseName;
     int exerciseID;
     WorkoutController wc;
@@ -74,8 +73,8 @@ public class DialogAddSet_frag extends DialogFragment {
             npWeight1.setMaxValue(200);
             npWeight1.setValue(prefs.getInt("2 " + exerciseID, 0));
         }
-        npWeight1.setValue(10);
-        tvInfo.setText("Tilføj sæt - repetitioner og vægt");
+        npWeight1.setValue(prefs.getInt("2 " + exerciseID, 0));
+        tvInfo.setText(R.string.add_set_reps_and_weight);
 
 
         btnOK.setOnClickListener(new View.OnClickListener() {
@@ -85,13 +84,11 @@ public class DialogAddSet_frag extends DialogFragment {
                     try {
                         if(prefs.getBoolean("measurement", false)) {
                             wc.addSet(exerciseName, npWeight1.getValue()/2.2046, npReps.getValue());
-                            prefs.edit().putInt("1 " + exerciseID, npReps.getValue()).commit();
-                            prefs.edit().putInt("2 " + exerciseID, npWeight1.getValue()).commit();
                         }else{
                             wc.addSet(exerciseName, npWeight1.getValue(), npReps.getValue());
-                            prefs.edit().putInt("1 " + exerciseID, npReps.getValue()).commit();
-                            prefs.edit().putInt("2 " + exerciseID, npWeight1.getValue()).commit();
                         }
+                        prefs.edit().putInt("1 " + exerciseID, npReps.getValue()).commit();
+                        prefs.edit().putInt("2 " + exerciseID, npWeight1.getValue()).commit();
                         dismiss();
                     } catch (ExceptionWrongInput e) {
                         e.printStackTrace();

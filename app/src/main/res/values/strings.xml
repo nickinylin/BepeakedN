@@ -72,5 +72,8 @@
     <string name="kilo">Kilo</string>
     <string name="pounds">Pund</string>
     <string name="search">Søg...</string>
+    <string name="add_set_reps_and_weight">Tilføj sæt - repetitioner og vægt</string>
+    <string name="exercise">Øvelse</string>
+    <string name="description">Beskrivelse</string>
 
 </resources>

@@ -41,8 +41,8 @@ public class TabLayoutExercise_frag extends Fragment {
         ;
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Exercise"));
-        tabLayout.addTab(tabLayout.newTab().setText("Description"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.exercise));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.description));
         final ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager2);
 
 

@@ -70,5 +70,8 @@
     <string name="kilo">Kilo</string>
     <string name="pounds">Pounds</string>
     <string name="search">Search...</string>
+    <string name="add_set_reps_and_weight">Add set - repetitions and weight</string>
+    <string name="exercise">Exercise</string>
+    <string name="description">Description</string>
 
 </resources>

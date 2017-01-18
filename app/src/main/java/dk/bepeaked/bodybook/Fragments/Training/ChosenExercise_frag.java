@@ -47,32 +47,22 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     RealmList<SetDTO> realmListSets = new RealmList<>();
     FloatingActionButton fab;
     SharedPreferences prefs;
-    ExerciseDTO dto;
     Bundle bundleArgs;
     String exerciseName;
     int exerciseID;
     WorkoutController wc;
-    Date dateLast, dateCurrent;
+    Date dateCurrent;
     SimpleDateFormat dateFormatter;
     String stringDateLast, stringDateCurrent, kgPunds;
     Singleton singleton;
-    int counter = 0;
     boolean measurement;
-    int weightInt;
-    int reps;
-    int rmInt;
     Date date;
     GraphView graph;
     ArrayList<DataPoint> points;
     BarGraphSeries<DataPoint> series;
     ArrayList<Integer> rms;
     int numberBars = 5;
-//    ExerciseListAdapter exerciseListAdapter;
-
-
-    //skal slettes. til test
-    boolean boo = true;
-    private ListView listView;
+    ListView listView;
 
 
     public ChosenExercise_frag() {
@@ -94,6 +84,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         measurement = prefs.getBoolean("measurement", false);
         exerciseID = getArguments().getInt("chosenExerciseID", 99999);
+
+        //This is for making the graph
 
         exerciseName = wc.getExercise(exerciseID).getName();
         try {
@@ -179,6 +171,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         if (numberBars > 20) {
             graph.getViewport().scrollToEnd();
         }
+
+        //This is for making the listView of the sets
 
         listView = (ListView) view.findViewById(R.id.LW_chosenExercise);
         listView.setOnItemLongClickListener(this);
@@ -285,12 +279,11 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         bundleArgs = new Bundle();
-//        Log.d("Nicki", "onItemLongClick: " + realmListSets.get(position).getId());
         bundleArgs.putInt("setID", realmListSets.get(position).getId());
 
         DialogDeleteSet_frag dialog = new DialogDeleteSet_frag();
         dialog.setArguments(bundleArgs);
-        dialog.show(getFragmentManager(), "Empty_pas");
+        dialog.show(getFragmentManager(), "DialogDeleteSet_frag");
         return false;
     }
 
@@ -356,19 +349,8 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-
-//
-//            Log.d("Nicki", "datecurrent: " + dateCurrent + "\n dateLast: " + stringDateLast);
-
-//
-//            Log.d("Nicki", "stringdatecurrent: " + stringDateCurrent + "\n stringdateLast: " + stringDateLast);
-
-
             ViewHolder1 holder = null;
             int type = getItemViewType(position);
-
-            System.out.println("getView " + position + " " + convertView + " type = " + type);
-
             if (convertView == null) {
                 holder = new ViewHolder1();
                 switch (type) {
@@ -394,7 +376,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
             double weightInt = mData.get(position).getWeight();
             int reps = mData.get(position).getReps();
             stringDateCurrent = dateFormatter.format(mData.get(position).getDate());
-            Log.d("Nicki", "position: " + position);
             double rmInt = mData.get(position).getRm();
             if (measurement) {
                 weightInt = convertKilo(weightInt);
@@ -418,7 +399,6 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
                     break;
             }
 
-
             return convertView;
         }
     }
@@ -431,9 +411,9 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
     }
 
 
+    //This is to reload the listView when a dialogFragment is dismissed.
     @Override
     public void run() {
         reloadData();
-//        adapterReload();
     }
 }
