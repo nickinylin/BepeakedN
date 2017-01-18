@@ -5,7 +5,7 @@
     <item
         android:id="@+id/pasMenu_add_exercise"
         android:orderInCategory="1"
-        android:title="Tilføj øvelse"
+        android:title="@string/add_exercise"
         android:icon="@drawable/ic_add_white_24dp"
         app:showAsAction="always" />
 

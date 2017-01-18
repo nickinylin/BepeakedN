@@ -52,4 +52,20 @@
     <string name="name_already_exist">Navnet eksisterer allerede</string>
     <string name="theres_no_descr_for_own_exercises">" \n Der findes ingen beskrivelse til egne øvelser"</string>
     <string name="all_plans">Alle planer</string>
+    <string name="change_plan">Skift træningsplan</string>
+    <string name="add_pas">Tilføj pas</string>
+    <string name="add_plan">Tilføj plan</string>
+    <string name="trainingplan">Træningsplan</string>
+    <string name="diet_plan">Kostplan</string>
+    <string name="add_exercise">Tilføj øvelse</string>
+    <string name="about_descr">Denne mobile applikation tilhører bepeaked. Bepeaked er en virksomhed, som skaber træningsprogrammer og kostplaner til deres kunder.</string>
+    <string name="about_everkinetic">Øvelsesbiblioteket bliver hentet fra Everkinetic.</string>
+    <string name="ok">OK</string>
+    <string name="weight">Weight</string>
+    <string name="add">Tilføj</string>
+    <string name="cancel">Cancel</string>
+    <string name="close">Færdig</string>
+    <string name="kilo">Kilo</string>
+    <string name="pounds">Pounds</string>
+    <string name="search">Search...</string>
 </resources>

@@ -35,7 +35,7 @@
             android:textColor="#000000"
             android:backgroundTint="@color/colorPrimaryDark"
             android:id="@+id/button_dialog_delete_OK"
-            android:text="OK"/>
+            android:text="@string/ok"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
             android:textColor="#000000"
             android:backgroundTint="@android:color/darker_gray"
             android:id="@+id/button_dialog_delete_Cancel"
-            android:text="Cancel"/>
+            android:text="@string/cancel"/>
 
     </LinearLayout>
 

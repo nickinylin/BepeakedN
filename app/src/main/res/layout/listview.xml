@@ -9,16 +9,6 @@
     tools:context="dk.bepeaked.bodybook.Activities.Main_act"
     >
 
-    <!--<ListView-->
-        <!--android:id="@+id/ListView_id1"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:divider="@android:color/darker_gray"-->
-        <!--android:dividerHeight="0.5dp"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true" />-->
-
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/ListView_id"
         android:layout_width="match_parent"

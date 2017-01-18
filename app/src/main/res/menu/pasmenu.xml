@@ -5,14 +5,14 @@
     <item
         android:id="@+id/pasMenu_add_pas"
         android:orderInCategory="1"
-        android:title="Tilføj pas"
+        android:title="@string/add_pas"
         android:icon="@drawable/ic_add_white_24dp"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/pasMenu_change_plan"
         android:orderInCategory="2"
-        android:title="Skift træningsplan"
+        android:title="@string/change_plan"
         app:showAsAction="withText" />
 
 </menu>

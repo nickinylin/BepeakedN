@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Er du sikker?"
+        android:text="sikker?"
         android:textColor="#000000"
         android:textSize="18sp"
         android:gravity="center"
@@ -30,7 +30,7 @@
             android:id="@+id/button_dialog_delete_OK"
             android:textColor="#000000"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:text="OK"/>
+            android:text="@string/ok"/>
 
         <Button
             android:layout_width="0dp"
@@ -39,7 +39,7 @@
             android:layout_weight="1"
             android:id="@+id/button_dialog_delete_Cancel"
             android:backgroundTint="@android:color/darker_gray"
-            android:text="Cancel"/>
+            android:text="@string/cancel"/>
 
     </LinearLayout>
 

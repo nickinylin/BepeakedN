@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/about"
             android:textSize="17dp"
-            android:text="Denne mobile applikation tilhører bepeaked. Bepeaked er en virksomhed, som skaber træningsprogrammer og kostplaner til deres kunder." />
+            android:text="@string/about_descr" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:textSize="17dp"
-                android:text="Øvelsesbiblioteket bliver hentet fra Everkinetic."/>
+                android:text="@string/about_everkinetic"/>
 
             <TextView
                 android:layout_width="wrap_content"

@@ -4,13 +4,13 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_trainingplan"
-            android:title="Træningsplan" />
+            android:title="@string/trainingplan" />
         <item
             android:id="@+id/nav_diet"
-            android:title="Kostplan" />
+            android:title="@string/diet_plan" />
         <item
             android:id="@+id/nav_settings"
-            android:title="Indstillinger" />
+            android:title="@string/settings" />
 
     </group>
 

@@ -5,7 +5,7 @@
     <item
         android:id="@+id/planMenu_add_plan"
         android:orderInCategory="1"
-        android:title="Tilføj pas"
+        android:title="@string/add_plan"
         android:icon="@drawable/ic_add_white_24dp"
         app:showAsAction="always" />
 
