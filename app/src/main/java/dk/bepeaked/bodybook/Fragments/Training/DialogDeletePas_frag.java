@@ -49,7 +49,7 @@ public class DialogDeletePas_frag extends DialogFragment implements View.OnClick
         btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_Cancel);
         tv = (TextView) view.findViewById(R.id.TV_dialog_delete_pas);
 
-        tv.setText("Er du sikker på passet skal slettes?");
+        tv.setText(R.string.sure_you_want_to_delete_pas);
 
 
         btnOK.setOnClickListener(this);
@@ -65,7 +65,7 @@ public class DialogDeletePas_frag extends DialogFragment implements View.OnClick
                 wc.deletePas(pasID);
             } catch (ExceptionPasDoesntExist e) {
                 e.printStackTrace();
-                tv.setText("Der skete en fejl!");
+                tv.setText(R.string.mistake_happened);
             }
             dismiss();
 

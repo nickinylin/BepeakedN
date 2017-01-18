@@ -63,7 +63,7 @@ public class DialogDescription_frag extends android.support.v4.app.DialogFragmen
             tvDesc1.setText(exerciseDTO.getDesc1());
             tvDesc2.setText(exerciseDTO.getDesc2());
         } else {
-            tvTitle.setText("Der er ingen beskrivelse til øvelser du selv har tilføjet. God dag!");
+            tvTitle.setText(R.string.no_descr_to_own_exercise);
             tvDesc1.setText("");
             tvDesc2.setText("");
         }

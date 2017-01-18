@@ -31,15 +31,17 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
     private DietDAO dao;
     private PlanDAO pdao = new PlanDAO();
     TextView confirm;
-
+    View view;
+    InputMethodManager imm;
     public ActivationCode_frag() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_activation_code_frag, container, false);
-        getActivity().setTitle("Aktiveringskode");
+        view = inflater.inflate(R.layout.fragment_activation_code_frag, container, false);
+        getActivity().setTitle(getString(R.string.activationcode));
+        imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
         this.field = (EditText) view.findViewById(R.id.editText2);
         Button button = (Button) view.findViewById(R.id.button_dialog_OK);
@@ -55,6 +57,12 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Override
     public void onClick(View v) {
         boolean success = false;
         for(int i = 0; i < files.size(); i++){
@@ -67,11 +75,11 @@ public class ActivationCode_frag extends Fragment implements View.OnClickListene
             }
         }
         if(success){
-            confirm.setText("Success!!");
+            confirm.setText(R.string.success);
         }else{
-            confirm.setText("Could not find any matches. Check for wrong code, and try again!");
+            confirm.setText(R.string.could_not_find_any_matches);
         }
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
     private void listFiles(String dirFrom) {

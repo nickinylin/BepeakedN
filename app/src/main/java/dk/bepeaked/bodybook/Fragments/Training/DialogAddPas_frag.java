@@ -25,7 +25,7 @@ import dk.bepeaked.bodybook.R;
  */
 public class DialogAddPas_frag extends DialogFragment implements View.OnClickListener {
 
-    WorkoutController wc = new WorkoutController();
+    WorkoutController wc;
     int planID;
     String pasNew;
     TextView tv;
@@ -33,7 +33,6 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
     Button btn;
     SharedPreferences prefs;
     Singleton singleton;
-    DialogFragment dialogFragment;
 
 
     public DialogAddPas_frag() {
@@ -47,18 +46,16 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
         View view = inflater.inflate(R.layout.fragment_dialog_add, container, false);
 
         singleton = Singleton.singleton;
+        wc = new WorkoutController();
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        dialogFragment = this;
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
         tv = (TextView) view.findViewById(R.id.TV_add_info);
         et = (EditText) view.findViewById(R.id.ET_add_name);
         btn = (Button) view.findViewById(R.id.button_add_ok);
 
-        tv.setText("Indtast navn på det nye pas");
+        tv.setText(R.string.input_name_on_the_new_pas);
         et.setText("");
         btn.setOnClickListener(this);
 
@@ -72,7 +69,7 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
         if (v == btn) {
             pasNew = "" + et.getText();
             if (pasNew.length() == 0 || pasNew.startsWith(" ")) {
-                tv.setText("Navnet må ikke være tomt");
+                tv.setText(R.string.name_cant_be_empty);
             } else {
                 try {
                     wc.addNewPasToPlan(planID, pasNew);
@@ -84,8 +81,6 @@ public class DialogAddPas_frag extends DialogFragment implements View.OnClickLis
             }
         }
     }
-
-
 
     @Override
     public void onDismiss(DialogInterface dialog) {

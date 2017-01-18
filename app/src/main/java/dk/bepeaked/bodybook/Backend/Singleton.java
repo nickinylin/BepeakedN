@@ -16,13 +16,14 @@ import java.util.ArrayList;
 
 public class Singleton extends Application {
 
+    //This is the application object (singleton)
+
    public static Singleton singleton;
 
     public int antalDialoger = 0;
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("nicki", "Singleton.onCreate: ");
         this.singleton = this;
 
     }
@@ -30,7 +31,6 @@ public class Singleton extends Application {
     ArrayList<Runnable> observators = new ArrayList<>();
 
     public void notifyObservers() {
-        Log.d("Nicki", "notifyObservers bliver kørt: listen er "+observators.size());
         for (Runnable r : observators ) {
             r.run();
         }

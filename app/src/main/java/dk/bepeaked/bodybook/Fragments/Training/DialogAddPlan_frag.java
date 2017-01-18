@@ -55,7 +55,7 @@ public class DialogAddPlan_frag extends DialogFragment implements View.OnClickLi
         et = (EditText) view.findViewById(R.id.ET_add_name);
         btn = (Button) view.findViewById(R.id.button_add_ok);
 
-        tv.setText("Indtast navn på træningsplan");
+        tv.setText(R.string.input_name_plan);
         et.setText("");
         btn.setOnClickListener(this);
 
@@ -68,13 +68,18 @@ public class DialogAddPlan_frag extends DialogFragment implements View.OnClickLi
     public void onClick(View v) {
         if (v == btn) {
             planNew = "" + et.getText();
-            try {
-                wc.addPlan(planNew);
-                dismiss();
-            } catch (ExceptionNameAlreadyExist e) {
-                e.printStackTrace();
-                tv.setText(e.getMessage());
+            if (planNew.length() == 0 || planNew.startsWith(" ")) {
+                tv.setText(R.string.name_cant_be_empty);
+            }else {
+                try {
+                    wc.addPlan(planNew);
+                    dismiss();
+                } catch (ExceptionNameAlreadyExist e) {
+                    e.printStackTrace();
+                    tv.setText(e.getMessage());
+                }
             }
+
         }
     }
     @Override

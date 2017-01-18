@@ -22,7 +22,7 @@ import dk.bepeaked.bodybook.R;
  */
 public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements View.OnClickListener {
 
-    WorkoutController wc = new WorkoutController();
+    WorkoutController wc;
     Button btnOK, btnCancel;
     TextView tv;
     int pasID, planID, exerciseGoalsID;
@@ -41,6 +41,7 @@ public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements 
 
         View view = inflater.inflate(R.layout.fragment_dialog_delete_frag, container, false);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        wc = new WorkoutController();
 
         singleton = Singleton.singleton;
         pasID = getArguments().getInt("pasID", 99999);
@@ -52,7 +53,7 @@ public class DialogDeleteExerciseFromPas_frag extends DialogFragment implements 
         btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_Cancel);
         tv = (TextView) view.findViewById(R.id.TV_dialog_delete_pas);
 
-        tv.setText("Er du sikker på passet skal slettes?");
+        tv.setText(R.string.sure_you_want_to_delete_exercise_from_pas);
 
 
         btnOK.setOnClickListener(this);

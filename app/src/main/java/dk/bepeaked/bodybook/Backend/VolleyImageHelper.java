@@ -12,7 +12,8 @@ import com.android.volley.toolbox.Volley;
 
 public class VolleyImageHelper {
 
-    //Alt dette er til Volley:
+    //This is for the packages Volley. It's a singleton, that controlls the download que of pictures.
+
 private static VolleyImageHelper mInstance;
     private RequestQueue requestQueue;
     private static Context mCtx;

@@ -26,5 +26,33 @@
     <string name="calories">" calories."</string>
     <string name="about_us">Om os</string>
     <string name="settings">Indstillinger</string>
+    <string name="grams">" grams"</string>
+    <string name="link_to_bepeaked"><![CDATA["<a href=\"http://bepeaked.com\">Link til bepeakeds hjemmeside</a> "]]></string>
+    <string name="link_to_everkinetic"><![CDATA["<a href=\"http://db.everkinetic.com/\">Link til Everkinetics hjemmeside</a> "]]></string>
+    <string name="success">Success!!</string>
+    <string name="could_not_find_any_matches">Could not find any matches. Check for wrong code, and try again!</string>
+    <string name="add_to">"Tilføj til "</string>
+    <string name="is_added_with">" er tilføjet med "</string>
+    <string name="choose_reps_and_sets">Vælg antal repetitioner og sæt</string>
+    <string name="sets">Sets</string>
+    <string name="reps">Reps</string>
+    <string name="input_name_on_the_new_pas">Indtast navn på det nye pas</string>
+    <string name="input_name_new_exercise">Indtast navn på den nye øvelse</string>
+    <string name="name_cant_be_empty">Navnet må ikke være tomt</string>
+    <string name="input_name_plan">Indtast navn på træningsplan</string>
+    <string name="sure_you_want_to_delete_pas">Er du sikker på passet skal slettes?</string>
+    <string name="sure_you_want_to_delete_the_exercise">Er du sikker på at øvelsen skal slettes?</string>
+    <string name="sure_you_want_to_delete_exercise_from_pas">Er du sikker på du vil slette øvelsen fra passet?</string>
+    <string name="mistake_happened">Der skete en fejl!</string>
+    <string name="sure_you_want_to_delete_plan">Er du sikker på planen skal slettes?</string>
+    <string name="mistake_happened_on_delete">Der opstod en fejl ved sletning</string>
+    <string name="sure_you_want_to_delete_set">Er du sikker på sættet skal slettes?</string>
+    <string name="no_descr_to_own_exercise">Der er ingen beskrivelse til øvelser du selv har tilføjet. God dag!</string>
+    <string name="write_name_new_exercise">Skriv det nye navn på øvelsen</string>
+    <string name="write_new_name_for_pas">Skriv nyt navn til passet</string>
+    <string name="write_new_name_for_plan">Skriv det nye navn på planen</string>
+    <string name="name_already_exist">Navnet eksisterer allerede</string>
+    <string name="theres_no_descr_for_own_exercises">" \n Der findes ingen beskrivelse til egne øvelser"</string>
+    <string name="all_plans">Alle planer</string>
 
 </resources>

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,7 +22,6 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -44,11 +42,10 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
     String pasName, simpleDateNow, simpleDateSet;
     int pasID, planID;
     RealmList<ExerciseGoals> realmListExercises = new RealmList<ExerciseGoals>();
-    ArrayList<String> arrayListExerciseNames = new ArrayList<String>();
     Bundle bundleArgs = new Bundle();
     private SwipeMenuListView listView;
     View view;
-    WorkoutController wc = new WorkoutController();
+    WorkoutController wc;
     SharedPreferences prefs;
     Singleton singleton;
     TextView tvGoals;
@@ -75,11 +72,13 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         view = inflater.inflate(R.layout.listview, container, false);
         singleton = Singleton.singleton;
         singleton.listen(this);
+        wc = new WorkoutController();
         pasID = getArguments().getInt("TræningspasID", 99999);
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
         Calendar c = Calendar.getInstance();
         date = c.getTime();
+
         simpleDateNow = dateFormatter.format(date);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -220,10 +219,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         public View getView(int position, View convertView, ViewGroup parent) {
 
             ViewHolderName holderName = null;
-//            ViewHolderSetsAndReps holderSetsAndReps = null;
             if (convertView == null) {
-//                LayoutInflater inflater = LayoutInflater.from(getContext());
-//                convertView = inflater.inflate(R.layout.exercise_list_element_with_name_reps_sets, parent, false);
                 convertView = mInflater.inflate(R.layout.exercise_list_element_with_name_reps_sets, null);
                 holderName = new ViewHolderName();
                 holderName.textViewName = (TextView) convertView.findViewById(R.id.TV_exercise_frag_exercisename);
@@ -236,6 +232,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
             holderName.textViewName.setText(realmListExercises.get(position).getName());
             holderName.textViewRepsSets.setText(realmListExercises.get(position).getSet() + " x " + realmListExercises.get(position).getReps());
 
+            //this makes the done icon for an exercise if a set has been added on the same day
             String exName = realmListExercises.get(position).getName();
             ExerciseDTO exerciseDTO = wc.getExercise(exName);
             try {
@@ -247,13 +244,7 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
                 }
             }catch (IndexOutOfBoundsException e) {
                 e.printStackTrace();
-
             }
-
-
-
-
-
             return convertView;
         }
     }
@@ -264,11 +255,6 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
         public ImageView imageViewDone;
     }
 
-    public static class ViewHolderSetsAndReps {
-        public TextView textView;
-    }
-
-
     private void adapterReload() {
         realmListExercises = wc.getSpecificPas(pasID).getExercises();
         ExerciseListAdapterRepsSets exerciseListAdapter = new ExerciseListAdapterRepsSets();
@@ -278,8 +264,6 @@ public class Exercise_frag extends Fragment implements AdapterView.OnItemClickLi
 
     @Override
     public void run() {
-        Log.d("Nicki", "Exercise Run metode: ");
         adapterReload();
     }
-
 }

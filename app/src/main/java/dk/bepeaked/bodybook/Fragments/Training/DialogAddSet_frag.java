@@ -83,7 +83,12 @@ public class DialogAddSet_frag extends DialogFragment {
             public void onClick(View v) {
                 if (v == btnOK) {
                     try {
-                        wc.addSet(exerciseName, npWeight1.getValue(), npReps.getValue());
+                        if (prefs.getBoolean("measurement", false)) {
+                            wc.addSet(exerciseName, npWeight1.getValue(), npReps.getValue());
+                        } else {
+                            wc.addSet(exerciseName, npWeight1.getValue(), npReps.getValue());
+                        }
+
                         prefs.edit().putInt("1 " + exerciseID, npReps.getValue()).commit();
                         prefs.edit().putInt("2 " + exerciseID, npWeight1.getValue()).commit();
                         dismiss();

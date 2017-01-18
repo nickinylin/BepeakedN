@@ -37,13 +37,10 @@ import io.realm.RealmList;
 public class Plan_frag extends Fragment implements AdapterView.OnItemClickListener, Runnable {
     //WorkoutDAO wdao = new WorkoutDAO();
 
-    private WorkoutController wc = new WorkoutController();
-    private String planName;
-    private int planID;
+    private WorkoutController wc;
     private SharedPreferences prefs;
     private Bundle bundleArgs;
     private SwipeMenuListView listView;
-    private FloatingActionButton fab;
     private ArrayAdapter adapter;
     private RealmList<WorkoutDTO> realmListPlans;
     private ArrayList<String> arrayListPlanNames;
@@ -59,11 +56,12 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
         View view = inflater.inflate(R.layout.listview, container, false);
         singleton = Singleton.singleton;
         singleton.listen(this);
+        wc = new WorkoutController();
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         bundleArgs = new Bundle();
 
-        getActivity().setTitle("Alle planer");
+        getActivity().setTitle(getString(R.string.all_plans));
 
         realmListPlans = wc.getPlans();
         arrayListPlanNames = wc.getPlanNamesToArray();
@@ -108,7 +106,7 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
 
                         DialogEditPlan_frag dialog = new DialogEditPlan_frag();
                         dialog.setArguments(bundleArgs);
-                        dialog.show(getFragmentManager(), "Empty_pas");
+                        dialog.show(getFragmentManager(), "DialogEditPlan_frag");
 
                         break;
                     case 1:
@@ -117,7 +115,7 @@ public class Plan_frag extends Fragment implements AdapterView.OnItemClickListen
 
                         DialogDeletePlan_frag dialog2 = new DialogDeletePlan_frag();
                         dialog2.setArguments(bundleArgs);
-                        dialog2.show(getFragmentManager(), "Empty_pas");
+                        dialog2.show(getFragmentManager(), "DialigDeletePlan_frag");
 
                         break;
                 }

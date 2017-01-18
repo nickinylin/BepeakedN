@@ -22,7 +22,7 @@ import dk.bepeaked.bodybook.R;
  */
 public class DialogDeleteSet_frag extends DialogFragment implements View.OnClickListener {
 
-    WorkoutController wc = new WorkoutController();
+    WorkoutController wc;
     Button btnOK, btnCancel;
     TextView tv;
     int setID;
@@ -41,6 +41,7 @@ public class DialogDeleteSet_frag extends DialogFragment implements View.OnClick
 
         View view = inflater.inflate(R.layout.fragment_dialog_delete_frag, container, false);
         singleton = Singleton.singleton;
+        wc = new WorkoutController();
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         setID = getArguments().getInt("setID", 9999);
 
@@ -49,7 +50,7 @@ public class DialogDeleteSet_frag extends DialogFragment implements View.OnClick
         btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_Cancel);
         tv = (TextView) view.findViewById(R.id.TV_dialog_delete_pas);
 
-        tv.setText("Er du sikker på sættet skal slettes?");
+        tv.setText(R.string.sure_you_want_to_delete_set);
 
 
         btnOK.setOnClickListener(this);
@@ -61,7 +62,6 @@ public class DialogDeleteSet_frag extends DialogFragment implements View.OnClick
     @Override
     public void onClick(View v) {
         if (v == btnOK) {
-            Log.d("Nicki", "setID " + setID);
             wc.deleteSet(setID);
             dismiss();
         } else if (v == btnCancel) {

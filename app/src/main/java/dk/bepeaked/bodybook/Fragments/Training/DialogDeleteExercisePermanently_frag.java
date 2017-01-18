@@ -23,7 +23,7 @@ import dk.bepeaked.bodybook.R;
  */
 public class DialogDeleteExercisePermanently_frag extends DialogFragment implements View.OnClickListener {
 
-    WorkoutController wc = new WorkoutController();
+    WorkoutController wc;
     Button btnOK, btnCancel;
     TextView tv;
     int exerciseID;
@@ -44,13 +44,14 @@ public class DialogDeleteExercisePermanently_frag extends DialogFragment impleme
         singleton = Singleton.singleton;
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         exerciseID = getArguments().getInt("exerciseID", 9999);
+        wc = new WorkoutController();
 
 
         btnOK = (Button) view.findViewById(R.id.button_dialog_delete_OK);
         btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_Cancel);
         tv = (TextView) view.findViewById(R.id.TV_dialog_delete_pas);
 
-        tv.setText("Er du sikker på at øvelsen skal slettes?");
+        tv.setText(R.string.sure_you_want_to_delete_the_exercise);
 
 
         btnOK.setOnClickListener(this);

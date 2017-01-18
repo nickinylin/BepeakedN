@@ -38,7 +38,7 @@ import io.realm.RealmList;
 public class Pas_frag extends Fragment implements AdapterView.OnItemClickListener, Runnable{
     //WorkoutDAO wdao = new WorkoutDAO();
 
-    WorkoutController wc = new WorkoutController();
+    WorkoutController wc;
     String planName;
     int planID;
     ArrayList<String> arrayListPasNames = new ArrayList<String>();
@@ -60,18 +60,13 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listview, container, false);
-
-
-
+        wc = new WorkoutController();
         singleton = Singleton.singleton;
         singleton.listen(this);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         planID = prefs.getInt("lastUsedPlan", 9999);
-        Log.d("LUKAS", "planid: " + planID);
         planName = wc.getSpecificPlan(planID).getName();
-        Log.d("LUKAS", "plan: " + planName);
-
         bundleArgs = new Bundle();
 
         getActivity().setTitle(planName);
@@ -84,7 +79,6 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, arrayListPasNames);
         listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id);
-        System.out.println("listview id: " + listView.getId());
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
 
@@ -184,7 +178,6 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        Toast.makeText(getActivity(), planName ,Toast.LENGTH_LONG).show();
 
         Bundle bundleArgs = new Bundle();
         bundleArgs.putInt("TræningspasID", realmListPas.get(position).getID());
@@ -207,6 +200,5 @@ public class Pas_frag extends Fragment implements AdapterView.OnItemClickListene
     @Override
     public void run() {
         adapterReload();
-        Log.d("Nicki", "pas_frag: Run");
     }
 }

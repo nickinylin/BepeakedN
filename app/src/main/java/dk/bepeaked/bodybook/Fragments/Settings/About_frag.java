@@ -31,13 +31,13 @@ public class About_frag extends Fragment {
         TextView bepeakedHomepage = (TextView) view.findViewById(R.id.linkView);
         bepeakedHomepage.setText(
                 Html.fromHtml(
-                        "<a href=\"http://bepeaked.com\">Link til bepeakeds hjemmeside</a> "));
+                        getString(R.string.link_to_bepeaked)));
         bepeakedHomepage.setMovementMethod(LinkMovementMethod.getInstance());
 
         TextView everkineticHomepage = (TextView) view.findViewById(R.id.linkView2);
         everkineticHomepage.setText(
                 Html.fromHtml(
-                        "<a href=\"http://db.everkinetic.com/\">Link til Everkinetics hjemmeside</a> "));
+                        getString(R.string.link_to_everkinetic)));
         everkineticHomepage.setMovementMethod(LinkMovementMethod.getInstance());
 
         return view;

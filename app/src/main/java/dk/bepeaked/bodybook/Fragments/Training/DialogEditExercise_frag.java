@@ -24,7 +24,7 @@ import dk.bepeaked.bodybook.R;
  */
 public class DialogEditExercise_frag extends DialogFragment implements View.OnClickListener {
 
-    WorkoutController wc = new WorkoutController();
+    WorkoutController wc;
     Button btnOK, btnCancel;
     TextView tv;
     EditText et;
@@ -43,6 +43,7 @@ public class DialogEditExercise_frag extends DialogFragment implements View.OnCl
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dialog_edit_frag, container, false);
         singleton = Singleton.singleton;
+        wc = new WorkoutController();
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         exerciseID = getArguments().getInt("exerciseID", 9999);
 
@@ -51,7 +52,7 @@ public class DialogEditExercise_frag extends DialogFragment implements View.OnCl
         tv = (TextView) view.findViewById(R.id.TV_dialog_edit_info);
         et = (EditText) view.findViewById(R.id.ET_dialog_edit);
 
-        tv.setText("Skriv det nye navn på øvelsen");
+        tv.setText(R.string.write_name_new_exercise);
 
 
         btnOK.setOnClickListener(this);
@@ -64,15 +65,19 @@ public class DialogEditExercise_frag extends DialogFragment implements View.OnCl
     public void onClick(View v) {
         if (v == btnOK) {
             String newExerciseName = "" + et.getText();
-            try {
-                wc.updateExercise(exerciseID, newExerciseName);
-                dismiss();
-            } catch (ExceptionCantDelete e) {
-                e.printStackTrace();
-                tv.setText(e.getMessage());
-            } catch (ExceptionNameAlreadyExist e) {
-                e.printStackTrace();
-                tv.setText(e.getMessage());
+            if (newExerciseName.length() == 0 || newExerciseName.startsWith(" ")) {
+                tv.setText(R.string.name_cant_be_empty);
+            } else {
+                try {
+                    wc.updateExercise(exerciseID, newExerciseName);
+                    dismiss();
+                } catch (ExceptionCantDelete e) {
+                    e.printStackTrace();
+                    tv.setText(e.getMessage());
+                } catch (ExceptionNameAlreadyExist e) {
+                    e.printStackTrace();
+                    tv.setText(e.getMessage());
+                }
             }
 
         } else if (v == btnCancel) {

@@ -23,7 +23,7 @@ import dk.bepeaked.bodybook.R;
  */
 public class DialogDeletePlan_frag extends DialogFragment implements View.OnClickListener {
 
-    WorkoutController wc = new WorkoutController();
+    WorkoutController wc;
     Button btnOK, btnCancel;
     TextView tv;
     int pasID, planID;
@@ -42,6 +42,7 @@ public class DialogDeletePlan_frag extends DialogFragment implements View.OnClic
 
         View view = inflater.inflate(R.layout.fragment_dialog_delete_frag, container, false);
         singleton = Singleton.singleton;
+        wc = new WorkoutController();
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         pasID = getArguments().getInt("pasID", 9999);
         planID = getArguments().getInt("planID", 9999);
@@ -50,7 +51,7 @@ public class DialogDeletePlan_frag extends DialogFragment implements View.OnClic
         btnCancel = (Button) view.findViewById(R.id.button_dialog_delete_Cancel);
         tv = (TextView) view.findViewById(R.id.TV_dialog_delete_pas);
 
-        tv.setText("Er du sikker på planen skal slettes?");
+        tv.setText(R.string.sure_you_want_to_delete_plan);
 
         btnOK.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
@@ -66,7 +67,7 @@ public class DialogDeletePlan_frag extends DialogFragment implements View.OnClic
                 dismiss();
             } catch (ExceptionPasDoesntExist e) {
                 e.printStackTrace();
-                tv.setText("Der opstod en fejl ved sletning");
+                tv.setText(R.string.mistake_happened_on_delete);
             } catch (ExceptionCantDelete e) {
                 e.printStackTrace();
                 tv.setText(e.getMessage());

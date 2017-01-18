@@ -65,7 +65,7 @@ public class ExerciseHelp_frag extends Fragment {
 
         TextView description = (TextView) view.findViewById(R.id.ex_descriptiontext);
         if (exerciseDesc1 == null) {
-        description.setText(exerciseName + " \n Der findes ingen beskrivelse til egne øvelser" );
+        description.setText(exerciseName + getString(R.string.theres_no_descr_for_own_exercises) );
         } else {
         description.setText(exerciseName + " \n " + " \n" + exerciseDesc1 + " \n " + " \n" + exerciseDesc2);
         }

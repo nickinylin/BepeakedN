@@ -28,13 +28,12 @@ import dk.bepeaked.bodybook.R;
  */
 public class DialogAddExerciseGoals_frag extends DialogFragment implements View.OnClickListener {
 
-    WorkoutController wc = new WorkoutController();
-    String planName, pasName, exerciseName;
+    WorkoutController wc;
+    String exerciseName;
     int planID, pasID, exerciseID;
     NumberPicker npReps, npSets;
     TextView tvReps, tvSets, tvInfo;
     Singleton singleton;
-
     Button btn;
     SharedPreferences prefs;
 
@@ -48,6 +47,7 @@ public class DialogAddExerciseGoals_frag extends DialogFragment implements View.
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_add_exercise_goals, container, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        wc = new WorkoutController();
 
         singleton = Singleton.singleton;
 
@@ -65,9 +65,9 @@ public class DialogAddExerciseGoals_frag extends DialogFragment implements View.
         tvSets = (TextView) view.findViewById(R.id.TV_addExerciseDialog_sets);
         btn = (Button) view.findViewById(R.id.button_addExercise_dialog_WithRepsSets_OK);
 
-        tvInfo.setText("Vælg antal repetitioner og sæt");
-        tvSets.setText("Sets");
-        tvReps.setText("Reps");
+        tvInfo.setText(R.string.choose_reps_and_sets);
+        tvSets.setText(R.string.sets);
+        tvReps.setText(R.string.reps);
 
         npReps.setMinValue(1);
         npReps.setMaxValue(30);

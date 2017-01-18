@@ -25,7 +25,7 @@ import dk.bepeaked.bodybook.R;
  */
 public class DialogAddExercise_frag extends DialogFragment implements View.OnClickListener {
 
-    WorkoutController wc = new WorkoutController();
+    WorkoutController wc;
     int planID;
     String exerciseNameNew;
     TextView tv;
@@ -44,7 +44,7 @@ public class DialogAddExercise_frag extends DialogFragment implements View.OnCli
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_add, container, false);
-
+        wc = new WorkoutController();
         singleton = Singleton.singleton;
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
@@ -56,7 +56,7 @@ public class DialogAddExercise_frag extends DialogFragment implements View.OnCli
         et = (EditText) view.findViewById(R.id.ET_add_name);
         btn = (Button) view.findViewById(R.id.button_add_ok);
 
-        tv.setText("Indtast navn på den nye øvelse");
+        tv.setText(R.string.input_name_new_exercise);
         et.setText("");
         btn.setOnClickListener(this);
 
@@ -67,12 +67,16 @@ public class DialogAddExercise_frag extends DialogFragment implements View.OnCli
     public void onClick(View v) {
         if (v == btn) {
             exerciseNameNew = "" + et.getText();
-            try {
-                wc.createNewExercise(exerciseNameNew);
-                dismiss();
-            } catch (ExceptionNameAlreadyExist e) {
-                e.printStackTrace();
-                tv.setText(e.getMessage());
+            if (exerciseNameNew.length() == 0 || exerciseNameNew.startsWith(" ")) {
+                tv.setText(R.string.name_cant_be_empty);
+            }else {
+                try {
+                    wc.createNewExercise(exerciseNameNew);
+                    dismiss();
+                } catch (ExceptionNameAlreadyExist e) {
+                    e.printStackTrace();
+                    tv.setText(e.getMessage());
+                }
             }
         }
     }

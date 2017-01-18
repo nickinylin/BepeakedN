@@ -51,7 +51,7 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
         tv = (TextView) view.findViewById(R.id.TV_dialog_edit_info);
         et = (EditText) view.findViewById(R.id.ET_dialog_edit);
 
-        tv.setText("Skriv nyt navn til passet");
+        tv.setText(R.string.write_new_name_for_pas);
 
 
         btnOK.setOnClickListener(this);
@@ -64,13 +64,17 @@ public class DialogEditPas_frag extends DialogFragment implements View.OnClickLi
     public void onClick(View v) {
         if (v == btnOK) {
             String newPasName = "" + et.getText();
-            try {
-                wc.updatePasName(pasID, newPasName);
-            } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
-                exceptionNameAlreadyExist.printStackTrace();
-                tv.setText("Der skete en fejl!");
+            if (newPasName.length() == 0 || newPasName.startsWith(" ")) {
+                tv.setText(R.string.name_cant_be_empty);
+            } else {
+                try {
+                    wc.updatePasName(pasID, newPasName);
+                    dismiss();
+                } catch (ExceptionNameAlreadyExist exceptionNameAlreadyExist) {
+                    exceptionNameAlreadyExist.printStackTrace();
+                    tv.setText(R.string.mistake_happened);
+                }
             }
-            dismiss();
         } else if (v == btnCancel) {
             dismiss();
         }

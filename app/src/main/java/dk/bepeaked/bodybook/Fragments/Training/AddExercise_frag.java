@@ -81,7 +81,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
 
         pasID = getArguments().getInt("TræningspasID", 99999);
         pasName = wc.getSpecificPas(pasID).getName();
-        getActivity().setTitle("Tilføj til " + pasName);
+        getActivity().setTitle(getString(R.string.add_to) + pasName);
 
         traeningsOevelser = wc.getAllExerciseNamesToArray();
 
@@ -90,6 +90,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
 
         adapter = new ArrayAdapter(getActivity(), R.layout.listeelement, R.id.listeelem_overskrift, traeningsOevelser);
 
+//This is the imported project SwipeMenuList, that makes it possible to swipe left on an item in the list
 
         listView = (SwipeMenuListView) view.findViewById(R.id.ListView_id_search);
         listView.setOnItemClickListener(this);
@@ -136,21 +137,21 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
                         // open
                         DialogEditExercise_frag dialog = new DialogEditExercise_frag();
                         dialog.setArguments(bundleArgs);
-                        dialog.show(getFragmentManager(), "Empty_pas");
+                        dialog.show(getFragmentManager(), "DialogEditExercise_frag");
 
                         break;
                     case 1:
                         // delete
                         DialogDeleteExercisePermanently_frag dialog2 = new DialogDeleteExercisePermanently_frag();
                         dialog2.setArguments(bundleArgs);
-                        dialog2.show(getFragmentManager(), "Empty_pas");
+                        dialog2.show(getFragmentManager(), "DialogDeleteExercisePermanently_frag");
 
                         break;
                     case 2:
                         // description
                         DialogDescription_frag dialog3 = new DialogDescription_frag();
                         dialog3.setArguments(bundleArgs);
-                        dialog3.show(getFragmentManager(), "hej");
+                        dialog3.show(getFragmentManager(), "DialogDescription_frag");
 
                         break;
                 }
@@ -161,7 +162,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
 
         setHasOptionsMenu(true);
 
-        //Lav noget med vores editText/Search input
+        //This is the search function when you add an exercise to a pas
         editTextLocal = (EditText) view.findViewById(R.id.editText);
         editTextLocal.addTextChangedListener(new TextWatcher() {
             @Override
@@ -266,7 +267,7 @@ public class AddExercise_frag extends Fragment implements AdapterView.OnItemClic
             String exercise = prefs.getString("addGoalsName", "Empty");
             int reps = prefs.getInt("addGoalsReps", 9999);
             int sets = prefs.getInt("addGoalsSets", 9999);
-            Snackbar.make(getView(), exercise + " er tilføjet med " + sets + " x " + reps, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(getView(), exercise + getString(R.string.is_added_with) + sets + " x " + reps, Snackbar.LENGTH_LONG).show();
         }
 
         traeningsOevelser = wc.getAllExerciseNamesToArray();
