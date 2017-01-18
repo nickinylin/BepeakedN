@@ -71,4 +71,5 @@
     <string name="add_set_reps_and_weight">Tilføj sæt - repetitioner og vægt</string>
     <string name="exercise">Exercise</string>
     <string name="description">Description</string>
+    <string name="measureunit">Measureunit</string>
 </resources>
