@@ -28,7 +28,6 @@ import java.util.Date;
 import java.util.TreeSet;
 
 import dk.bepeaked.bodybook.Backend.Controllers.WorkoutController;
-import dk.bepeaked.bodybook.Backend.DTO.ExerciseDTO;
 import dk.bepeaked.bodybook.Backend.DTO.SetDTO;
 import dk.bepeaked.bodybook.Backend.Exception.ExceptionExerciseDoesntExist;
 import dk.bepeaked.bodybook.Backend.Singleton;
@@ -133,12 +132,24 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         graph.getViewport().setMinY(0);
         rms = new ArrayList<>();
         if(measurement) {
-            for (int i = 0; i < realmList.size(); i++) {
-                rms.add((int) convertKilo(realmList.get(i).getRm()));
+            if(realmList.size() < 20) {
+                for (int i = 0; i < realmList.size(); i++) {
+                    rms.add((int) convertKilo(realmList.get(i).getRm()));
+                }
+            }else{
+                for (int i = 1; i <= 20; i++) {
+                    rms.add((int) convertKilo(realmList.get(realmList.size()-i).getRm()));
+                }
             }
         }else{
-            for (int i = 0; i < realmList.size(); i++) {
-                rms.add((int) realmList.get(i).getRm());
+            if(realmList.size() < 20) {
+                for (int i = 0; i < realmList.size(); i++) {
+                    rms.add((int) realmList.get(i).getRm());
+                }
+            }else{
+                for (int i = 1; i <= 20; i++) {
+                    rms.add((int) realmList.get(realmList.size()-i).getRm());
+                }
             }
         }
         if (rms.size() > 0) {
@@ -206,14 +217,27 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         }
         points.add(new DataPoint(points.size(), 0));
         DataPoint[] pointsArray = points.toArray(new DataPoint[points.size()]);
-        if (points.size() > 0) {
+        if (points.size() > 1) {
+            Log.d("sebby", "reloadData: " + points.size());
             if(measurement) {
-                for (int i = 0; i < realmList.size(); i++) {
-                    rms.add((int) convertKilo(realmList.get(i).getRm()));
+                if(realmList.size() < 20) {
+                    for (int i = 0; i < realmList.size(); i++) {
+                        rms.add((int) convertKilo(realmList.get(i).getRm()));
+                    }
+                }else{
+                    for (int i = 1; i <= 20; i++) {
+                        rms.add((int) convertKilo(realmList.get(realmList.size()-i).getRm()));
+                    }
                 }
             }else{
-                for (int i = 0; i < realmList.size(); i++) {
-                    rms.add((int) realmList.get(i).getRm());
+                if(realmList.size() < 20) {
+                    for (int i = 0; i < realmList.size(); i++) {
+                        rms.add((int) realmList.get(i).getRm());
+                    }
+                }else{
+                    for (int i = 1; i <= 20; i++) {
+                        rms.add((int) realmList.get(realmList.size()-i).getRm());
+                    }
                 }
             }
             graph.getViewport().setMaxY(Collections.max(rms) + 2);
@@ -223,6 +247,7 @@ public class ChosenExercise_frag extends Fragment implements View.OnClickListene
         }
 
         series.resetData(pointsArray);
+
 
         if (numberBars > 20) {
             graph.getViewport().scrollToEnd();
