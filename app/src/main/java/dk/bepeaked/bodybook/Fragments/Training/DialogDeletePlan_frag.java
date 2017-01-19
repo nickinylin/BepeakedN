@@ -2,7 +2,9 @@ package dk.bepeaked.bodybook.Fragments.Training;
 
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -28,6 +30,7 @@ public class DialogDeletePlan_frag extends DialogFragment implements View.OnClic
     TextView tv;
     int pasID, planID;
     Singleton singleton;
+    private SharedPreferences prefs;
 
 
     public DialogDeletePlan_frag() {
@@ -42,6 +45,7 @@ public class DialogDeletePlan_frag extends DialogFragment implements View.OnClic
 
         View view = inflater.inflate(R.layout.fragment_dialog_delete_frag, container, false);
         singleton = Singleton.singleton;
+        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         wc = new WorkoutController();
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         pasID = getArguments().getInt("pasID", 9999);
@@ -64,6 +68,9 @@ public class DialogDeletePlan_frag extends DialogFragment implements View.OnClic
         if (v == btnOK) {
             try {
                 wc.deletePlan(planID);
+                if (prefs.getInt("lastUsedPlan", 9999) == planID ) {
+                    prefs.edit().putInt("lastUsedPlan", wc.getPlans().first().getID()).commit();
+                }
                 dismiss();
             } catch (ExceptionPasDoesntExist e) {
                 e.printStackTrace();
